@@ -1,0 +1,54 @@
+// Gotham font import (external font)
+@font-face {
+  font-family: "Gotham-book"; /*a name to be used later*/
+  src: url("../assets/fonts/gotham/Gotham-Book.otf"); /*URL to font*/
+}
+@font-face {
+  font-family: "Gotham-thin"; /*a name to be used later*/
+  src: url("../assets/fonts/gotham/Gotham-Thin.otf"); /*URL to font*/
+}
+@font-face {
+  font-family: "Gotham-light"; /*a name to be used later*/
+  src: url("../assets/fonts/gotham/GothamLight.ttf"); /*URL to font*/
+}
+@font-face {
+  font-family: "Gotham-medium"; /*a name to be used later*/
+  src: url("../assets/fonts/gotham/Gotham-Medium.otf"); /*URL to font*/
+}
+@font-face {
+  font-family: "Gotham-bold"; /*a name to be used later*/
+  src: url("../assets/fonts/gotham/GothamBold.ttf"); /*URL to font*/
+}
+
+// Segoe UI font
+@font-face {
+  font-family: "Segoe"; /*a name to be used later*/
+  src: url("../assets/fonts/segoe/Segoe-UI.ttf"); /*URL to font*/
+}
+
+// Open Sans font import (google font)
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+$font-opensans: "Open Sans", sans-serif;
+
+// MOntserrat font import (google font)
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap");
+$font-mont: "Montserrat", sans-serif;
+
+// LAto font import (google font)
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+$font-lato: "Lato", sans-serif;
+
+$theme-yellow: #f0d32f;
+$pale-yellow: #cdbc68;
+$text-yellow: #dbbf1f;
+$card-yellow: #ffd600;
+$theme-grey: #b9b9b9;
+$font-color: #1d1d1d;
+$section-bg-grey: #f0f4f9;
+
+// media mixins
+@mixin for-mobile {
+  @media (max-width: 992px) {
+    @content;
+  }
+}

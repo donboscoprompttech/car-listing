@@ -1,0 +1,41 @@
+.header-caption {
+  font-family: "Gotham-thin";
+  font-size: 4.5vw;
+  letter-spacing: 3.9px;
+  width: 100%;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.header-caption-bold {
+  @extend .header-caption;
+  font-family: "Gotham-bold";
+}
+
+.section-title {
+  font-size: 2rem;
+  font-family: "Gotham-light";
+  text-align: center;
+  padding-bottom: 1rem;
+
+  span {
+    font-family: "Gotham-bold";
+  }
+  @media screen and (max-width: 992px) {
+    margin-top: 1rem;
+  }
+}
+
+.footer-title {
+  font-size: 0.85rem;
+  color: $theme-yellow;
+  font-family: $font-mont;
+  font-weight: 700;
+  border-left: 3px solid $theme-yellow;
+  padding-left: 1rem;
+  text-transform: uppercase;
+
+  @media screen and (max-width: 992px) {
+    margin-top: 2rem;
+  }
+}
