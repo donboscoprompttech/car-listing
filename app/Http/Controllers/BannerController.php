@@ -26,7 +26,8 @@ class BannerController extends Controller
         $request->validate([
             'name'      => 'required',
             'country'   => 'required',
-            'image'     => 'required|mimes:png,jpg,jpeg|dimensions:width=1920,height=506',
+            //'image'     => 'required|mimes:png,jpg,jpeg|dimensions:width=1920,height=506',
+            'image'     => 'required|mimes:png,jpg,jpeg|dimensions:width=3840,height=1916',
         ]);
 
         if($request->hasFile('image')){

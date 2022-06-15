@@ -1,0 +1,63 @@
+.gvr-header {
+  height: 90vh;
+  background: url(../assets/images/header.png);
+  background-size: cover;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.25);
+
+  .caption-div {
+    padding-top: 13rem;
+  }
+
+  .search-div {
+    background: #ffffff;
+    border-radius: 6px;
+    margin: 4rem auto 0 auto;
+    width: 75%;
+
+    .select2 {
+      height: 100%;
+      width: 100% !important;
+
+      .select2-selection {
+        border: 0;
+        height: 100%;
+        padding: 1rem;
+
+        .select2-selection__arrow {
+          top: -3px;
+          right: 15px;
+          height: 100%;
+          b {
+            border: solid black;
+            border-width: 0 1px 1px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+          }
+        }
+      }
+    }
+    .select2.select2-container--open {
+      .select2-selection__arrow {
+        b {
+          transform: rotate(-135deg);
+          -webkit-transform: rotate(-135deg);
+        }
+      }
+    }
+  }
+}
+
+.select2-container {
+  .select2-dropdown {
+    padding: 0.5rem;
+    .select2-search__field {
+      // border: 0 !important;
+      border-radius: 6px;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

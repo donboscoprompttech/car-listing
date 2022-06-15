@@ -20,7 +20,7 @@ Route::get('/', function(){
 });
 Route::get('/forgotpassword/index', [App\Http\Controllers\LoginController::class, 'forgotPasswordIndex'])->name('forgotpassword.index');
 Route::post('/forgotpassword/store', [App\Http\Controllers\LoginController::class, 'forgotPasswordStore'])->name('forgotpassword.store');
-
+Route::get('/car/index', [App\Http\Controllers\CarlistController::class, 'index'])->name('car.index');
 // Logout user Back button Cache clearing
 Route::group(['middleware' => ['revalidate']], function(){
 

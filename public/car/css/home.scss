@@ -1,0 +1,505 @@
+// Home page styles
+.yellow-section {
+  background: $pale-yellow;
+  padding: 3% 5%;
+
+  .caption-text {
+    font-size: 1.5rem;
+    font-family: "Gotham-light";
+    width: 100%;
+    padding: 2rem 0;
+    position: relative;
+    top: 2rem;
+
+    span {
+      font-family: "Gotham-bold";
+    }
+
+    .large-span {
+      font-size: 2rem;
+    }
+  }
+
+  .yellow-data-div {
+    display: flex;
+    position: relative;
+    top: 1rem;
+    @media screen and (max-width: 992px) {
+      padding-bottom: 3rem;
+    }
+
+    .icon-div {
+      width: 20%;
+
+      .icon {
+        width: 90px;
+        height: 90px;
+        top: -16%;
+        position: relative;
+        right: 0.5rem;
+      }
+      @media screen and (max-width: 992px) {
+        width: 15%;
+        .icon {
+          width: 75px;
+          height: 75px;
+          top: -12%;
+          right: 1.5rem;
+        }
+      }
+    }
+    .desc-div {
+      .title {
+        font-size: 1.25rem;
+        font-family: "Gotham-medium";
+      }
+      .desc {
+        font-size: 0.85rem;
+        font-family: "Segoe";
+        line-height: 1.75;
+      }
+    }
+  }
+}
+
+// Home car card section styles
+
+.home-cars-section {
+  background: #f0f4f9;
+
+  #wrapper {
+    margin-top: 30px;
+  }
+  #filter {
+    list-style-type: none;
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      margin-right: 15px;
+      padding: 0.25rem 0.75rem;
+      font-family: $font-opensans;
+
+      &:hover {
+        //   color: $theme-yellow;
+        cursor: pointer;
+        border-bottom: 2px solid $theme-yellow;
+      }
+      &.active {
+        //   color: $theme-yellow;
+        font-weight: 700;
+        border-bottom: 3px solid $theme-yellow;
+      }
+
+      @media screen and (max-width: 992px) {
+        margin: 0;
+      }
+    }
+  }
+  #portfolio {
+    list-style-type: none;
+    padding-left: 0;
+
+    .car-card {
+      margin-bottom: 2rem;
+      .card {
+        border: 0;
+        border-radius: 6px;
+        box-shadow: none;
+        transition: box-shadow 0.5s;
+        a {
+          text-decoration: none;
+          color: inherit;
+          .card-body {
+            .price-div {
+              display: flex;
+              width: 100%;
+              .price {
+                font-size: 0.8rem;
+                color: #fd1717;
+                font-family: $font-opensans;
+                font-weight: 700;
+                width: 100%;
+              }
+              .feature-tag {
+                font-size: 0.65rem;
+                color: #ffffff;
+                background-color: $theme-yellow;
+                font-family: $font-opensans;
+                text-align: center;
+                font-weight: 500;
+                padding: 0.2rem 0.7rem;
+                border-radius: 19px;
+                float: right;
+                position: relative;
+                top: -0.1rem;
+                //   width: 40%;
+              }
+            }
+            .card-img {
+              padding: 1rem 0;
+            }
+            .car-details-div {
+              .car-name-div {
+                .car-name {
+                  font-size: 0.8rem;
+                  font-family: "Gotham-medium";
+                }
+              }
+              .car-details {
+                display: flex;
+                width: 100%;
+                .km-div {
+                  width: 100%;
+                  display: flex;
+                  .km {
+                    font-size: 0.7rem;
+                    color: #2a2618;
+                    margin-bottom: 0;
+                    position: relative;
+                    top: 0.2rem;
+                    .icon-span {
+                      .car-icon {
+                        width: 15px;
+                        height: 15px;
+                        margin-right: 0.2rem;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .year-div {
+                width: 30%;
+                .year {
+                  font-size: 0.6rem;
+                  text-align: center;
+                  color: #ffffff;
+                  background-color: $theme-grey;
+                  font-family: $font-opensans;
+                  font-weight: 500;
+                  padding: 0.2rem 0.7rem;
+                  border-radius: 19px;
+                  float: right;
+                  position: relative;
+                  top: -0.2rem;
+                  margin-bottom: 0;
+                }
+              }
+            }
+          }
+        }
+        &:hover {
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+            rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+        }
+      }
+    }
+    .show-btn-div {
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+  }
+}
+
+// Home video section styles
+
+.video-section {
+  //   height: 78vh;
+  .button-div {
+    background: transparent;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    /* height: 100%; */
+    margin-top: 15%;
+    /* z-index: 9999; */
+    text-align: center;
+
+    .play-btn {
+      display: grid;
+      align-items: center;
+      /* justify-content: center; */
+      margin: 0 auto;
+      height: 100%;
+      i {
+        color: #ffffff;
+        font-size: 5rem;
+      }
+    }
+    .watch-text {
+      position: absolute;
+      /* display: grid; */
+      /* justify-content: center; */
+      /* align-items: center; */
+      /* margin: 0 auto; */
+      text-align: center;
+      width: 100%;
+      margin-top: 2rem;
+      color: #ffffff;
+      font-family: "Gotham-light";
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 992px) {
+      margin-top: 12%;
+      .play-btn {
+        i {
+          font-size: 2rem;
+        }
+      }
+      .watch-text {
+        font-size: 1rem;
+        margin-top: 2%;
+      }
+    }
+  }
+  .image-div {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    height: auto;
+  }
+}
+
+// Brand carousel styles
+
+.brand-section {
+  padding: 4rem 2rem;
+
+  .section-title {
+    text-align: left;
+  }
+
+  .brand-carousel {
+    padding: 0 1rem;
+
+    .brand-logo {
+      width: 70px;
+      height: 70px;
+    }
+    .slick-prev {
+      background: #73737314;
+      border-radius: 32px;
+      width: 20px;
+      height: 20px;
+      &::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-bottom: 2px solid $font-color;
+        border-left: 2px solid $font-color;
+        transform: rotate(45deg);
+        left: 6px;
+        top: 6px;
+      }
+    }
+    .slick-next {
+      @extend .slick-prev;
+      transform: rotate(180deg);
+      top: 40%;
+    }
+  }
+}
+
+// Special &  accordion section styles
+
+.special-section {
+  height: 100%;
+  .image-div {
+    background-image: url(../assets/images/special-offer.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-position: center;
+    object-fit: cover;
+    width: 100%;
+    font-family: $font-mont;
+    color: #ffffff;
+
+    .main-heading {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 1.9rem;
+      text-align: center;
+      padding-top: 25%;
+    }
+    .desc {
+      font-size: 0.65rem;
+      font-weight: 300;
+      text-align: center;
+      width: 60%;
+      margin: 0 auto;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .image-div {
+      height: 50vh;
+
+      .main-heading {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .accordion-div {
+    padding: 2rem;
+    background: url(../assets/images/world-map.png);
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 120% 90%;
+    .heading-row {
+      .sub-heading {
+        font-family: $font-opensans;
+        font-size: 0.85rem;
+        font-weight: 400;
+        color: $font-color;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 0.85rem;
+      }
+      .main-heading {
+        font-family: "Gotham-bold";
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+        color: #333333;
+        margin-bottom: 0.5rem;
+
+        span {
+          color: #fdc101;
+        }
+
+        @media screen and (max-width: 992px) {
+          font-size: 1.5rem;
+          text-align: center;
+        }
+      }
+      .desc {
+        font-size: 0.85rem;
+        font-family: $font-opensans;
+        font-weight: 300;
+        width: 50%;
+        @media screen and (max-width: 992px) {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+    .special-car-div {
+      margin-top: auto;
+      margin-bottom: 3rem;
+      @media screen and (max-width: 992px) {
+        margin: 3rem 0 0 0;
+
+        img {
+          width: 65%;
+          margin: 0 auto;
+          display: block;
+        }
+      }
+    }
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+      padding: 2rem 5rem;
+      .heading-row {
+        padding: 1rem 0;
+        text-align: center;
+        .main-heading {
+          padding-top: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// Testimonial section styles
+
+.testimonial-section {
+  background: transparent
+    radial-gradient(closest-side at 50% 80%, #383838 0%, #000000 100%) 0% 0%
+    no-repeat padding-box;
+  height: 70vh;
+
+  .testimonial-container {
+    .testimonial-carousel {
+      .testimonial {
+        .quote-icon {
+          background-image: url(../assets/images/Icons/path.png);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          margin: 0 auto;
+          display: block;
+          width: 100%;
+          position: relative;
+          top: 5rem;
+
+          .quote-img {
+            margin: 0 auto;
+            display: block;
+            width: 35px;
+            height: 35px;
+            padding: 0.5rem;
+          }
+        }
+        .desc {
+          color: #a9a9a9;
+          font-family: $font-opensans;
+          font-weight: 600;
+          font-size: 0.8rem;
+          text-align: center;
+          padding: 7rem 15rem 0 15rem;
+          text-align-last: center;
+          line-height: 1.75;
+
+          @media screen and (max-width: 992px) {
+            padding: 8rem 2rem 0 2rem;
+            text-align: justify;
+          }
+        }
+        .client-name {
+          font-size: 0.85rem;
+          color: #ffffff;
+          font-family: $font-opensans;
+          font-weight: 700;
+          text-align: center;
+          span {
+            color: $text-yellow;
+          }
+        }
+      }
+    }
+    .image-div {
+      position: relative;
+      // top: 3rem;
+      margin-top: 2.5rem;
+      .testimonial-banner {
+        width: 40%;
+        margin: 0 auto;
+        display: block;
+
+        @media screen and (max-width: 992px) {
+          width: 65%;
+          margin-top: 15%;
+        }
+
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+          width: 65%;
+          margin-top: 15%;
+        }
+      }
+    }
+  }
+}
