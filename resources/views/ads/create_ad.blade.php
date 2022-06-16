@@ -101,8 +101,13 @@
                                                 <option {{ old('country') == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
                                             @endforeach
                                         </select>
+
+
+
+
+
                                         <div class="invalid-feedback">
-                                            @error('country')
+                                            @error('place')
                                                 {{ $message }}
                                             @enderror
                                         </div>
@@ -119,7 +124,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group my-2 col-md-6">
-                                        <label for="state">State</label>
+                                        <!--<label for="state">State</label>
                                         <select name="state" id="state" class="select2 form-control @error('state') is-invalid @enderror" autocomplete="off">
                                             <option value={{ old('state') }}>Select State</option>
                                         </select>
@@ -127,34 +132,17 @@
                                             @error('state')
                                                 {{ $message }}
                                             @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group my-2 col-md-6">
-                                        <label for="Image">Image (Multiple)</label>
-                                        <input type="file" name="image[]" autocomplete="off" class="form-control @error('image') is-invalid @enderror" accept=".png, .jpeg, .jpg" multiple>
-                                        <div style="color: red;"><strong>Warning: </strong> Maximum of 5 images are allowed!</div>
-                                        <div class="invalid-feedback">
-                                            @error('image.*')
-                                                {{ $message }}
-                                            @enderror
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="form-group my-2 col-md-6">
-                                        <label for="city">City</label>
-                                        <select name="city" id="city" class="select2  form-control @error('city') is-invalid @enderror" autocomplete="off">
-                                            <option value={{old('city')}}>Select</option>
+                                        </div>-->
+                                        <label for="place">Place</label>
+                                        <select name="place" id="place" class="select2 form-control @error('place') is-invalid @enderror" autocomplete="off">
+                                            <option value="">Select</option>
+                                            @foreach ($country as $row1)
+                                                
+                                                <option {{ old('country') == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
+                                            @endforeach
                                         </select>
-                                        <div class="invalid-feedback">
-                                            @error('city')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
+<div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Description">Description</label>
                                         <textarea name="description" class="form-control {{ Session::has('description_error') ? 'is-invalid' : '' }}" cols="30" rows="3" placeholder="Description" autocomplete="off">{{ old('description') }}</textarea>
@@ -175,6 +163,45 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
+<div class="form-group my-2 col-md-6">
+                                        <label for="Image">Image (Multiple)</label>
+                                        <input type="file" name="image[]" autocomplete="off" class="form-control @error('image') is-invalid @enderror" accept=".png, .jpeg, .jpg" multiple>
+                                        <div style="color: red;"><strong>Warning: </strong> Maximum of 5 images are allowed!</div>
+                                        <div class="invalid-feedback">
+                                            @error('image.*')
+                                                {{ $message }}
+                                            @enderror
+                                            
+                                        </div>
+                                </div>
+
+
+<div class="form-group my-2 col-md-6">
+                                        <label for="vehicletype">Vehicle Type</label>
+                                        <select name="vehicletype" id="vehicletype" class="select2  form-control @error('vehicletype') is-invalid @enderror" autocomplete="off">
+                                            @foreach ($vehicletype as $row1)
+                                                
+                                                <option {{ old('vehicletype') == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            @error('vehicletype')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+                                
+                                
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -185,18 +212,40 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group my-2">
-                                                <label for="Status">Price Negotiable</label>
-                                                <input type="checkbox" name="negotiable" value="checked" autocomplete="off">
+                                                <!--<label for="Status">Price Negotiable</label>
+                                                <input type="checkbox" name="negotiable" value="checked" autocomplete="off">-->
+
+<label for="Status">Sold</label>
+                                                <input type="radio" name="soldreserved" value="checked" autocomplete="off">
+
+
+
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group my-2">
-                                                <label for="Status">Featured</label>
-                                                <input type="checkbox" name="featured" value="checked" autocomplete="off">
+                                                <!--<label for="Status">Featured</label>
+                                                <input type="checkbox" name="featured" value="checked" autocomplete="off">-->
+
+<label for="Status">Reserved</label>
+                                                <input type="radio" name="soldreserved" value="checked" autocomplete="off">
+
+
+
+
+
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
+
+
+<div class="row">
+                            
+                                    
+                                </div>
+
                                 <div class="row" id="custom_fields">
                                     
                                 </div>
@@ -556,6 +605,8 @@
                 custom_field += `<div class="col-md-6 form-group my-2">
                                     <div class="container">
                                         <div class="row">
+
+
                                             <label class="col-md-12" for="Transmission">Features </label>
                                             <div class="custom-form-control col-md-6">
                                                 <input type="checkbox" class="" name="features[]" id="AirConditioner" value="Air Conditioner" >

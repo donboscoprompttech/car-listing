@@ -20,6 +20,7 @@ use App\Models\PropertySaleCustomeValues;
 use App\Models\RejectReason;
 use App\Models\SellerInformation;
 use App\Models\User;
+use App\Models\vehicletype;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,11 +46,13 @@ class AdsController extends Controller
 
         $country = Country::orderBy('name')
         ->get();
+        $vehicletype = vehicletype::orderBy('name')
+        ->get();
 
         $user = User::where('id', Auth::user()->id)
         ->first();
         
-        return view('ads.create_ad', compact('category', 'country', 'user'));
+        return view('ads.create_ad', compact('category', 'country', 'user','vehicletype'));
     }
 
     public function store(Request $request){

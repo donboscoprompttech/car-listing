@@ -243,18 +243,55 @@
       <div id="wrapper">
         <ul id="filter">
           <li class="active">All</li>
-          <li>Sedan</li>
-          <li>SUV</li>
-          <li>Hybrid</li>
-          <li>Sport</li>
+           @foreach ($vehicletype as $row)
+           <li>{{ $row->name }}</li>
+           @endforeach
+          
         </ul>
 
         <div class="row" id="portfolio">
           <!-- Car Card -->
-          <div class="all sedan col-lg-3 col-md-4 car-card">
+
+          @foreach ($vehicletypecars as $row)
+          <div class="all {{ strtolower($row->name) }} col-lg-3 col-md-4 car-card">
             <div class="card h-100">
-              <!-- Product image-->
-              <!-- Product details-->
+             
+              <a href="details.html">
+                <div class="card-body">
+                  <div class="price-div">
+                    <p class="price">{{ $row->modelname }}</p>
+                    <p class="feature-tag">Featured</p>
+                  </div>
+                  <div class="card-img-div">
+                    <img class="card-img img-fluid" src={{asset($row->image) }} alt="card image" />
+                  </div>
+                  <div class="car-details-div">
+                    <div class="car-name-div">
+                      <p class="car-name">{{ $row->title }}</p>
+                    </div>
+                    <div class="car-details">
+                      <div class="km-div">
+                        <p class="km">
+                          <span class="icon-span">
+                            <img src="assets/images/Icons/meter.png" class="car-icon" alt="">
+                          </span>
+                          {{ $row->milage }} KM
+                        </p>
+                      </div>
+                      <div class="year-div">
+                        <p class="year">{{ $row->registration_year }}</p>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+           @endforeach
+          <!--<div class="all Sedan col-lg-3 col-md-4 car-card">
+            <div class="card h-100">
+              
               <a href="details.html">
                 <div class="card-body">
                   <div class="price-div">
@@ -281,58 +318,16 @@
                         <p class="year">2016</p>
                       </div>
                     </div>
-                    <!-- Product price-->
+                   
                   </div>
                 </div>
               </a>
             </div>
           </div>
-          <!-- Car Card Ends -->
-
-          <!-- Car Card -->
-          <div class="all sedan col-lg-3 col-md-4 car-card">
-            <div class="card h-100">
-              <!-- Product image-->
-              <!-- Product details-->
-              <a href="details.html">
-                <div class="card-body">
-                  <div class="price-div">
-                    <p class="price">AED 599,000</p>
-                    <p class="feature-tag">Featured</p>
-                  </div>
-                  <div class="card-img-div">
-                    <img class="card-img img-fluid" src="assets/images/car.png" alt="card image" />
-                  </div>
-                  <div class="car-details-div">
-                    <div class="car-name-div">
-                      <p class="car-name">Mazda Miata</p>
-                    </div>
-                    <div class="car-details">
-                      <div class="km-div">
-                        <p class="km">
-                          <span class="icon-span">
-                            <img src="assets/images/Icons/meter.png" class="car-icon" alt="">
-                          </span>
-                          2,100 KM
-                        </p>
-                      </div>
-                      <div class="year-div">
-                        <p class="year">2016</p>
-                      </div>
-                    </div>
-                    <!-- Product price-->
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-          <!-- Car Card Ends -->
-
-          <!-- Car Card -->
+          
           <div class="all suv col-lg-3 col-md-4 car-card">
             <div class="card h-100">
-              <!-- Product image-->
-              <!-- Product details-->
+              
               <a href="details.html">
                 <div class="card-body">
                   <div class="price-div">
@@ -359,19 +354,16 @@
                         <p class="year">2016</p>
                       </div>
                     </div>
-                    <!-- Product price-->
+                   
                   </div>
                 </div>
               </a>
             </div>
           </div>
-          <!-- Car Card Ends -->
-
-          <!-- Car Card -->
+          
           <div class="all suv col-lg-3 col-md-4 car-card">
             <div class="card h-100">
-              <!-- Product image-->
-              <!-- Product details-->
+              
               <a href="details.html">
                 <div class="card-body">
                   <div class="price-div">
@@ -398,19 +390,16 @@
                         <p class="year">2016</p>
                       </div>
                     </div>
-                    <!-- Product price-->
+                   
                   </div>
                 </div>
               </a>
             </div>
           </div>
-          <!-- Car Card Ends -->
-
-          <!-- Car Card -->
+          
           <div class="all hybrid col-lg-3 col-md-4 car-card">
             <div class="card h-100">
-              <!-- Product image-->
-              <!-- Product details-->
+              
               <a href="details.html">
                 <div class="card-body">
                   <div class="price-div">
@@ -437,19 +426,16 @@
                         <p class="year">2016</p>
                       </div>
                     </div>
-                    <!-- Product price-->
+                    
                   </div>
                 </div>
               </a>
             </div>
           </div>
-          <!-- Car Card Ends -->
-
-          <!-- Car Card -->
+          
           <div class="all hybrid col-lg-3 col-md-4 car-card">
             <div class="card h-100">
-              <!-- Product image-->
-              <!-- Product details-->
+             
               <a href="details.html">
                 <div class="card-body">
                   <div class="price-div">
@@ -476,19 +462,18 @@
                         <p class="year">2016</p>
                       </div>
                     </div>
-                    <!-- Product price-->
+                    
                   </div>
                 </div>
               </a>
             </div>
           </div>
-          <!-- Car Card Ends -->
+          
 
-          <!-- Car Card -->
+          
           <div class="all sport col-lg-3 col-md-4 car-card">
             <div class="card h-100">
-              <!-- Product image-->
-              <!-- Product details-->
+              
               <a href="details.html">
                 <div class="card-body">
                   <div class="price-div">
@@ -515,19 +500,16 @@
                         <p class="year">2016</p>
                       </div>
                     </div>
-                    <!-- Product price-->
+                    
                   </div>
                 </div>
               </a>
             </div>
           </div>
-          <!-- Car Card Ends -->
-
-          <!-- Car Card -->
+          
           <div class="all sport col-lg-3 col-md-4 car-card">
             <div class="card h-100">
-              <!-- Product image-->
-              <!-- Product details-->
+              
               <a href="details.html">
                 <div class="card-body">
                   <div class="price-div">
@@ -554,12 +536,12 @@
                         <p class="year">2016</p>
                       </div>
                     </div>
-                    <!-- Product price-->
+                    
                   </div>
                 </div>
               </a>
             </div>
-          </div>
+          </div>-->
           <!-- Car Card Ends -->
 
           <!-- Show all button div -->
@@ -625,24 +607,7 @@
               <img src="{{ asset($row->dealer_image) }}" class="img-fluid brand-logo">
             </div>
             @endforeach
-            <!--<div>
-              <img src="assets/images/brands/brand2.png" class="img-fluid brand-logo">
-            </div>
-            <div>
-              <img src="assets/images/brands/brand3.png" class="img-fluid brand-logo">
-            </div>
-            <div>
-              <img src="assets/images/brands/brand4.png" class="img-fluid brand-logo">
-            </div>
-            <div>
-              <img src="assets/images/brands/brand5.png" class="img-fluid brand-logo">
-            </div>
-            <div>
-              <img src="assets/images/brands/brand6.png" class="img-fluid brand-logo">
-            </div>
-            <div>
-              <img src="assets/images/brands/brand6.png" class="img-fluid brand-logo">
-            </div>-->
+           
           </div>
 
         </div>
@@ -820,21 +785,7 @@
           </p>
         </div>
         @endforeach
-        <!--<div class="testimonial">
-          <div class="quote-icon">
-            <img src="assets/images/Icons/quote.png" class="img-fluid quote-img" alt="" srcset="">
-          </div>
-          <p class="desc">
-            It is a long established fact that a reader will be distracted by the readable content of a page when
-            looking
-            at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-            as
-            opposed to using 'Content here, content here', making it look like readable English
-          </p>
-          <p class="client-name">
-            Muhammed Ali, <span>Happy Customer</span>
-          </p>
-        </div>-->
+       
       </div>
 
       <div class="image-div">
@@ -845,88 +796,7 @@
 
   <!-- Footer-->
   <section class="footer-section px-md-5">
-    <div class="row footer-row">
-      <div class="col-lg-4">
-        <div class="logo-div">
-          <span><img src="assets/images/logo.png" class="img-fluid footer-logo" alt=""></span>
-          <p class="logo-title">
-            GLOBAL VECHICLE REMARKETING
-          </p>
-        </div>
-        <div class="desc-div">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor et dolore magna aliqua. Ut enim
-          ad minim veniam, quis nostrud eiusmod tempor incididunt ut labore et dolore
-        </div>
-        <div class="opening-div">
-          <p class="title">OPENING HOURS</p>
-          <p class="open-desc">Mon-Sat: 07.00am - 18.00pm</p>
-          <p class="open-desc">Sunday is closed</p>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-8">
-        <div class="footer-title">
-          <p>LATEST CARS</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6 col-6">
-            <ul class="footer-list">
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Audi Model RX-7</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>BMW Model M3 GTR</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Bugatti Model Veyron</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Chevrolette Model S</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Lamborghini Diablo</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Maclaren Model RS</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Nissan Model Skyline</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-6 col-6">
-            <ul class="footer-list">
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Audi Model RX-7</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>BMW Model M3 GTR</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Bugatti Model Veyron</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Chevrolette Model S</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Lamborghini Diablo</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Maclaren Model RS</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Nissan Model Skyline</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 ps-lg-5">
-        <div class="footer-title">
-          <p>Contact Us</p>
-        </div>
-        <ul class="footer-list">
-          <li><a href=""><span class="icon-span"><img src="assets/images/Icons/location.svg" class="footer-icon"
-                  alt=""></span>Dubai , 128 Town, Dubai 1367 UAE</a></li>
-          <li><a href=""><span class="icon-span"><img src="assets/images/Icons/phone-call.svg" class="footer-icon"
-                  alt=""></span>Phone : 1 - 877 - 3453 - 3726</a></li>
-          <li><a href=""><span class="icon-span"><img src="assets/images/Icons/fax.svg" class="footer-icon"
-                  alt=""></span>FAX : 1 - 877 - 2341 - 1283</a></li>
-          <li><a href=""><span class="icon-span"><img src="assets/images/Icons/email.svg" class="footer-icon"
-                  alt=""></span>Email : info@carlisting.com</a></li>
-        </ul>
-      </div>
-    </div>
-    <footer class="bottom-footer">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <p class="copyright">
-              Copyright <span>@ CAR LISTING</span> 2022
-            </p>
-          </div>
-          <div class="col-lg-6 col-12">
-            <ul class="social-links">
-              <li><a href="">Facebook</a></li>
-              <li><a href="">Twitter</a></li>
-              <li><a href="">Instagram</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+   @include('cars.footer')
   </section>
 
   <!-- Bootstrap core JS-->

@@ -15,14 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 // Route::get('test', [\App\Http\Controllers\Api\LoginController::class, 'newTest']);
 
-Route::get('/', function(){
+/*Route::get('/', function(){
     return redirect()->route('login.index');
+});*/
+Route::get('/', function(){
+    return redirect()->route('car.index');
 });
 Route::get('/forgotpassword/index', [App\Http\Controllers\LoginController::class, 'forgotPasswordIndex'])->name('forgotpassword.index');
 Route::post('/forgotpassword/store', [App\Http\Controllers\LoginController::class, 'forgotPasswordStore'])->name('forgotpassword.store');
-Route::get('/car/index', [App\Http\Controllers\CarlistController::class, 'index'])->name('car.index');
-Route::get('/cardetails', [App\Http\Controllers\CardetailsController::class, 'cardetails'])->name('cardetails');
-Route::post('/enquiryprocess', [App\Http\Controllers\CardetailsController::class, 'enquiryprocess'])->name('enquiryprocess');
+Route::get('/car/index', [App\Http\Controllers\ServiceController::class, 'index'])->name('car.index');
+Route::get('/cardetails', [App\Http\Controllers\DetailsController::class, 'cardetails'])->name('cardetails');
+Route::get('/checknum2', [App\Http\Controllers\ServiceController::class, 'checknum2'])->name('checknum2');
+Route::post('/enquiryprocess', [App\Http\Controllers\DetailsController::class, 'enquiryprocess'])->name('enquiryprocess');
+Route::get('/carlisting', [App\Http\Controllers\DetailsController::class, 'carlisting'])->name('carlisting');
 // Logout user Back button Cache clearing
 Route::group(['middleware' => ['revalidate']], function(){
 
