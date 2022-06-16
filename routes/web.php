@@ -229,6 +229,23 @@ Route::group(['middleware' => ['revalidate']], function(){
         Route::post('/terms/update', [App\Http\Controllers\TermsConditionsController::class, 'update'])->name('terms.update');
         Route::post('/terms/delete/{id}', [App\Http\Controllers\TermsConditionsController::class, 'delete'])->name('terms.delete');
 
+
+
+//Questions
+
+        Route::get('/questions', [App\Http\Controllers\QuestionsController::class, 'index'])->name('questions.index');
+        Route::post('/questions/store', [App\Http\Controllers\QuestionsController::class, 'store'])->name('questions.store');
+        Route::post('/questions/update', [App\Http\Controllers\QuestionsController::class, 'update'])->name('questions.update');
+        Route::post('/questions/delete/{id}', [App\Http\Controllers\QuestionsController::class, 'delete'])->name('questions.delete');
+
+
+
+
+
+
+
+
+
         // Contact us enquiry
 
         Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
