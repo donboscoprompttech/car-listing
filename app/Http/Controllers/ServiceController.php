@@ -9,6 +9,7 @@ use App\Models\vehicletype;
 use App\Models\Ads;
 use DB;
 use Exception;
+use App\Models\Questions;
 
 
 class ServiceController extends Controller
@@ -25,12 +26,13 @@ $brands = FeaturedDealers::orderBy('dealer_name')
         ->get(); 
 $vehicletype = vehicletype::orderBy('name')
         ->get(); 
+        $questions=Questions::get();
 //DB::enableQueryLog();
 $vehicletypecars = Ads::select("ads.*","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")
                
         ->get();
         //dd(DB::getQueryLog());
-    return view('cars.index',compact('testimonial','bannerfirst','brands','vehicletype','vehicletypecars'));
+    return view('cars.index',compact('testimonial','bannerfirst','brands','vehicletype','vehicletypecars','questions'));
 
 }
 catch (exception $e) {

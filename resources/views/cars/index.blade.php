@@ -633,133 +633,59 @@
           <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam, quis
             nostrud</p>
         </div>
+
+
+
+
+         
         <div class="row">
           <div class="col-lg-8">
             <div class="accordion special-accordion" id="accordionExample">
+              <?php $i=0;
+$k=1;
+              ?>
+              @foreach($questions as $row)
+         
               <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
+                <h2 class="accordion-header" id="headingOne<?php echo $i?>">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<?php echo $i?>"
+                    aria-expanded="true" aria-controls="collapseOne<?php echo $i?>">
                     <span></span>
                     <div class="button-text d-flex">
                       <div class="count-div">
-                        <p class="count">01</p>
+                        <p class="count"><?php echo $k++;?></p>
                       </div>
                       <div class="text-div">
-                        <p class="text">Lorem Ipsum is simprinting and typesetting industry</p>
+                        <p class="text">{{$row->question}}</p>
                       </div>
                     </div>
                   </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+
+<?php if ($i==0){
+  $show='show';
+}
+else{
+  $show='';
+}
+?>
+                <div id="collapseOne<?php echo $i?>" class="accordion-collapse collapse <?php echo $show;?>" aria-labelledby="headingOne<?php echo $i?>"
                   data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <div class="desc-div">
                       <span class="left-element">&nbsp;</span>
 
-                      <p class="light-desc">1,255 Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry</p>
+                      <p class="light-desc">{{$row->shortdescription}}</p>
                       <p class="desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam, quis
-                        nostrud
+                       {{$row->answer}}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <span></span>
-                    <div class="button-text d-flex">
-                      <div class="count-div">
-                        <p class="count">02</p>
-                      </div>
-                      <div class="text-div">
-                        <p class="text">Lorem Ipsum is simprinting and typesetting industry</p>
-                      </div>
-                    </div>
-                  </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                  data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <div class="desc-div">
-                      <span class="left-element">&nbsp;</span>
-
-                      <p class="light-desc">1,255 Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry</p>
-                      <p class="desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam, quis
-                        nostrud
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <span></span>
-                    <div class="button-text d-flex">
-                      <div class="count-div">
-                        <p class="count">03</p>
-                      </div>
-                      <div class="text-div">
-                        <p class="text">Lorem Ipsum is simprinting and typesetting industry</p>
-                      </div>
-                    </div>
-                  </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                  data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <div class="desc-div">
-                      <span class="left-element">&nbsp;</span>
-
-                      <p class="light-desc">1,255 Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry</p>
-                      <p class="desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam, quis
-                        nostrud
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFour">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    <span></span>
-                    <div class="button-text d-flex">
-                      <div class="count-div">
-                        <p class="count">03</p>
-                      </div>
-                      <div class="text-div">
-                        <p class="text">Lorem Ipsum is simprinting and typesetting industry</p>
-                      </div>
-                    </div>
-                  </button>
-                </h2>
-                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                  data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <div class="desc-div">
-                      <span class="left-element">&nbsp;</span>
-
-                      <p class="light-desc">1,255 Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry</p>
-                      <p class="desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam, quis
-                        nostrud
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <?php $i++;?>
+              @endforeach
+              
             </div>
           </div>
           <div class="col-lg-4 special-car-div">
