@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\FeaturedDealers;
 use App\Models\vehicletype;
 use App\Models\Ads;
+use App\Models\AdsImage;
 use DB;
 use Exception;
 use App\Models\Questions;
@@ -28,7 +29,7 @@ $vehicletype = vehicletype::orderBy('name')
         ->get(); 
         $questions=Questions::get();
 //DB::enableQueryLog();
-$vehicletypecars = Ads::select("ads.*","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")
+$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")
                
         ->get();
         //dd(DB::getQueryLog());
@@ -41,6 +42,33 @@ return view('cars.errorpage',compact('message'));
 }
 
 }
+public function carsearch(){
+  try {
+    $testimonial = Testimonial::orderBy('created_at', 'desc')
+            ->get();
+    
+    $brands = FeaturedDealers::orderBy('dealer_name')
+            ->orderBy('created_at', 'desc')
+            ->get(); 
+            $questions=Questions::get();
+        return view('cars.search',compact('testimonial','brands','questions'));
+    
+    }
+    catch (exception $e) {
+    $message=$e->getMessage();
+    return view('cars.errorpage',compact('message'));
+    }
+   
+}
+
+
+function detailsshow($id){
+
+$vehicleimages=Adsimage::where('ads_id',$id)->get();
+$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->where('ads.id',$id)->get();
+return view('cars.details',compact('vehicletypecars','vehicleimages'));
+}
+
 
 
 

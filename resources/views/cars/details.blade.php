@@ -56,35 +56,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <div class="flex-menu d-flex">
                                     <div class="leftside">
-                                        <ul>
-                                            <li>
-                                                <a class="dropdown-item" href="#!">All Products</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#!">Popular Items</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#!">New Arrivals</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="rightside">
-                                        <p>test</p>
-                                    </div>
-                                </div>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#!">Whats's my car worth?</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#!">Why Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#!">Contact Us</a>
-                        </li>
-                    </ul>
-
+                                    @include('cars.header')
                 </div>
             </div>
 
@@ -151,16 +123,17 @@
             <div class="details-div">
                 <div class="gallery-div">
                     <div class="fotorama" data-allowfullscreen="true">
-                        
-                        <a href="1.jpg"> <img src="{{ asset('car/assets/images/listing/details/1.png') }}"> </a>
-                        <a href="2.jpg"> <img src="{{ asset('car/assets/images/listing/details/2.png') }}"></a>
-                        <a href="3.jpg"> <img src="{{ asset('car/assets/images/listing/details/3.png') }}"></a>
-                        <a href="4.jpg"> <img src="{{ asset('car/assets/images/listing/details/4.png') }}"></a>
-                        <a href="5.jpg"> <img src="{{ asset('car/assets/images/listing/details/5.png') }}"></a>
-                        <a href="6.jpg"> <img src="{{ asset('car/assets/images/listing/details/6.png') }}"></a>
-                        <a href="7.jpg"> <img src="{{ asset('car/assets/images/listing/details/7.png') }}"></a>                        
-                        <a href="{{ asset('car/assets/video.mp4') }}" data-video="true" class="video-gal">
-                           
+                    @foreach ($vehicleimages as $row)
+                    <a href="{{ asset('car/1.jpg') }}"> <img src="{{ asset($row->image) }}"> </a>
+                        <!--<a href="{{ asset('car/1.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/1.png') }}"> </a>
+                        <a href="{{ asset('car/2.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/2.png') }}"></a>
+                        <a href="{{ asset('car/3.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/3.png') }}"></a>
+                        <a href="{{ asset('car/4.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/4.png') }}"></a>
+                        <a href="{{ asset('car/5.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/5.png') }}"></a>
+                        <a href="{{ asset('car/6.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/6.png') }}"></a>
+                        <a href="{{ asset('car/7.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/7.png') }}"></a>                        
+                        <a href="{{ asset('car/assets/video.mp4') }}" data-video="true" class="video-gal">-->
+                        @endforeach
                             <img src="{{ asset('car/assets/images/listing/details/1.png') }}">
                         </a>
                     </div>

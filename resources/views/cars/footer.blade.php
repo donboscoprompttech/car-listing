@@ -51,13 +51,13 @@
           <p>Contact Us</p>
         </div>
         <ul class="footer-list">
-          <li><a href=""><span class="icon-span"><img src="assets/images/Icons/location.svg" class="footer-icon"
+          <li><a href=""><span class="icon-span"><img src="{{ asset('car/assets/images/Icons/location.svg') }}" class="footer-icon"
                   alt=""></span>Dubai , 128 Town, Dubai 1367 UAE</a></li>
-          <li><a href=""><span class="icon-span"><img src="assets/images/Icons/phone-call.svg" class="footer-icon"
+          <li><a href=""><span class="icon-span"><img src="{{ asset('car/assets/images/Icons/phone-call.svg') }}" class="footer-icon"
                   alt=""></span>Phone : 1 - 877 - 3453 - 3726</a></li>
-          <li><a href=""><span class="icon-span"><img src="assets/images/Icons/fax.svg" class="footer-icon"
+          <li><a href=""><span class="icon-span"><img src="{{ asset('car/assets/images/Icons/fax.svg') }}" class="footer-icon"
                   alt=""></span>FAX : 1 - 877 - 2341 - 1283</a></li>
-          <li><a href=""><span class="icon-span"><img src="assets/images/Icons/email.svg" class="footer-icon"
+          <li><a href=""><span class="icon-span"><img src="{{ asset('car/assets/images/Icons/email.svg') }}" class="footer-icon"
                   alt=""></span>Email : info@carlisting.com</a></li>
         </ul>
       </div>
