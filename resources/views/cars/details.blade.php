@@ -108,7 +108,7 @@
     <!-- Header -->
     <header class="bg-dark gvr-header listing-header">
         <div class="header-div">
-            <p class="title">Tesla Model 3 Standard Range Plus</p>
+            <p class="title">{{$vehicletypecars->title}}</p>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Homepage</a></li>
@@ -124,51 +124,45 @@
                 <div class="gallery-div">
                     <div class="fotorama" data-allowfullscreen="true">
                     @foreach ($vehicleimages as $row)
+                    <?php if($row->vehicleaudio==1){?><a href="{{ asset($row->image) }}" data-video="true" class="video-gal"> <?php }else {?>
                     <a href="{{ asset('car/1.jpg') }}"> <img src="{{ asset($row->image) }}"> </a>
-                        <!--<a href="{{ asset('car/1.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/1.png') }}"> </a>
-                        <a href="{{ asset('car/2.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/2.png') }}"></a>
-                        <a href="{{ asset('car/3.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/3.png') }}"></a>
-                        <a href="{{ asset('car/4.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/4.png') }}"></a>
-                        <a href="{{ asset('car/5.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/5.png') }}"></a>
-                        <a href="{{ asset('car/6.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/6.png') }}"></a>
-                        <a href="{{ asset('car/7.jpg') }}"> <img src="{{ asset('car/assets/images/listing/details/7.png') }}"></a>                        
-                        <a href="{{ asset('car/assets/video.mp4') }}" data-video="true" class="video-gal">-->
+                <?php }?>
+                        
                         @endforeach
                             <img src="{{ asset('car/assets/images/listing/details/1.png') }}">
                         </a>
                     </div>
                     <div class="data-div">
                         <div class="name-div">
-                            <p>Tesla Model 3 Standard Range Plus</p>
+                            <p>{{$vehicletypecars->title}}</p>
                         </div>
                         <div class="tag-div">
                             <p>New</p>
                         </div>
                         <div class="desc-div">
-                            <p class="desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                            <p class="desc">{{$vehicletypecars->description}}
+                                
                             </p>
                         </div>
                         <div class="price-div">
-                            <p>AED 57,148</p>
+                            <p>{{$vehicletypecars->modelname}}</p>
                         </div>
                         <div class="info-div">
                             <div class="detail">
                                 <p><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}" class="img-fluid detail-icon" alt=""><img src="assets/images/Icons/calendar.png" class="img-fluid detail-icon"
-                                            alt=""></span>2021</p>
+                                            alt=""></span>{{$vehicletypecars->registration_year}}</p>
                             </div>
                             <div class="detail">
                                 <p><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}" class="img-fluid detail-icon"
-                                            alt=""></span>Rear-wheel Drive</p>
+                                            alt=""></span>{{$vehicletypecars->drive}}</p>
                             </div>
                             <div class="detail">
                                 <p><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}" class="img-fluid detail-icon"
-                                            alt=""></span>Electric</p>
+                                            alt=""></span>{{$vehicletypecars->fuel_type}}</p>
                             </div>
                             <div class="detail">
                                 <p><span><img src="{{ asset('car/assets/images/Icons/people.png') }}" class="img-fluid detail-icon"
-                                            alt=""></span>5</p>
+                                            alt=""></span>{{$vehicletypecars->seats}}</p>
                             </div>
                         </div>
                         <div class="location-div">
@@ -181,49 +175,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="data-div">
-                    <div class="name-div">
-                        <p>Tesla Model 3 Standard Range Plus</p>
-                    </div>
-                    <div class="tag-div">
-                        <p>New</p>
-                    </div>
-                    <div class="desc-div">
-                        <p class="desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                        </p>
-                    </div>
-                    <div class="price-div">
-                        <p>AED 57,148</p>
-                    </div>
-                    <div class="info-div">
-                        <div class="detail">
-                            <p><span><img src="assets/images/Icons/calendar.png" class="img-fluid detail-icon"
-                                        alt=""></span>2021</p>
-                        </div>
-                        <div class="detail">
-                            <p><span><img src="assets/images/Icons/wheel.png" class="img-fluid detail-icon"
-                                        alt=""></span>Rear-wheel Drive</p>
-                        </div>
-                        <div class="detail">
-                            <p><span><img src="assets/images/Icons/fuel.png" class="img-fluid detail-icon"
-                                        alt=""></span>Electric</p>
-                        </div>
-                        <div class="detail">
-                            <p><span><img src="assets/images/Icons/people.png" class="img-fluid detail-icon"
-                                        alt=""></span>5</p>
-                        </div>
-                    </div>
-                    <div class="location-div">
-                        <p>Ajman, UAE</p>
-                    </div>
-                    <div class="button-div">
-                        <button class="btn call-btn"><i class="fa-solid fa-phone-volume"></i>971 4 123 4567</button>
-                        <button class="btn enquiry-btn"><span><img src="assets/images/Icons/enquiry.svg"
-                                    class="img-fluid detail-icon" alt=""></span>Enquire Now</button>
-                    </div>
-                </div> -->
+               
             </div>
             <div class="tab-div">
                 <div class="list-tab-div">
@@ -238,6 +190,19 @@
                                 type="button" role="tab" aria-controls="profile" aria-selected="false">Motor
                                 Info</button>
                         </li>
+
+<li class="nav-item" role="presentation">
+                            <button class="nav-link" id="motor-tabint" data-bs-toggle="tab" data-bs-target="#motorinterior"
+                                type="button" role="tab" aria-controls="profile" aria-selected="false">Interior</button>
+                        </li>
+
+<li class="nav-item" role="presentation">
+                            <button class="nav-link" id="motor-tabext" data-bs-toggle="tab" data-bs-target="#motorexterior"
+                                type="button" role="tab" aria-controls="profile" aria-selected="false">Exterior</button>
+                        </li>
+
+
+
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="location-tab" data-bs-toggle="tab" data-bs-target="#location"
                                 type="button" role="tab" aria-controls="profile" aria-selected="false">Location</button>
@@ -249,29 +214,10 @@
                         aria-labelledby="description-tab">
                         <div class="container-fluid">
                             <div class="desc-content">
-                                <p class="heading">The standard Lorem Ipsum passage, used since the 1500s</p>
-                                <p class="desc">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                    officia deserunt mollit anim id est laborum."</p>
+                                <p class="heading">{{$vehicletypecars->longdescrptitle}}</p>
+                                <p class="desc">"{{$vehicletypecars->longdescrp}}"</p>
                             </div>
-                            <div class="desc-content">
-                                <p class="heading">Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero
-                                    in 45 BC</p>
-                                <p class="desc">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                    accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                                    inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
-                                    ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                                    consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-                                    quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                                    sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam
-                                    quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam
-                                    corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-                                    vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-                                    consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="tab-pane fade" id="motor" role="tabpanel" aria-labelledby="motor-tab">
@@ -279,29 +225,29 @@
                             <p class="title">Car Details</p>
                             <ul>
                                 <li>
-                                    <p>Brand <span>Tesla</span></p>
+                                    <p>Make <span>{{$vehicletypecars->makename}}</span></p>
                                 </li>
                                 <li>
-                                    <p>Model <span>Model 3</span></p>
+                                    <p>Model <span>{{$vehicletypecars->modelname}}</span></p>
                                 </li>
                                 <li>
-                                    <p>Condition <span>New</span></p>
+                                    <p>Condition <span>{{$vehicletypecars->condition}}</span></p>
                                 </li>
                                 <li>
-                                    <p>Year <span>2019</span></p>
+                                    <p>Year <span>{{$vehicletypecars->registration_year}}</span></p>
                                 </li>
                                 <li>
                                     <p>Body Type <span>Sedan</span></p>
                                 </li>
                                 <li>
-                                    <p>Seats <span>5 people</span></p>
+                                    <p>Seats <span>{{$vehicletypecars->seats}} people</span></p>
                                 </li>
                                 <li>
-                                    <p>Exterior Color<span>Red</span></p>
+                                    <p>Exterior Color<span>{{$vehicletypecars->exteriorcolor}}</span></p>
                                 </li>
                             </ul>
                         </div>
-                        <div class="motor-details">
+                        <!--<div class="motor-details">
                             <p class="title">Car Details</p>
                             <ul>
                                 <li>
@@ -352,8 +298,32 @@
                                     <p>Exterior Color<span>Red</span></p>
                                 </li>
                             </ul>
+                        </div>-->
+                    </div>
+
+<div class="tab-pane fade" id="motorinterior" role="tabpanel" aria-labelledby="motor-tabint">
+                        <div class="map-div1">
+                            <p> Interior Details</p>
+                            
                         </div>
                     </div>
+
+<div class="tab-pane fade" id="motorexterior" role="tabpanel" aria-labelledby="motor-tabext">
+                        <div class="map-div1">
+                            <p> Exterior Details</p>
+                            
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
                     <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
                         <div class="map-div">
                             <p> <i class="fa-solid fa-location-dot"></i> United Arab Emirates, Ajman, Ajman</p>

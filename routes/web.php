@@ -26,7 +26,7 @@ Route::get('/carsearch', [App\Http\Controllers\ServiceController::class, 'carsea
 Route::get('/forgotpassword/index', [App\Http\Controllers\LoginController::class, 'forgotPasswordIndex'])->name('forgotpassword.index');
 Route::post('/forgotpassword/store', [App\Http\Controllers\LoginController::class, 'forgotPasswordStore'])->name('forgotpassword.store');
 Route::get('/car/index', [App\Http\Controllers\ServiceController::class, 'index'])->name('car.index');
-Route::get('/cardetails', [App\Http\Controllers\DetailsController::class, 'cardetails'])->name('cardetails');
+
 
 Route::post('/enquiryprocess', [App\Http\Controllers\DetailsController::class, 'enquiryprocess'])->name('enquiryprocess');
 Route::get('/carlisting', [App\Http\Controllers\DetailsController::class, 'carlisting'])->name('carlisting');

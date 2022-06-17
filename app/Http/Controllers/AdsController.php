@@ -20,6 +20,7 @@ use App\Models\PropertySaleCustomeValues;
 use App\Models\RejectReason;
 use App\Models\SellerInformation;
 use App\Models\User;
+use App\Models\Places;
 use App\Models\vehicletype;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -46,13 +47,15 @@ class AdsController extends Controller
 
         $country = Country::orderBy('name')
         ->get();
+        $places = Places::orderBy('name')
+        ->get();
         $vehicletype = vehicletype::orderBy('name')
         ->get();
 
         $user = User::where('id', Auth::user()->id)
         ->first();
         
-        return view('ads.create_ad', compact('category', 'country', 'user','vehicletype'));
+        return view('ads.create_ad', compact('category', 'country', 'user','vehicletype','places'));
     }
 
     public function store(Request $request){
@@ -71,7 +74,7 @@ class AdsController extends Controller
             'Phone'             => 'required|numeric',
             'email'             => 'required|email',
             'customer_address'  => 'required',
-            'image.*'           => 'required|mimes:png,jpg,jpeg',
+            'image.*'           => 'required|mimes:png,jpg,jpeg,mp4',
         ]);
         
 
@@ -175,7 +178,8 @@ class AdsController extends Controller
         $ad->price                  = $request->price;
         $ad->negotiable_flag        = $negotiable_flag;
         $ad->country_id             = $request->country;
-        $ad->state_id               = $request->state;
+        //$ad->state_id               = $request->state;
+        $ad->state_id               = 0;
         $ad->city_id                = $city;
         $ad->sellerinformation_id   = $seller->id;
         $ad->customer_id            = Auth()->user()->id;
@@ -183,10 +187,18 @@ class AdsController extends Controller
         $ad->latitude               = $request->address_latitude;
         $ad->longitude              = $request->address_longitude;
         $ad->status                 = $status;
+        $ad->place             = $request->place;
+        //$ad->country_id             = $request->soldreserved;
+        $ad->seats             = $request->seats;
+        $ad->exteriorcolor             = $request->exteriorcolor;
+        $ad->longdescrptitle             = $request->longdescptitle;
+        $ad->longdescrp             = $request->longdescp;
+        $ad->vehicletype             = $request->vehicletype;
+        $ad->drive             = $request->drive;
         $ad->save();
 
         if($request->hasFile('image')){
-
+           $n=0;
             foreach($request->image as $row){
 
                 $image = uniqid().'.'.$row->getClientOriginalExtension();
@@ -204,7 +216,21 @@ class AdsController extends Controller
                 $adImage            = new AdsImage();
                 $adImage->ads_id    = $ad->id;
                 $adImage->image     = $image;
+                if ($n==0){
+                    $adImage->vehicletype               = 1;
+                }
+                else{
+                    $adImage->vehicletype               = 0;
+                }
+                if ($row->getClientOriginalExtension()=='mp4'){
+                    $adImage->vehicleaudio=1; 
+                }
+                else{
+                    $adImage->vehicleaudio=0; 
+
+                }
                 $adImage->save();
+                $n++;
             }
         }
 
