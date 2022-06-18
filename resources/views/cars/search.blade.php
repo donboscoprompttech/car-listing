@@ -86,29 +86,31 @@
         <div class="row m-0">
           <div class="col-lg-2 col-12 px-0 mb-lg-0 mb-2">
             <span class="select-title-head">Brand</span>
-            <select id="brand" class="form-control">
-              <option>Brand</option>
-              <option>Audi</option>
-              <option>BMW</option>
-              <option>Benz</option>
+              <select id="brand" class="form-control" name="make">
+              <option value="0">Make</option>
+               @foreach ($make as $row)
+              <option value="{{ $row->make_id }}">{{ $row->makename }}</option>
+              @endforeach
             </select>
           </div>
           <div class="col-lg-2 col-12 px-0 mb-lg-0 mb-2">
             <span class="select-title-head">Model</span>
-            <select id="model" class="form-control">
-              <option>Model</option>
-              <option>Sport</option>
-              <option>4x4</option>
-              <option>City</option>
+             <select id="model" class="form-control" name="model">
+              <option value="0">Model</option>
+              @foreach ($model as $row)
+              <option value="{{ $row->model_id }}">{{ $row->modelname }}</option>
+              @endforeach
+             
             </select>
           </div>
           <div class="col-lg-2 col-12 px-0 mb-lg-0 mb-2">
             <span class="select-title-head">Year</span>
-            <select id="year" class="form-control">
-              <option>Year</option>
-              <option>2020</option>
-              <option>2021</option>
-              <option>2022</option>
+            <select id="year" class="form-control" name="year">
+              <option value="0">Year</option>
+              @foreach ($year as $row)
+              <option value="{{ $row->registration_year }}">{{ $row->registration_year }}</option>
+              @endforeach
+              
             </select>
           </div>
           <div class="col-lg-2 col-12 px-0 range-div">

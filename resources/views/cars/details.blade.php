@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div class="location-div">
-                            <p>Ajman, UAE</p>
+                            <p>{{$vehicletypecars->placename}},{{$vehicletypecars->countryname}}</p>
                         </div>
                         <div class="button-div">
                             <button class="btn call-btn"><i class="fa-solid fa-phone-volume"></i>971 4 123 4567</button>
