@@ -25,6 +25,8 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Designation</th>
+                                <th>Status</th>
+                                <th>Sort Order</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -34,6 +36,12 @@
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->designation }}</td>
+<td><?php if ($row->status=='0'){?>InActive<?php } else {?> Active
+
+    <?php }?></td><td>{{ $row->sortorder }}</td>
+
+
+
                                     <td>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -95,13 +103,8 @@
                     <div class="container">
                         <div class="form-group my-2">
                             <label for="Name">Name</label>
-                            <select name="name" id="" class="form-control">
-                                <option value="">Select User</option>
-                                @foreach ($user as $row1)
-                                    <option {{ old('name') == $row1->name ? 'selected' : ''}} value="{{ $row1->name }}">{{ $row1->name }}</option>
-                                @endforeach
-                            </select>
-                            {{-- <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="Name" placeholder="Name"> --}}
+                           
+                            <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="Name" placeholder="Name"> 
                         </div>
                         <div class="form-group">
                             <label for="Designation">Designation</label>
@@ -112,9 +115,23 @@
                             <textarea name="description" class="form-control" id="Description" cols="30" rows="3" placeholder="Description">{{ old('description') }}</textarea>
                         </div>
                         <div class="form-group my-2">
-                            <label for="Image">Image</label>
-                            <input type="file" name="image" class="form-control" id="Image">
+                            <label for="status">Status</label>
+                             <select name="status" id="" class="form-control">
+                                <option value="">Select Status</option>
+                               <option value="1">Active</option>
+                               <option value="0">InActive</option>
+                               
+                            </select>
                         </div>
+ <div class="form-group my-2">
+                            <label for="sort">Sort Order</label>
+                           
+                            <input type="text" value="{{ old('sortorder') }}" name="sortorder" class="form-control" id="SortOrder" placeholder="SortOrder"> 
+                        </div>
+
+
+
+
                     </div>
                 </div>
                 <div class="modal-footer">

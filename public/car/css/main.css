@@ -1654,13 +1654,13 @@
   }
 }
 
-.listing-header {
+/*.listing-header {
   background: url(../assets/images/listing-header.jpg);
   height: 70%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
+}*/
 .listing-header .caption-div {
   padding-top: 5rem;
   padding: 5rem 3rem 0 3rem;

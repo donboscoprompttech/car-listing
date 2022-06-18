@@ -19,10 +19,14 @@ class ServiceController extends Controller
     //
 	public function index(){
 try {
-$testimonial = Testimonial::orderBy('created_at', 'desc')
+$testimonial = Testimonial::orderBy('sortorder')->where('status',1)
         ->get();
-$banner = Banner::get();
+$banner = Banner::where('page','First Page')->get();
 $bannerfirst=$banner->first();
+$footerimg = Banner::where('page','Footer')->first();
+$question1img = Banner::where('page','Question1')->first();
+    $question2img = Banner::where('page','Question2')->first();
+    $videoimg = Banner::where('page','Video Banner')->first();
 $brands = FeaturedDealers::orderBy('dealer_name')
         ->orderBy('created_at', 'desc')
         ->get(); 
@@ -41,7 +45,7 @@ $sqlQuery = "select `motor_custome_values`.model_id, `model_msts`.`name` as `mod
 $model = DB::select(DB::raw($sqlQuery));
 $sqlQuery = "select distinct registration_year from motor_custome_values";
 $year = DB::select(DB::raw($sqlQuery));
-return view('cars.index',compact('testimonial','bannerfirst','brands','vehicletype','vehicletypecars','questions','make','model','year'));
+return view('cars.index',compact('testimonial','bannerfirst','brands','vehicletype','vehicletypecars','questions','make','model','year','footerimg','question1img','question2img','videoimg'));
 }
 catch (exception $e) {
 $message=$e->getMessage();
@@ -51,14 +55,16 @@ return view('cars.errorpage',compact('message'));
 }
 public function carsearch(){
   try {
-    $testimonial = Testimonial::orderBy('created_at', 'desc')
-            ->get();
+    $testimonial = Testimonial::orderBy('sortorder')->where('status',1)
+        ->get();
     
     $brands = FeaturedDealers::orderBy('dealer_name')
             ->orderBy('created_at', 'desc')
             ->get(); 
             $questions=Questions::get();
-        return view('cars.search',compact('testimonial','brands','questions'));
+            $footerimg = Banner::where('page','Footer')->first();
+            $searchresult=Banner::where('page','searchresult')->first();
+        return view('cars.search',compact('testimonial','brands','questions','searchresult'));
     
     }
     catch (exception $e) {
@@ -80,9 +86,13 @@ return view('cars.details',compact('vehicletypecars','vehicleimages'));
 
 public function searchresult(Request $request){
   try {
-    $testimonial = Testimonial::orderBy('created_at', 'desc')
-            ->get();
-    
+   $testimonial = Testimonial::orderBy('sortorder')->where('status',1)
+        ->get();
+    $searchresult=Banner::where('page','search result')->first();
+    $footerimg = Banner::where('page','Footer')->first();
+    $question1img = Banner::where('page','Question1')->first();
+    $question2img = Banner::where('page','Question2')->first();
+    $videoimg = Banner::where('page','Video Banner')->first();
     $brands = FeaturedDealers::orderBy('dealer_name')
             ->orderBy('created_at', 'desc')
             ->get(); 
@@ -120,7 +130,7 @@ else if (($year!='0')&&($make=='0')&&($model!='0')){
 $vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where("motor_custome_values.model_id",$model)->where("motor_custome_values.registration_year",$year)->get();
 }
 
-        return view('cars.search',compact('testimonial','brands','questions','vehicletypecars'));
+        return view('cars.search',compact('testimonial','brands','questions','vehicletypecars','searchresult','footerimg','question1img','question2img','videoimg'));
     
     }
     catch (exception $e) {

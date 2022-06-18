@@ -1480,7 +1480,7 @@
 .special-section {
   height: 100%;
 }
-.special-section .image-div {
+/*.special-section .image-div {
   background-image: url(../assets/images/special-offer.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -1490,7 +1490,7 @@
   width: 100%;
   font-family: "Montserrat", sans-serif;
   color: #ffffff;
-}
+}*/
 .special-section .image-div .main-heading {
   font-weight: 700;
   text-transform: uppercase;

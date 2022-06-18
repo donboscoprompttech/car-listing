@@ -30,7 +30,9 @@ class TestimonialController extends Controller
             'name'          => 'required',
             'designation'   => 'required',
             'description'   => 'required',
-            'image'         => 'required|mimes:png,jpg,jpeg',
+            'status'=>'required',
+            'sortorder'=>'required'
+            //'image'         => 'required|mimes:png,jpg,jpeg',
         ]);
 
         if($request->hasFile('image')){
@@ -46,7 +48,8 @@ class TestimonialController extends Controller
         $testimonial->name          = $request->name;
         $testimonial->designation   = $request->designation;
         $testimonial->description   = $request->description;
-        $testimonial->image         = $image;
+        $testimonial->status         =$request->status;
+        $testimonial->sortorder         =$request->sortorder;
         $testimonial->save();
 
         session()->flash('success', 'Testimonial has been stored');
@@ -80,10 +83,12 @@ class TestimonialController extends Controller
             'name'          => 'required',
             'designation'   => 'required',
             'description'   => 'required',
-            'image'         => 'mimes:png,jpg,jpeg',
+            'status'=>'required',
+            'sortorder'=>'required'
+            //'image'         => 'mimes:png,jpg,jpeg',
         ]);
 
-        if($request->hasFile('image')){
+        /*if($request->hasFile('image')){
 
             $file = uniqid().'.'.$request->image->getClientOriginalExtension();
 
@@ -97,14 +102,16 @@ class TestimonialController extends Controller
             ->first();
 
             $image = $testimonial->image;
-        }
+        }*/
 
         Testimonial::where('id', $id)
         ->update([
             'name' => $request->name,
             'designation'   => $request->designation,
             'description'   => $request->description,
-            'image'         => $image,
+            //'image'         => $image,
+            'status'         =>$request->status,
+            'sortorder'=>$request->sortorder
         ]);
 
         session()->flash('success', 'Testimonial has been updated');

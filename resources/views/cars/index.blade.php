@@ -31,6 +31,8 @@
 
   <?php  
   $url=$bannerfirst->image;
+  $urlfooter=$footerimg->image;
+  $urlquestion1=$question1img->image;
   ?>
 .gvr-header {
   height: 90vh;  
@@ -39,7 +41,17 @@
   background-size: cover;
   box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.25);
 }
-
+.special-section .image-div {
+  background-image:url("{{ url($urlquestion1) }}");;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  background-position: center;
+  object-fit: cover;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+}
 </style>
 
 </head>
@@ -347,7 +359,7 @@ else{
             </div>
           </div>
           <div class="col-lg-4 special-car-div">
-            <img src="assets/images/special-car.png" class="img-fluid" alt="special car image">
+            <img src="{{url($question2img->image)}}" class="img-fluid" alt="special car image">
           </div>
         </div>
       </div>
@@ -373,7 +385,7 @@ else{
       </div>
 
       <div class="image-div">
-        <img src="assets/images/testimonial-car.png" class="testimonial-banner" alt="testimonial car">
+        <img src={{ url($urlfooter) }} class="testimonial-banner" alt="testimonial car">
       </div>
     </div>
   </section>

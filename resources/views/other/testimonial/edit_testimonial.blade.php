@@ -22,13 +22,8 @@
                                     @csrf
                                     <div class="form-group my-2">
                                         <label for="SortOrder">Name</label>
-                                        <select name="name" id="" class="form-control">
-                                            <option value="">Select User</option>
-                                            @foreach ($user as $row1)
-                                                <option {{ $testimonial->name == $row1->name ? 'selected' : ''}} value="{{ $row1->name }}">{{ $row1->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        {{-- <input type="text" name="name" value="{{ $testimonial->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="Name" autocomplete="off"> --}}
+                                        
+                                        <input type="text" name="name" value="{{ $testimonial->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="Name" autocomplete="off"> 
                                         <div class="invalid-feedback">
                                             @error('name')
                                                 {{ $message }}
@@ -36,13 +31,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group my-2">
-                                        <label for="Image">Image</label>
-                                        <input type="file" name="image" autocomplete="off" class="form-control @error('image') is-invalid @enderror">
-                                        <div class="invalid-feedback">
-                                            @error('image')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>
+                                        <label for="status">Status</label>
+                             <select name="status" id="" class="form-control">
+                                <option value="">Select Status</option>
+                               <option value="1" <?php if ($testimonial->status=='1'){?>selected <?php } ?>>Active</option>
+                               <option value="0" <?php if ($testimonial->status=='0'){?>selected <?php } ?>>InActive</option>
+                               
+                            </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

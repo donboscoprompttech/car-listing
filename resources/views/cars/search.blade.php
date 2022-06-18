@@ -26,7 +26,32 @@
   <!-- Slick slider -->
   <link href="{{ asset('/car/css/slick/slick.css') }}" rel="stylesheet"> 
     <link href="{{ asset('/car/css/slick/slick-theme.css') }}" rel="stylesheet">
+<style>
+  <?php  
+  $url=$searchresult->image;
+  $urlfooter=$footerimg->image;
+  $urlquestion1=$question1img->image;
+  ?>
+.listing-header {
+  background: url("{{ url($url) }}");
+  height: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.special-section .image-div {
+  background-image:url("{{ url($urlquestion1) }}");;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  background-position: center;
+  object-fit: cover;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+}
 
+</style>
 
 </head>
 
@@ -339,7 +364,7 @@ else{
             </div>
           </div>
           <div class="col-lg-4 special-car-div">
-            <img src="{{ asset('car/assets/images/special-car.png') }}" class="img-fluid" alt="special car image">
+            <img src="{{url($question2img->image)}}" class="img-fluid" alt="special car image">
           </div>
         </div>
       </div>
@@ -365,7 +390,7 @@ else{
       </div>
 
       <div class="image-div">
-        <img src="{{ asset('car/assets/images/testimonial-car.png') }}" class="testimonial-banner" alt="testimonial car">
+        <img src={{ url($urlfooter) }} class="testimonial-banner" alt="testimonial car">
       </div>
     </div>
   </section>

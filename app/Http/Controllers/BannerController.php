@@ -25,9 +25,10 @@ class BannerController extends Controller
 
         $request->validate([
             'name'      => 'required',
-            'country'   => 'required',
+            //'country'   => 'required',
             //'image'     => 'required|mimes:png,jpg,jpeg|dimensions:width=1920,height=506',
-            'image'     => 'required|mimes:png,jpg,jpeg|dimensions:width=3840,height=1916',
+            //'image'     => 'required|mimes:png,jpg,jpeg|dimensions:width=3840,height=1916',
+            'image'     => 'required|mimes:png,jpg,jpeg',
         ]);
 
         if($request->hasFile('image')){
@@ -47,9 +48,10 @@ class BannerController extends Controller
 
         $banner             = new Banner();
         $banner->name       = $request->name;
-        $banner->country_id = $request->country;
+        //$banner->country_id = $request->country;
         $banner->image      = $image;
         $banner->status     = $status;
+        $banner->page       = $request->page;
         $banner->save();
 
         session()->flash('success', 'Banner has been stored');
@@ -68,8 +70,9 @@ class BannerController extends Controller
         
         $request->validate([
             'name'      => 'required',
-            'country'   => 'required',
-            'image'     => 'mimes:png,jpg,jpeg|dimensions:width=1920,height=506',
+            //'country'   => 'required',
+            'image'     => 'mimes:png,jpg,jpeg',
+            /*|dimensions:width=1920,height=506',*/
         ]);
 
         if($request->hasFile('image')){
@@ -97,9 +100,10 @@ class BannerController extends Controller
         Banner::where('id', $request->id)
         ->update([
             'name'          => $request->name,
-            'country_id'    => $request->country,
+            //'country_id'    => $request->country,
             'image'         => $image,
             'status'        => $status,
+            'page'       => $request->page,
         ]);
 
         session()->flash('success', 'Banner has been updated');

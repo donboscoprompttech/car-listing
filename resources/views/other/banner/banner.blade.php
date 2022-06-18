@@ -24,6 +24,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
+                                <th>Page</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -33,6 +34,7 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $row->name }}</td>
+                                    <td>{{ $row->page }}</td>
                                     @if($row->status == 1)
                                     <td class="text-success">Active</td>
                                     @else
@@ -45,7 +47,7 @@
                                             </button>
                                             <div class="dropdown-menu text-center">
                                                 <a href="{{ route('banner.view', $row->id) }}"><button class="btn btn-primary my-2">View</button></a>
-                                                <button class="btn btn-secondary my-2" onclick="editBanner({{$row->id}}, '{{$row->name}}', '{{$row->type}}', {{$row->status}})" data-toggle="modal" data-target="#editBannerModal">Edit</button>
+                                                <button class="btn btn-secondary my-2" onclick="editBanner({{$row->id}}, '{{$row->name}}', '{{$row->page}}', {{$row->status}})" data-toggle="modal" data-target="#editBannerModal">Edit</button>
                                                 <button type="button" onclick="bannerDelete({{$row->id}})" class="btn btn-danger" data-toggle="modal" data-target="#deleteBannerModal">Delete</button>
                                                 <form id="delete_Banner_form{{$row->id}}" action="{{ route('banner.delete', $row->id) }}" method="POST">
                                                     @csrf
@@ -100,18 +102,21 @@
                             <input type="text" name="name" class="form-control" id="Name" placeholder="Name">
                         </div>
                         <div class="form-group my-2">
-                            <label for="Type">Country</label>
-                            <Select name="country" class="form-control">
-                                <option value="">Select Country</option>
-                                @foreach ($country as $row1)
-                                    <option value="{{ $row1->id }}">{{ $row1->name }}</option>
-                                @endforeach
+                            <label for="Type">Page</label>
+                            <Select name="page" class="form-control">
+                                <option value="">Select Page</option>
+                                <option>First Page</option>
+                                <option>Search Result</option>
+                                <option>Footer</option>
+                                <option>Question1</option>
+                                <option>Question2</option>
+                                <option>Video</option>
                             </Select>
                         </div>
                         <div class="form-group my-2">
                             <label for="Image">Image</label>
                             <input type="file" name="image" class="form-control" id="Image">
-                            <div class="text-danger">Image Width: 1920px, Height: 506px </div>
+                            <div class="text-danger"><!--Image Width: 1920px, Height: 506px --></div>
                         </div>
                         <div class="form-group my-2">
                             <label for="Status">Status</label>
@@ -135,7 +140,7 @@
                 @csrf
                 <input type="hidden" name="id" id="editId">
                 <div class="modal-header">
-                <h5 class="modal-title" id="createBannerModalModalLabel">Create Banner</h5>
+                <h5 class="modal-title" id="createBannerModalModalLabel">Edit Banner</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                 </button>
                 </div>
@@ -146,10 +151,15 @@
                             <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="editName" placeholder="Name">
                         </div>
                         <div class="form-group my-2">
-                            <label for="Type">Country</label>
-                            <Select name="country" id="editPosition" class="form-control">
-                                <option value="">Select Country</option>
-                                
+                             <label for="Type">Page</label>{{ old('page') }}
+                            <Select name="page" id="page" class="form-control">
+                                <option value="">Select Page</option>
+                                <option>First Page</option>
+                                <option>Search Result</option>
+                                <option>Footer</option>
+                                <option>Question1</option>
+                                <option>Question2</option>
+                                <option>Video</option>
                             </Select>
                         </div>
                         <div class="form-group my-2">
@@ -189,7 +199,7 @@
             let editStatus = '';
             $('#editId').val(id);
             $('#editName').val(name);
-            
+            $('#page').val(position);
             if(status == 1){
                 editStatus = `<label for="Status">Status</label>
                             <input type="checkbox" checked name="status">`;

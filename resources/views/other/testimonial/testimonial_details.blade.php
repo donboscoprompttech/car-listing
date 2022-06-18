@@ -22,17 +22,25 @@
                                     <p class="col-md-6">{{ $testimonial->name }}</p>
                                 </div>
                                 <div class="row">
-                                    <p class="col-md-6">Designaation :</p>
+                                    <p class="col-md-6">Designation :</p>
                                     <p class="col-md-6">{{ $testimonial->designation }}</p>
                                 </div>
                                 <div class="row">
                                     <p class="col-md-6">Description :</p>
                                     <p class="col-md-6">{{ $testimonial->description }}</p>
                                 </div>
+                                <div class="row">
+                                    <p class="col-md-6">Status :</p>
+                                    <p class="col-md-6"><?php if ($testimonial->status=='0'){?>InActive<?php } else {?> Active
+
+    <?php }?></p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-md-6">Sort Order :</p>
+                                    <p class="col-md-6">{{ $testimonial->sortorder }}</p>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <a href="{{ asset($testimonial->image) }}" target="blank"><img src="{{ asset($testimonial->image) }}" alt="image" width="250px"></a>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
