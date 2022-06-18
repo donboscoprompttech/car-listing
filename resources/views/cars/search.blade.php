@@ -32,33 +32,8 @@
 
 <body>
   <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light gvr-navbar">
-    <div class="container-fluid px-4 px-lg-5">
-      <a class="navbar-brand" href="index.html">
-       
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="menu-div d-flex">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-            <li class="nav-item  active">
-              <a class="nav-link" aria-current="page" href="#!">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Category</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <div class="flex-menu d-flex">
-                  <div class="leftside">
-                  @include('cars.header')
-
-      </div>
-    </div>
-  </nav>
-
+   <!-- Navigation-->
+       @include('cars.header')
   <!-- Header -->
   <header class="bg-dark gvr-header listing-header">
     <div class="container px-4 px-lg-5 h-100">
@@ -162,13 +137,14 @@
             <div class="container-fluid home-cars-section card-listing-div">
               <div class="row search-card-row">
                 <!-- Car Card -->
+                @foreach ($vehicletypecars as $row)
                 <div class="col-lg-4 col-md-6 car-card">
                   <div class="card h-100">
-                    <a href="details.html">
+                     <a href="/details/{{ $row->mainid}}">
                       <div class="card-body">
 
                         <div class="card-img-div">
-                         <img class="card-img img-fluid" src="{{ asset('car/assets/images/listing/search/Tesla.png') }}"
+                         <img class="card-img img-fluid" src="{{asset($row->image) }}"
                             alt="card image" />
                           <div class="ribbon featured"><span>Featured</span></div>
                         </div>
@@ -177,11 +153,10 @@
                             <p>NEW</p>
                           </div>
                           <div class="car-name-div">
-                            <p class="car-name">Tesla Model 3 Standard Range
-                              Plus</p>
+                            <p class="car-name">{{ $row->title }}</p>
                           </div>
                           <div class="price-div">
-                            <p class="price">AED 599,000 <span class="strike-price">AED 83,500</span></p>
+                            <p class="price">{{$row->modelname}} <span class="strike-price">AED 83,500</span></p>
                           </div>
                           <div class="car-details">
                             <p class="location w-100">Dubai, UAE</p>
@@ -189,282 +164,29 @@
                             <div class="info-div row">
                               <div class="col-lg-5 col-5">
                                 <p class="info"><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 2020</p>
+                                      alt="info icon"></span> {{$row->registration_year}}</p>
                               </div>
                               <div class="col-lg-7 col-7">
                                 <p class="info"><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Rear-wheel Drive</p>
+                                      alt="info icon"></span> {{$row->drive}}</p>
                               </div>
                               <div class="col-lg-5 col-5">
                                 <p class="info"><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Electric</p>
+                                      alt="info icon"></span> {{$row->fuel_type}}</p>
                               </div>
                               <div class="col-lg-7 col-7">
                                 <p class="info"><span><img src="{{ asset('car/assets/images/Icons/people.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 5</p>
+                                      alt="info icon"></span> {{$row->seats}}</p>
                               </div>
                             </div>
                           </div>
-                          <!-- Product price-->
+                          
                         </div>
                       </div>
                     </a>
                   </div>
-                </div>
-                <!-- Car Card Ends -->
-
-                <!-- Car Card -->
-                <div class="col-lg-4 col-md-6 car-card">
-                  <div class="card h-100">
-                    <a href="details.html">
-                      <div class="card-body">
-
-                        <div class="card-img-div">
-                          <img class="card-img img-fluid" src="{{ asset('car/assets/images/listing/search/Ford.png') }}"
-                            alt="card image" />
-                          <div class="ribbon booked"><span>Booked</span></div>
-                        </div>
-                        <div class="car-details-div">
-                          <div class="tag-div">
-                            <p>NEW</p>
-                          </div>
-                          <div class="car-name-div">
-                            <p class="car-name">Ford F-250 Super Duty</p>
-                          </div>
-                          <div class="price-div">
-                            <p class="price">AED 599,000 <span class="strike-price">AED 83,500</span></p>
-                          </div>
-                          <div class="car-details">
-                            <p class="location w-100">Dubai, UAE</p>
-
-                            <div class="info-div row">
-                              <div class="col-lg-5 col-5">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 2020</p>
-                              </div>
-                              <div class="col-lg-7 col-7">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Rear-wheel Drive</p>
-                              </div>
-                              <div class="col-lg-5 col-5">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Electric</p>
-                              </div>
-                              <div class="col-lg-7 col-7">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/people.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 5</p>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- Product price-->
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <!-- Car Card Ends -->
-
-                <!-- Car Card -->
-                <div class="col-lg-4 col-md-6 car-card">
-                  <div class="card h-100">
-                    <a href="details.html">
-                      <div class="card-body">
-
-                        <div class="card-img-div">
-                          <img class="card-img img-fluid" src="{{ asset('car/assets/images/listing/search/Honda.png') }}"
-                            alt="card image" />
-                        </div>
-                        <div class="car-details-div">
-                          <div class="tag-div">
-                            <p>NEW</p>
-                          </div>
-                          <div class="car-name-div">
-                            <p class="car-name">Honda Pilot Touring 7-Passenger</p>
-                          </div>
-                          <div class="price-div">
-                            <p class="price">AED 599,000 <span class="strike-price">AED 83,500</span></p>
-                          </div>
-                          <div class="car-details">
-                            <p class="location w-100">Dubai, UAE</p>
-
-                            <div class="info-div row">
-                              <div class="col-lg-5 col-5">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 2020</p>
-                              </div>
-                              <div class="col-lg-7 col-7">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Rear-wheel Drive</p>
-                              </div>
-                              <div class="col-lg-5 col-5">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Electric</p>
-                              </div>
-                              <div class="col-lg-7 col-7">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/people.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 5</p>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- Product price-->
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <!-- Car Card Ends -->
-                <!-- Car Card -->
-                <div class="col-lg-4 col-md-6 car-card">
-                  <div class="card h-100">
-                    <a href="details.html">
-                      <div class="card-body">
-
-                        <div class="card-img-div">
-                          <img class="card-img img-fluid" src="{{ asset('car/assets/images/listing/search/Tesla.png') }}"
-                            alt="card image" />
-                          <div class="ribbon featured"><span>Featured</span></div>
-                        </div>
-                        <div class="car-details-div">
-                          <div class="tag-div">
-                            <p>NEW</p>
-                          </div>
-                          <div class="car-name-div">
-                            <p class="car-name">Tesla Model 3 Standard Range
-                              Plus</p>
-                          </div>
-                          <div class="price-div">
-                            <p class="price">AED 599,000 <span class="strike-price">AED 83,500</span></p>
-                          </div>
-                          <div class="car-details">
-                            <p class="location w-100">Dubai, UAE</p>
-
-                            <div class="info-div row">
-                              <div class="col-lg-5 col-5">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 2020</p>
-                              </div>
-                              <div class="col-lg-7 col-7">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Rear-wheel Drive</p>
-                              </div>
-                              <div class="col-lg-5 col-5">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Electric</p>
-                              </div>
-                              <div class="col-lg-7 col-7">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/people.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 5</p>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- Product price-->
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <!-- Car Card Ends -->
-
-                <!-- Car Card -->
-                <div class="col-lg-4 col-md-6 car-card">
-                  <div class="card h-100">
-                    <a href="details.html">
-                      <div class="card-body">
-
-                        <div class="card-img-div">
-                          <img class="card-img img-fluid" src="{{ asset('car/assets/images/listing/search/Ford.png') }}"
-                            alt="card image" />
-                          <div class="ribbon booked"><span>Booked</span></div>
-                        </div>
-                        <div class="car-details-div">
-                          <div class="tag-div">
-                            <p>NEW</p>
-                          </div>
-                          <div class="car-name-div">
-                            <p class="car-name">Ford F-250 Super Duty</p>
-                          </div>
-                          <div class="price-div">
-                            <p class="price">AED 599,000 <span class="strike-price">AED 83,500</span></p>
-                          </div>
-                          <div class="car-details">
-                            <p class="location w-100">Dubai, UAE</p>
-
-                            <div class="info-div row">
-                              <div class="col-lg-5 col-5">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 2020</p>
-                              </div>
-                              <div class="col-lg-7 col-7">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Rear-wheel Drive</p>
-                              </div>
-                              <div class="col-lg-5 col-5">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Electric</p>
-                              </div>
-                              <div class="col-lg-7 col-7">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/people.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 5</p>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- Product price-->
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <!-- Car Card Ends -->
-
-                <!-- Car Card -->
-                <div class="col-lg-4 col-md-6 car-card">
-                  <div class="card h-100">
-                    <a href="details.html">
-                      <div class="card-body">
-
-                        <div class="card-img-div">
-                          <img class="card-img img-fluid" src="{{ asset('car/assets/images/listing/search/Honda.png') }}"
-                            alt="card image" />
-                        </div>
-                        <div class="car-details-div">
-                          <div class="tag-div">
-                            <p>NEW</p>
-                          </div>
-                          <div class="car-name-div">
-                            <p class="car-name">Honda Pilot Touring 7-Passenger</p>
-                          </div>
-                          <div class="price-div">
-                            <p class="price">AED 599,000 <span class="strike-price">AED 83,500</span></p>
-                          </div>
-                          <div class="car-details">
-                            <p class="location w-100">Dubai, UAE</p>
-
-                            <div class="info-div row">
-                              <div class="col-lg-5 col-5">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 2020</p>
-                              </div>
-                              <div class="col-lg-7 col-7">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Rear-wheel Drive</p>
-                              </div>
-                              <div class="col-lg-5 col-5">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> Electric</p>
-                              </div>
-                              <div class="col-lg-7 col-7">
-                                <p class="info"><span><img src="{{ asset('car/assets/images/Icons/people.png') }}" class="img-fluid icon"
-                                      alt="info icon"></span> 5</p>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- Product price-->
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <!-- Car Card Ends -->
+                </div>@endforeach
+                
 
 
                 <!-- Show all button div -->

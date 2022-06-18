@@ -23,6 +23,7 @@ Route::get('/', function(){
 });
 Route::get('/details/{id}', [App\Http\Controllers\ServiceController::class, 'detailsshow'])->name('details');
 Route::get('/carsearch', [App\Http\Controllers\ServiceController::class, 'carsearch'])->name('carsearch');
+Route::post('/searchresult', [App\Http\Controllers\ServiceController::class, 'searchresult'])->name('searchresult');
 Route::get('/forgotpassword/index', [App\Http\Controllers\LoginController::class, 'forgotPasswordIndex'])->name('forgotpassword.index');
 Route::post('/forgotpassword/store', [App\Http\Controllers\LoginController::class, 'forgotPasswordStore'])->name('forgotpassword.store');
 Route::get('/car/index', [App\Http\Controllers\ServiceController::class, 'index'])->name('car.index');

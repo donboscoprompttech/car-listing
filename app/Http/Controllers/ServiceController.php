@@ -8,6 +8,7 @@ use App\Models\FeaturedDealers;
 use App\Models\vehicletype;
 use App\Models\Ads;
 use App\Models\AdsImage;
+use App\Models\MotorCustomeValues;
 use DB;
 use Exception;
 use App\Models\Questions;
@@ -29,12 +30,18 @@ $vehicletype = vehicletype::orderBy('name')
         ->get(); 
         $questions=Questions::get();
 //DB::enableQueryLog();
-$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)
-               
-        ->get();
+$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->get();
         //dd(DB::getQueryLog());
-    return view('cars.index',compact('testimonial','bannerfirst','brands','vehicletype','vehicletypecars','questions'));
 
+/*$make = MotorCustomeValues::select('motor_custome_values.*','motor_custome_values.make_id',"make_msts.name as makename")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->groupby('make_id')->get();
+   return view('cars.index',compact('testimonial','bannerfirst','brands','vehicletype','vehicletypecars','questions','make'));*/
+   $sqlQuery = "select `motor_custome_values`.make_id, `make_msts`.`name` as `makename` from `motor_custome_values` left join `make_msts` on `motor_custome_values`.`make_id` = `make_msts`.`id` group by make_id,makename";
+$make = DB::select(DB::raw($sqlQuery));
+$sqlQuery = "select `motor_custome_values`.model_id, `model_msts`.`name` as `modelname` from `motor_custome_values` left join `model_msts` on `motor_custome_values`.`model_id` = `model_msts`.`id` group by model_id,modelname";
+$model = DB::select(DB::raw($sqlQuery));
+$sqlQuery = "select distinct registration_year from motor_custome_values";
+$year = DB::select(DB::raw($sqlQuery));
+return view('cars.index',compact('testimonial','bannerfirst','brands','vehicletype','vehicletypecars','questions','make','model','year'));
 }
 catch (exception $e) {
 $message=$e->getMessage();
@@ -71,32 +78,60 @@ return view('cars.details',compact('vehicletypecars','vehicleimages'));
 }
 
 
+public function searchresult(Request $request){
+  try {
+    $testimonial = Testimonial::orderBy('created_at', 'desc')
+            ->get();
+    
+    $brands = FeaturedDealers::orderBy('dealer_name')
+            ->orderBy('created_at', 'desc')
+            ->get(); 
+            $questions=Questions::get();
+$make=$request->make;
+$model=$request->model;
+$year=$request->year;
+$vehicletypecars=array();
+if (($year!='0')&&($make=='0')&&($model=='0')){
+/*$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where("motor_custome_values.registration_year",$year)->get();*/
+
+//DB::enableQueryLog();
+$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where("motor_custome_values.registration_year",$year)->get();
+        //dd(DB::getQueryLog());
 
 
-
-function checkNum($number) {
-  if($number>1) {
-    throw new Exception("Value must be 1 or below");
-  }
-  return true;
-}
-
-function checknum2(){
-try {
-  $this->checkNum(2);
-  //If the exception is thrown, this text will not be shown
-  echo 'If you see this, the number is 1 or below';
-}
-
-//catch exception
-catch(Exception $e) {
-  //echo 'Message: ' .$e->getMessage();
-$message=$e->getMessage();
-return view('cars.errorpage',compact('message'));
-
-}
 
 }
+else if (($year=='0')&&($make!='0')&&($model=='0')){
+$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where("motor_custome_values.make_id",$make)->get();
+}
+else if (($year=='0')&&($make=='0')&&($model!='0')){
+$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where("motor_custome_values.model_id",$model)->get();
+}
+else if (($year!='0')&&($make!='0')&&($model!='0')){
+$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where("motor_custome_values.model_id",$model)->where("motor_custome_values.registration_year",$year)->where("motor_custome_values.make_id",$make)->get();
+}
+else if (($year=='0')&&($make!='0')&&($model!='0')){
+$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where("motor_custome_values.model_id",$model)->where("motor_custome_values.make_id",$make)->get();
+}
+else if (($year!='0')&&($make!='0')&&($model=='0')){
+$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where("motor_custome_values.make_id",$make)->where("motor_custome_values.registration_year",$year)->get();
+}
+else if (($year!='0')&&($make=='0')&&($model!='0')){
+$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where("motor_custome_values.model_id",$model)->where("motor_custome_values.registration_year",$year)->get();
+}
+
+        return view('cars.search',compact('testimonial','brands','questions','vehicletypecars'));
+    
+    }
+    catch (exception $e) {
+    $message=$e->getMessage();
+    return view('cars.errorpage',compact('message'));
+    }
+   
+}
+
+
+
 
 
 	
