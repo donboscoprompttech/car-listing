@@ -515,11 +515,13 @@ class AdsController extends Controller
         $category = Category::where('delete_status', '!=', Status::DELETE)
         ->where('status', Status::ACTIVE)
         ->get();
-
+$vehicletype = vehicletype::orderBy('name')
+        ->get();
         $country = Country::orderBy('name')
         ->get();
-
-        return view('ads.edit_ad', compact('ad', 'category', 'country'));
+        $places = Places::orderBy('name')
+        ->get();
+        return view('ads.edit_ad', compact('ad', 'category', 'country','places','vehicletype'));
     }
 
     public function update(Request $request, $id){
@@ -646,12 +648,22 @@ class AdsController extends Controller
             'price'             => $request->price,
             'negotiable_flag'   => $negotiable_flag,
             'country_id'        => $request->country,
-            'state_id'          => $request->state,
+            //'state_id'          => $request->state,
+            'state_id'          => 0,
             'city_id'           => $city,
             'featured_flag'     => $featured_flag,
             'latitude'          => $request->address_latitude,
             'longitude'         => $request->address_longitude,
             'status'            => $status,
+
+'place'             =>$request->place,
+        //$ad->country_id             = $request->soldreserved;
+        'seats'             => $request->seats,
+        'exteriorcolor'             => $request->exteriorcolor,
+        'longdescrptitle'             => $request->longdescptitle,
+        'longdescrp'             => $request->longdescp,
+        'vehicletype'             => $request->vehicletype,
+        'drive'             => $request->drive,
         ]);
 
         if($request->category == 1){

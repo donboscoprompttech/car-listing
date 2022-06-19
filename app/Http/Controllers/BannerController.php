@@ -28,7 +28,7 @@ class BannerController extends Controller
             //'country'   => 'required',
             //'image'     => 'required|mimes:png,jpg,jpeg|dimensions:width=1920,height=506',
             //'image'     => 'required|mimes:png,jpg,jpeg|dimensions:width=3840,height=1916',
-            'image'     => 'required|mimes:png,jpg,jpeg',
+            'image'     => 'required|mimes:png,jpg,jpeg,mp4',
         ]);
 
         if($request->hasFile('image')){

@@ -37,18 +37,18 @@
                                     <p class="col-md-6">Country :</p>
                                     <p class="col-md-6">{{ $ad->Country->name }}</p>
                                 </div>
-                                <div class="row">
+                                <!--<div class="row">
                                     <p class="col-md-6">State :</p>
-                                    <p class="col-md-6">{{ $ad->State->name }}</p>
+                                    <p class="col-md-6">{{--- $ad->State->name----}}</p>
                                 </div>
                                 <div class="row">
                                     <p class="col-md-6">City :</p>
                                     @if ($ad->city_id != 0)
-                                    <p class="col-md-6">{{ $ad->City->name }}</p>
+                                    <p class="col-md-6">{{---- $ad->City->name----}}</p>
                                     @else
-                                    <p class="col-md-6">{{ $ad->State->name }}</p>
+                                    <p class="col-md-6">{{----$ad->State->name---}}</p>
                                     @endif
-                                </div>
+                                </div>-->
                                 <div class="row">
                                     <p class="col-md-6">Price :</p>
                                     <p class="col-md-6">{{ $ad->price }}</p>

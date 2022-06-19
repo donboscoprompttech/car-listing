@@ -234,7 +234,7 @@
 
     </div>
     <div class="image-div">
-      <img src="assets/images/video-banner.png" class="img-fluid" alt="">
+      <img src="{{asset($videoimg->image) }}" class="img-fluid" alt="">
     </div>
 
     <!-- Video Modal -->
@@ -249,8 +249,8 @@
             </div>
             <div class="modal-body">
               <video controls style="width: 100%; height: auto" id="videoModal" poster="assets/images/header-old.jpeg"
-                preload>
-                <source src="assets/video.mp4" type="video/mp4" />
+                preload><source src="{{asset($video->image) }}" type="video/mp4" />
+                <!--<source src="assets/video.mp4" type="video/mp4" />-->
               </video>
             </div>
           </div>
@@ -415,7 +415,7 @@ else{
 
 
 
-<script>  // Department Change
+<script>  // Make Change
       $('#brand').change(function(){
 
          // Department id

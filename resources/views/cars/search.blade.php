@@ -83,6 +83,8 @@
         </div>
       </div>
       <div class="search-div">
+        <form action="{{ url('/searchresult') }}" method="post">
+          @csrf
         <div class="row m-0">
           <div class="col-lg-2 col-12 px-0 mb-lg-0 mb-2">
             <span class="select-title-head">Brand</span>
@@ -128,15 +130,16 @@
             <div class="row px-0">
               <div class="col-lg-10 col-12">
                 <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-                <input type="text" class="form-control search-input" placeholder="Keyword Search" />
+                <input type="text" name="keywordsearch" class="form-control search-input" placeholder="Keyword Search" />
               </div>
               <div class="col-lg-2 col-12">
-                <a href="result.html"><button class="btn search-btn">Search</button></a>
+                <button class="btn header-search-btn" type="submit">Search</button>
               </div>
             </div>
           </div>
-        </div>
+        </div></form>
       </div>
+
     </div>
   </header>
 
@@ -165,6 +168,8 @@
               <div class="row search-card-row">
                 <!-- Car Card -->
                 @foreach ($vehicletypecars as $row)
+
+                <?php if ($row->type1==1){?>
                 <div class="col-lg-4 col-md-6 car-card">
                   <div class="card h-100">
                      <a href="/details/{{ $row->mainid}}">
@@ -212,7 +217,10 @@
                       </div>
                     </a>
                   </div>
-                </div>@endforeach
+                </div>
+
+<?php }?>
+                @endforeach
                 
 
 
@@ -421,6 +429,81 @@ else{
 
   <!-- Core theme JS-->
   <script src="{{asset('car/js/scripts.js')}}"></script>
+  <script>  // Make Change
+      $('#brand').change(function(){
+
+         // Department id
+         var id = $(this).val();
+
+         // Empty the dropdown
+         $('#model').find('option').not(':first').remove();
+
+         // AJAX request 
+         $.ajax({
+           url: 'getModel/'+id,
+           type: 'get',
+           dataType: 'json',
+           success: function(response){
+
+             var len = 0;
+             if(response['data'] != null){
+                len = response['data'].length;
+             }
+
+             if(len > 0){
+                // Read data and create <option >
+                for(var i=0; i<len; i++){
+
+                   var id = response['data'][i].id;
+                   var name = response['data'][i].name;
+
+                   var option = "<option value='"+id+"'>"+name+"</option>";
+
+                   $("#model").append(option); 
+                }
+             }
+
+           }
+         });});
+
+
+      <?php 
+
+       //echo $maxprice['price'];?>
+      $(function() {
+  $( ".range-bar" ).slider({
+    range: true,
+    min: <?php echo $minprice[0]->price;?>,
+    max: <?php echo $maxprice[0]->price;?>,
+    values: [ 0, <?php echo $maxprice[0]->price;?> ],
+    slide: function( event, ui ) {
+    $( ".filterAmount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+    }
+  });
+  $( ".filterAmount" ).val( "$" + $( ".range-bar" ).slider( "values", 0 ) +
+    " - AED" + $( ".range-bar" ).slider( "values", 1 ) );
+});
+$(function() {    // <== doc ready
+
+    $( "#slider-range" ).slider({
+       change: function(event, ui) {
+           // Do your stuff in here.
+
+           // You can trigger an event on anything you want:
+           //$(selector).trigger(theEvent);
+
+           // Or you can do whatever else/
+var low = $(this).slider('values', 0);
+
+            var high = $(this).slider('values', 1);
+
+
+
+       }
+    });
+
+});
+    </script>
 </body>
 
 </html>

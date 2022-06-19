@@ -109,10 +109,25 @@
                                         </div>
                                     </div>
                                     <div class="form-group my-2 col-md-6">
-                                        <label for="state">State</label>
+                                        <!--<label for="state">State</label>
                                         <select name="State" id="state" class="select2  form-control @error('state') is-invalid @enderror" autocomplete="off">
                                             <option value="{{ $ad->state_id }}">Select</option>
+                                        </select>-->
+
+ <label for="place">Place</label>
+                                        <select name="place" id="place" class="select2 form-control @error('place') is-invalid @enderror" autocomplete="off">
+                                            <option value="">Select</option>
+                                            @foreach ($places as $row1)
+                                                
+                                                <option {{ $ad->place  == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
+                                            @endforeach
                                         </select>
+
+
+
+
+
+
                                         <div class="invalid-feedback">
                                             @error('state')
                                                 {{ $message }}
@@ -132,7 +147,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group my-2 col-md-6">
-                                        <label for="city">City</label>
+                                        <!--<label for="city">City</label>
                                         <select name="city" id="city" class="select2  form-control @error('city') is-invalid @enderror" autocomplete="off">
                                             <option value="{{ $ad->city_id }}">Select</option>
                                         </select>
@@ -140,7 +155,25 @@
                                             @error('city')
                                                 {{ $message }}
                                             @enderror
+                                        </div>-->
+ <label for="vehicletype">Vehicle Type</label>
+                                        <select name="vehicletype" id="vehicletype" class="select2  form-control @error('vehicletype') is-invalid @enderror" autocomplete="off">
+                                            @foreach ($vehicletype as $row1)
+                                                
+                                                <option {{($ad->vehicletype) == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            @error('vehicletype')
+                                                {{ $message }}
+                                            @enderror
                                         </div>
+
+
+
+
+
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -174,14 +207,25 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group my-2">
-                                                <label for="Status">Price Negotiable</label>
-                                                <input type="checkbox" name="negotiable" {{ $ad->negotiable_flag == 1 ? 'checked' : '' }} value="checked" autocomplete="off">
+                                                <!--<label for="Status">Price Negotiable</label>
+                                                <input type="checkbox" name="negotiable" {{ $ad->negotiable_flag == 1 ? 'checked' : '' }} value="checked" autocomplete="off">-->
+
+<label for="Status">Sold</label>
+                                                <input type="radio" name="soldreserved" value="sold" autocomplete="off" <?php if ($ad->soldreserved=="sold"){?>checked <?php } ?>>
+
+
+
+
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group my-2">
-                                                <label for="Status">Featured</label>
-                                                <input type="checkbox" name="featured" {{ $ad->featured_flag == 1 ? 'checked' : '' }} value="checked" autocomplete="off">
+                                               <!-- <label for="Status">Featured</label>
+                                                <input type="checkbox" name="featured" {{ $ad->featured_flag == 1 ? 'checked' : '' }} value="checked" autocomplete="off">-->
+<label for="Status">Reserved</label>
+                                                <input type="radio" name="soldreserved" value="reserved" autocomplete="off" <?php if ($ad->soldreserved=="reserved" ){?>checked <?php } ?>>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -190,6 +234,66 @@
                                 <div class="row" id="custom_fields">
                                     
                                 </div>
+
+
+<div class="row">
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="seats">Seats</label>
+                                        <input type="text" name="seats" value="{{ $ad->seats }}" class="slug form-control {{ Session::has('seats_error') ? 'is-invalid' : '' }}" placeholder="Seats" autocomplete="off">
+                                        <div class="invalid-feedback">
+                                            @if (Session::has('seat_error'))
+                                                {{ Session::get('seat_error') }}
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="exteriorcolor">Exterior Color</label>
+                                        <input type="text" id="exteriorcolor" name="exteriorcolor" value="{{ $ad->exteriorcolor }}" class="form-control @error('exteriorcolor') is-invalid @enderror" placeholder="Exterior Color" autocomplete="off">
+                                        <div class="invalid-feedback">
+                                            @error('exteriorcolor')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+<div class="row">
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="longdescptitle">Long Description Title</label>
+                                        <input type="text" name="longdescptitle" value="{{ $ad->longdescrptitle }}" class="slug form-control {{ Session::has('longdescptitle_error') ? 'is-invalid' : '' }}" placeholder="Long Description Title" autocomplete="off">
+                                        <div class="invalid-feedback">
+                                            @if (Session::has('longdescptitle_error'))
+                                                {{ Session::get('longdescptitle_error') }}
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group my-2 col-md-6">
+                                         <label for="longdescp">Long Description</label>
+                                        <textarea name="longdescp" class="form-control @error('longdescp') is-invalid @enderror" cols="30" rows="3" placeholder="Long Description" autocomplete="off">{{ $ad->longdescrp }}</textarea>
+                                        <div class="invalid-feedback">
+                                            @error('longdescp')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+<div class="row">
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="drive">Drive</label>
+                                        <input type="text" name="drive" value="{{ $ad->drive }}" class="slug form-control {{ Session::has('drive_error') ? 'is-invalid' : '' }}" placeholder="drive" autocomplete="off">
+                                        <div class="invalid-feedback">
+                                            @if (Session::has('drive_error'))
+                                                {{ Session::get('drive_error') }}
+                                            @endif
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+
+
+
 
                                 <hr class="my-2">
                                 <h5>Seller information</h5>

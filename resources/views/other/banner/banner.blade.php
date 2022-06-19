@@ -110,7 +110,9 @@
                                 <option>Footer</option>
                                 <option>Question1</option>
                                 <option>Question2</option>
-                                <option>Video</option>
+                                <option>Video Image</option>
+                                 <option>Video</option>
+                                 <option>Globe</option>
                             </Select>
                         </div>
                         <div class="form-group my-2">
@@ -159,7 +161,9 @@
                                 <option>Footer</option>
                                 <option>Question1</option>
                                 <option>Question2</option>
-                                <option>Video</option>
+                                <option>Video Image</option>
+                                 <option>Video</option>
+                                 <option>Globe</option>
                             </Select>
                         </div>
                         <div class="form-group my-2">
