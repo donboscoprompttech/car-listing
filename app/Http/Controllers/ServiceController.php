@@ -144,7 +144,17 @@ $year = DB::select(DB::raw($sqlQuery));
 }
 
 
+public function getModel($makeid=0){
 
+     // Fetch Models by makeid
+     $modelData['data'] = MotorCustomeValues::leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")
+        ->select('model_msts.id','name')->groupby('model_msts.id','name')
+        ->where('motor_custome_values.make_id',$makeid)
+        ->get();
+
+     return response()->json($modelData);
+
+   }
 
 
 	

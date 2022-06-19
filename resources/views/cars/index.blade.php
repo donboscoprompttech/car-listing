@@ -128,7 +128,7 @@
         <div class="col-lg-4">
           <div class="yellow-data-div">
             <div class="icon-div">
-              <img src="assets/images/Icons/red-bulb.svg" class="icon" alt="icon">
+              <img src="{{asset('car/assets/images/Icons/red-bulb.svg')}}" class="icon" alt="icon">
             </div>
             <div class="desc-div">
               <p class="title">Lorem Ipsum</p>
@@ -142,7 +142,7 @@
         <div class="col-lg-4">
           <div class="yellow-data-div">
             <div class="icon-div">
-              <img src="assets/images/Icons/green-bulb.svg" class="icon" alt="icon">
+              <img src="{{asset('car/assets/images/Icons/green-bulb.svg') }}" class="icon" alt="icon">
             </div>
             <div class="desc-div">
               <p class="title">Lorem Ipsum</p>
@@ -196,7 +196,7 @@
                       <div class="km-div">
                         <p class="km">
                           <span class="icon-span">
-                            <img src="assets/images/Icons/meter.png" class="car-icon" alt="">
+                            <img src="{{asset('car/assets/images/Icons/meter.png') }}" class="car-icon" alt="">
                           </span>
                           {{ $row->milage }} KM
                         </p>
@@ -371,7 +371,7 @@ else{
         @foreach ($testimonial as $row)
         <div class="testimonial">
           <div class="quote-icon">
-            <img src="assets/images/Icons/quote.png" class="img-fluid quote-img" alt="" srcset="">
+            <img src="{{asset('car/assets/images/Icons/quote.png') }}" class="img-fluid quote-img" alt="" srcset="">
           </div>
           <p class="desc">
             {{ $row->description }}
@@ -411,6 +411,47 @@ else{
   
 
 <script src="{{ asset('car/js/scripts.js') }}"></script>
+
+
+
+
+<script>  // Department Change
+      $('#brand').change(function(){
+
+         // Department id
+         var id = $(this).val();
+
+         // Empty the dropdown
+         $('#model').find('option').not(':first').remove();
+
+         // AJAX request 
+         $.ajax({
+           url: 'getModel/'+id,
+           type: 'get',
+           dataType: 'json',
+           success: function(response){
+
+             var len = 0;
+             if(response['data'] != null){
+                len = response['data'].length;
+             }
+
+             if(len > 0){
+                // Read data and create <option >
+                for(var i=0; i<len; i++){
+
+                   var id = response['data'][i].id;
+                   var name = response['data'][i].name;
+
+                   var option = "<option value='"+id+"'>"+name+"</option>";
+
+                   $("#model").append(option); 
+                }
+             }
+
+           }
+         });
+      });</script>
 
 </body>
 

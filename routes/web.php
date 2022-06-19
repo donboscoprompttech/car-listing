@@ -19,14 +19,17 @@ use Illuminate\Support\Facades\Route;
     return redirect()->route('login.index');
 });*/
 Route::get('/', function(){
-    return redirect()->route('car.index');
+    return redirect()->route('index');
 });
+
+Route::get('/getModel/{id}', [App\Http\Controllers\ServiceController::class, 'getModel'])->name('getModel');
+
 Route::get('/details/{id}', [App\Http\Controllers\ServiceController::class, 'detailsshow'])->name('details');
 Route::get('/carsearch', [App\Http\Controllers\ServiceController::class, 'carsearch'])->name('carsearch');
 Route::post('/searchresult', [App\Http\Controllers\ServiceController::class, 'searchresult'])->name('searchresult');
 Route::get('/forgotpassword/index', [App\Http\Controllers\LoginController::class, 'forgotPasswordIndex'])->name('forgotpassword.index');
 Route::post('/forgotpassword/store', [App\Http\Controllers\LoginController::class, 'forgotPasswordStore'])->name('forgotpassword.store');
-Route::get('/car/index', [App\Http\Controllers\ServiceController::class, 'index'])->name('car.index');
+Route::get('/index', [App\Http\Controllers\ServiceController::class, 'index'])->name('index');
 
 
 Route::post('/enquiryprocess', [App\Http\Controllers\DetailsController::class, 'enquiryprocess'])->name('enquiryprocess');
