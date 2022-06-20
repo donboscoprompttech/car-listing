@@ -84,7 +84,8 @@
       </div>
       <div class="search-div">
         <form action="{{ url('/searchresult') }}" method="post">
-          @csrf
+          @csrf<input type="hidden" name="pageflag" value="2">
+          <input type="hidden" name="priceflag" id="priceflag" value="0">
         <div class="row m-0">
           <div class="col-lg-2 col-12 px-0 mb-lg-0 mb-2">
             <span class="select-title-head">Brand</span>
@@ -118,7 +119,7 @@
           <div class="col-lg-2 col-12 px-0 range-div">
             <p class="range-title">Price Range</p>
             <p class="range-value">
-              <input type="text" id="amount" class="filterAmount" readonly>
+              <input type="text" id="amount" class="filterAmount"  name="amount" readonly>
             </p>
           </div>
           <div class="col-lg-4 col-12 px-0 my-auto">
@@ -147,17 +148,17 @@
   <section class="recommend-section">
     <div class="container">
       <div class="tab-div">
-        <p class="section-title">Recommended Cars</p>
+        <p class="section-title">Search Result</p>
         <div class="list-tab-div">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#new" type="button"
-                role="tab" aria-controls="home" aria-selected="true">New</button>
+                role="tab" aria-controls="home" aria-selected="true">Used</button>
             </li>
-            <li class="nav-item" role="presentation">
+            <!--<li class="nav-item" role="presentation">
               <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#used" type="button"
-                role="tab" aria-controls="profile" aria-selected="false">Used</button>
-            </li>
+                role="tab" aria-controls="profile" aria-selected="false">New</button>
+            </li>-->
             <li class="more-link"><a href="listing.html"><button class="nav-link">See more <i
                     class="fa-solid fa-chevron-right"></i></button></a></li>
           </ul>
@@ -481,7 +482,7 @@ else{
     }
   });
   $( ".filterAmount" ).val( "$" + $( ".range-bar" ).slider( "values", 0 ) +
-    " - AED" + $( ".range-bar" ).slider( "values", 1 ) );
+    " -$" + $( ".range-bar" ).slider( "values", 1 ) );
 });
 $(function() {    // <== doc ready
 
@@ -497,7 +498,7 @@ var low = $(this).slider('values', 0);
 
             var high = $(this).slider('values', 1);
 
-
+$("#priceflag").val(1);
 
        }
     });

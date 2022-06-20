@@ -74,6 +74,7 @@
       <div class="search-div">
         <form action="{{ url('/searchresult') }}" method="post">
           @csrf
+          <input type="hidden" name="pageflag" value="1">
         <div class="row m-0">
           <div class="col px-0">
             <select id="brand" class="form-control" name="make">
