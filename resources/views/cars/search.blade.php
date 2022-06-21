@@ -189,7 +189,7 @@
                             <p class="car-name">{{ $row->title }}</p>
                           </div>
                           <div class="price-div">
-                            <p class="price">{{$row->modelname}} <span class="strike-price">AED 83,500</span></p>
+                            <p class="price">AED{{ $row->price }} <span class="strike-price">AED {{ $row->price }}</span></p>
                           </div>
                           <div class="car-details">
                             <p class="location w-100">Dubai, UAE</p>
@@ -478,11 +478,11 @@ else{
     max: <?php echo $maxprice[0]->price;?>,
     values: [ 0, <?php echo $maxprice[0]->price;?> ],
     slide: function( event, ui ) {
-    $( ".filterAmount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+    $( ".filterAmount" ).val( "AED" + ui.values[ 0 ] + " - AED" + ui.values[ 1 ] );
     }
   });
-  $( ".filterAmount" ).val( "$" + $( ".range-bar" ).slider( "values", 0 ) +
-    " -$" + $( ".range-bar" ).slider( "values", 1 ) );
+  $( ".filterAmount" ).val( "AED" + $( ".range-bar" ).slider( "values", 0 ) +
+    " -AED" + $( ".range-bar" ).slider( "values", 1 ) );
 });
 $(function() {    // <== doc ready
 

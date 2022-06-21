@@ -167,7 +167,7 @@
       <div id="wrapper">
         <ul id="filter">
           <li class="active">All</li>
-           @foreach ($vehicletype as $row)
+           @foreach ($subcategory as $row)
            <li>{{ $row->name }}</li>
            @endforeach
           
@@ -183,7 +183,7 @@
               <a href="/details/{{ $row->mainid}}">
                 <div class="card-body">
                   <div class="price-div">
-                    <p class="price">{{ $row->modelname }}</p>
+                    <p class="price">AED {{ $row->price }}</p>
                     <p class="feature-tag">Featured</p>
                   </div>
                   <div class="card-img-div">

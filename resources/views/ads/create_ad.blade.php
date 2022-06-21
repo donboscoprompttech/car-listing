@@ -65,7 +65,7 @@
                                 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Title">Title</label>
-                                        <input type="text" name="title" value="{{ old('title') }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}" placeholder="Title" autocomplete="off">
+                                        <input type="text"  required name="title" value="{{ old('title') }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}" placeholder="Title" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @if (Session::has('title_error'))
                                                 {{ Session::get('title_error') }}
@@ -210,32 +210,51 @@
                                                 <input type="checkbox" name="status" checked value="checked" autocomplete="off">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group my-2">
                                                 <!--<label for="Status">Price Negotiable</label>
                                                 <input type="checkbox" name="negotiable" value="checked" autocomplete="off">-->
 
 <label for="Status">Sold</label>
                                                 <input type="radio" name="soldreserved" value="sold" autocomplete="off">
+<label for="Status">Reserved</label>
+                                                <input type="radio" name="soldreserved" value="reserved" autocomplete="off">
 
+<label for="Status">None</label>
+                                                <input type="radio" name="soldreserved" value="none" autocomplete="off">
 
 
                                             </div>
+
+
+
+                                                
+
+
+
+
+
+                                            
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group my-2">
                                                 <!--<label for="Status">Featured</label>
                                                 <input type="checkbox" name="featured" value="checked" autocomplete="off">-->
 
-<label for="Status">Reserved</label>
-                                                <input type="radio" name="soldreserved" value="reserved" autocomplete="off">
 
 
 
 
 
                                             </div>
+
                                         </div>
+<div class="col-md-4">
+                                           
+                                        </div>
+
+
+
 
                                     </div>
                                 </div>
@@ -253,7 +272,7 @@
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="seats">Seats</label>
-                                        <input type="text" name="seats" value="{{ old('seats') }}" class="slug form-control {{ Session::has('seats_error') ? 'is-invalid' : '' }}" placeholder="Seats" autocomplete="off">
+                                        <input type="text" name="seats" required value="{{ old('seats') }}" class="slug form-control {{ Session::has('seats_error') ? 'is-invalid' : '' }}" placeholder="Seats" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @if (Session::has('seat_error'))
                                                 {{ Session::get('seat_error') }}
@@ -262,7 +281,7 @@
                                     </div>
                                     <div class="form-group my-2 col-md-6">
                                         <label for="exteriorcolor">Exterior Color</label>
-                                        <input type="text" id="exteriorcolor" name="exteriorcolor" value="{{ old('exteriorcolor') }}" class="form-control @error('exteriorcolor') is-invalid @enderror" placeholder="Canonical Name" autocomplete="off">
+                                        <input type="text" id="exteriorcolor" required name="exteriorcolor" value="{{ old('exteriorcolor') }}" class="form-control @error('exteriorcolor') is-invalid @enderror" placeholder="Canonical Name" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @error('exteriorcolor')
                                                 {{ $message }}
@@ -274,7 +293,7 @@
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="longdescptitle">Long Description Title</label>
-                                        <input type="text" name="longdescptitle" value="{{ old('longdescptitle') }}" class="slug form-control {{ Session::has('longdescptitle_error') ? 'is-invalid' : '' }}" placeholder="Long Description Title" autocomplete="off">
+                                        <input type="text" required name="longdescptitle" value="{{ old('longdescptitle') }}" class="slug form-control {{ Session::has('longdescptitle_error') ? 'is-invalid' : '' }}" placeholder="Long Description Title" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @if (Session::has('longdescptitle_error'))
                                                 {{ Session::get('longdescptitle_error') }}
@@ -283,7 +302,7 @@
                                     </div>
                                     <div class="form-group my-2 col-md-6">
                                          <label for="longdescp">Long Description</label>
-                                        <textarea name="longdescp" class="form-control @error('longdescp') is-invalid @enderror" cols="30" rows="3" placeholder="Long Description" autocomplete="off">{{ old('longdescp') }}</textarea>
+                                        <textarea name="longdescp" required class="form-control @error('longdescp') is-invalid @enderror" cols="30" rows="3" placeholder="Long Description" autocomplete="off">{{ old('longdescp') }}</textarea>
                                         <div class="invalid-feedback">
                                             @error('longdescp')
                                                 {{ $message }}
@@ -295,7 +314,17 @@
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="drive">Drive</label>
-                                        <input type="text" name="drive" value="{{ old('drive') }}" class="slug form-control {{ Session::has('drive_error') ? 'is-invalid' : '' }}" placeholder="drive" autocomplete="off">
+                                        
+
+
+<select name="drive" id="drive" class="select2  form-control @error('drive') is-invalid @enderror" autocomplete="off" required>
+                                            
+                                                <option value="">Select</option>
+                                                <option value="Rear Wheel Drive">Rear Wheel Drive</option>
+                                           <option value="Front Wheel Drive">Front Wheel Drive</option>
+                                        </select>
+
+
                                         <div class="invalid-feedback">
                                             @if (Session::has('drive_error'))
                                                 {{ Session::get('drive_error') }}

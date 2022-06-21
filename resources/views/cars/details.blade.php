@@ -76,7 +76,7 @@
                             </p>
                         </div>
                         <div class="price-div">
-                            <p>{{$vehicletypecars->modelname}}</p>
+                            <p>AED{{$vehicletypecars->price}}</p>
                         </div>
                         <div class="info-div">
                             <div class="detail">

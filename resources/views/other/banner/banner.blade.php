@@ -108,8 +108,8 @@
                                 <option>First Page</option>
                                 <option>Search Result</option>
                                 <option>Footer</option>
-                                <option>Question1</option>
-                                <option>Question2</option>
+                                <option>Faq1</option>
+                                <option>Faq2</option>
                                 <option>Video Image</option>
                                  <option>Video</option>
                                  <option>Globe</option>
@@ -159,8 +159,8 @@
                                 <option>First Page</option>
                                 <option>Search Result</option>
                                 <option>Footer</option>
-                                <option>Question1</option>
-                                <option>Question2</option>
+                                <option>Faq1</option>
+                                <option>Faq2</option>
                                 <option>Video Image</option>
                                  <option>Video</option>
                                  <option>Globe</option>

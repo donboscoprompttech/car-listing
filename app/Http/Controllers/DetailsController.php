@@ -13,9 +13,7 @@ public function cardetails(){
     return view('cars.details');  
 }
 
-public function carlisting(){
-    return view('cars.listing');  
-}
+
 public function carsearch(){
     return view('cars.carsearch');  
 }

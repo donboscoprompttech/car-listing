@@ -34,7 +34,7 @@ Route::get('/index', [App\Http\Controllers\ServiceController::class, 'index'])->
 
 
 Route::post('/enquiryprocess', [App\Http\Controllers\DetailsController::class, 'enquiryprocess'])->name('enquiryprocess');
-Route::get('/carlisting', [App\Http\Controllers\DetailsController::class, 'carlisting'])->name('carlisting');
+Route::get('/category/{id}', [App\Http\Controllers\ServiceController::class, 'carlisting'])->name('category.id');
 // Logout user Back button Cache clearing
 Route::group(['middleware' => ['revalidate']], function(){
 

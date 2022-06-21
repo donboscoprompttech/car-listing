@@ -11,7 +11,7 @@
         <div class="menu-div d-flex">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li class="nav-item  active">
-              <a class="nav-link" aria-current="page" href="#!">Home</a>
+              <a class="nav-link" aria-current="page" href="/index">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
@@ -19,8 +19,16 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <div class="flex-menu d-flex">
                   <div class="leftside">
-                  <ul>
-                      <li>
+                  <ul><li>
+                        <a class="dropdown-item" href="/category/All">All Products</a>
+                      </li>
+                    @foreach ($subcategory as $row)
+<li>
+                        <a class="dropdown-item" href="/category/{{ $row->canonical_name}}">{{ $row->name }}</a>
+                      </li>
+
+                    @endforeach
+                      <!--<li>
                         <a class="dropdown-item" href="#!">All Products</a>
                       </li>
                       <li>
@@ -28,11 +36,12 @@
                       </li>
                       <li>
                         <a class="dropdown-item" href="#!">New Arrivals</a>
-                      </li>
+                      </li>-->
+
                     </ul>
                   </div>
                   <div class="rightside">
-                    <p>test</p>
+                    <!--<p>test</p>-->
                   </div>
                 </div>
               </ul>

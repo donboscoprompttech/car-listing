@@ -400,7 +400,7 @@
                         <input type="text" class="form-control result-search" placeholder="Search">
                     </div>
                     <div class="result-activity">
-                        <p class="result-count">6 Results</p>
+                        <p class="result-count"><?php echo(count($vehicletypecars));?> Results</p>
                         <div class="sort-div">
                             <select id="sort" class="form-control">
                                 <option>Sort By</option>
@@ -440,20 +440,26 @@
                     </div>
 
                     <div class="flat-card-div">
+
+ @foreach ($vehicletypecars as $row)
+
                         <div class="card">
                             <div class="card-body">
                                 <div class="img-div">
                                     <div class="ribbon booked"><span>Booked</span></div>
                                     <div class="gallery js-gallery">
-                                        <div class="gallery-item">
+                                       <?php $images = DB::table('ads_images')->limit(3)->get()
+       ;?>
+       @foreach ($images as $row1)
+                                    <div class="gallery-item">
                                             <div class="gallery-img-holder js-gallery-popup">
 
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Ford.png') }}" alt=""
+                                                <img src="{{asset($row1->image) }}" alt=""
                                                     class="gallery-img img-fluid">
                                             </div>
                                         </div>
-
-                                        <div class="gallery-item">
+@endforeach
+                                           <!-- <div class="gallery-item">
                                             <div class="gallery-img-holder js-gallery-popup">
                                                 <img src="{{ asset('car/assets/images/listing/Product Listing Page/Honda.png') }}" alt=""
                                                     class="gallery-img img-fluid">
@@ -464,7 +470,7 @@
                                                 <img src="{{ asset('car/assets/images/listing/Product Listing Page/Tesla.png') }}" alt=""
                                                     class="gallery-img img-fluid">
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 <a href="details.html">
@@ -473,10 +479,10 @@
                                             <p>NEW</p>
                                         </div>
                                         <div class="car-name-div">
-                                            <p class="car-name">Tesla Model 3 Standard Range Plus</p>
+                                            <p class="car-name">{{ $row->title }}</p>
                                         </div>
                                         <div class="price-div">
-                                            <p class="price">AED 57,148</p>
+                                            <p class="price">AED {{ $row->price }}</p>
                                         </div>
                                         <div class="location-div">
                                             <p class="location">Dubai, UAE</p>
@@ -484,336 +490,27 @@
                                         <div class="details-div">
                                             <div class="detail">
                                                 <p><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>2021</p>
+                                                            class="img-fluid detail-icon" alt=""></span>{{$row->registration_year}}</p>
                                             </div>
                                             <div class="detail">
                                                 <p><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Rear-wheel Drive
-                                                </p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('assets/images/Icons/fuel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Electric</p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('assets/images/Icons/people.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="img-div">
-                                    <div class="ribbon booked"><span>Bookedd</span></div>
-                                    <div class="gallery js-gallery">
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Ford.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Honda.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Tesla.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="details.html">
-                                    <div class="content-div">
-                                        <div class="tag-div">
-                                            <p>NEW</p>
-                                        </div>
-                                        <div class="car-name-div">
-                                            <p class="car-name">Tesla Model 3 Standard Range Plus</p>
-                                        </div>
-                                        <div class="price-div">
-                                            <p class="price">AED 57,148</p>
-                                        </div>
-                                        <div class="location-div">
-                                            <p class="location">Dubai, UAE</p>
-                                        </div>
-                                        <div class="details-div">
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>2021</p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Rear-wheel Drive
+                                                            class="img-fluid detail-icon" alt=""></span>{{$row->drive}}
                                                 </p>
                                             </div>
                                             <div class="detail">
                                                 <p><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Electric</p>
+                                                            class="img-fluid detail-icon" alt=""></span>{{$row->fuel_type}}</p>
                                             </div>
                                             <div class="detail">
                                                 <p><span><img src="{{ asset('car/assets/images/Icons/people.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>5</p>
+                                                            class="img-fluid detail-icon" alt=""></span>{{$row->seats}}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                        </div>
-                         <div class="card">
-                            <div class="card-body">
-                                <div class="img-div">
-                                    <div class="ribbon booked"><span>Bookedd</span></div>
-                                    <div class="gallery js-gallery">
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Ford.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Honda.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Tesla.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="details.html">
-                                    <div class="content-div">
-                                        <div class="tag-div">
-                                            <p>NEW</p>
-                                        </div>
-                                        <div class="car-name-div">
-                                            <p class="car-name">Tesla Model 3 Standard Range Plus</p>
-                                        </div>
-                                        <div class="price-div">
-                                            <p class="price">AED 57,148</p>
-                                        </div>
-                                        <div class="location-div">
-                                            <p class="location">Dubai, UAE</p>
-                                        </div>
-                                        <div class="details-div">
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>2021</p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Rear-wheel Drive
-                                                </p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Electric</p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/people.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="img-div">
-                                    <div class="ribbon booked"><span>Bookedd</span></div>
-                                    <div class="gallery js-gallery">
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Ford.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Honda.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Tesla.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="details.html">
-                                    <div class="content-div">
-                                        <div class="tag-div">
-                                            <p>NEW</p>
-                                        </div>
-                                        <div class="car-name-div">
-                                            <p class="car-name">Tesla Model 3 Standard Range Plus</p>
-                                        </div>
-                                        <div class="price-div">
-                                            <p class="price">AED 57,148</p>
-                                        </div>
-                                        <div class="location-div">
-                                            <p class="location">Dubai, UAE</p>
-                                        </div>
-                                        <div class="details-div">
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>2021</p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Rear-wheel Drive
-                                                </p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Electric</p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/people.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                         <div class="card">
-                            <div class="card-body">
-                                <div class="img-div">
-                                    <div class="ribbon booked"><span>Bookedd</span></div>
-                                    <div class="gallery js-gallery">
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Ford.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Honda.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Tesla.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="details.html">
-                                    <div class="content-div">
-                                        <div class="tag-div">
-                                            <p>NEW</p>
-                                        </div>
-                                        <div class="car-name-div">
-                                            <p class="car-name">Tesla Model 3 Standard Range Plus</p>
-                                        </div>
-                                        <div class="price-div">
-                                            <p class="price">AED 57,148</p>
-                                        </div>
-                                        <div class="location-div">
-                                            <p class="location">Dubai, UAE</p>
-                                        </div>
-                                        <div class="details-div">
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>2021</p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Rear-wheel Drive
-                                                </p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Electric</p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/people.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                         <div class="card">
-                            <div class="card-body">
-                                <div class="img-div">
-                                    <div class="ribbon booked"><span>Bookedd</span></div>
-                                    <div class="gallery js-gallery">
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Ford.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Honda.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Tesla.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="details.html">
-                                    <div class="content-div">
-                                        <div class="tag-div">
-                                            <p>NEW</p>
-                                        </div>
-                                        <div class="car-name-div">
-                                            <p class="car-name">Tesla Model 3 Standard Range Plus</p>
-                                        </div>
-                                        <div class="price-div">
-                                            <p class="price">AED 57,148</p>
-                                        </div>
-                                        <div class="location-div">
-                                            <p class="location">Dubai, UAE</p>
-                                        </div>
-                                        <div class="details-div">
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/calendar.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>2021</p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/wheel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Rear-wheel Drive
-                                                </p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/fuel.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>Electric</p>
-                                            </div>
-                                            <div class="detail">
-                                                <p><span><img src="{{ asset('car/assets/images/Icons/people.png') }}"
-                                                            class="img-fluid detail-icon" alt=""></span>5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        </div>@endforeach
+                        
 
                     </div>
 
