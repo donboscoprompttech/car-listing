@@ -31,7 +31,12 @@
     <link rel="stylesheet" type="text/css" href="css/slick/slick-theme.css" />-->
     <link href="{{ asset('/car/css/slick/slick.css') }}" rel="stylesheet"> 
     <link href="{{ asset('/car/css/slick/slick-theme.css') }}" rel="stylesheet">
-    
+    <style>
+        .pagination{
+            float: right;
+            margin-top: 10px;
+        }
+</style>
 
 </head>
 
@@ -82,25 +87,23 @@
                                     <div id="yearPanel-collapseOne" class="accordion-collapse collapse show"
                                         aria-labelledby="year-panel">
                                         <div class="accordion-body">
-                                            <form action="">
-                                                <div class="form-group">
+                                            <span class="caryear">
+@foreach ($year as $row)
+<div class="form-group">
+
                                                     <input type="checkbox" id="2016">
-                                                    <label for="2016"><span>2016</span></label>
+                                                    <label for="{{$row->registration_year}}"><span>{{$row->registration_year}}</span></label>
+
+                                                    <?php $offset=2;?>
+                                                    <input id="offset" value=2 />
                                                 </div>
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="2017">
-                                                    <label for="2017"><span>2017</span></label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="2018">
-                                                    <label for="2018"><span>2018</span></label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="2019">
-                                                    <label for="2019"><span>2019</span></label>
-                                                </div>
-                                            </form>
-                                            <a href="#" class="see-more-link">See More</a>
+
+@endforeach
+
+
+                                            </span>
+                                            
+                                            <a href="#" onclick="showmore()" class="see-more-link">See More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -199,7 +202,9 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="button-div">
+                                <button type="Submit" class="btn header-search-btn">Search</button>
                                 <button class="btn filter-reset-btn">Reset Filter</button>
                             </div>
                         </div>
@@ -514,7 +519,6 @@
 
                     </div>
 
-                    <!-- Pagination Div -->
                     <div class="pagination-div">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
@@ -576,6 +580,36 @@
 
     <!-- Core theme JS-->
     <script src="{{ asset('car/js/scripts.js') }}"></script>
+
+
+    <script>
+        
+function showmore(offset){
+/*$.ajax(
+    type: 'GET',
+    url: 'yearrender'
+    function (data) {
+        $(".caryear").html(data);
+    }
+);*/
+
+
+var val=$("#offset").val();
+
+$.ajax({
+            type: 'get',
+            url:"{{ route('yearrender') }}",
+            dataType: 'html',
+            'data':{val:val},
+            success: function (data) {
+$(".caryear").html(data);
+
+ },error:function(){
+                console.log(data);
+            }
+        });               
+}
+    </script>
 
 </body>
 

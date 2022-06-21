@@ -360,10 +360,26 @@ $vehicletypecars = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads
 }else{
         $vehicletypecars = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where('subcategories.canonical_name',$cname)->get();
 }
+$sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year limit 0,2";
+$year = DB::select(DB::raw($sqlQuery));
 
-
-    return view('cars.listing',compact('subcategory','vehicletypecars'));  
+    return view('cars.listing',compact('subcategory','vehicletypecars','year'));  
 }
 	
+function yearrender(){
+    //$start=$off;
+    $start=$_GET['val'];
+    $offset=$start+2;
+$sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year limit $offset,2";
+$year = DB::select(DB::raw($sqlQuery));
+
+    return view('cars.caryear',compact('year','offset'));
+
+
+}
+
+
+
+
 	
 }

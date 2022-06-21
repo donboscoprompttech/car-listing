@@ -32,7 +32,9 @@ return ["message"=>"failure","status"=>200,"text"=>"Your Enquiry Send Successful
 }
 }
 
-
+public function searchlisting(){
+    
+}
 
 
 }

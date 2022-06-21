@@ -26,6 +26,7 @@ Route::get('/getModel/{id}', [App\Http\Controllers\ServiceController::class, 'ge
 
 Route::get('/details/{id}', [App\Http\Controllers\ServiceController::class, 'detailsshow'])->name('details');
 Route::get('/carsearch', [App\Http\Controllers\ServiceController::class, 'carsearch'])->name('carsearch');
+Route::get('/yearrender', [App\Http\Controllers\ServiceController::class, 'yearrender'])->name('yearrender');
 Route::post('/searchresult', [App\Http\Controllers\ServiceController::class, 'searchresult'])->name('searchresult');
 Route::post('/searchresultfilter', [App\Http\Controllers\ServiceController::class, 'searchresultfilter'])->name('searchresultfilter');
 Route::get('/forgotpassword/index', [App\Http\Controllers\LoginController::class, 'forgotPasswordIndex'])->name('forgotpassword.index');
