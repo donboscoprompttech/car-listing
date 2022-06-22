@@ -221,7 +221,20 @@
     Make
 </a>
 @endif
+@if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::model))
 
+<a class="nav-link {{ request()->is('model*') ? 'active' : '' }}" href="{{ route('model.index') }}">
+    <div class="sb-nav-link-icon"><i class="fas fa-balance-scale-right"></i></div>
+    Model
+</a>
+@endif
+@if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::varient))
+
+<a class="nav-link {{ request()->is('varient*') ? 'active' : '' }}" href="{{ route('varient.index') }}">
+    <div class="sb-nav-link-icon"><i class="fas fa-balance-scale-right"></i></div>
+    Varient
+</a>
+@endif
                             {{-- @if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::MANAGE_REJECT_REASON))
                                 
                                 <a class="nav-link {{ request()->is('reject*') ? 'active' : '' }}" href="{{ route('reject.index') }}">

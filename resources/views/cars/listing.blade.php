@@ -36,6 +36,15 @@
             float: right;
             margin-top: 10px;
         }
+        .page-link{
+            color:#1d1d1d;background-color:#f0d32f ;border-color:#f0d32f ;
+        }
+        .page-item.active .page-link {
+  z-index: 3;
+  color: #000;
+  background-color: #ffffff;
+  border-color: #f0d32f;
+}
 </style>
 
 </head>
@@ -515,11 +524,11 @@
                                 </a>
                             </div>
                         </div>@endforeach
-                        
+                       <nav aria-label="Page navigation example"> {{ $vehicletypecars->links() }}</nav>
 
                     </div>
 
-                    <div class="pagination-div">
+                   <!--<div class="pagination-div">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 <li class="page-item">
@@ -544,7 +553,7 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div>
+                    </div>-->
                     <!-- Pagination Div ends-->
 
                 </div>

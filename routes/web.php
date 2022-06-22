@@ -254,6 +254,19 @@ Route::group(['middleware' => ['revalidate']], function(){
         Route::post('/make/update', [App\Http\Controllers\MakeMstsController::class, 'update'])->name('make.update');
         Route::post('/make/delete/{id}', [App\Http\Controllers\MakeMstsController::class, 'delete'])->name('make.delete');
 
+//Model
+
+        Route::get('/model', [App\Http\Controllers\ModelMstsController::class, 'index'])->name('model.index');
+        Route::post('/model/store', [App\Http\Controllers\ModelMstsController::class, 'store'])->name('model.store');
+        Route::post('/model/update', [App\Http\Controllers\ModelMstsController::class, 'update'])->name('model.update');
+        Route::post('/model/delete/{id}', [App\Http\Controllers\ModelMstsController::class, 'delete'])->name('model.delete');
+
+//Varient
+
+        Route::get('/varient', [App\Http\Controllers\VarientMstsController::class, 'index'])->name('varient.index');
+        Route::post('/varient/store', [App\Http\Controllers\VarientMstsController::class, 'store'])->name('varient.store');
+        Route::post('/varient/update', [App\Http\Controllers\VarientMstsController::class, 'update'])->name('varient.update');
+        Route::post('/varient/delete/{id}', [App\Http\Controllers\VarientMstsController::class, 'delete'])->name('varient.delete');
 
 
 
