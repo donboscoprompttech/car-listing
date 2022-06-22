@@ -247,7 +247,12 @@ Route::group(['middleware' => ['revalidate']], function(){
         Route::post('/questions/delete/{id}', [App\Http\Controllers\QuestionsController::class, 'delete'])->name('questions.delete');
 
 
+//Make
 
+        Route::get('/make', [App\Http\Controllers\MakeMstsController::class, 'index'])->name('make.index');
+        Route::post('/make/store', [App\Http\Controllers\MakeMstsController::class, 'store'])->name('make.store');
+        Route::post('/make/update', [App\Http\Controllers\MakeMstsController::class, 'update'])->name('make.update');
+        Route::post('/make/delete/{id}', [App\Http\Controllers\MakeMstsController::class, 'delete'])->name('make.delete');
 
 
 

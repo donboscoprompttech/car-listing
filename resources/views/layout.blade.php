@@ -212,6 +212,16 @@
     Questions
 </a>
 @endif
+
+                         
+ @if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::Make))
+
+<a class="nav-link {{ request()->is('make*') ? 'active' : '' }}" href="{{ route('make.index') }}">
+    <div class="sb-nav-link-icon"><i class="fas fa-balance-scale-right"></i></div>
+    Make
+</a>
+@endif
+
                             {{-- @if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::MANAGE_REJECT_REASON))
                                 
                                 <a class="nav-link {{ request()->is('reject*') ? 'active' : '' }}" href="{{ route('reject.index') }}">

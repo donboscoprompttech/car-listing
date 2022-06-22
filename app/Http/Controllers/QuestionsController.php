@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Questions;
-use App\Models\TermsConditions;
+use App\Models\MakeMst;
 use Illuminate\Http\Request;
 use Exception;
 class QuestionsController extends Controller

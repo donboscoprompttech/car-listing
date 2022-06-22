@@ -88,21 +88,7 @@ class TestimonialController extends Controller
             //'image'         => 'mimes:png,jpg,jpeg',
         ]);
 
-        /*if($request->hasFile('image')){
-
-            $file = uniqid().'.'.$request->image->getClientOriginalExtension();
-
-            $request->image->storeAs('public/testimonial', $file);
-
-            $image = 'storage/testimonial/'.$file;
-
-        }
-        else{
-            $testimonial = Testimonial::where('id', $id)
-            ->first();
-
-            $image = $testimonial->image;
-        }*/
+        
 
         Testimonial::where('id', $id)
         ->update([
