@@ -72,16 +72,19 @@
 
                 <!--Left side Filter Div -->
                 <div class="filter-div">
+                    <form action="#" method="get">
+                       @csrf
                     <div class="filter">
                         <p class="heading">Filter</p>
                         <div class="filter-search">
+
                             <span class="search-icon"><!--<img src="assets/images/Icons/search.png" alt="search icon"
                                     class="img-fluid search-img" />-->
                                         
                                         <img src="{{ asset('car/assets/images/Icons/search.png') }}" alt="search icon"
-                                    class="img-fluid search-img" />
+                                    class="img-fluid search-img"  onclick="searchtextbox();" />
                                     </span>
-                            <input type="text" class="form-control" placeholder="Search" />
+                            <input type="text" id="searchall" name="searchall" class="form-control" placeholder="Search" />
                         </div>
                         <div class="filter-accordion-div">
                             <div class="accordion" id="yearAccordion">
@@ -100,11 +103,11 @@
 @foreach ($year as $row)
 <div class="form-group">
 
-                                                    <input type="checkbox" id="2016">
+                                                    <input type="checkbox" id="{{$row->registration_year}}" name="year[]" value="{{$row->registration_year}}">
                                                     <label for="{{$row->registration_year}}"><span>{{$row->registration_year}}</span></label>
 
-                                                    <?php $offset=2;?>
-                                                    <input id="offset" value=2 />
+                                                    <?php $offset=0;?>
+                                                    <input id="offset" value=0 />
                                                 </div>
 
 @endforeach
@@ -121,35 +124,45 @@
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#brandPanel-collapseOne" aria-expanded="true"
                                             aria-controls="brandPanel-collapseOne">
-                                            Brand
+                                            Make
                                         </button>
                                     </h2>
                                     <div id="brandPanel-collapseOne" class="accordion-collapse collapse show"
                                         aria-labelledby="year-panel">
                                         <div class="accordion-body">
-                                            <div class="accordion-search">
-                                                <input type="text" class="form-control" placeholder="Search">
-                                            </div>
-                                            <form action="">
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="Audi">
-                                                    <label for="Audi"><span>Audi</span></label>
+                                            
+                                               
+
+
+<span class="carmake">
+@foreach ($make as $row)
+<div class="form-group">
+
+                                                    <input type="checkbox" name="carmake[]" value={{$row->make_id}} >
+                                                    <label for="{{$row->make_id}}"><span>{{$row->name}}</span></label>
+
+                                                    <?php $offset=0;?>
+                                                    <input id="offsetmake" value=0 />
                                                 </div>
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="BMW">
-                                                    <label for="BMW"><span>BMW</span></label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="Chevrolet">
-                                                    <label for="Chevrolet"><span>Chevrolet</span></label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="Ford">
-                                                    <label for="Ford"><span>Ford</span></label>
-                                                </div>
-                                            </form>
-                                            <a href="#" class="see-more-link">See More</a>
+
+@endforeach
+
+
+                                            </span>
+
+                                            
+                                            <a href="#"  onclick="showmoremake()" class="see-more-link">See More</a>
+
+
+
+
+
+
                                         </div>
+
+
+
+
                                     </div>
                                 </div>
                                 <div class="accordion-item">
@@ -163,6 +176,31 @@
                                     <div id="modelpanel-collapseTwo" class="accordion-collapse collapse"
                                         aria-labelledby="modelpanel-headingTwo">
                                         <div class="accordion-body">
+
+                                           
+
+
+<span class="carmodel">
+@foreach ($model as $row)
+<div class="form-group">
+
+                                                    <input type="checkbox" name="carmodel[]" value={{$row->model_id}}>
+                                                    <label for="{{$row->model_id}}"><span>{{$row->name}}</span></label>
+
+                                                    <?php $offsetmodel=0;?>
+                                                    <input id="offsetmodel" value=0 />
+                                                </div>
+
+@endforeach
+
+
+                                            </span>
+
+                                          
+                                            <a href="#"  onclick="showmoremodel()" class="see-more-link">See More</a>
+
+
+
 
                                         </div>
                                     </div>
@@ -179,6 +217,27 @@
                                         aria-labelledby="fuelpanel-headingTwo">
                                         <div class="accordion-body">
 
+                                           
+
+
+<span class="carfueltype">
+@foreach ($fueltype as $row)
+<div class="form-group">
+
+                                                    <input type="checkbox" name="carfueltype[]" value={{$row->fuel_type}}>
+                                                    <label for="{{$row->fuel_type}}"><span>{{$row->fuel_type}}</span></label>
+
+                                                    <?php $offsetfuel_type=0;?>
+                                                    <input id="offsetfueltype" value=0 />
+                                                </div>
+
+@endforeach
+
+
+                                            </span>
+
+                                           
+                                            <a href="#"  onclick="showmorefueltype()" class="see-more-link">See More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -194,6 +253,26 @@
                                         aria-labelledby="passengerpanel-headingTwo">
                                         <div class="accordion-body">
 
+
+
+<span class="carpassengercapacity">
+@foreach ($passengercapacity as $row)
+<div class="form-group">
+
+                                               <input type="checkbox" name="carpassengercapacity[]" value={{$row->seats}}>
+                                                    <label for="{{$row->seats}}"><span>{{$row->seats}}</span></label>
+
+                                                    <?php $offsetpassengercapacity=0;?>
+                                                    <input id="offsetpassengercapacity" value=0 />
+                                                </div>
+
+@endforeach
+
+
+                                            </span>
+
+                                            
+                                            <a href="#"  onclick="showmorepassengercapacity()" class="see-more-link">See More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +281,8 @@
                                 <div class="range-div">
                                     <p class="range-title">Price Range</p>
                                     <p class="range-value">
-                                        <input type="text" id="amount" class="filterAmount" readonly>
+                                        <input type="text" id="amount" name="amount" class="filterAmount" readonly>
+                                         <input type="text" name="priceflag" id="priceflag" value="0">
                                     </p>
                                 </div>
                                 <div class="my-auto">
@@ -211,13 +291,15 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                           
                             <div class="button-div">
-                                <button type="Submit" class="btn header-search-btn">Search</button>
+                                <button type="button" class="btn header-search-btn">Search</button>
                                 <button class="btn filter-reset-btn">Reset Filter</button>
                             </div>
                         </div>
+
                     </div>
+                     </form>
                 </div>
                 <!-- Left side filter div ends -->
 
@@ -237,11 +319,11 @@
                                 <div class="modal-body">
                                     <div class="filter-div">
                                         <div class="filter">
-                                            <p class="heading">Filterr</p>
-                                            <div class="filter-search">dd
+                                            <p class="heading">Filter</p>
+                                            <div class="filter-search">
                                                 <span class="search-icon"><img src="{{ asset('car/assets/images/Icons/search.png') }}"
-                                                        alt="search icon" class="img-fluid search-img" /></span>
-                                                <input type="text" class="form-control" placeholder="Search" />
+                                                        alt="search icon" class="img-fluid search-img" onclick="searchfirsttextbox();" /></span>
+                                                <input type="text" class="form-control" placeholder="Search"  id="searchallfirst1" />
                                             </div>
                                             <div class="filter-accordion-div">
                                                 <div class="accordion" id="yearAccordion">
@@ -405,13 +487,15 @@
                 </div>
                 <!-- Mobile filter modal ends-->
 
+
+
                 <!-- Right side result div -->
                 <div class="result-div">
                     <div class="search-div">
-                        <span class="search-icon">
+                        <span class="search-icon" onclick="searchfirsttextbox();">
                             <img src="{{ asset('car/assets/images/Icons/search.png') }}" class="img-fluid search-img" alt="search icon" />
                         </span>
-                        <input type="text" class="form-control result-search" placeholder="Search">
+                        <input type="text" id="searchallfirst" class="form-control result-search" placeholder="Search">
                     </div>
                     <div class="result-activity">
                         <p class="result-count"><?php echo(count($vehicletypecars));?> Results</p>
@@ -453,14 +537,16 @@
                         </div>
                     </div>
 
-                    <div class="flat-card-div">
+<div class="res2" >
+                    <div class="flat-card-div ">
 
  @foreach ($vehicletypecars as $row)
 
-                        <div class="card">
+                        <div class="card ">
                             <div class="card-body">
+
                                 <div class="img-div">
-                                    <div class="ribbon booked"><span>Booked</span></div>
+                                    <div class="ribbon booked"><span>{{ $row->soldreserved }}</span></div>
                                     <div class="gallery js-gallery">
                                        <?php $images = DB::table('ads_images')->limit(3)->get()
        ;?>
@@ -473,25 +559,14 @@
                                             </div>
                                         </div>
 @endforeach
-                                           <!-- <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Honda.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="gallery-item">
-                                            <div class="gallery-img-holder js-gallery-popup">
-                                                <img src="{{ asset('car/assets/images/listing/Product Listing Page/Tesla.png') }}" alt=""
-                                                    class="gallery-img img-fluid">
-                                            </div>
-                                        </div>-->
+                                          
                                     </div>
                                 </div>
                                 <a href="details.html">
                                     <div class="content-div">
                                         <div class="tag-div">
                                             <p>NEW</p>
-                                        </div>
+                                        </div><div style="display:inline"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$row->uniquenumber}}</div>
                                         <div class="car-name-div">
                                             <p class="car-name">{{ $row->title }}</p>
                                         </div>
@@ -523,38 +598,19 @@
                                     </div>
                                 </a>
                             </div>
-                        </div>@endforeach
-                       <nav aria-label="Page navigation example"> {{ $vehicletypecars->links() }}</nav>
+                        </div>
+                        @endforeach
+                       <nav aria-label="Page navigation example"> {{---- $vehicletypecars->links()----}}
+<br>
+
+{{ $vehicletypecars->appends(request()->all())->links() }}
+
+                       </nav>
 
                     </div>
+</div>
 
-                   <!--<div class="pagination-div">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active">
-                                    <span class="page-link">
-                                        2
-                                        <span class="sr-only">(current)</span>
-                                    </span>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>-->
-                    <!-- Pagination Div ends-->
+              
 
                 </div>
                 <!-- Right side result div ends -->
@@ -571,7 +627,7 @@
         @include('cars.footer')
         
     </section>
-
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Select2 plug in JS -->
@@ -618,6 +674,190 @@ $(".caryear").html(data);
             }
         });               
 }
+
+
+function showmoremake(offset){
+
+var val=$("#offsetmake").val();
+
+$.ajax({
+            type: 'get',
+            url:"{{ route('makerender') }}",
+            dataType: 'html',
+            'data':{val:val},
+            success: function (data) {
+$(".carmake").html(data);
+
+ },error:function(){
+                console.log(data);
+            }
+        });               
+}
+
+
+function showmoremodel(offset){
+
+var val=$("#offsetmodel").val();
+
+$.ajax({
+            type: 'get',
+            url:"{{ route('modelrender') }}",
+            dataType: 'html',
+            'data':{val:val},
+            success: function (data) {
+$(".carmodel").html(data);
+
+ },error:function(){
+                console.log(data);
+            }
+        });               
+}
+
+function showmorefueltype(offset){
+
+var val=$("#offsetfueltype").val();
+
+$.ajax({
+            type: 'get',
+            url:"{{ route('fueltyperender') }}",
+            dataType: 'html',
+            'data':{val:val},
+            success: function (data) {
+$(".carfueltype").html(data);
+
+ },error:function(){
+                console.log(data);
+            }
+        });               
+}
+
+
+function showmorepassengercapacity(offset){
+
+var val=$("#offsetpassengercapacity").val();
+
+$.ajax({
+            type: 'get',
+            url:"{{ route('passengercapacityrender') }}",
+            dataType: 'html',
+            'data':{val:val},
+            success: function (data) {
+$(".carpassengercapacity").html(data);
+
+ },error:function(){
+                console.log(data);
+            }
+        });               
+}
+
+
+
+
+
+
+$('.filter-reset-btn').click(function() {
+    location.reload();
+});
+
+
+    
+
+$('.header-search-btn').click(function() {
+alert("hai");
+//('form').bind('submit', function () {
+
+          $.ajax({
+            type: 'get',
+            url: "{{ route('searchfilter') }}",
+            data: $('form').serialize(),
+            dataType : 'html',
+            success: function (data) { 
+
+            $(".res2").html(data);
+
+            }
+          });
+});
+
+
+
+
+
+
+$(function() {
+  $( ".range-bar" ).slider({
+    range: true,
+    min: <?php echo $minprice[0]->price;?>,
+    max: <?php echo $maxprice[0]->price;?>,
+    values: [ 0, <?php echo $maxprice[0]->price;?> ],
+    slide: function( event, ui ) {
+    $( ".filterAmount" ).val( "AED" + ui.values[ 0 ] + " - AED" + ui.values[ 1 ] );
+    }
+  });
+  $( ".filterAmount" ).val( "AED" + $( ".range-bar" ).slider( "values", 0 ) +
+    " -AED" + $( ".range-bar" ).slider( "values", 1 ) );
+});
+$(function() {    // <== doc ready
+
+    $( "#slider-range" ).slider({
+       change: function(event, ui) {
+           // Do your stuff in here.
+
+           // You can trigger an event on anything you want:
+           //$(selector).trigger(theEvent);
+
+           // Or you can do whatever else/
+var low = $(this).slider('values', 0);
+
+            var high = $(this).slider('values', 1);
+
+$("#priceflag").val(1);
+
+       }
+    });
+
+});
+    
+
+
+
+//
+function searchtextbox(){
+    var val=$("#searchall").val();
+    $.ajax({
+            type: 'get',
+            url: "{{ route('searchtextbox') }}",
+            data: {val:val},
+            dataType : 'html',
+            success: function (data) { 
+
+            $(".res2").html(data);
+
+            }
+          });
+}
+
+function searchfirsttextbox(){
+    var val=$("#searchallfirst").val();
+    $.ajax({
+            type: 'get',
+            url: "{{ route('searchtextboxfirst') }}",
+            data: {val:val},
+            dataType : 'html',
+            success: function (data) { 
+
+            $(".res2").html(data);
+
+            }
+          });
+
+}
+
+
+
+
+
+
     </script>
 
 </body>

@@ -69,7 +69,7 @@
                         </div>
                         <div class="tag-div">
                             <p>New</p>
-                        </div>
+                        </div><div style="display:inline"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$vehicletypecars->uniquenumber}}</div>
                         <div class="desc-div">
                             <p class="desc">{{$vehicletypecars->description}}
                                 

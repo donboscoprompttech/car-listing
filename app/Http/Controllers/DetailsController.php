@@ -5,6 +5,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContactUs;
+//use Illuminate\Http\Request;
+use App\Models\Testimonial;
+use App\Models\Banner;
+use App\Models\FeaturedDealers;
+use App\Models\vehicletype;
+use App\Models\Ads;
+use App\Models\AdsImage;
+use App\Models\MotorCustomeValues;
+use DB;
+use Exception;
+use App\Models\Questions;
+use App\Models\SubCategory;
 class DetailsController extends Controller
 {
     //
@@ -32,9 +44,6 @@ return ["message"=>"failure","status"=>200,"text"=>"Your Enquiry Send Successful
 }
 }
 
-public function searchlisting(){
-    
-}
 
 
 }

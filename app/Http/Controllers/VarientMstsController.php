@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\VarientMst;
+use App\Models\ModelMst;
 use Exception;
 class VarientMstsController extends Controller
 {
@@ -11,9 +12,10 @@ class VarientMstsController extends Controller
 
 public function index(){
 try {
-        $varient = varientMst::get();
-
-        return view('other.varient.varient', compact('varient'));
+        //$varient = varientMst::get();
+        $varient  = varientMst::join("model_msts","model_msts.id","=","varient_msts.model_id")->select("varient_msts.*","model_msts.name as modelname")->get();
+        $model=ModelMst::get();
+        return view('other.varient.varient', compact('varient','model'));
      }   
 catch (exception $e) {
         $message=$e->getMessage();
@@ -33,7 +35,7 @@ public function store(Request $request) {
         
         $varient                = new varientMst();
         $varient->name          = $request->name;
-        $varient->model_id       =1;
+        $varient->model_id       =$request->model;
         $varient->status         =$request->status;
         $varient->order         =$request->sortorder;
         $varient->save();
@@ -76,7 +78,7 @@ public function update(Request $request){
         ->update([
             'name' => $request->name,            
             'status'         =>$request->status,
-            'order'=>$request->sortorder
+            'order'=>$request->sortorder,'model_id'=>$request->model,
         ]);
 
         session()->flash('success', 'varient has been updated');

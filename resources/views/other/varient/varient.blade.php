@@ -25,6 +25,7 @@
                                 <th>#</th>
                                 <th>varient</th>
                                  <th>Status</th>
+                                 <th>Model</th>
                                 <th>Sort Order</th>
                                 <th>Action</th>
                             </tr>
@@ -36,7 +37,7 @@
                                     <td>{{ $row->name }}</td>
                                     <td><?php if ($row->status=='0'){?>InActive<?php } else {?> Active
 
-    <?php }?></td><td>{{ $row->order }}</td>
+    <?php }?></td> <td>{{$row->modelname}}</td><td>{{ $row->order }}</td>
 
                                     <td>
                                         <div class="btn-group">
@@ -44,7 +45,7 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu text-center">
-                                                <button class="btn btn-secondary" onclick="editBanner({{$row->id}}, `{{$row->name}}`, {{$row->status}},{{$row->order}})" data-toggle="modal" data-target="#editBannerModal">Edit</button>
+                                                <button class="btn btn-secondary" onclick="editBanner({{$row->id}}, `{{$row->name}}`, {{$row->status}},{{$row->order}},{{$row->model_id}})" data-toggle="modal" data-target="#editBannerModal">Edit</button>
                                                 <button type="button" onclick="bannerDelete({{$row->id}})" class="btn btn-danger" data-toggle="modal" data-target="#deleteBannerModal">Delete</button>
                                                 <form id="delete_Banner_form{{$row->id}}" action="{{ route('varient.delete', $row->id) }}" method="POST">
                                                     @csrf
@@ -99,11 +100,28 @@
                     <div class="container">
                         <div class="form-group my-2">
                             <label for="Name">Name</label>
-                           <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="Name" placeholder="Name">
+                           <input type="text" required value="{{ old('name') }}" name="name" class="form-control" id="Name" placeholder="Name">
                         </div>
+
+                        <div class="form-group my-2">
+                            <label for="status">Model</label>
+                             <select name="model" id="model" required class="form-control" required>
+                                <option value="">Select Model</option>
+                                <?php foreach($model as $md){?>
+                               <option value="<?php echo $md->id;?>"><?php echo $md->name;?></option>
+                               <?php } ?>
+                               
+                               
+                            </select>
+                        </div>
+
+
+
+
+
                         <div class="form-group my-2">
                             <label for="status">Status</label>
-                             <select name="status" id="" class="form-control">
+                             <select name="status" id="" required class="form-control">
                                 <option value="">Select Status</option>
                                <option value="1">Active</option>
                                <option value="0">InActive</option>
@@ -113,7 +131,7 @@
                         <div class="form-group my-2">
                             <label for="sort">Sort Order</label>
                            
-                            <input type="text" value="{{ old('sortorder') }}" name="sortorder" class="form-control" id="SortOrder" placeholder="SortOrder">
+                            <input type="text" required value="{{ old('sortorder') }}" name="sortorder" class="form-control" id="SortOrder" placeholder="SortOrder">
                         </div>
                     </div>
                 </div>
@@ -141,11 +159,23 @@
                     <div class="container">
                          <div class="form-group my-2">
                             <label for="Name">Name</label>
-                           <input type="text" value="{{ old('name') }}" name="name" class="form-control"  placeholder="Name" id="name1">
+                           <input type="text" required value="{{ old('name') }}" name="name" class="form-control"  placeholder="Name" id="name1">
+                        </div>
+
+                        <div class="form-group my-2">
+                            <label for="status">Model</label>
+                             <select name="model" required id="model1" class="form-control" required>
+                                <option value="">Select Model</option>
+                                <?php foreach($model as $md){?>
+                               <option value="<?php echo $md->id;?>"><?php echo $md->name;?></option>
+                               <?php } ?>
+                               
+                               
+                            </select>
                         </div>
                         <div class="form-group my-2">
                            <label for="status">Status</label>
-                             <select name="status" id="status1" class="form-control">
+                             <select name="status" id="status1" class="form-control" required>
                                 <option value="">Select Status</option>
                                <option value="1">Active</option>
                                <option value="0">InActive</option>
@@ -199,12 +229,13 @@
             
         });
 
-        editBanner = (id, name, status,sortorder) => {
+        editBanner = (id, name, status,sortorder,modelid) => {
             console.log(id);
             $('#editId').val(id);
             $('#name1').val(name);
             $('#status1').val(status);
             $('#SortOrder1').val(sortorder);
+            $('#model1').val(modelid);
         }
         
         let ids = '';

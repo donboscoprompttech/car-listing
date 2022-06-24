@@ -179,12 +179,12 @@
                         <div class="card-img-div">
                          <img class="card-img img-fluid" src="{{asset($row->image) }}"
                             alt="card image" />
-                          <div class="ribbon featured"><span>Featured</span></div>
+                          <div class="ribbon featured"><span>{{ $row->soldreserved }}</span></div>
                         </div>
                         <div class="car-details-div">
                           <div class="tag-div">
                             <p>NEW</p>
-                          </div>
+                          </div><div style="display:inline"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$row->uniquenumber}}</div>
                           <div class="car-name-div">
                             <p class="car-name">{{ $row->title }}</p>
                           </div>

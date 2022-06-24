@@ -26,6 +26,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use DB;
 
 class AdsController extends Controller
 {
@@ -169,6 +170,20 @@ class AdsController extends Controller
         }])
         ->get();
 
+$sqlQuery ="SELECT FLOOR(RAND() * 99999) AS random_num
+FROM ads 
+WHERE 'random_num' NOT IN (SELECT uniqueno FROM ads)
+LIMIT 1";
+$rand = DB::select(DB::raw($sqlQuery));
+print_r($rand);
+$randnum=$rand[0]->random_num;
+if ($request->place==1){
+    $randnum1="Aj$randnum";
+}else{
+    $randnum1="Aw$randnum";
+}
+
+
         $ad                         = new Ads();
         $ad->category_id            = $request->category;
         $ad->subcategory_id         = $subcategory;
@@ -195,6 +210,9 @@ class AdsController extends Controller
         $ad->longdescrp             = $request->longdescp;
         $ad->vehicletype             = $request->vehicletype;
         $ad->drive             = $request->drive;
+        $ad->uniquenumber=$randnum1;
+        $ad->uniqueno=$randnum;
+        $ad->soldreserved= $request->soldreserved;
         $ad->save();
 
         if($request->hasFile('image')){

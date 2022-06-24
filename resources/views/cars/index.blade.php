@@ -184,7 +184,7 @@
                 <div class="card-body">
                   <div class="price-div">
                     <p class="price">AED {{ $row->price }}</p>
-                    <p class="feature-tag">Featured</p>
+                    <p class="feature-tag">{{ $row->soldreserved }}</p>
                   </div>
                   <div class="card-img-div">
                     <img class="card-img img-fluid" src={{asset($row->image) }} alt="card image" />
