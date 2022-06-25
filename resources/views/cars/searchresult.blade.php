@@ -18,7 +18,7 @@
 
                         <div class="card ">
                             <div class="card-body">
-
+a
                                 <div class="img-div">
                                     <div class="ribbon booked"><span>{{ $row->soldreserved }}</span></div>
                                     <div class="gallery js-gallery">
@@ -60,7 +60,7 @@
                                 <a href="details.html">
                                     <div class="content-div">
                                         <div class="tag-div">
-                                            <p>NEW</p>
+                                            <p>NEWw</p>
                                         </div><div style="display:inline"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$row->uniquenumber}}</div>
                                         <div class="car-name-div">
                                             <p class="car-name">{{ $row->title }}</p>

@@ -46,6 +46,8 @@ Route::get('/searchtextboxfirst', 'App\Http\Controllers\ServiceController@search
 //Route::post('/searchfilter', [App\Http\Controllers\ServiceController::class, 'searchfilter'])->name('searchfilter');
 Route::post('/enquiryprocess', [App\Http\Controllers\DetailsController::class, 'enquiryprocess'])->name('enquiryprocess');
 Route::get('/category/{id}', [App\Http\Controllers\ServiceController::class, 'carlisting'])->name('category.id');
+
+Route::get('/carlistingsort', [App\Http\Controllers\ServiceController::class, 'carlistingsort'])->name('carlistingsort');
 // Logout user Back button Cache clearing
 Route::group(['middleware' => ['revalidate']], function(){
 
@@ -255,6 +257,26 @@ Route::group(['middleware' => ['revalidate']], function(){
         Route::post('/questions/store', [App\Http\Controllers\QuestionsController::class, 'store'])->name('questions.store');
         Route::post('/questions/update', [App\Http\Controllers\QuestionsController::class, 'update'])->name('questions.update');
         Route::post('/questions/delete/{id}', [App\Http\Controllers\QuestionsController::class, 'delete'])->name('questions.delete');
+
+
+//// Interior
+
+        Route::get('/interior', [App\Http\Controllers\InteriorController::class, 'index'])->name('interior.index');
+        Route::post('/interior/store', [App\Http\Controllers\InteriorController::class, 'store'])->name('interior.store');
+        Route::post('/interior/update', [App\Http\Controllers\InteriorController::class, 'update'])->name('interior.update');
+        Route::post('/Interior/delete/{id}', [App\Http\Controllers\InteriorController::class, 'delete'])->name('interior.delete');
+
+
+//Exterior
+
+        Route::get('/exterior', [App\Http\Controllers\exteriorController::class, 'index'])->name('exterior.index');
+        Route::post('/exterior/store', [App\Http\Controllers\exteriorController::class, 'store'])->name('exterior.store');
+        Route::post('/exterior/update', [App\Http\Controllers\exteriorController::class, 'update'])->name('exterior.update');
+        Route::post('/exterior/delete/{id}', [App\Http\Controllers\exteriorController::class, 'delete'])->name('exterior.delete');
+
+
+
+
 
 
 //Make

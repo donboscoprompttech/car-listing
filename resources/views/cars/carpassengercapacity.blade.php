@@ -5,7 +5,7 @@
 @foreach ($passengercapacity as $row)
 <div class="form-group">
 
-                                                   <input type="checkbox" id="{{$row->seats}}" name="carpassengercapacity[]" value="{{$row->seats}}">
+                                                   <input class="filgroup" type="checkbox" id="{{$row->seats}}" name="carpassengercapacity[]" value="{{$row->seats}}">
                                                     <label for="{{$row->seats}}"><span>{{$row->seats}}</span></label>
 
                                                    

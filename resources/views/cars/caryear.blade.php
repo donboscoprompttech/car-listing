@@ -5,7 +5,7 @@
 @foreach ($year as $row)
 <div class="form-group">
 
-                                                   <input type="checkbox" id="{{$row->registration_year}}" name="year[]" value="{{$row->registration_year}}">
+                                                   <input  class="filgroup" type="checkbox" id="{{$row->registration_year}}" name="year[]" value="{{$row->registration_year}}">
                                                     <label for="{{$row->registration_year}}"><span>{{$row->registration_year}}</span></label>
 
                                                    

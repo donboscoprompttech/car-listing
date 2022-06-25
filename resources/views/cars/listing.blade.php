@@ -84,7 +84,7 @@
                                         <img src="{{ asset('car/assets/images/Icons/search.png') }}" alt="search icon"
                                     class="img-fluid search-img"  onclick="searchtextbox();" />
                                     </span>
-                            <input type="text" id="searchall" name="searchall" class="form-control" placeholder="Search" />
+                            <input type="text" id="searchall" name="searchall" class="form-control filgroup" placeholder="Search" />
                         </div>
                         <div class="filter-accordion-div">
                             <div class="accordion" id="yearAccordion">
@@ -103,7 +103,7 @@
 @foreach ($year as $row)
 <div class="form-group">
 
-                                                    <input type="checkbox" id="{{$row->registration_year}}" name="year[]" value="{{$row->registration_year}}">
+                                                    <input type="checkbox" id="{{$row->registration_year}}" name="year[]" value="{{$row->registration_year}}" class="filgroup">
                                                     <label for="{{$row->registration_year}}"><span>{{$row->registration_year}}</span></label>
 
                                                     <?php $offset=0;?>
@@ -138,7 +138,7 @@
 @foreach ($make as $row)
 <div class="form-group">
 
-                                                    <input type="checkbox" name="carmake[]" value={{$row->make_id}} >
+                                                    <input type="checkbox" name="carmake[]" value={{$row->make_id}} class="filgroup">
                                                     <label for="{{$row->make_id}}"><span>{{$row->name}}</span></label>
 
                                                     <?php $offset=0;?>
@@ -184,7 +184,7 @@
 @foreach ($model as $row)
 <div class="form-group">
 
-                                                    <input type="checkbox" name="carmodel[]" value={{$row->model_id}}>
+                                                    <input type="checkbox" class="filgroup" name="carmodel[]" value={{$row->model_id}}>
                                                     <label for="{{$row->model_id}}"><span>{{$row->name}}</span></label>
 
                                                     <?php $offsetmodel=0;?>
@@ -224,7 +224,7 @@
 @foreach ($fueltype as $row)
 <div class="form-group">
 
-                                                    <input type="checkbox" name="carfueltype[]" value={{$row->fuel_type}}>
+                                                    <input type="checkbox" class="filgroup" name="carfueltype[]" value={{$row->fuel_type}}>
                                                     <label for="{{$row->fuel_type}}"><span>{{$row->fuel_type}}</span></label>
 
                                                     <?php $offsetfuel_type=0;?>
@@ -259,7 +259,7 @@
 @foreach ($passengercapacity as $row)
 <div class="form-group">
 
-                                               <input type="checkbox" name="carpassengercapacity[]" value={{$row->seats}}>
+                                               <input type="checkbox" name="carpassengercapacity[]" class="filgroup" value={{$row->seats}}>
                                                     <label for="{{$row->seats}}"><span>{{$row->seats}}</span></label>
 
                                                     <?php $offsetpassengercapacity=0;?>
@@ -281,8 +281,8 @@
                                 <div class="range-div">
                                     <p class="range-title">Price Range</p>
                                     <p class="range-value">
-                                        <input type="text" id="amount" name="amount" class="filterAmount" readonly>
-                                         <input type="text" name="priceflag" id="priceflag" value="0">
+                                        <input type="text" id="amount" name="amount" class="filterAmount filgroup" readonly>
+                                         <input type="hidden" name="priceflag" id="priceflag" value="0">
                                     </p>
                                 </div>
                                 <div class="my-auto">
@@ -294,7 +294,7 @@
                            
                             <div class="button-div">
                                 <button type="button" class="btn header-search-btn">Search</button>
-                                <button class="btn filter-reset-btn">Reset Filter</button>
+                                <button type="button" class="btn filter-reset-btn">Reset Filter</button>
                             </div>
                         </div>
 
@@ -500,10 +500,10 @@
                     <div class="result-activity">
                         <p class="result-count"><?php echo(count($vehicletypecars));?> Results</p>
                         <div class="sort-div">
-                            <select id="sort" class="form-control">
+                            <select id="sortcombo" class="form-control" onchange="formsubmit();">
                                 <option>Sort By</option>
-                                <option>Date</option>
-                                <option>Type</option>
+                                <option value="Date">Date</option>
+                                <option value="Price">Price</option>
                             </select>
 
                             <!-- Filter button for mobile -->
@@ -574,7 +574,7 @@
                                             <p class="price">AED {{ $row->price }}</p>
                                         </div>
                                         <div class="location-div">
-                                            <p class="location">Dubai, UAE</p>
+                                            <p class="location">{{$row->placename}},{{$row->countryname}}</p>
                                         </div>
                                         <div class="details-div">
                                             <div class="detail">
@@ -600,7 +600,8 @@
                             </div>
                         </div>
                         @endforeach
-                       <nav aria-label="Page navigation example"> {{---- $vehicletypecars->links()----}}
+                        
+                       <nav aria-label="Page navigation example"> 
 <br>
 
 {{ $vehicletypecars->appends(request()->all())->links() }}
@@ -617,7 +618,7 @@
             </div>
         </div>
     </section>
-
+<input type="hidden" name="cat" id="cat" value="<?php echo $cname;?>">
     <button class="btn back-to-up-btn rounded-circle position-fixed bottom-0 end-0 translate-middle d-none"
         onclick="scrollToTop()" id="back-to-up">
         <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
@@ -756,6 +757,8 @@ $(".carpassengercapacity").html(data);
 
 
 $('.filter-reset-btn').click(function() {
+    $(".filgroup").prop("checked", false);
+    $('.filgroup').val('');
     location.reload();
 });
 
@@ -763,7 +766,7 @@ $('.filter-reset-btn').click(function() {
     
 
 $('.header-search-btn').click(function() {
-alert("hai");
+//alert("hai");
 //('form').bind('submit', function () {
 
           $.ajax({
@@ -779,7 +782,25 @@ alert("hai");
           });
 });
 
+function formsubmit(){
+var cname=$("#cat").val();
+var sortcombo=$("#sortcombo").val();
+$.ajax({
+            type: 'get',
+            url: "{{url('carlistingsort')}}?'val='"+cname+"'&val1='"+sortcombo,
+            data: {val:cname,val1:sortcombo},
+            dataType : 'html',
+            success: function (data) { 
 
+            $(".res2").html(data);
+
+            }
+          });
+
+
+
+
+}
 
 
 

@@ -84,11 +84,13 @@
                                         <label for="country">Country</label>
                                         <select name="country" id="country" class="select2 form-control @error('country') is-invalid @enderror" autocomplete="off">
                                             @foreach ($country as $row1)
+                                            <?php if($row1->id==229){?>
                                                 @if ($ad->country_id == $row1->id)
                                                     <option selected value="{{ $row1->id }}">{{ $row1->name }}</option>
                                                 @else
                                                     <option value="{{ $row1->id }}">{{ $row1->name }}</option>
                                                 @endif
+                                            <?php } ?>
                                             @endforeach
                                         </select>
                                         <div class="invalid-feedback">
@@ -139,7 +141,7 @@
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Image">Image (Multiple)</label>
                                         <input type="file" name="image[]" autocomplete="off" class="form-control @error('image') is-invalid @enderror" accept=".png, .jpeg, .jpg" multiple>
-                                        <div style="color: red;"><strong>Warning: </strong> Maximum of 5 images are allowed!</div>
+                                        <div style="color: red;"><strong>Warning: </strong> Maximum of 10 images are allowed!</div>
                                         <div class="invalid-feedback">
                                             @error('image')
                                                 {{ $message }}
@@ -205,7 +207,7 @@
                                                 <input type="checkbox" name="status" checked value="checked" autocomplete="off">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group my-2">
                                                 <!--<label for="Status">Price Negotiable</label>
                                                 <input type="checkbox" name="negotiable" {{ $ad->negotiable_flag == 1 ? 'checked' : '' }} value="checked" autocomplete="off">-->
@@ -214,6 +216,12 @@
                                                 <input type="radio" name="soldreserved" value="sold" autocomplete="off" <?php if ($ad->soldreserved=="sold"){?>checked <?php } ?>>
 
 
+<label for="Status">None</label>
+                                                <input type="radio" <?php if ($ad->soldreserved=="none"){?>checked <?php } ?> name="soldreserved" value="none" autocomplete="off">
+
+
+<label for="Status">Reserved</label>
+                                                <input type="radio" name="soldreserved" value="reserved" autocomplete="off" <?php if ($ad->soldreserved=="reserved" ){?>checked <?php } ?>>
 
 
                                             </div>
@@ -222,8 +230,7 @@
                                             <div class="form-group my-2">
                                                <!-- <label for="Status">Featured</label>
                                                 <input type="checkbox" name="featured" {{ $ad->featured_flag == 1 ? 'checked' : '' }} value="checked" autocomplete="off">-->
-<label for="Status">Reserved</label>
-                                                <input type="radio" name="soldreserved" value="reserved" autocomplete="off" <?php if ($ad->soldreserved=="reserved" ){?>checked <?php } ?>>
+
 
 
                                             </div>

@@ -97,8 +97,9 @@
                                         <select name="country" id="country" class="select2 form-control @error('country') is-invalid @enderror" autocomplete="off">
                                             <option value="">Select</option>
                                             @foreach ($country as $row1)
-                                                
+                                                <?php if($row1->id==229){?>
                                                 <option {{ old('country') == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
+                                            <?php } ?>
                                             @endforeach
                                         </select>
 
