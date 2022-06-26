@@ -282,7 +282,7 @@
                                     </div>
                                     <div class="form-group my-2 col-md-6">
                                         <label for="exteriorcolor">Exterior Color</label>
-                                        <input type="text" id="exteriorcolor" required name="exteriorcolor" value="{{ old('exteriorcolor') }}" class="form-control @error('exteriorcolor') is-invalid @enderror" placeholder="Canonical Name" autocomplete="off">
+                                        <input type="text" id="exteriorcolor" required name="exteriorcolor" value="{{ old('exteriorcolor') }}" class="form-control @error('exteriorcolor') is-invalid @enderror" placeholder="Exterior Color" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @error('exteriorcolor')
                                                 {{ $message }}
@@ -290,6 +290,60 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
+<div class="row">
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="country">Interior</label>
+                                        <select name="interior[]" id="interior" class="select2 form-control @error('interior') is-invalid @enderror" autocomplete="off" multiple>
+                                            <option value="">Select</option>
+                                            @foreach ($interior as $row1)
+                                               
+                                                <option  value="{{ $row1->id }}">{{ $row1->label }}-{{ $row1->value }}</option>
+                                            
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            @error('interior')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="exterior">exterior</label>
+                                        <select name="exterior[]" id="exterior" class="select2 form-control @error('exterior') is-invalid @enderror" autocomplete="off" multiple>
+                                            <option value="">Select</option>
+                                            @foreach ($exterior as $row1)
+                                               
+                                                <option  value="{{ $row1->id }}">{{ $row1->label }}-{{ $row1->value }}</option>
+                                            
+                                            @endforeach
+                                            
+                                            
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            @error('exteriorcolor')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="row">
                                     <div class="form-group my-2 col-md-6">

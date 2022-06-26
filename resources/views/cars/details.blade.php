@@ -178,71 +178,48 @@
                                 </li>
                             </ul>
                         </div>
-                        <!--<div class="motor-details">
-                            <p class="title">Car Details</p>
-                            <ul>
-                                <li>
-                                    <p>Brand <span>Tesla</span></p>
-                                </li>
-                                <li>
-                                    <p>Model <span>Model 3</span></p>
-                                </li>
-                                <li>
-                                    <p>Condition <span>New</span></p>
-                                </li>
-                                <li>
-                                    <p>Year <span>2019</span></p>
-                                </li>
-                                <li>
-                                    <p>Body Type <span>Sedan</span></p>
-                                </li>
-                                <li>
-                                    <p>Seats <span>5 people</span></p>
-                                </li>
-                                <li>
-                                    <p>Exterior Color<span>Red</span></p>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="motor-details">
-                            <p class="title">Car Details</p>
-                            <ul>
-                                <li>
-                                    <p>Brand <span>Tesla</span></p>
-                                </li>
-                                <li>
-                                    <p>Model <span>Model 3</span></p>
-                                </li>
-                                <li>
-                                    <p>Condition <span>New</span></p>
-                                </li>
-                                <li>
-                                    <p>Year <span>2019</span></p>
-                                </li>
-                                <li>
-                                    <p>Body Type <span>Sedan</span></p>
-                                </li>
-                                <li>
-                                    <p>Seats <span>5 people</span></p>
-                                </li>
-                                <li>
-                                    <p>Exterior Color<span>Red</span></p>
-                                </li>
-                            </ul>
-                        </div>-->
+                        
                     </div>
 
 <div class="tab-pane fade" id="motorinterior" role="tabpanel" aria-labelledby="motor-tabint">
-                        <div class="map-div1">
-                            <p> Interior Details</p>
+                         <div class="motor-details">
+                            <p><b> Interior Details</b></p>
+
+<ul>
+    <?php 
+
+
+
+    foreach($vehicleinterior as $int){?>
+                                <li>
+                                    <p><?php echo $int->label;?><span><?php echo $int->value;?></span></p>
+                                </li>
+                                <?php }?>
+                            </ul>
+
+
+
+
+
                             
                         </div>
                     </div>
 
 <div class="tab-pane fade" id="motorexterior" role="tabpanel" aria-labelledby="motor-tabext">
-                        <div class="map-div1">
-                            <p> Exterior Details</p>
-                            
+                        <div class="motor-details">
+                            <p> <b>Exterior Details</b></p>
+                            <ul>
+                                <?php 
+
+
+
+    foreach($vehicleexterior as $ext){?>
+                                <li>
+                                    <p><?php echo $ext->label;?><span><?php echo $ext->value;?></span></p>
+                                </li>
+                                <?php }?>
+                                
+                            </ul>
                         </div>
                     </div>
 

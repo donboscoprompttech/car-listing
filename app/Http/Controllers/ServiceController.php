@@ -14,6 +14,8 @@ use Exception;
 use App\Models\Questions;
 use App\Models\SubCategory;
 use Illuminate\Support\Facades\Input;
+use App\Models\AdsInterior;
+use App\Models\AdsExterior;
 //use Illuminate\Support\Facades\Input;
 class ServiceController extends Controller
 {
@@ -78,12 +80,15 @@ public function carsearch(){
 
 
 function detailsshow($id){
-
-$vehicleimages=Adsimage::where('ads_id',$id)->get();
+$iddt=Ads::where('canonical_name',$id)->first();
+$idval=$iddt->id;
+$vehicleimages=Adsimage::where('ads_id',$idval)->get();
+$vehicleinterior=AdsInterior::leftjoin("interiormaster","ads_interior.interior_id","=","interiormaster.id")->where('ads_id',$idval)->get();
+$vehicleexterior=AdsExterior::leftjoin("exteriormaster","ads_exterior.exterior_id","=","exteriormaster.id")->where('ads_id',$idval)->get();
 $vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where('ads.canonical_name',$id)->first();
 $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
         ->get(); 
-return view('cars.details',compact('vehicletypecars','vehicleimages','subcategory'));
+return view('cars.details',compact('vehicletypecars','vehicleimages','subcategory','vehicleinterior','vehicleexterior'));
 }
 
 

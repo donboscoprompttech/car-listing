@@ -27,7 +27,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use DB;
-
+use App\Models\InteriorMaster;
+use App\Models\ExteriorMaster;
+use App\Models\AdsInterior;
+use App\Models\AdsExterior;
 class AdsController extends Controller
 {
     public function index(){
@@ -52,11 +55,12 @@ class AdsController extends Controller
         ->get();
         $vehicletype = vehicletype::orderBy('name')
         ->get();
-
+        $exterior=exteriorMaster::select('exteriormaster.*','exteriormaster.value as value1')->where('status',1)->orderby('sortorder')->get();
+         $interior=InteriorMaster::select('interiormaster.*','interiormaster.value as value1')->where('status',1)->orderby('sortorder')->get();
         $user = User::where('id', Auth::user()->id)
         ->first();
         
-        return view('ads.create_ad', compact('category', 'country', 'user','vehicletype','places'));
+        return view('ads.create_ad', compact('interior','exterior','category', 'country', 'user','vehicletype','places'));
     }
 
     public function store(Request $request){
@@ -363,23 +367,7 @@ if ($request->place==1){
                 }
 
             }
-            // elseif($catRow->Field->type == 'checkbox_multiple'){
-
-            //     foreach($catRow->Field->FieldOption as $fieldOptionRow){
-
-            //         $optionValue1 = $fieldOptionRow->value;
-
-            //         if($request->$optionValue1 == 'checked'){
-
-            //             $customValue = new AdsCustomValue();
-            //             $customValue->ads_id    = $ad->id;
-            //             $customValue->field_id  = $catRow->field_id;
-            //             $customValue->option_id = $fieldOptionRow->id;
-            //             $customValue->value     = $fieldOptionRow->value;
-            //             $customValue->save();
-            //         }
-            //     }
-            // }
+            
             elseif($catRow->Field->type == 'checkbox'){
 
                 $field_name = $catRow->Field->name;
@@ -512,6 +500,24 @@ if ($request->place==1){
             $adsDependency->master_id   = $request->City;
             $adsDependency->save();
         }
+
+$exterior=$request->exterior;
+$interior=$request->interior;
+foreach($interior as $int){
+$interiortbl            = new AdsInterior();
+                $interiortbl->ads_id    = $ad->id;
+                 $interiortbl->interior_id    =$int;
+                $interiortbl->save();
+
+}foreach($exterior as $ext){
+$exteriortbl            = new AdsExterior();
+                $exteriortbl->ads_id    = $ad->id;
+                 $exteriortbl->exterior_id    =$ext;
+                $exteriortbl->save();
+
+}
+
+
 
         session()->flash('success', 'Ad has been created');
         return redirect()->route('ads.index');
