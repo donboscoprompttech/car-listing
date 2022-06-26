@@ -66,7 +66,7 @@ a
                                 <a href="details.html">
                                     <div class="content-div">
                                         <div class="tag-div">
-                                            <p>NEWw</p>
+                                            <p>NEW</p>
                                         </div><div style="display:inline"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$row->uniquenumber}}</div>
                                         <div class="car-name-div">
                                             <p class="car-name">{{ $row->title }}</p>
@@ -75,7 +75,7 @@ a
                                             <p class="price">AED {{ $row->price }}</p>
                                         </div>
                                         <div class="location-div">
-                                            <p class="location">Dubai, UAE</p>
+                                            <p class="location">{{$row->placename}},{{$row->countryname}}</p>
                                         </div>
                                         <div class="details-div">
                                             <div class="detail">
@@ -101,8 +101,8 @@ a
                             </div>
                         </div>
 
-<input type="text" name="first" id="first" value="<?php echo $offset;?>">
-<input type="text" name="flag" id="flag" value="<?php echo $flag;?>">
+<input type="hidden" name="first" id="first" value="<?php echo $offset;?>">
+<input type="hidden" name="flag" id="flag" value="<?php echo $flag;?>">
 
                         @endforeach
                         <?php

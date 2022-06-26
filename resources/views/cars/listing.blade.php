@@ -664,6 +664,10 @@ if (flag==2){
      var val=$("#searchallfirst").val();
     var url1="{{ route('searchtextboxfirstnext') }}";
 }
+if (flag==3){
+     var val=$("#searchallfirst").val();
+    var url1="{{ route('searchfilternext') }}";
+}
 $.ajax({
             type: 'get',
             url:url1,
@@ -791,6 +795,7 @@ $(".carpassengercapacity").html(data);
 $('.filter-reset-btn').click(function() {
     $(".filgroup").prop("checked", false);
     $('.filgroup').val('');
+    $("#priceflag").val(0);
     location.reload();
 });
 

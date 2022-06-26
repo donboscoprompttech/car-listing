@@ -470,7 +470,7 @@ $model = DB::select(DB::raw($sqlQuery));
 
 
 public function searchfilter1(Request $request){
-    /*Ajax Search*/
+    /*Ajax Search-Large Filter*/
     $year=$request->year;
     $make=$request->carmake;
     $model=$request->carmodel;
@@ -480,7 +480,7 @@ public function searchfilter1(Request $request){
 $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
         ->get(); 
 
-
+//dd($year);
 $query = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1);
 if ($year!=''){
 $query->whereIn('registration_year',$year);
@@ -508,7 +508,8 @@ $minpricearr=explode("AED",$minprice1);
 $minpriceval=trim($minpricearr[1]);
 $query->where('ads.price','>=',"$minpriceval")->where('ads.price','<=',"$maxpriceval");
 }
-$vehicletypecars=$query->take(0,2)->get();
+$vehicletypecars=$query->skip(0)->take(2)->get();
+//dd($vehicletypecars);
 $sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year limit 0,2";
 $year = DB::select(DB::raw($sqlQuery));
 
@@ -520,12 +521,86 @@ $model = DB::select(DB::raw($sqlQuery));
 $sqlQuery = "select distinct seats from ads order by seats limit 0,2";
 $passengercapacity = DB::select(DB::raw($sqlQuery));
 
-
-    return view('cars.searchresult',compact('passengercapacity','subcategory','vehicletypecars','year','make','model'));
+$flag=3;
+$offset=0;
+    return view('cars.searchresult',compact('offset','flag','passengercapacity','subcategory','vehicletypecars','year','make','model'));
 
 
 
 }
+
+public function searchfilter2(Request $request){
+    /*Ajax Search-Large Filter*/
+    $year=$request->year;
+    $make=$request->carmake;
+    $model=$request->carmodel;
+    $fueltype=$request->carfueltype;
+    $passengercapacity=$request->carpassengercapacity;
+    $priceflag=$request->priceflag;
+$subcategory = Subcategory::orderBy('sort_order')->where('status',1)
+        ->get(); 
+$offset=$_GET['val1']+2;
+//dd($year);
+$query = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1);
+if ($year!=''){
+$query->whereIn('registration_year',$year);
+}
+if ($make!=''){
+$query->whereIn('motor_custome_values.make_id',$make);
+}
+if ($model!=''){
+$query->whereIn('motor_custome_values.model_id',$model);
+}
+if ($fueltype!=''){
+$query->whereIn('motor_custome_values.fuel_type',$fueltype);
+}
+if ($passengercapacity!=''){
+$query->whereIn('ads.seats',$passengercapacity);
+}
+if ($priceflag==1){
+$amount=$request->amount;
+$amountarr=explode("-",$amount);
+$minprice1=$amountarr[0];
+$maxprice1=$amountarr[1];
+$maxpricearr=explode("AED",$maxprice1);
+$maxpriceval=$maxpricearr[1];
+$minpricearr=explode("AED",$minprice1);
+$minpriceval=trim($minpricearr[1]);
+$query->where('ads.price','>=',"$minpriceval")->where('ads.price','<=',"$maxpriceval");
+}
+$vehicletypecars=$query->skip($offset)->take(2)->get();
+//dd($vehicletypecars);
+$sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year limit 0,2";
+$year = DB::select(DB::raw($sqlQuery));
+
+$sqlQuery = "select distinct make_id,name from motor_custome_values m join make_msts ma on m.make_id=ma.id order by name limit 0,1";
+$make = DB::select(DB::raw($sqlQuery));
+
+$sqlQuery = "select distinct model_id,name from motor_custome_values m join model_msts ma on m.model_id=ma.id order by name limit 0,1";
+$model = DB::select(DB::raw($sqlQuery));
+$sqlQuery = "select distinct seats from ads order by seats limit 0,2";
+$passengercapacity = DB::select(DB::raw($sqlQuery));
+$flag=3;
+
+    return view('cars.searchresult',compact('offset','flag','passengercapacity','subcategory','vehicletypecars','year','make','model'));
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 public function searchtextbox(){

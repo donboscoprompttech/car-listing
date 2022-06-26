@@ -42,6 +42,7 @@ Route::get('/forgotpassword/index', [App\Http\Controllers\LoginController::class
 Route::post('/forgotpassword/store', [App\Http\Controllers\LoginController::class, 'forgotPasswordStore'])->name('forgotpassword.store');
 Route::get('/index', [App\Http\Controllers\ServiceController::class, 'index'])->name('index');
 Route::get('/searchfilter', 'App\Http\Controllers\ServiceController@searchfilter1')->name('searchfilter');
+Route::get('/searchfilternext', 'App\Http\Controllers\ServiceController@searchfilter2')->name('searchfilternext');
 Route::get('/searchtextbox', 'App\Http\Controllers\ServiceController@searchtextbox')->name('searchtextbox');
 Route::get('/searchtextboxnext', 'App\Http\Controllers\ServiceController@searchtextboxnext')->name('searchtextboxnext');
 Route::get('/searchtextboxfirst', 'App\Http\Controllers\ServiceController@searchtextboxfirst')->name('searchtextboxfirst');
