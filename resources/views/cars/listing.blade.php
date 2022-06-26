@@ -498,7 +498,7 @@
                         <input type="text" id="searchallfirst" class="form-control result-search" placeholder="Search">
                     </div>
                     <div class="result-activity">
-                        <p class="result-count"><?php echo(count($vehicletypecars));?> Results</p>
+                        <p class="result-count"><?php echo($vehicletypecarscount);?> Results</p>
                         <div class="sort-div">
                             <select id="sortcombo" class="form-control" onchange="formsubmit();">
                                 <option>Sort By</option>
@@ -601,14 +601,16 @@
                         </div>
                         @endforeach
                         
-                       <nav aria-label="Page navigation example"> 
-<br>
+                       
 
-{{ $vehicletypecars->appends(request()->all())->links() }}
+                    </div>
+<nav aria-label="Page navigation example"> 
+<br>
+{{----$vehicletypecars->links()----}}
+{{$vehicletypecars->appends(request()->all())->links()}}
 
                        </nav>
 
-                    </div>
 </div>
 
               
@@ -650,14 +652,44 @@
 
     <script>
         
+function showmoreajax(){
+var flag=$("#flag").val();
+var offset=$("#first").val();
+
+if (flag==1){
+    var val=$("#searchall").val();
+    var url1="{{ route('searchtextboxnext') }}";
+}
+if (flag==2){
+     var val=$("#searchallfirst").val();
+    var url1="{{ route('searchtextboxfirstnext') }}";
+}
+$.ajax({
+            type: 'get',
+            url:url1,
+            dataType: 'html',
+            'data':{val:val,val1:offset},
+            success: function (data) {
+$(".res2").html(data);
+
+ },error:function(){
+                console.log(data);
+            }
+        });       
+
+
+
+
+
+}
+
+
+
+
+
+
 function showmore(offset){
-/*$.ajax(
-    type: 'GET',
-    url: 'yearrender'
-    function (data) {
-        $(".caryear").html(data);
-    }
-);*/
+
 
 
 var val=$("#offset").val();
@@ -766,12 +798,12 @@ $('.filter-reset-btn').click(function() {
     
 
 $('.header-search-btn').click(function() {
-//alert("hai");
-//('form').bind('submit', function () {
+
 
           $.ajax({
             type: 'get',
-            url: "{{ route('searchfilter') }}",
+           url: "{{ route('searchfilter') }}",
+           //url:"get_ajax_data?page="+page,
             data: $('form').serialize(),
             dataType : 'html',
             success: function (data) { 
@@ -880,7 +912,7 @@ function searchfirsttextbox(){
 
 
     </script>
-
+ 
 </body>
 
 </html>

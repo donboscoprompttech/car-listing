@@ -1,7 +1,13 @@
  
 
 
-
+<style type="text/css">
+    
+.see-more-link {
+   color: #f0d32f;
+  font-size: 0.9rem;
+}
+</style>
 
 
 
@@ -94,8 +100,15 @@ a
                                 </a>
                             </div>
                         </div>
-                        @endforeach
-                       
 
+<input type="text" name="first" id="first" value="<?php echo $offset;?>">
+<input type="text" name="flag" id="flag" value="<?php echo $flag;?>">
+
+                        @endforeach
+                        <?php
+ if (count($vehicletypecars)!=0){?>
+<a href='#'class="see-more-link" onclick="showmoreajax();">See More</a>                       
+<?php } ?>
                     </div>
 
+ 

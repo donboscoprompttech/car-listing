@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function(){
     return redirect()->route('index');
 });
-
+Route::get('get_ajax_data',[App\Http\Controllers\ServiceController::class, 'get_ajax_data']);
+Route::get('ajax-pagi',[App\Http\Controllers\AjaxpagiController::class,'index'])->name('ajax-pagi');
 Route::get('/getModel/{id}', [App\Http\Controllers\ServiceController::class, 'getModel'])->name('getModel');
 
 Route::get('/details/{id}', [App\Http\Controllers\ServiceController::class, 'detailsshow'])->name('details');
@@ -42,7 +43,9 @@ Route::post('/forgotpassword/store', [App\Http\Controllers\LoginController::clas
 Route::get('/index', [App\Http\Controllers\ServiceController::class, 'index'])->name('index');
 Route::get('/searchfilter', 'App\Http\Controllers\ServiceController@searchfilter1')->name('searchfilter');
 Route::get('/searchtextbox', 'App\Http\Controllers\ServiceController@searchtextbox')->name('searchtextbox');
+Route::get('/searchtextboxnext', 'App\Http\Controllers\ServiceController@searchtextboxnext')->name('searchtextboxnext');
 Route::get('/searchtextboxfirst', 'App\Http\Controllers\ServiceController@searchtextboxfirst')->name('searchtextboxfirst');
+Route::get('/searchtextboxfirstnext', 'App\Http\Controllers\ServiceController@searchtextboxfirstnext')->name('searchtextboxfirstnext');
 //Route::post('/searchfilter', [App\Http\Controllers\ServiceController::class, 'searchfilter'])->name('searchfilter');
 Route::post('/enquiryprocess', [App\Http\Controllers\DetailsController::class, 'enquiryprocess'])->name('enquiryprocess');
 Route::get('/category/{id}', [App\Http\Controllers\ServiceController::class, 'carlisting'])->name('category.id');
