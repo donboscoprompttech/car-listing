@@ -212,7 +212,7 @@
                                                 <!--<label for="Status">Price Negotiable</label>
                                                 <input type="checkbox" name="negotiable" {{ $ad->negotiable_flag == 1 ? 'checked' : '' }} value="checked" autocomplete="off">-->
 
-<label for="Status">Sold</label>
+<!--<label for="Status">Sold</label>
                                                 <input type="radio" name="soldreserved" value="sold" autocomplete="off" <?php if ($ad->soldreserved=="sold"){?>checked <?php } ?>>
 
 
@@ -221,7 +221,7 @@
 
 
 <label for="Status">Reserved</label>
-                                                <input type="radio" name="soldreserved" value="reserved" autocomplete="off" <?php if ($ad->soldreserved=="reserved" ){?>checked <?php } ?>>
+                                                <input type="radio" name="soldreserved" value="reserved" autocomplete="off" <?php if ($ad->soldreserved=="reserved" ){?>checked <?php } ?>>-->
 
 
                                             </div>
@@ -266,6 +266,51 @@
 
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
+                                        <label for="country">Interior</label>
+                                        <select name="interior[]" id="interior" class="select2 form-control @error('interior') is-invalid @enderror" autocomplete="off" multiple required>
+                                            <option value="">Select</option>
+                                            @foreach ($interior as $row1)
+                                               
+                                                <option  value="{{ $row1->id }}" <?php if (in_array($row1->id,$interiorarr)){?>selected <?php } ?>>{{ $row1->label }}-{{ $row1->value }}</option>
+                                            
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            @error('interior')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="exterior">exterior</label>
+                                        <select name="exterior[]" id="exterior" class="select2 form-control @error('exterior') is-invalid @enderror" autocomplete="off" multiple required>
+                                            <option value="">Select</option>
+                                            @foreach ($exterior as $row1)
+                                               
+                                                <option  value="{{ $row1->id }}" <?php if (in_array($row1->id,$exteriorarr)){?>selected <?php } ?>>{{ $row1->label }}-{{ $row1->value }}</option>
+                                            
+                                            @endforeach
+                                            
+                                            
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            @error('exteriorcolor')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+                                    <div class="form-group my-2 col-md-6">
                                         <label for="longdescptitle">Long Description Title</label>
                                         <input type="text" required  name="longdescptitle" value="{{ $ad->longdescrptitle }}" class="slug form-control {{ Session::has('longdescptitle_error') ? 'is-invalid' : '' }}" placeholder="Long Description Title" autocomplete="off">
                                         <div class="invalid-feedback">
@@ -300,6 +345,31 @@
                                             @endif
                                         </div>
                                     </div>
+<div class="form-group my-2 col-md-6">
+ <label for="soldreserved">Availability</label>
+                                        
+
+
+<select name="soldreserved" id="soldreserved" class="select2  form-control @error('soldreserved') is-invalid @enderror" autocomplete="off" required>
+                                            
+                                                <option value="">Select</option>
+                                                <option value="Sold" <?php if ($ad->soldreserved=="Sold" ){?>selected <?php } ?>>Sold</option>
+                                           <option value="Reserved" <?php if ($ad->soldreserved=="Reserved" ){?>selected <?php } ?>>Reserved</option>
+                                           <option value="None" <?php if ($ad->soldreserved=="None" ){?>selected <?php } ?>>None</option>
+                                        </select>
+
+
+                                        <div class="invalid-feedback">
+                                            @if (Session::has('soldreserved'))
+                                                {{ Session::get('soldreserved') }}
+                                            @endif
+                                        </div>
+</div>
+
+
+
+
+
                                     
                                 </div>
 

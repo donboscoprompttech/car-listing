@@ -103,7 +103,7 @@
 @foreach ($year as $row)
 <div class="form-group">
 
-                                                    <input type="checkbox" id="{{$row->registration_year}}" name="year[]" value="{{$row->registration_year}}" class="filgroup">
+                                                    <input type="checkbox" id="{{$row->registration_year}}" name="year[]" value="{{$row->registration_year}}" class="filgroup year">
                                                     <label for="{{$row->registration_year}}"><span>{{$row->registration_year}}</span></label>
 
                                                     <?php $offset=0;?>
@@ -138,7 +138,7 @@
 @foreach ($make as $row)
 <div class="form-group">
 
-                                                    <input type="checkbox" name="carmake[]" value={{$row->make_id}} class="filgroup">
+                                                    <input type="checkbox" name="carmake[]" value={{$row->make_id}} class="filgroup mak">
                                                     <label for="{{$row->make_id}}"><span>{{$row->name}}</span></label>
 
                                                     <?php $offset=0;?>
@@ -184,7 +184,7 @@
 @foreach ($model as $row)
 <div class="form-group">
 
-                                                    <input type="checkbox" class="filgroup" name="carmodel[]" value={{$row->model_id}}>
+                                                    <input type="checkbox" class="filgroup mod" name="carmodel[]" value={{$row->model_id}}>
                                                     <label for="{{$row->model_id}}"><span>{{$row->name}}</span></label>
 
                                                     <?php $offsetmodel=0;?>
@@ -224,7 +224,7 @@
 @foreach ($fueltype as $row)
 <div class="form-group">
 
-                                                    <input type="checkbox" class="filgroup" name="carfueltype[]" value={{$row->fuel_type}}>
+                                                    <input type="checkbox" class="filgroup ft" name="carfueltype[]" value={{$row->fuel_type}}>
                                                     <label for="{{$row->fuel_type}}"><span>{{$row->fuel_type}}</span></label>
 
                                                     <?php $offsetfuel_type=0;?>
@@ -259,7 +259,7 @@
 @foreach ($passengercapacity as $row)
 <div class="form-group">
 
-                                               <input type="checkbox" name="carpassengercapacity[]" class="filgroup" value={{$row->seats}}>
+                                               <input type="checkbox" name="carpassengercapacity[]" class="filgroup pc" value={{$row->seats}}>
                                                     <label for="{{$row->seats}}"><span>{{$row->seats}}</span></label>
 
                                                     <?php $offsetpassengercapacity=0;?>
@@ -501,7 +501,7 @@
                         <p class="result-count"><?php echo($vehicletypecarscount);?> Results</p>
                         <div class="sort-div">
                             <select id="sortcombo" class="form-control" onchange="formsubmit();">
-                                <option>Sort By</option>
+                                <option value="0">Sort By</option>
                                 <option value="Date">Date</option>
                                 <option value="Price">Price</option>
                             </select>
@@ -539,7 +539,7 @@
 
 <div class="res2" >
                     <div class="flat-card-div ">
-
+<input type="hidden" name="flag" id="flag" value="4">
  @foreach ($vehicletypecars as $row)
 
                         <div class="card ">
@@ -652,27 +652,89 @@
 
     <script>
         
+
+
+
+
 function showmoreajax(){
 var flag=$("#flag").val();
 var offset=$("#first").val();
+var cname=$("#cat").val();
+var sortcombo=$("#sortcombo").val();
 
+var year = [];
+var make=[];
+var model=[];
+var ft=[];
+var pc=[]
+$('input:checkbox.year').each(function () {
+       var sThisVal = (this.checked ? $(this).val() : "");
+       year.push(sThisVal);
+  });
+$('input:checkbox.mak').each(function () {
+       var sThisVal = (this.checked ? $(this).val() : "");
+       make.push(sThisVal);
+  });
+$('input:checkbox.mod').each(function () {
+       var sThisVal = (this.checked ? $(this).val() : "");
+       model.push(sThisVal);
+  });
+$('input:checkbox.ft').each(function () {
+       var sThisVal = (this.checked ? $(this).val() : "");
+       ft.push(sThisVal);
+  });
+$('input:checkbox.pc').each(function () {
+       var sThisVal = (this.checked ? $(this).val() : "");
+       pc.push(sThisVal);
+  });
+
+
+
+if ((flag==1) && (sortcombo!='0')){
+    alert("enter1");
+    var val=$("#searchall").val();
+    var url1="{{ route('searchtextboxnextsort') }}";
+}else 
 if (flag==1){
+    alert("enter2");
     var val=$("#searchall").val();
     var url1="{{ route('searchtextboxnext') }}";
-}
+}else 
+if ((flag==2) && (sortcombo!='0')){
+    var val=$("#searchallfirst").val();
+    var url1="{{ route('searchtextboxfirstnextsort') }}";
+}else 
 if (flag==2){
      var val=$("#searchallfirst").val();
     var url1="{{ route('searchtextboxfirstnext') }}";
 }
-if (flag==3){
+/*if ((flag==3) && (sortcombo!='0')){
+    var val=$("#searchallfirst").val();
+    var url1="{{ route('searchfilternextsort') }}";
+}*/
+else 
+if ((flag==3) &&(sortcombo!=0)){
+
+    var val=$("#searchallfirst").val();
+    //var url1="{{ route('searchfilternextsort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year;
+     var val=$("#searchallfirst").val();
+    var url1="{{ route('searchfilternextsort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype="+ft+"&carpassengercapacity[]="+pc;
+}
+else if (flag==3){
      var val=$("#searchallfirst").val();
     var url1="{{ route('searchfilternext') }}";
 }
+else if (flag==4){
+     var val=$("#searchallfirst").val();
+    var url1="{{url('carlistingsortnext')}}?cname="+cname+"&sortcombo="+sortcombo;
+}
+var kw=val;
 $.ajax({
             type: 'get',
             url:url1,
             dataType: 'html',
-            'data':{val:val,val1:offset},
+           //'data':{val:val,val1:offset,cname:cname},
+           'data':{val:val,offset:offset,cname:cname,kw:kw},
             success: function (data) {
 $(".res2").html(data);
 
@@ -822,12 +884,78 @@ $('.header-search-btn').click(function() {
 function formsubmit(){
 var cname=$("#cat").val();
 var sortcombo=$("#sortcombo").val();
+var flag=$("#flag").val();
+//var year=$('.year:checkbox:checked');
+//var year=$(".year").val();
+//var offset=$("#first").val();
+var year = [];
+var make=[];
+var model=[];
+var ft=[];
+var pc=[]
+$('input:checkbox.year').each(function () {
+       var sThisVal = (this.checked ? $(this).val() : "");
+       year.push(sThisVal);
+  });
+$('input:checkbox.mak').each(function () {
+       var sThisVal = (this.checked ? $(this).val() : "");
+       make.push(sThisVal);
+  });
+$('input:checkbox.mod').each(function () {
+       var sThisVal = (this.checked ? $(this).val() : "");
+       model.push(sThisVal);
+  });
+$('input:checkbox.ft').each(function () {
+       var sThisVal = (this.checked ? $(this).val() : "");
+       ft.push(sThisVal);
+  });
+$('input:checkbox.pc').each(function () {
+       var sThisVal = (this.checked ? $(this).val() : "");
+       pc.push(sThisVal);
+  });
+var offset=0;
+var kw='';
+if ((flag==1) && (sortcombo!='0')){
+    alert("enter11");
+    var kw=$("#searchall").val();
+    var url1="{{ route('searchtextboxnextsort') }}?cname="+cname+"&sortcombo="+sortcombo;
+}else 
+if (flag==1){
+    alert("enter22");
+    var val=$("#searchall").val();
+    var url1="{{ route('searchtextboxnext') }}";
+}else 
+if ((flag==2) && (sortcombo!='0')){
+    var url1="{{ route('searchtextboxfirstnextsort') }}";
+}else 
+if (flag==2){
+     var kw=$("#searchallfirst").val();
+    var url1="{{ route('searchtextboxfirstsort') }}?cname="+cname+"&sortcombo="+sortcombo;
+}else 
+if ((flag==3) &&(sortcombo!=0)){
+
+    var val=$("#searchallfirst").val();
+    var url1="{{ route('searchfiltersort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype="+ft+"&carpassengercapacity[]="+pc;
+}else if (flag==3){
+     var val=$("#searchallfirst").val();
+    var url1="{{ route('searchfilternext') }}";
+}
+else
+if (flag==4){
+     var val=$("#searchallfirst").val();
+    var url1="{{url('carlistingsort')}}?cname="+cname+"&sortcombo="+sortcombo;
+}else{
+
+}
+
+
+//var url="{{url('carlistingsort')}}?'val='"+cname+"'&val1='"+sortcombo;
 $.ajax({
             type: 'get',
-            url: "{{url('carlistingsort')}}?'val='"+cname+"'&val1='"+sortcombo,
-            data: {val:cname,val1:sortcombo},
+            url:url1,
+            data: {val:cname,val1:sortcombo,kw:kw,offset:offset},
             dataType : 'html',
-            success: function (data) { 
+            success: function (data){ 
 
             $(".res2").html(data);
 

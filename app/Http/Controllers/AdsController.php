@@ -545,7 +545,22 @@ $vehicletype = vehicletype::orderBy('name')
         ->get();
         $places = Places::orderBy('name')
         ->get();
-        return view('ads.edit_ad', compact('ad', 'category', 'country','places','vehicletype'));
+$exterior=exteriorMaster::select('exteriormaster.*','exteriormaster.value as value1')->where('status',1)->orderby('sortorder')->get();
+         $interior=InteriorMaster::select('interiormaster.*','interiormaster.value as value1')->where('status',1)->orderby('sortorder')->get();
+         $exteriorselected=AdsExterior::where('ads_id',$id)->get();
+         $exteriorarr=array();
+         $interiorarr=array();
+         foreach($exteriorselected as $row){
+            $exteriorarr[]=$row->exterior_id;
+         }
+         //foreach()
+         $interiorselected=AdsInterior::where('ads_id',$id)->get();
+      foreach($interiorselected as $row){
+            $interiorarr[]=$row->interior_id;
+         }
+         //print_r($interiorarr);
+         //die;
+        return view('ads.edit_ad', compact('interiorarr','exteriorarr','ad','interior','exterior', 'category', 'country','places','vehicletype'));
     }
 
     public function update(Request $request, $id){
@@ -688,6 +703,7 @@ $vehicletype = vehicletype::orderBy('name')
         'longdescrp'             => $request->longdescp,
         'vehicletype'             => $request->vehicletype,
         'drive'             => $request->drive,
+        'soldreserved'=> $request->soldreserved,
         ]);
 
         if($request->category == 1){
@@ -817,23 +833,7 @@ $vehicletype = vehicletype::orderBy('name')
                 }
 
             }
-            // elseif($catRow->Field->type == 'checkbox_multiple'){
-
-            //     foreach($catRow->Field->FieldOption as $fieldOptionRow){
-
-            //         $optionValue1 = $fieldOptionRow->value;
-
-            //         if($request->$optionValue1 == 'checked'){
-
-            //             $customValue = new AdsCustomValue();
-            //             $customValue->ads_id    = $ad->id;
-            //             $customValue->field_id  = $catRow->field_id;
-            //             $customValue->option_id = $fieldOptionRow->id;
-            //             $customValue->value     = $fieldOptionRow->value;
-            //             $customValue->save();
-            //         }
-            //     }
-            // }
+            
             elseif($catRow->Field->type == 'checkbox'){
 
                 $field_name = $catRow->Field->name;
@@ -966,6 +966,27 @@ $vehicletype = vehicletype::orderBy('name')
             $adsDependency->master_id   = $request->City;
             $adsDependency->save();
         }
+$delint=AdsInterior::where('ads_id',$ad->id)->delete();
+$delext=AdsExterior::where('ads_id',$ad->id)->delete();
+$exterior=$request->exterior;
+$interior=$request->interior;
+foreach($interior as $int){
+$interiortbl            = new AdsInterior();
+                $interiortbl->ads_id    = $ad->id;
+                 $interiortbl->interior_id    =$int;
+                $interiortbl->save();
+
+}foreach($exterior as $ext){
+$exteriortbl            = new AdsExterior();
+                $exteriortbl->ads_id    = $ad->id;
+                 $exteriortbl->exterior_id    =$ext;
+                $exteriortbl->save();
+
+}
+
+
+
+
 
         session()->flash('success', 'Ad has been created');
         return redirect()->route('ads.index');

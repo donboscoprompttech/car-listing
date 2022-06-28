@@ -24,7 +24,7 @@
 
                         <div class="card ">
                             <div class="card-body">
-a
+
                                 <div class="img-div">
                                     <div class="ribbon booked"><span>{{ $row->soldreserved }}</span></div>
                                     <div class="gallery js-gallery">
@@ -107,6 +107,7 @@ a
                         @endforeach
                         <?php
  if (count($vehicletypecars)!=0){?>
+    <div style="text-align:right">
 <a href='#'class="see-more-link" onclick="showmoreajax();">See More</a>                       
 <?php } ?>
                     </div>

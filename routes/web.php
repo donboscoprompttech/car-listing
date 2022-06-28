@@ -43,15 +43,31 @@ Route::post('/forgotpassword/store', [App\Http\Controllers\LoginController::clas
 Route::get('/index', [App\Http\Controllers\ServiceController::class, 'index'])->name('index');
 Route::get('/searchfilter', 'App\Http\Controllers\ServiceController@searchfilter1')->name('searchfilter');
 Route::get('/searchfilternext', 'App\Http\Controllers\ServiceController@searchfilter2')->name('searchfilternext');
+
+Route::get('/searchfiltersort', 'App\Http\Controllers\ServiceController@searchfilter2actsort')->name('searchfiltersort');
+
+
+
+Route::get('/searchfilternextsort', 'App\Http\Controllers\ServiceController@searchfilter2sort')->name('searchfilternextsort');
+
+
 Route::get('/searchtextbox', 'App\Http\Controllers\ServiceController@searchtextbox')->name('searchtextbox');
 Route::get('/searchtextboxnext', 'App\Http\Controllers\ServiceController@searchtextboxnext')->name('searchtextboxnext');
+
+Route::get('/searchtextboxsort', 'App\Http\Controllers\ServiceController@searchtextboxsort')->name('searchtextboxsort');
+Route::get('/searchtextboxnextsort', 'App\Http\Controllers\ServiceController@searchtextboxnextsort')->name('searchtextboxnextsort');
+
+
+
 Route::get('/searchtextboxfirst', 'App\Http\Controllers\ServiceController@searchtextboxfirst')->name('searchtextboxfirst');
 Route::get('/searchtextboxfirstnext', 'App\Http\Controllers\ServiceController@searchtextboxfirstnext')->name('searchtextboxfirstnext');
-//Route::post('/searchfilter', [App\Http\Controllers\ServiceController::class, 'searchfilter'])->name('searchfilter');
+Route::get('/searchtextboxfirstnextsort', 'App\Http\Controllers\ServiceController@searchtextboxfirstnextsort')->name('searchtextboxfirstnextsort');
+Route::get('/searchtextboxfirstsort', 'App\Http\Controllers\ServiceController@searchtextboxfirstsort')->name('searchtextboxfirstsort');
 Route::post('/enquiryprocess', [App\Http\Controllers\DetailsController::class, 'enquiryprocess'])->name('enquiryprocess');
 Route::get('/category/{id}', [App\Http\Controllers\ServiceController::class, 'carlisting'])->name('category.id');
 
 Route::get('/carlistingsort', [App\Http\Controllers\ServiceController::class, 'carlistingsort'])->name('carlistingsort');
+Route::get('/carlistingsortnext', [App\Http\Controllers\ServiceController::class, 'carlistingsortnext'])->name('carlistingsortnext');
 // Logout user Back button Cache clearing
 Route::group(['middleware' => ['revalidate']], function(){
 

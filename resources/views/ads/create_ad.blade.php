@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="form-group my-2 col-md-6">
                                         <label for="country">Country</label>
-                                        <select name="country" id="country" class="select2 form-control @error('country') is-invalid @enderror" autocomplete="off">
+                                        <select name="country" id="country" class="select2 form-control @error('country') is-invalid @enderror" autocomplete="off" required>
                                             <option value="">Select</option>
                                             @foreach ($country as $row1)
                                                 <?php if($row1->id==229){?>
@@ -135,7 +135,7 @@
                                             @enderror
                                         </div>-->
                                         <label for="place">Place</label>
-                                        <select name="place" id="place" class="select2 form-control @error('place') is-invalid @enderror" autocomplete="off">
+                                        <select name="place" id="place" class="select2 form-control @error('place') is-invalid @enderror" autocomplete="off" required>
                                             <option value="">Select</option>
                                             @foreach ($places as $row1)
                                                 
@@ -216,13 +216,13 @@
                                                 <!--<label for="Status">Price Negotiable</label>
                                                 <input type="checkbox" name="negotiable" value="checked" autocomplete="off">-->
 
-<label for="Status">Sold</label>
+<!--<label for="Status">Sold</label>
                                                 <input type="radio" name="soldreserved" value="sold" autocomplete="off">
 <label for="Status">Reserved</label>
                                                 <input type="radio" name="soldreserved" value="reserved" autocomplete="off">
 
 <label for="Status">None</label>
-                                                <input type="radio" name="soldreserved" value="none" autocomplete="off">
+                                                <input type="radio" name="soldreserved" value="none" autocomplete="off">-->
 
 
                                             </div>
@@ -296,7 +296,7 @@
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="country">Interior</label>
-                                        <select name="interior[]" id="interior" class="select2 form-control @error('interior') is-invalid @enderror" autocomplete="off" multiple>
+                                        <select name="interior[]" id="interior" class="select2 form-control @error('interior') is-invalid @enderror" autocomplete="off" multiple required>
                                             <option value="">Select</option>
                                             @foreach ($interior as $row1)
                                                
@@ -312,7 +312,7 @@
                                     </div>
                                     <div class="form-group my-2 col-md-6">
                                         <label for="exterior">exterior</label>
-                                        <select name="exterior[]" id="exterior" class="select2 form-control @error('exterior') is-invalid @enderror" autocomplete="off" multiple>
+                                        <select name="exterior[]" id="exterior" class="select2 form-control @error('exterior') is-invalid @enderror" autocomplete="off" multiple required>
                                             <option value="">Select</option>
                                             @foreach ($exterior as $row1)
                                                
@@ -328,22 +328,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                            </div>
 
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
@@ -387,6 +372,34 @@
                                         </div>
                                     </div>
                                     
+
+<div class="form-group my-2 col-md-6">
+                                        <label for="soldreserved">Availability</label>
+                                        
+
+
+<select name="soldreserved" id="soldreserved" class="select2  form-control @error('soldreserved') is-invalid @enderror" autocomplete="off" required>
+                                            
+                                                <option value="">Select</option>
+                                                <option value="Sold">Sold</option>
+                                           <option value="Reserved">Reserved</option>
+                                           <option value="None">None</option>
+                                        </select>
+
+
+                                        <div class="invalid-feedback">
+                                            @if (Session::has('soldreserved'))
+                                                {{ Session::get('soldreserved') }}
+                                            @endif
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
                                 </div>
 
 
@@ -433,7 +446,7 @@
                                     </div>
                                     <div class="form-group my-2">
                                         <label for="Address">Address</label>
-                                        <textarea name="customer_address" class="form-control @error('customer_address') is-invalid @enderror" cols="30" rows="3" placeholder="Address" autocomplete="off">{{ old('customer_address') }}</textarea>
+                                        <textarea name="customer_address" required class="form-control @error('customer_address') is-invalid @enderror" cols="30" rows="3" placeholder="Address" autocomplete="off">{{ old('customer_address') }}</textarea>
                                         <div class="invalid-feedback">
                                             @error('customer_address')
                                                 {{ $message }}

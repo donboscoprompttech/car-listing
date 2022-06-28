@@ -5,7 +5,7 @@
 @foreach ($make as $row)
 <div class="form-group">
 
-                                                    <input class="filgroup" type="checkbox" name="carmake[]" value={{$row->make_id}} >
+                                                    <input class="filgroup mak" type="checkbox" name="carmake[]" value={{$row->make_id}} >
                                                     <label for="{{$row->make_id}}"><span>{{$row->name}}</span></label>
 
                                                    
