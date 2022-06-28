@@ -18,11 +18,12 @@ use Illuminate\Support\Facades\Route;
 /*Route::get('/', function(){
     return redirect()->route('login.index');
 });*/
-Route::get('/', function(){
-    return redirect()->route('index');
-});
-Route::get('get_ajax_data',[App\Http\Controllers\ServiceController::class, 'get_ajax_data']);
-Route::get('ajax-pagi',[App\Http\Controllers\AjaxpagiController::class,'index'])->name('ajax-pagi');
+//Route::get('/', function(){
+    //return redirect()->route('index');
+    Route::get('/', [App\Http\Controllers\ServiceController::class, 'index'])->name('index');
+//});
+//Route::get('get_ajax_data',[App\Http\Controllers\ServiceController::class, 'get_ajax_data']);
+//Route::get('ajax-pagi',[App\Http\Controllers\AjaxpagiController::class,'index'])->name('ajax-pagi');
 Route::get('/getModel/{id}', [App\Http\Controllers\ServiceController::class, 'getModel'])->name('getModel');
 
 Route::get('/details/{id}', [App\Http\Controllers\ServiceController::class, 'detailsshow'])->name('details');

@@ -568,7 +568,7 @@
                                             <p>NEW</p>
                                         </div><div style="display:inline"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$row->uniquenumber}}</div>
                                         <div class="car-name-div">
-                                            <p class="car-name">{{ $row->title }}</p>
+                                            <p class="car-name">{{ $row->makename }}-{{ $row->title }}</p>
                                         </div>
                                         <div class="price-div">
                                             <p class="price">AED {{ $row->price }}</p>
@@ -669,23 +669,33 @@ var ft=[];
 var pc=[]
 $('input:checkbox.year').each(function () {
        var sThisVal = (this.checked ? $(this).val() : "");
+       if (sThisVal!=''){
        year.push(sThisVal);
+   }
   });
 $('input:checkbox.mak').each(function () {
        var sThisVal = (this.checked ? $(this).val() : "");
+       if (sThisVal!=''){
        make.push(sThisVal);
+   }
   });
 $('input:checkbox.mod').each(function () {
        var sThisVal = (this.checked ? $(this).val() : "");
+       if (sThisVal!=''){
        model.push(sThisVal);
+   }
   });
 $('input:checkbox.ft').each(function () {
        var sThisVal = (this.checked ? $(this).val() : "");
+       if (sThisVal!=''){
        ft.push(sThisVal);
+   }
   });
 $('input:checkbox.pc').each(function () {
        var sThisVal = (this.checked ? $(this).val() : "");
+       if (sThisVal!=''){
        pc.push(sThisVal);
+   }
   });
 
 
@@ -722,7 +732,7 @@ if ((flag==3) &&(sortcombo!=0)){
 }
 else if (flag==3){
      var val=$("#searchallfirst").val();
-    var url1="{{ route('searchfilternext') }}";
+    var url1="{{ route('searchfilternext') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype="+ft+"&carpassengercapacity[]="+pc;
 }
 else if (flag==4){
      var val=$("#searchallfirst").val();

@@ -69,7 +69,7 @@
                                             <p>NEW</p>
                                         </div><div style="display:inline"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$row->uniquenumber}}</div>
                                         <div class="car-name-div">
-                                            <p class="car-name">{{ $row->title }}</p>
+                                            <p class="car-name">{{ $row->makename }}-{{ $row->title }}</p>
                                         </div>
                                         <div class="price-div">
                                             <p class="price">AED {{ $row->price }}</p>
@@ -106,7 +106,7 @@
 
                         @endforeach
                         <?php
- if (count($vehicletypecars)!=0){?>
+ if ((count($vehicletypecars)!=0)&&($currcount==10)){?>
     <div style="text-align:right">
 <a href='#'class="see-more-link" onclick="showmoreajax();">See More</a>                       
 <?php } ?>
