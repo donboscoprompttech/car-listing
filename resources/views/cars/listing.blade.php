@@ -728,11 +728,12 @@ if ((flag==3) &&(sortcombo!=0)){
     var val=$("#searchallfirst").val();
     //var url1="{{ route('searchfilternextsort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year;
      var val=$("#searchallfirst").val();
-    var url1="{{ route('searchfilternextsort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype="+ft+"&carpassengercapacity[]="+pc;
+    var url1="{{ route('searchfilternextsort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype[]="+ft+"&carpassengercapacity[]="+pc;
 }
 else if (flag==3){
      var val=$("#searchallfirst").val();
-    var url1="{{ route('searchfilternext') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype="+ft+"&carpassengercapacity[]="+pc;
+     var searchall=$("#searchall").val();
+    var url1="{{ route('searchfilternext') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype[]="+ft+"&carpassengercapacity[]="+pc+"&searchall="+searchall;
 }
 else if (flag==4){
      var val=$("#searchallfirst").val();
@@ -945,7 +946,7 @@ if (flag==2){
 if ((flag==3) &&(sortcombo!=0)){
 
     var val=$("#searchallfirst").val();
-    var url1="{{ route('searchfiltersort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype="+ft+"&carpassengercapacity[]="+pc;
+    var url1="{{ route('searchfiltersort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype[]="+ft+"&carpassengercapacity[]="+pc;
 }else if (flag==3){
      var val=$("#searchallfirst").val();
     var url1="{{ route('searchfilternext') }}";

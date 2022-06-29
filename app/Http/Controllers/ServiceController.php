@@ -478,6 +478,7 @@ public function searchfilter1(Request $request){
     $model=$request->carmodel;
     $fueltype=$request->carfueltype;
     $passengercapacity=$request->carpassengercapacity;
+    //dd($passengercapacity);
     $priceflag=$request->priceflag;
 $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
         ->get(); 
@@ -498,7 +499,9 @@ if ($fueltype!=''){
 $query->whereIn('motor_custome_values.fuel_type',$fueltype);
 }
 if ($passengercapacity!=''){
+   // $pc=explode(",",$passengercapacity);
 $query->whereIn('ads.seats',$passengercapacity);
+    //$query->whereIn('ads.seats',$pc);
 }
 if ($priceflag==1){
 $amount=$request->amount;
@@ -511,9 +514,15 @@ $minpricearr=explode("AED",$minprice1);
 $minpriceval=trim($minpricearr[1]);
 $query->where('ads.price','>=',"$minpriceval")->where('ads.price','<=',"$maxpriceval");
 }
+if ($request->searchall!=''){
+    $keywordsearch=$request->searchall;
+    $query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%");
+}
+//DB::enableQueryLog();
 $vehicletypecars=$query->skip(0)->take(10)->get();
-
-if (($year==null)&&($make==null)&&($model==null)&&($fueltype==null)&&($passengercapacity==null)&&$priceflag==0){
+//$quries = DB::getQueryLog();
+//dd($quries);
+if (($year==null)&&($make==null)&&($model==null)&&($fueltype==null)&&($passengercapacity==null)&&$priceflag==0 &&($request->searchall=='')){
     $vehicletypecars=array();
 }
 /*if (($year==null)and($make=null)){
@@ -541,7 +550,108 @@ $currcount=count($vehicletypecars);
 
 }
 
+
+
 public function searchfilter2(Request $request){
+    //dd("en");
+    /*Ajax Search-Large Filter*/
+    $year=$request->year;
+    //dd($year);
+    $make=$request->carmake;
+    $model=$request->carmodel;
+    $fueltype=$request->carfueltype;
+    //dd($fueltype);
+    $passengercapacity=$request->carpassengercapacity;
+    //dd($passengercapacity);
+    $priceflag=$request->priceflag;
+$subcategory = Subcategory::orderBy('sort_order')->where('status',1)
+        ->get(); 
+$offset=$_GET['offset']+10;
+//dd($year,$make,$model,$fueltype,$passengercapacity,$priceflag);
+$query = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1);
+//dd(count($year));
+//dd($year);
+//if ($year!=''){
+if (isset($year)&&($year[0]!=null)){
+   //echo "year";
+//dd();
+$query->whereIn('registration_year',$year);
+}
+//if ($make!=''){
+if ($make[0]!=null){
+$query->whereIn('motor_custome_values.make_id',$make);
+}
+//if ($model!=''){
+if ($model[0]!=null){
+$query->whereIn('motor_custome_values.model_id',$model);
+}
+if ($fueltype[0]!=null){
+//if ($fueltype!=''){
+$query->whereIn('motor_custome_values.fuel_type',$fueltype);
+}
+if ($passengercapacity[0]!=null){
+//if ($passengercapacity!=''){
+//$query->whereIn('ads.seats',$passengercapacity);
+    //$pc=explode(",",$passengercapacity);
+$query->whereIn('ads.seats',$passengercapacity);
+    //$query->whereIn('ads.seats',$pc);
+}
+if ($priceflag==1){
+$amount=$request->amount;
+$amountarr=explode("-",$amount);
+$minprice1=$amountarr[0];
+$maxprice1=$amountarr[1];
+$maxpricearr=explode("AED",$maxprice1);
+$maxpriceval=$maxpricearr[1];
+$minpricearr=explode("AED",$minprice1);
+$minpriceval=trim($minpricearr[1]);
+$query->where('ads.price','>=',"$minpriceval")->where('ads.price','<=',"$maxpriceval");
+}
+if ($request->searchall!=''){
+    $keywordsearch=$request->searchall;
+    $query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%");
+}
+//DB::enableQueryLog();
+$vehicletypecars=$query->skip($offset)->take(10)->get();
+//$quries = DB::getQueryLog();
+//dd($quries);
+if (($year==null)&&($make==null)&&($model==null)&&($fueltype==null)&&($passengercapacity==null)&&$priceflag==0 &&($request->searchall=='')){
+    $vehicletypecars=array();
+}
+/*if (($year==null)and($make=null)){
+    dd("enter");
+$vehicletypecars=array();
+
+}*/
+$sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year limit 0,4";
+$year = DB::select(DB::raw($sqlQuery));
+
+$sqlQuery = "select distinct make_id,name from motor_custome_values m join make_msts ma on m.make_id=ma.id order by name limit 0,4";
+$make = DB::select(DB::raw($sqlQuery));
+
+$sqlQuery = "select distinct model_id,name from motor_custome_values m join model_msts ma on m.model_id=ma.id order by name limit 0,4";
+$model = DB::select(DB::raw($sqlQuery));
+$sqlQuery = "select distinct seats from ads order by seats limit 0,4";
+$passengercapacity = DB::select(DB::raw($sqlQuery));
+
+$flag=3;
+//$offset=0;
+$currcount=count($vehicletypecars);
+    return view('cars.searchresult',compact('currcount','offset','flag','passengercapacity','subcategory','vehicletypecars','year','make','model'));
+
+
+
+}
+
+
+
+
+
+
+
+
+
+public function searchfilter2_bug(Request $request){
     /*Ajax Search-Large Filter*/
    /* $year=$request->year;
     $make=$request->carmake;
@@ -624,10 +734,14 @@ $minpricearr=explode("AED",$minprice1);
 $minpriceval=trim($minpricearr[1]);
 $query->where('ads.price','>=',"$minpriceval")->where('ads.price','<=',"$maxpriceval");
 }
-DB::enableQueryLog();
+if ($request->searchall!=''){
+    $keywordsearch=$request->searchall;
+    $query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%");
+}
+//DB::enableQueryLog();
 $vehicletypecars=$query->skip($offset)->take(10)->get();
-$quries = DB::getQueryLog();
-dd($quries);
+//$quries = DB::getQueryLog();
+//dd($quries);
 $sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year limit 0,2";
 $year = DB::select(DB::raw($sqlQuery));
 
@@ -639,8 +753,8 @@ $model = DB::select(DB::raw($sqlQuery));
 $sqlQuery = "select distinct seats from ads order by seats limit 0,2";
 $passengercapacity = DB::select(DB::raw($sqlQuery));
 $flag=3;
-
-    return view('cars.searchresult',compact('offset','flag','passengercapacity','subcategory','vehicletypecars','year','make','model'));
+$currcount=count($vehicletypecars);
+    return view('cars.searchresult',compact('offset','flag','passengercapacity','subcategory','vehicletypecars','year','make','model','currcount'));
 
 
 
@@ -893,7 +1007,7 @@ public function searchtextbox(){
 
     $keywordsearch=$_GET['val'];
     //echo $keyword;
-$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("motor_custome_values.registration_year",$keywordsearch)->orwhere("make_msts.name",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip(0)->take(10)->get();
+$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip(0)->take(10)->get();
 
 
 $vehicletypecarscount1 = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("motor_custome_values.registration_year",$keywordsearch)->orwhere("make_msts.name",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
@@ -935,7 +1049,8 @@ public function searchtextboxnext(){
     //dd($offset);
     //echo $keyword;
     $offset=$_GET['offset']+10;
-$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("motor_custome_values.registration_year",$keywordsearch)->orwhere("make_msts.name",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip($offset)->take(10)->get();
+/*$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("motor_custome_values.registration_year",$keywordsearch)->orwhere("make_msts.name",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip($offset)->take(10)->get();*/
+$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip($offset)->take(10)->get();
 
 
 
@@ -1051,13 +1166,17 @@ $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
 
 
 
+
 public function searchtextboxfirst(){
 
     $keywordsearch=$_GET['val'];
     //echo $keyword;
-    $offset=0;
-$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("motor_custome_values.registration_year",$keywordsearch)->orwhere("make_msts.name",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip(0)->take(10)->get();
-
+    
+    DB::enableQueryLog();
+//$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("motor_custome_values.registration_year",$keywordsearch)->orwhere("make_msts.name",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip(0)->take(10)->get();
+    $vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip(0)->take(10)->get();
+$quries = DB::getQueryLog();
+//dd($quries);
 
 $vehicletypecarscount = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("motor_custome_values.registration_year",$keywordsearch)->orwhere("make_msts.name",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->count();
 
@@ -1083,6 +1202,7 @@ $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
         //$vehicletypecarscount=count($vehicletypecarscount1);
 $flag=2;
 $currcount=count($vehicletypecars);
+$offset=0;
     return view('cars.searchresult',compact('currcount','flag','passengercapacity','subcategory','vehicletypecars','year','make','model','offset','vehicletypecarscount'));
 
 
@@ -1091,14 +1211,30 @@ $currcount=count($vehicletypecars);
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public function searchtextboxfirstnext(){
 
     $keywordsearch=$_GET['val'];
     //echo $keyword;
      //$offset=$_GET['val1']+2;
    $offset=$_GET['offset']+10;
-$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("motor_custome_values.registration_year",$keywordsearch)->orwhere("make_msts.name",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip($offset)->take(10)->get();
-
+   //DB::enableQueryLog();
+$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip($offset)->take(10)->get();
+//$quries = DB::getQueryLog();
+//dd($quries);
 
 $vehicletypecarscount = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("motor_custome_values.registration_year",$keywordsearch)->orwhere("make_msts.name",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->count();
 
