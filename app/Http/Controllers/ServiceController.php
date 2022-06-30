@@ -41,7 +41,7 @@ $vehicletype = vehicletype::orderBy('name')
         $questions=Questions::get();
 $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
         ->get(); 
-/*$vehicletypecars = Ads::select("ads.*","ads.id as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->get();*/
+
         $vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->get();
    $sqlQuery = "select `motor_custome_values`.make_id, `make_msts`.`name` as `makename` from `motor_custome_values` left join `make_msts` on `motor_custome_values`.`make_id` = `make_msts`.`id` group by make_id,makename";
 $make = DB::select(DB::raw($sqlQuery));
@@ -361,7 +361,7 @@ $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
         ->get(); 
 
 if ($cname=='All'){
-$vehicletypecars = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1)->paginate(10);
+$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1)->paginate(10);
 
 $vehicletypecarscount = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1)->count();
 
@@ -371,9 +371,9 @@ $vehicletypecarscount = Ads::select("ads.*","ads.id as mainid","subcategories.*"
 
 
 }else{
-       /* $vehicletypecars = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where('subcategories.canonical_name',$cname)->get();*/
+      
 
-$vehicletypecars = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1)->where('subcategories.canonical_name',$cname)->paginate(10);
+$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1)->where('subcategories.canonical_name',$cname)->paginate(10);
 
 
 $vehicletypecarscount = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1)->where('subcategories.canonical_name',$cname)->count();
@@ -546,7 +546,7 @@ $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
         ->get(); 
 
 //dd($year,$make,$model,$fueltype,$passengercapacity,$priceflag);
-$query = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1);
+$query = Ads::select("ads.*","ads.canonical_name as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1);
 if ($year!=''){
     //echo "year";
 $query->whereIn('registration_year',$year);
@@ -630,10 +630,8 @@ $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
         ->get(); 
 $offset=$_GET['offset']+10;
 //dd($year,$make,$model,$fueltype,$passengercapacity,$priceflag);
-$query = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1);
-//dd(count($year));
-//dd($year);
-//if ($year!=''){
+$query = Ads::select("ads.*","ads.ads.canonical_name as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1);
+
 if (isset($year)&&($year[0]!=null)){
    //echo "year";
 //dd();
@@ -652,9 +650,7 @@ if ($fueltype[0]!=null){
 $query->whereIn('motor_custome_values.fuel_type',$fueltype);
 }
 if ($passengercapacity[0]!=null){
-//if ($passengercapacity!=''){
-//$query->whereIn('ads.seats',$passengercapacity);
-    //$pc=explode(",",$passengercapacity);
+
 $query->whereIn('ads.seats',$passengercapacity);
     //$query->whereIn('ads.seats',$pc);
 }
@@ -680,11 +676,7 @@ $vehicletypecars=$query->skip($offset)->take(10)->get();
 if (($year==null)&&($make==null)&&($model==null)&&($fueltype==null)&&($passengercapacity==null)&&$priceflag==0 &&($request->searchall=='')){
     $vehicletypecars=array();
 }
-/*if (($year==null)and($make=null)){
-    dd("enter");
-$vehicletypecars=array();
 
-}*/
 $sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year limit 0,4";
 $year = DB::select(DB::raw($sqlQuery));
 
@@ -761,10 +753,7 @@ $minpricearr=explode("AED",$minprice1);
 $minpriceval=trim($minpricearr[1]);
 $query->where('ads.price','>=',"$minpriceval")->where('ads.price','<=',"$maxpriceval");
 }
-/*if ($request->searchall!=''){
-    $keywordsearch=$request->searchall;
-    $query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%");
-}*/
+
 if ($_GET['kw']!=''){
     $kw=$_GET['kw'];
     $keywordsearch=$kw;
@@ -777,11 +766,7 @@ $vehicletypecars=$query->skip($offset)->take(10)->get();
 if (($year==null)&&($make==null)&&($model==null)&&($fueltype==null)&&($passengercapacity==null)&&$priceflag==0 &&($request->searchall=='')){
     $vehicletypecars=array();
 }
-/*if (($year==null)and($make=null)){
-    dd("enter");
-$vehicletypecars=array();
 
-}*/
 $sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year limit 0,4";
 $year = DB::select(DB::raw($sqlQuery));
 
@@ -821,9 +806,7 @@ $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
 $offset=$_GET['offset']+10;
 //dd($year,$make,$model,$fueltype,$passengercapacity,$priceflag);
 $query = Ads::select("ads.*","ads.id as mainid","subcategories.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads_images.vehicletype",1);
-//dd(count($year));
-//dd($year);
-//if ($year!=''){
+
 if (isset($year)&&($year[0]!=null)){
    //echo "year";
 //dd();
@@ -842,9 +825,7 @@ if ($fueltype[0]!=null){
 $query->whereIn('motor_custome_values.fuel_type',$fueltype);
 }
 if ($passengercapacity[0]!=null){
-//if ($passengercapacity!=''){
-//$query->whereIn('ads.seats',$passengercapacity);
-    //$pc=explode(",",$passengercapacity);
+
 $query->whereIn('ads.seats',$passengercapacity);
     //$query->whereIn('ads.seats',$pc);
 }
@@ -949,11 +930,9 @@ $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
 public function searchtextboxnext(){
 
     $keywordsearch=$_GET['val'];
-    //$offset=$_GET['val1']+2;
-    //dd($offset);
-    //echo $keyword;
+    
     $offset=$_GET['offset']+10;
-/*$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("motor_custome_values.registration_year",$keywordsearch)->orwhere("make_msts.name",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip($offset)->take(10)->get();*/
+
 $vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("adm.vehicletype",1)->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->skip($offset)->take(10)->get();
 
 
@@ -1467,7 +1446,8 @@ $sqlQuery = "select min(price) as price from ads";
 $minprice=  DB::select(DB::raw($sqlQuery)); 
 $offset=2;
 $flag=4;
-return view('cars.searchresult',compact('flag','offset','passengercapacity','subcategory','vehicletypecars','year','make','model'));
+$currcount=count($vehicletypecars);
+return view('cars.searchresult',compact('currcount','flag','offset','passengercapacity','subcategory','vehicletypecars','year','make','model'));
 
 
 
@@ -1524,7 +1504,8 @@ $sqlQuery = "select min(price) as price from ads";
 $minprice=  DB::select(DB::raw($sqlQuery)); 
 //$offset=2;
 $flag=4;
-return view('cars.searchresult',compact('flag','offset','passengercapacity','subcategory','vehicletypecars','year','make','model'));
+$currcount=count($vehicletypecars);
+return view('cars.searchresult',compact('currcount','flag','offset','passengercapacity','subcategory','vehicletypecars','year','make','model'));
 
 
 

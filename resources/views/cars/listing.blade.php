@@ -562,11 +562,11 @@
                                           
                                     </div>
                                 </div>
-                                <a href="details.html">
+                                <a href="/details/{{ $row->mainid}}">
                                     <div class="content-div">
                                         <div class="tag-div">
-                                            <p>NEW</p>
-                                        </div><div style="display:inline"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$row->uniquenumber}}</div>
+                                            <p>{{$row->uniquenumber}}</p>
+                                        </div>
                                         <div class="car-name-div">
                                             <p class="car-name">{{ $row->makename }}-{{ $row->title }}</p>
                                         </div>

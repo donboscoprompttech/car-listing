@@ -63,7 +63,7 @@
 
 </script>
                                 </div>
-                                <a href="details.html">
+                                <a href="/details/{{ $row->mainid}}">
                                     <div class="content-div">
                                         <div class="tag-div">
                                             <p>NEW</p>

@@ -67,9 +67,10 @@
                         <div class="name-div">
                             <p>{{$vehicletypecars->title}}</p>
                         </div>
-                        <div class="tag-div">
-                            <p>New</p>
-                        </div><div style="display:inline"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$vehicletypecars->uniquenumber}}</div>
+                        <div class="tag-div" style="width:30%">
+                            <p style="width:auto">{{$vehicletypecars->soldreserved}}-{{$vehicletypecars->uniquenumber}}</p>
+                           
+                        </div>
                         <div class="desc-div">
                             <p class="desc">{{$vehicletypecars->description}}
                                 
