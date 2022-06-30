@@ -26,6 +26,7 @@
                                 <th>Date</th>
                                 <th>Category</th>
                                 <th>Title</th>
+                                <th>Number</th>
                                 <th>User</th>
                                 <th>Active</th>
                                 <th>Action</th>
@@ -41,6 +42,7 @@
                                 <td>{{ date('d-m-Y', strtotime($row->created_at)) }}</td>
                                 <td>{{ $row->Category->name }}</td>
                                 <td>{{ $row->title }}</td>
+                                <td>{{ $row->uniquenumber }}</td>
                                 <td>{{ $row->User->name }}</td>
                                 <td>
                                     @if($row->status == \App\Common\Status::ACTIVE)

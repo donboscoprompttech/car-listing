@@ -25,10 +25,10 @@
                                     <p class="col-md-6">Email :</p>
                                     <p class="col-md-6">{{ $contact->email }}</p>
                                 </div>
-                                <div class="row">
+                                <!--<div class="row">
                                     <p class="col-md-6">Phone :</p>
-                                    <p class="col-md-6">{{ $contact->phone }}</p>
-                                </div>
+                                    <p class="col-md-6">{{---- $contact->phone----}}</p>
+                                </div>-->
                                 <div class="row">
                                     <p class="col-md-6">Status :</p>
                                     <p class="col-md-6">{{ $contact->status == 0 ? 'Not Readed' : 'Readed' }}</p>

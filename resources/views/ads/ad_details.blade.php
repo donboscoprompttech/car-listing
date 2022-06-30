@@ -65,6 +65,13 @@
                                     <p class="col-md-6">Status :</p>
                                     <p class="col-md-6">{!! $ad->status == 1 ? '<span class="text-success">Active</span>' : '<span class="text-secondary">Disabled</span>' !!}</p>
                                 </div>
+
+<div class="row">
+                                    <p class="col-md-6">Number :</p>
+                                    <p class="col-md-6">{{ $ad->uniquenumber}}</p>
+                                </div>
+
+
                                 <div class="row">
                                     <p class="col-md-6">Negotiable :</p>
                                     <p class="col-md-6">{!! $ad->negotiable_flag == 1 ? '<span class="text-success">Yes</span>' : '<span class="text-secondary">No</span>' !!}</p>
@@ -120,6 +127,25 @@
                                     <p class="col-md-6">Mileage :</p>
                                     <p class="col-md-6">{{ $ad->MotoreValue->milage }}</p>
                                 </div>
+
+<div class="row">
+                                    <p class="col-md-6">Seats :</p>
+                                    <p class="col-md-6">{{ $ad->seats}}</p>
+                                </div>
+<div class="row">
+                                    <p class="col-md-6">Drive :</p>
+                                    <p class="col-md-6">{{ $ad->drive}}</p>
+                                </div>
+<div class="row">
+                                    <p class="col-md-6">Availability :</p>
+                                    <p class="col-md-6">{{ $ad->soldreserved}}</p>
+                                </div>
+<div class="row">
+                                    <p class="col-md-6">Exterior Color :</p>
+                                    <p class="col-md-6">{{ $ad->exteriorcolor}}</p>
+                                </div>
+
+
                                     @if (count($ad->MotorFeatures) != 0)
                                     <div class="">
                                         <h4>Features</h4>
@@ -246,7 +272,16 @@
                                 <h5 class="my-4">Image</h5>
                                 <div class="row">
                                     @foreach ($ad->Image as $row) 
+
+
+<?php if($row->vehicleaudio==1){?><a href="{{ asset($row->image) }}" data-video="true" class="video-gal"> <video width="150" height="150" controls>
+  <source src="{{ asset($row->image) }}" type="video/mp4">
+  
+</video> </a> <?php }else {?>
+
+
                                         <a href="{{ asset($row->image) }}" target="blank" class="col-md-4"><img class="img-thumbnail" src="{{ asset($row->image) }}" alt="image"></a>
+                                    <?php }?>
                                     @endforeach
                                 </div>
                                 

@@ -22,7 +22,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Phone</th>
+                                <th>Email</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -32,7 +32,7 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $row->name }}</td>
-                                    <td>{{ $row->phone }}</td>
+                                    <td>{{ $row->email }}</td>
                                     @if ($row->status == 0)
                                         <td>Not Readed</td>
                                     @else

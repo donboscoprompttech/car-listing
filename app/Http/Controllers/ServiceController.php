@@ -761,6 +761,7 @@ if ($_GET['kw']!=''){
 }
 //DB::enableQueryLog();
 $sortype=$_GET['sortcombo'];
+//dd($sortype);
     if ($sortype=='Date'){
 $vehicletypecars=$query->orderby('registration_year')->skip($offset)->take(10)->get();
 }else{
@@ -851,10 +852,13 @@ if ($_GET['kw']!=''){
     $keywordsearch=$kw;
     $query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%");
 }
-//DB::enableQueryLog();
-$vehicletypecars=$query->skip($offset)->take(10)->get();
-//$quries = DB::getQueryLog();
-//dd($quries);
+$sortype=$_GET['sortcombo'];
+//dd($sortype);
+    if ($sortype=='Date'){
+$vehicletypecars=$query->orderby('registration_year')->skip($offset)->take(10)->get();
+}else{
+    $vehicletypecars=$query->orderby('price')->skip($offset)->take(10)->get();
+}
 if (($year==null)&&($make==null)&&($model==null)&&($fueltype==null)&&($passengercapacity==null)&&$priceflag==0 &&($request->searchall=='')){
     $vehicletypecars=array();
 }
