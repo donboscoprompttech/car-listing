@@ -26,9 +26,12 @@
                             <div class="card-body">
 
                                 <div class="img-div">
-                                    <div class="ribbon booked"><span>{{ $row->soldreserved }}</span></div>
+                                    <div class="ribbon booked"><span>{{ $row->soldreserved }}{{$row->id}}</span></div>
                                     <div class="gallery js-gallery">
-                                       <?php $images = DB::table('ads_images')->limit(3)->get()
+                                       <?php  
+
+
+                                       $images = DB::table('ads_images')->limit(3)->where('ads_id',$row->id)->get()
        ;?>
        @foreach ($images as $row1)
                                     <div class="gallery-item">
@@ -66,8 +69,8 @@
                                 <a href="/details/{{ $row->mainid}}">
                                     <div class="content-div">
                                         <div class="tag-div">
-                                            <p>NEW</p>
-                                        </div><div style="display:inline"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$row->uniquenumber}}</div>
+                                            <p>{{$row->uniquenumber}}</p>
+                                        </div>
                                         <div class="car-name-div">
                                             <p class="car-name">{{ $row->makename }}-{{ $row->title }}</p>
                                         </div>
@@ -108,7 +111,7 @@
                         <?php
  if ((count($vehicletypecars)!=0)&&($currcount==10)){?>
     <div style="text-align:right">
-<a href='#'class="see-more-link" onclick="showmoreajax();">See More</a>                       
+<a href='#'class="see-more-link" onclick="showmoreajax();"><b>See More ></b></a>           
 <?php } ?>
                     </div>
 

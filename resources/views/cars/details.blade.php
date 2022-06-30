@@ -255,7 +255,8 @@
             ea.
         </p>
         <div class="form-div">
-            <form action="#" id="frm" class="contact-form">@csrf
+            <form action="#" id="frm" class="contact-form">
+                @csrf
                 <div class="input-div">
                     <div class="form-group">
                         <label for="">Full Name</label>
@@ -339,7 +340,7 @@
 $('form').bind('submit', function () {
           $.ajax({
             type: 'post',
-            url: 'enquiryprocess',
+            url: '/enquiryprocess',
             data: $('form').serialize(),
             dataType : 'json',
             success: function (data) {             

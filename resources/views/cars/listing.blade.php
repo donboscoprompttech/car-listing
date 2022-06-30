@@ -548,7 +548,7 @@
                                 <div class="img-div">
                                     <div class="ribbon booked"><span>{{ $row->soldreserved }}</span></div>
                                     <div class="gallery js-gallery">
-                                       <?php $images = DB::table('ads_images')->limit(3)->get()
+  <?php $images = DB::table('ads_images')->limit(3)->where('ads_id',$row->id)->get()
        ;?>
        @foreach ($images as $row1)
                                     <div class="gallery-item">
@@ -648,15 +648,8 @@
 
     <!-- Core theme JS-->
     <script src="{{ asset('car/js/scripts.js') }}"></script>
-
-
     <script>
-        
-
-
-
-
-function showmoreajax(){
+        function showmoreajax(){
 var flag=$("#flag").val();
 var offset=$("#first").val();
 var cname=$("#cat").val();
@@ -718,16 +711,11 @@ if (flag==2){
      var val=$("#searchallfirst").val();
     var url1="{{ route('searchtextboxfirstnext') }}";
 }
-/*if ((flag==3) && (sortcombo!='0')){
-    var val=$("#searchallfirst").val();
-    var url1="{{ route('searchfilternextsort') }}";
-}*/
+
 else 
 if ((flag==3) &&(sortcombo!=0)){
 
-    var val=$("#searchall").val();
-    //var url1="{{ route('searchfilternextsort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year;
-    // var val=$("#searchallfirst").val();
+    var val=$("#searchall").val();    
     var url1="{{ route('searchfilternextsort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype[]="+ft+"&carpassengercapacity[]="+pc;
 }
 else if (flag==3){
@@ -754,10 +742,6 @@ $(".res2").html(data);
             }
         });       
 
-
-
-
-
 }
 
 
@@ -766,11 +750,7 @@ $(".res2").html(data);
 
 
 function showmore(offset){
-
-
-
 var val=$("#offset").val();
-
 $.ajax({
             type: 'get',
             url:"{{ route('yearrender') }}",
@@ -778,7 +758,6 @@ $.ajax({
             'data':{val:val},
             success: function (data) {
 $(".caryear").html(data);
-
  },error:function(){
                 console.log(data);
             }
@@ -787,9 +766,7 @@ $(".caryear").html(data);
 
 
 function showmoremake(offset){
-
 var val=$("#offsetmake").val();
-
 $.ajax({
             type: 'get',
             url:"{{ route('makerender') }}",
@@ -797,7 +774,6 @@ $.ajax({
             'data':{val:val},
             success: function (data) {
 $(".carmake").html(data);
-
  },error:function(){
                 console.log(data);
             }
@@ -806,9 +782,7 @@ $(".carmake").html(data);
 
 
 function showmoremodel(offset){
-
 var val=$("#offsetmodel").val();
-
 $.ajax({
             type: 'get',
             url:"{{ route('modelrender') }}",
@@ -816,7 +790,6 @@ $.ajax({
             'data':{val:val},
             success: function (data) {
 $(".carmodel").html(data);
-
  },error:function(){
                 console.log(data);
             }
@@ -824,9 +797,7 @@ $(".carmodel").html(data);
 }
 
 function showmorefueltype(offset){
-
 var val=$("#offsetfueltype").val();
-
 $.ajax({
             type: 'get',
             url:"{{ route('fueltyperender') }}",
@@ -908,9 +879,6 @@ function formsubmit(){
 var cname=$("#cat").val();
 var sortcombo=$("#sortcombo").val();
 var flag=$("#flag").val();
-//var year=$('.year:checkbox:checked');
-//var year=$(".year").val();
-//var offset=$("#first").val();
 var year = [];
 var make=[];
 var model=[];
@@ -985,8 +953,6 @@ if (flag==4){
 }else{
 
 }
-
-
 //var url="{{url('carlistingsort')}}?'val='"+cname+"'&val1='"+sortcombo;
 $.ajax({
             type: 'get',
@@ -1000,13 +966,7 @@ $.ajax({
             }
           });
 
-
-
-
 }
-
-
-
 
 $(function() {
   $( ".range-bar" ).slider({
@@ -1024,17 +984,9 @@ $(function() {
 $(function() {    // <== doc ready
 
     $( "#slider-range" ).slider({
-       change: function(event, ui) {
-           // Do your stuff in here.
-
-           // You can trigger an event on anything you want:
-           //$(selector).trigger(theEvent);
-
-           // Or you can do whatever else/
+       change: function(event, ui) {           
 var low = $(this).slider('values', 0);
-
             var high = $(this).slider('values', 1);
-
 $("#priceflag").val(1);
 
        }
@@ -1068,10 +1020,6 @@ $.ajax({
 
             }
           });
-
-
-
-
             }
           });
 }
@@ -1084,35 +1032,20 @@ function searchfirsttextbox(){
             data: {val:val},
             dataType : 'html',
             success: function (data) { 
-
             $(".res2").html(data);
-
 $.ajax({
             type: 'get',
             url: "{{ route('searchtextboxfirstcount') }}",
             data: {val:val},
             dataType : 'html',
             success: function (data) { 
-
             $(".rescount").html(data);
-
             }
           });
 
-
-
-
-
             }
           });
-
 }
-
-
-
-
-
-
     </script>
  
 </body>
