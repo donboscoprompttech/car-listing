@@ -311,7 +311,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group my-2 col-md-6">
-                                        <label for="exterior">exterior</label>
+                                        <label for="exterior">Exterior</label>
                                         <select name="exterior[]" id="exterior" class="select2 form-control @error('exterior') is-invalid @enderror" autocomplete="off" multiple required>
                                             <option value="">Select</option>
                                             @foreach ($exterior as $row1)
@@ -696,7 +696,7 @@
                                         <option value="" >Select</option>
                                         <option value="Petrol">Petrol</option>
                                         <option value="Diesel">Diesel</option>
-                                        <option value="LPG Gas">LPG Gas</option>
+                                        <option value="LPGGas">LPG Gas</option>
                                         <option value="Electric">Electric</option>
                                     </select>
                                     <div class="invalid-feedback">

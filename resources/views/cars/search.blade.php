@@ -227,7 +227,7 @@
 
                 <!-- Show all button div -->
                 <div class="col-12 show-btn-div">
-                  <button class="btn show-all-btn">Show All</button>
+                   <a href="category/All"><button class="btn show-all-btn">Show All</button></a>
                 </div>
               </div>
 

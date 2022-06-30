@@ -498,7 +498,7 @@
                         <input type="text" id="searchallfirst" class="form-control result-search" placeholder="Search">
                     </div>
                     <div class="result-activity">
-                        <p class="result-count"><?php echo($vehicletypecarscount);?> Results</p>
+                        <p class="result-count "><span class="rescount"><?php echo($vehicletypecarscount);?> </span>Results</p>
                         <div class="sort-div">
                             <select id="sortcombo" class="form-control" onchange="formsubmit();">
                                 <option value="0">Sort By</option>
@@ -701,18 +701,18 @@ $('input:checkbox.pc').each(function () {
 
 
 if ((flag==1) && (sortcombo!='0')){
-    alert("enter1");
+    //alert("enter1"+flag);
     var val=$("#searchall").val();
-    var url1="{{ route('searchtextboxnextsort') }}";
+    var url1="{{ route('searchtextboxsortnext') }}";
 }else 
 if (flag==1){
-    alert("enter2");
+    //alert("enter2");
     var val=$("#searchall").val();
     var url1="{{ route('searchtextboxnext') }}";
 }else 
 if ((flag==2) && (sortcombo!='0')){
     var val=$("#searchallfirst").val();
-    var url1="{{ route('searchtextboxfirstnextsort') }}";
+    var url1="{{ route('searchtextboxfirstsortnext') }}";
 }else 
 if (flag==2){
      var val=$("#searchallfirst").val();
@@ -725,9 +725,9 @@ if (flag==2){
 else 
 if ((flag==3) &&(sortcombo!=0)){
 
-    var val=$("#searchallfirst").val();
+    var val=$("#searchall").val();
     //var url1="{{ route('searchfilternextsort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year;
-     var val=$("#searchallfirst").val();
+    // var val=$("#searchallfirst").val();
     var url1="{{ route('searchfilternextsort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype[]="+ft+"&carpassengercapacity[]="+pc;
 }
 else if (flag==3){
@@ -745,7 +745,7 @@ $.ajax({
             url:url1,
             dataType: 'html',
            //'data':{val:val,val1:offset,cname:cname},
-           'data':{val:val,offset:offset,cname:cname,kw:kw},
+           'data':{val:val,offset:offset,cname:cname,kw:kw,sortcombo:sortcombo},
             success: function (data) {
 $(".res2").html(data);
 
@@ -887,6 +887,18 @@ $('.header-search-btn').click(function() {
             success: function (data) { 
 
             $(".res2").html(data);
+$.ajax({
+            type: 'get',
+           url: "{{ route('searchfiltercount') }}",
+           //url:"get_ajax_data?page="+page,
+            data: $('form').serialize(),
+            dataType : 'html',
+            success: function (data) { 
+
+            $(".rescount").html(data);            
+
+            }
+          });
 
             }
           });
@@ -906,46 +918,61 @@ var ft=[];
 var pc=[]
 $('input:checkbox.year').each(function () {
        var sThisVal = (this.checked ? $(this).val() : "");
+       if (sThisVal!=''){
        year.push(sThisVal);
+   }
   });
 $('input:checkbox.mak').each(function () {
        var sThisVal = (this.checked ? $(this).val() : "");
+       if (sThisVal!=''){
        make.push(sThisVal);
+   }
   });
 $('input:checkbox.mod').each(function () {
        var sThisVal = (this.checked ? $(this).val() : "");
+       if (sThisVal!=''){
        model.push(sThisVal);
+   }
   });
 $('input:checkbox.ft').each(function () {
        var sThisVal = (this.checked ? $(this).val() : "");
+       if (sThisVal!=''){
        ft.push(sThisVal);
+   }
   });
 $('input:checkbox.pc').each(function () {
        var sThisVal = (this.checked ? $(this).val() : "");
+       if (sThisVal!=''){
        pc.push(sThisVal);
+   }
   });
+
+
 var offset=0;
 var kw='';
+//alert(flag);
 if ((flag==1) && (sortcombo!='0')){
-    alert("enter11");
+    //alert("enter11");
     var kw=$("#searchall").val();
-    var url1="{{ route('searchtextboxnextsort') }}?cname="+cname+"&sortcombo="+sortcombo;
+    var url1="{{ route('searchtextboxsort') }}?cname="+cname+"&sortcombo="+sortcombo;
 }else 
 if (flag==1){
-    alert("enter22");
+    //alert("enter22");
     var val=$("#searchall").val();
     var url1="{{ route('searchtextboxnext') }}";
 }else 
 if ((flag==2) && (sortcombo!='0')){
-    var url1="{{ route('searchtextboxfirstnextsort') }}";
+    var kw=$("#searchallfirst").val();
+    var url1="{{ route('searchtextboxfirstsort') }}";
 }else 
 if (flag==2){
      var kw=$("#searchallfirst").val();
-    var url1="{{ route('searchtextboxfirstsort') }}?cname="+cname+"&sortcombo="+sortcombo;
+    var url1="{{ route('searchtextboxfirstsort') }}?cname="+cname+"&sortcombo="+sortcombo+"&kw="+kw;
 }else 
 if ((flag==3) &&(sortcombo!=0)){
 
     var val=$("#searchallfirst").val();
+     var kw=$("#searchall").val();
     var url1="{{ route('searchfiltersort') }}?cname="+cname+"&sortcombo="+sortcombo+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype[]="+ft+"&carpassengercapacity[]="+pc;
 }else if (flag==3){
      var val=$("#searchallfirst").val();
@@ -964,7 +991,7 @@ if (flag==4){
 $.ajax({
             type: 'get',
             url:url1,
-            data: {val:cname,val1:sortcombo,kw:kw,offset:offset},
+            data: {val:cname,val1:sortcombo,kw:kw,offset:offset,sortcombo:sortcombo},
             dataType : 'html',
             success: function (data){ 
 
@@ -1030,6 +1057,21 @@ function searchtextbox(){
 
             $(".res2").html(data);
 
+$.ajax({
+            type: 'get',
+            url: "{{ route('searchtextboxcount') }}",
+            data: {val:val},
+            dataType : 'html',
+            success: function (data) { 
+
+            $(".rescount").html(data);
+
+            }
+          });
+
+
+
+
             }
           });
 }
@@ -1044,6 +1086,22 @@ function searchfirsttextbox(){
             success: function (data) { 
 
             $(".res2").html(data);
+
+$.ajax({
+            type: 'get',
+            url: "{{ route('searchtextboxfirstcount') }}",
+            data: {val:val},
+            dataType : 'html',
+            success: function (data) { 
+
+            $(".rescount").html(data);
+
+            }
+          });
+
+
+
+
 
             }
           });

@@ -182,17 +182,21 @@
              
               <a href="/details/{{ $row->mainid}}">
                 <div class="card-body">
-                  <div class="price-div">
-                    <p class="price">AED {{ $row->price }}</p>
-                    <p class="feature-tag">{{ $row->soldreserved }}</p>
+                  <div class="price-div" style="float:right;width:auto;">
+                    <!--<p class="feature-tag1">{{----=-$row->soldreserved---}}</p>-->
+                    <p class="price" style="float:right">AED {{ $row->price }}</p>
+                    
                   </div>
                   <div class="card-img-div">
                     <img class="card-img img-fluid" src={{asset($row->image) }} alt="card image" />
+                    <div class="ribbon featured"><span>{{ $row->soldreserved }}</span></div>
                   </div>
                   <div class="car-details-div">
-                    <div class="car-name-div">
+                    <div class="car-name-div" style="float:left;width:auto;">
                       <p class="car-name">{{ $row->title }}</p>
+                     
                     </div>
+ <p class="price" style="float:right">{{$row->uniquenumber}}</p>
                     <div class="car-details">
                       <div class="km-div">
                         <p class="km">
@@ -217,7 +221,7 @@
 
           <!-- Show all button div -->
           <div class="col-12 show-btn-div">
-            <button class="btn show-all-btn">Show All</button>
+            <a href="category/All"><button class="btn show-all-btn">Show All</button></a>
           </div>
         </div>
 
