@@ -1294,5 +1294,37 @@ $sqlQuery = "select distinct seats from ads order by seats limit 0,2";
 $passengercapacity = DB::select(DB::raw($sqlQuery));
       return view('cars.pagination_data',compact('vehicletypecars'))->render();
      }
-}	
+}
+
+
+function checkuniquetitle(){
+    $val=$_GET['val'];
+    $sqlQuery = "select count(*) as count from ads where title='$val'";
+    $exists = DB::select(DB::raw($sqlQuery));
+    //dd($exists);
+    if ($exists[0]->count==1){
+        $found=1;
+    }else{
+        $found=0;
+    }
+echo $found;
+}
+
+function checkuniquetitleedit(){
+    $val=$_GET['val'];
+    $id=$_GET['id'];
+    $sqlQuery = "select count(*) as count from ads where title='$val' and id!=$id";
+    $exists = DB::select(DB::raw($sqlQuery));
+    //dd($exists);
+    if ($exists[0]->count==1){
+        $found=1;
+    }else{
+        $found=0;
+    }
+echo $found;
+}
+
+
+
+
 }

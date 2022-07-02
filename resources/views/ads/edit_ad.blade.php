@@ -16,7 +16,7 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="container">
-                        <form action="{{ route('ads.update', $ad->id) }}" method="POST" enctype="multipart/form-data">
+                        <form id="frm" onsubmit="return check();" action="{{ route('ads.update', $ad->id) }}" method="POST" enctype="multipart/form-data">
                             <div class="row">
                                 @csrf
                                 <div class="row">
@@ -53,7 +53,8 @@
                                 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Title">Title</label>
-                                        <input type="text" name="title"  required value="{{ $ad->title }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}r" placeholder="Title" autocomplete="off">
+                                        <input type="text" id="title" name="title" onblur="checktitle(this.value);" required value="{{ $ad->title }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}r" placeholder="Title" autocomplete="off">
+                                         <span class="uniquetitle" style="color:red"></span>
                                         <div class="invalid-feedback">
                                             @if (Session::has('title_error'))
                                                 {{ Session::get('title_error') }}
@@ -446,7 +447,7 @@
                                     <div style="width: 100%; height: 100%" id="address-map"></div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary my-3">Update</button>
+                            <button type="submit" onclick="return check();" class="btn btn-primary my-3">Update</button>
                         </form>
                     </div>
                 </div>
@@ -2203,6 +2204,145 @@
                 }
 
         });
+
+function checktitle(val){
+                
+var val=val;
+var id="<?php echo $ad->id;?>";
+//alert(val);
+$.ajax({
+            type: 'get',
+            url:"{{ route('checkuniquetitleedit') }}",
+            dataType: 'html',
+            'data':{val:val,id:id},
+            success: function (data) {
+                if(data==1){
+$(".uniquetitle").html("Sorry canonical_name exists");
+$("#canonical_name").val('');
+$("#title").val('');
+}else{
+    $(".uniquetitle").html('');
+}
+
+ },error:function(){
+                console.log(data);
+            }
+        }); 
+}
+
+$("#title").keypress(function(){
+    $(".uniquetitle").html("");
+  var val=val;
+var id="<?php echo $ad->id;?>";
+//alert(val);
+$.ajax({
+            type: 'get',
+            url:"{{ route('checkuniquetitleedit') }}",
+            dataType: 'html',
+            'data':{val:val,id:id},
+            success: function (data) {
+                if(data==1){
+$(".uniquetitle").html("Sorry canonical_name exists");
+$("#canonical_name").val('');
+$("#title").val('');
+}else{
+    $(".uniquetitle").html('');
+}
+
+ },error:function(){
+                console.log(data);
+            }
+        }); 
+});
+
+
+$('#title').keypress(function(event){
+ 
+   $(".uniquetitle").html("");
+  var val=val;
+var id="<?php echo $ad->id;?>";
+//alert(val);
+$.ajax({
+            type: 'get',
+            url:"{{ route('checkuniquetitleedit') }}",
+            dataType: 'html',
+            'data':{val:val,id:id},
+            success: function (data) {
+                if(data==1){
+$(".uniquetitle").html("Sorry canonical_name exists");
+$("#canonical_name").val('');
+$("#title").val('');
+}else{
+    $(".uniquetitle").html('');
+}
+
+ },error:function(){
+                console.log(data);
+            }
+        }); 
+
+});
+$("#frm").on("submit", function (e) {
+   //e.preventDefault();
+            var val=$("#title").val();
+var id="<?php echo $ad->id;?>";
+//alert(val,id);
+$.ajax({
+            type: 'get',
+            url:"{{ route('checkuniquetitleedit') }}",
+            dataType: 'html',
+            data:{val:val,id:id},
+            success: function (data) {
+                if(data>=1){
+$(".uniquetitle").html("Sorry canonical_name exists");
+$("#canonical_name").val('');
+$("#title").val('');
+//alert(data);
+e.preventDefault();
+return false;
+}else{
+    $(".uniquetitle").html('');
+    return true;
+    $("#frm").submit();
+}
+
+ }
+        });
+        });
+
+
+
+
+function check(){
+
+  var val=$("#title").val();;
+var id="<?php echo $ad->id;?>";
+//alert(id);
+$.ajax({
+            type: 'get',
+            url:"{{ route('checkuniquetitleedit') }}",
+            dataType: 'html',
+            'data':{val:val,id:id},
+            success: function (data) {
+                if(data>=1){
+$(".uniquetitle").html("Sorry canonical_name exists");
+$("#canonical_name").val('');
+$("#title").val('');
+//alert(data);
+//e.preventDefault();
+return false;
+}else{
+    $(".uniquetitle").html('');
+    return true;
+}
+
+ }
+        }); 
+
+}
+
+
+
     </script>
 
 @endpush

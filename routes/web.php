@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/category1/{id}', [App\Http\Controllers\DetailsController::class, 'carlisting1'])->name('category1.id');
 Route::get('/articles', 'App\Http\Controllers\DetailsController@index')->name('articles');
     Route::get('/', [App\Http\Controllers\ServiceController::class, 'index'])->name('index');
-//});
-//Route::get('get_ajax_data',[App\Http\Controllers\ServiceController::class, 'get_ajax_data']);
+
+Route::get('checkuniquetitle',[App\Http\Controllers\ServiceController::class, 'checkuniquetitle'])->name('checkuniquetitle');
+Route::get('checkuniquetitleedit',[App\Http\Controllers\ServiceController::class, 'checkuniquetitleedit'])->name('checkuniquetitleedit');
 //Route::get('ajax-pagi',[App\Http\Controllers\AjaxpagiController::class,'index'])->name('ajax-pagi');
 Route::get('/getModel/{id}', [App\Http\Controllers\ServiceController::class, 'getModel'])->name('getModel');
 

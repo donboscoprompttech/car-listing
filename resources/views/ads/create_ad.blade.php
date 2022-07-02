@@ -65,12 +65,15 @@
                                 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Title">Title</label>
-                                        <input type="text"  required name="title" value="{{ old('title') }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}" placeholder="Title" autocomplete="off">
+                                        <input id="title" type="text" onblur="checktitle(this.value);" required name="title" value="{{ old('title') }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}" placeholder="Title" autocomplete="off">
+                                        <span class="uniquetitle" style="color:red"></span>
                                         <div class="invalid-feedback">
                                             @if (Session::has('title_error'))
                                                 {{ Session::get('title_error') }}
                                             @endif
+                                            
                                         </div>
+
                                     </div>
                                     <div class="form-group my-2 col-md-6">
                                         <label for="CanonicalName">Canonical Name</label>
@@ -1402,7 +1405,34 @@
                 customAlert.ok()
                 window.location.href = window.location;
             }
+            
+            function checktitle(val){
                 
+var val=val;
+
+$.ajax({
+            type: 'get',
+            url:"{{ route('checkuniquetitle') }}",
+            dataType: 'html',
+            'data':{val:val},
+            success: function (data) {
+                if(data==1){
+$(".uniquetitle").html("Sorry canonical_name exists");
+$("#canonical_name").val('');
+$("#title").val('');
+}else{
+    $(".uniquetitle").html('');
+}
+
+ },error:function(){
+                console.log(data);
+            }
+        }); 
+
+
+
+
+            }    
     </script>
 
 @endpush
