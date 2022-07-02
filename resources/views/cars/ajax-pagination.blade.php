@@ -1,25 +1,8 @@
- 
+<div class="flat-card-div ">
 
 
-<style type="text/css">
-    
-.see-more-link {
-   color: #f0d32f;
-  font-size: 0.9rem;
-}
-</style>
-
-
-
-
- 
-<?php
- if (count($vehicletypecars)==0){
-    echo "sorry no result found";
-}?>
-
-  <div class="flat-card-div ">
-
+    <input type="hidden" name="count" id="count" value="<?php echo($vehicletypecarscount);?>">
+<input type="hidden" name="flag" id="flag" value="4">
  @foreach ($vehicletypecars as $row)
 
                         <div class="card ">
@@ -28,10 +11,7 @@
                                 <div class="img-div">
                                     <div class="ribbon booked"><span>{{ $row->soldreserved }}</span></div>
                                     <div class="gallery js-gallery">
-                                       <?php  
-
-
-                                       $images = DB::table('ads_images')->limit(3)->where('ads_id',$row->id)->get()
+  <?php $images = DB::table('ads_images')->limit(3)->where('ads_id',$row->id)->get()
        ;?>
        @foreach ($images as $row1)
                                     <div class="gallery-item">
@@ -44,6 +24,9 @@
 @endforeach
                                           
                                     </div>
+
+
+
                                     <script>$(document).ready(function () {
   $('.js-gallery').slick({
       slidesToShow: 1,
@@ -103,16 +86,15 @@
                                 </a>
                             </div>
                         </div>
-
-<input type="hidden" name="first" id="first" value="<?php echo $offset;?>">
-<input type="hidden" name="flag" id="flag" value="<?php echo $flag;?>">
-
                         @endforeach
-                        <?php
- if ((count($vehicletypecars)!=0)&&($currcount==10)){?>
-    <div style="text-align:right">
-<a href='#'class="see-more-link" onclick="showmoreajax();"><b>See More ></b></a>           
-<?php } ?>
-                    </div>
+                        
+                       
 
- 
+                    </div>
+<nav aria-label="Page navigation example"> 
+<br>
+
+<div id="pagination">
+  {{ $vehicletypecars->links() }}
+</div>
+                       </nav>

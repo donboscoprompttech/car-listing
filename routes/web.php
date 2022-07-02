@@ -13,13 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('test', [\App\Http\Controllers\Api\LoginController::class, 'newTest']);
 
-/*Route::get('/', function(){
-    return redirect()->route('login.index');
-});*/
-//Route::get('/', function(){
-    //return redirect()->route('index');
+Route::get('/category1/{id}', [App\Http\Controllers\DetailsController::class, 'carlisting1'])->name('category1.id');
+Route::get('/articles', 'App\Http\Controllers\DetailsController@index')->name('articles');
     Route::get('/', [App\Http\Controllers\ServiceController::class, 'index'])->name('index');
 //});
 //Route::get('get_ajax_data',[App\Http\Controllers\ServiceController::class, 'get_ajax_data']);

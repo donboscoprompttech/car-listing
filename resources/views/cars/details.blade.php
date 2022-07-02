@@ -260,28 +260,28 @@
                 <div class="input-div">
                     <div class="form-group">
                         <label for="">Full Name</label>
-                        <input type="text" class="form-control" id="fullname" name="fullname">
+                        <input type="text" class="form-control" id="fullname" name="fullname" required>
                     </div>
                     <div class="form-group">
                         <label for="">Email</label>
-                        <input type="email" class="form-control" id="email" name="email">
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                 </div>
                 <div class="input-div">
                     <div class="form-group">
                         <label for="">Subject</label>
-                        <input type="text" class="form-control" id="subject" name="subject">
+                        <input type="text" class="form-control" id="subject" name="subject" required>
                     </div>
                 </div>
                 <div class="input-div">
                     <div class="form-group">
                         <label for="">Message</label>
-                        <textarea name="message" id="message" class="form-control" rows="5"></textarea>
+                        <textarea name="message" id="message" class="form-control" rows="5" required></textarea>
                     </div>
                 </div>
                 <div class="input-div checkbox-div">
                     <div class="form-group">
-                        <input type="checkbox" id="terms">
+                        <input type="checkbox" id="terms" required>
                         <label for="terms"> <span>Accept <a href=""> terms & conditions</a></span> </label>
                     </div>
                 </div>
@@ -354,7 +354,7 @@ $('form').bind('submit', function () {
               $("#email").val('');
               $("#subject").val('');
               $("#message").val('');
-
+              $("#terms").prop('checked', false); 
             }
           });
           return false;

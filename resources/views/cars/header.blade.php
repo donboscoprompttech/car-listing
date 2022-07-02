@@ -28,20 +28,38 @@
                       </li>
 
                     @endforeach
-                      <!--<li>
-                        <a class="dropdown-item" href="#!">All Products</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#!">Popular Items</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#!">New Arrivals</a>
-                      </li>-->
+                     
 
                     </ul>
                   </div>
                   <div class="rightside">
-                    <!--<p>test</p>-->
+                    
+                  </div>
+                </div>
+              </ul>
+            </li>
+			
+			<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Category</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="flex-menu d-flex">
+                  <div class="leftside">
+                  <ul><li>
+                        <a class="dropdown-item" href="/category1/All">All Products</a>
+                      </li>
+                    @foreach ($subcategory as $row)
+<li>
+                        <a class="dropdown-item" href="/category1/{{ $row->canonical_name}}">{{ $row->name }}</a>
+                      </li>
+
+                    @endforeach
+                     
+
+                    </ul>
+                  </div>
+                  <div class="rightside">
+                    
                   </div>
                 </div>
               </ul>
