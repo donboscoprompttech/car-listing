@@ -159,7 +159,7 @@
               <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#used" type="button"
                 role="tab" aria-controls="profile" aria-selected="false">New</button>
             </li>-->
-            <li class="more-link"><a href="listing.html"><button class="nav-link">See more <i
+            <li class="more-link"><a href="category1/All"><button class="nav-link">See more <i
                     class="fa-solid fa-chevron-right"></i></button></a></li>
           </ul>
         </div>

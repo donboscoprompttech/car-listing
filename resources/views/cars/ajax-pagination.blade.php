@@ -11,7 +11,14 @@
                                 <div class="img-div">
                                     <div class="ribbon booked"><span>{{ $row->soldreserved }}</span></div>
                                     <div class="gallery js-gallery">
-  <?php $images = DB::table('ads_images')->limit(3)->where('ads_id',$row->id)->get()
+  <?php 
+
+$imgid=$row->mainid1;
+//DB::enableQueryLog();
+  $images = DB::table('ads_images')->limit(3)->where('ads_id',$imgid)->get();
+  //$quries = DB::getQueryLog();
+//dd($quries);
+  ///print_r($images)
        ;?>
        @foreach ($images as $row1)
                                     <div class="gallery-item">

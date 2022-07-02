@@ -13,7 +13,7 @@
             <li class="nav-item  active">
               <a class="nav-link" aria-current="page" href="/index">Home</a>
             </li>
-            <li class="nav-item dropdown">
+            <!--<li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">Category</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -37,7 +37,7 @@
                   </div>
                 </div>
               </ul>
-            </li>
+            </li>-->
 			
 			<li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
