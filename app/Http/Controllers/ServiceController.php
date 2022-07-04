@@ -16,6 +16,7 @@ use App\Models\SubCategory;
 use Illuminate\Support\Facades\Input;
 use App\Models\AdsInterior;
 use App\Models\AdsExterior;
+use App\Models\Dynamiccontents;
 //use Illuminate\Support\Facades\Input;
 class ServiceController extends Controller
 {
@@ -49,7 +50,10 @@ $sqlQuery = "select `motor_custome_values`.model_id, `model_msts`.`name` as `mod
 $model = DB::select(DB::raw($sqlQuery));
 $sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year";
 $year = DB::select(DB::raw($sqlQuery));
-return view('cars.index',compact('testimonial','bannerfirst','brands','vehicletype','vehicletypecars','questions','make','model','year','footerimg','question1img','question2img','videoimg','video','globe','subcategory'));
+$showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
+$showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
+$contents=Dynamiccontents::first();
+return view('cars.index',compact('testimonial','bannerfirst','brands','vehicletype','vehicletypecars','questions','make','model','year','footerimg','question1img','question2img','videoimg','video','globe','subcategory','showcarsfirst','showcarssecond','contents'));
 }
 catch (exception $e) {
 $message=$e->getMessage();
@@ -68,7 +72,11 @@ public function carsearch(){
             $questions=Questions::get();
             $footerimg = Banner::where('page','Footer')->first();
             $searchresult=Banner::where('page','searchresult')->first();
-        return view('cars.search',compact('testimonial','brands','questions','searchresult'));
+$showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
+$showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
+$contents=Dynamiccontents::first();
+
+        return view('cars.search',compact('testimonial','brands','questions','searchresult','showcarsfirst','showcarssecond'));
     
     }
     catch (exception $e) {
@@ -86,7 +94,10 @@ $vehicleexterior=AdsExterior::leftjoin("exteriormaster","ads_exterior.exterior_i
 $vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","ads_images.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where('ads.canonical_name',$id)->first();
 $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
         ->get(); 
-return view('cars.details',compact('vehicletypecars','vehicleimages','subcategory','vehicleinterior','vehicleexterior'));
+        $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
+$showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
+$contents=Dynamiccontents::first();
+return view('cars.details',compact('vehicletypecars','vehicleimages','subcategory','vehicleinterior','vehicleexterior','showcarsfirst','showcarssecond','contents'));
 }
 
 
@@ -139,6 +150,9 @@ $vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehiclety
 }
 else if (($year!='0')&&($make=='0')&&($model!='0')){
 $vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","ads_images.*","ads_images.vehicletype as type1",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->where("motor_custome_values.model_id",$model)->where("motor_custome_values.registration_year",$year)->get();
+}else{
+$vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","ads_images.*","ads_images.vehicletype as type1",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images","ads.id","=","ads_images.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where("ads_images.vehicletype",1)->get();
+
 }
 
    
@@ -256,6 +270,12 @@ $vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehiclety
        
 $vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->where('ads.price','>=',"$minpriceval")->where('ads.price','<=',"$maxpriceval")->get();
 
+    }else{
+//echo "hello";
+      $vehicletypecars = Ads::select("ads.*","ads.canonical_name as mainid","vehicletype.*","adm.*",'adm.vehicletype as type1','motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename")->leftjoin("ads_images as adm","ads.id","=","adm.ads_id")->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("vehicletype","ads.vehicletype","=","vehicletype.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->get();
+
+
+
     }
  $sqlQuery = "select `motor_custome_values`.make_id, `make_msts`.`name` as `makename` from `motor_custome_values` left join `make_msts` on `motor_custome_values`.`make_id` = `make_msts`.`id` group by make_id,makename";
 $make = DB::select(DB::raw($sqlQuery));
@@ -265,7 +285,11 @@ $sqlQuery = "select distinct registration_year from motor_custome_values order b
 $year = DB::select(DB::raw($sqlQuery));
 
 }
-        return view('cars.search',compact('testimonial','brands','questions','vehicletypecars','searchresult','footerimg','question1img','question2img','videoimg','make','model','year','maxprice','minprice','globe','subcategory'));
+
+$contents=Dynamiccontents::first();
+$showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
+$showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
+        return view('cars.search',compact('testimonial','brands','questions','vehicletypecars','searchresult','footerimg','question1img','question2img','videoimg','make','model','year','maxprice','minprice','globe','subcategory','showcarsfirst','showcarssecond','contents'));
     
     }
     catch (exception $e) {
@@ -378,10 +402,10 @@ $minprice=  DB::select(DB::raw($sqlQuery));
 function yearrender(){
     
     $start=$_GET['val'];
-    $offset=$start+4;
-$sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year limit $offset,4";
+    $offsetyear=$start+4;
+$sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year limit $offsetyear,4";
 $year = DB::select(DB::raw($sqlQuery));
-    return view('cars.caryear',compact('year','offset'));
+    return view('cars.caryear',compact('year','offsetyear'));
 }
 
 function passengercapacityrender(){    
@@ -419,10 +443,10 @@ $model = DB::select(DB::raw($sqlQuery));
 
 
 }
-public function searchfilter1count(Request $request){
+/*public function searchfilter1count(Request $request){
 
 
-    /*Ajax Search-Large Filter*/
+  
     $year=$request->year;
     //dd($year);
     $make=$request->carmake;
@@ -469,17 +493,16 @@ if ($request->searchall!=''){
     $keywordsearch=$request->searchall;
     $query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%");
 }
-//DB::enableQueryLog();
+
 $vehicletypecarscount=$query->count();
-//$quries = DB::getQueryLog();
-//dd($quries);
+
 
 echo $vehicletypecarscount;
-}
+}*/
 
-public function searchfilter1(Request $request){
+/*public function searchfilter1(Request $request){
     
-    /*Ajax Search-Large Filter*/
+    
     $year=$request->year;
     //dd($year);
     $make=$request->carmake;
@@ -547,10 +570,10 @@ $flag=3;
 $offset=0;
 $currcount=count($vehicletypecars);
     return view('cars.searchresult',compact('currcount','offset','flag','passengercapacity','subcategory','vehicletypecars','year','make','model'));
-}
-public function searchfilter2(Request $request){
+}*/
+/*public function searchfilter2(Request $request){
     
-    /*Ajax Search-Large Filter*/
+    
     $year=$request->year;
     
     $make=$request->carmake;
@@ -624,7 +647,7 @@ $flag=3;
 
 $currcount=count($vehicletypecars);
     return view('cars.searchresult',compact('currcount','offset','flag','passengercapacity','subcategory','vehicletypecars','year','make','model'));
-}
+}*/
 public function searchfilter2actsort(Request $request){
     
     /*Ajax Search-Large Filter*/
@@ -1324,7 +1347,10 @@ function checkuniquetitleedit(){
 echo $found;
 }
 
-
+function displaycars(){
+    $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
+    $showcarssecond = Ads::select("ads.*")->skip(7)->take(14)->get();
+}
 
 
 }

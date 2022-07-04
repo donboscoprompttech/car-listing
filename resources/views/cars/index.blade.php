@@ -65,10 +65,10 @@
     <div class="container px-4 px-lg-5 h-100">
       <div class="text-center text-white caption-div">
         <p class="lead header-caption mb-0">
-          FIND YOUR RIGHT CAR
+          {{$contents->firstpagebannertitle1}}
         </p>
         <p class="header-caption-bold">
-          GUARANTEED
+          {{$contents->firstpagebannertitle2}}
         </p>
       </div>
       <div class="search-div">
@@ -118,12 +118,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-4">
-          <p class="caption-text">Benefits of
+          <p class="caption-text">{{$contents->firstcolumntitle1}}
             <br />
             <span>
-              Buying</span>
-            with
-            <span class="large-span">COMPANY</span>
+             {{$contents->firstcolumntitle2}}</span>
+            
+            <span class="large-span">{{$contents->firstcolumntitle3}}</span>
           </p>
         </div>
         <div class="col-lg-4">
@@ -132,10 +132,9 @@
               <img src="{{asset('car/assets/images/Icons/red-bulb.svg')}}" class="icon" alt="icon">
             </div>
             <div class="desc-div">
-              <p class="title">Lorem Ipsum</p>
+              <p class="title">{{$contents->secondcolumntitle}}</p>
               <p class="desc">
-                Our human resource management information systems in India helps in addition to driving more informed
-                decision making, Voyon Folks HCM reduces the time you and your team spend on clerical work
+                {{$contents->secondcolumncontent}}
               </p>
             </div>
           </div>
@@ -146,10 +145,9 @@
               <img src="{{asset('car/assets/images/Icons/green-bulb.svg') }}" class="icon" alt="icon">
             </div>
             <div class="desc-div">
-              <p class="title">Lorem Ipsum</p>
+              <p class="title">{{$contents->thirdcolumntitle}}</p>
               <p class="desc">
-                Our human resource management information systems in India helps in addition to driving more informed
-                decision making, Voyon Folks HCM reduces the time you and your team spend on clerical work
+                {{$contents->thirdcolumncontent}}
               </p>
             </div>
           </div>

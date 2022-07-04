@@ -126,6 +126,8 @@ Route::group(['middleware' => ['revalidate']], function(){
         Route::post('/admin/change/password', [App\Http\Controllers\LoginController::class, 'changePassword'])->name('admin.change.password');
         Route::get('/admin/profile', [App\Http\Controllers\LoginController::class, 'profile'])->name('admin.profile');
         Route::get('/admin/profile/edit/{id}', [App\Http\Controllers\LoginController::class, 'profileEdit'])->name('admin.profile.edit');
+        Route::get('/admin/dynamiccontents/{id}', [App\Http\Controllers\DynamiccontentsController::class, 'dynamiccontents'])->name('admin.dynamiccontents');
+        Route::post('/dynamiccontents/update/{id}', [App\Http\Controllers\DynamiccontentsController::class, 'dynamiccontentsUpdate'])->name('admin.dynamiccontents.update');
         Route::post('/admin/profile/update/{id}', [App\Http\Controllers\LoginController::class, 'profileUpdate'])->name('admin.profile.update');
 
         Route::get('dashboard', [App\Http\Controllers\LoginController::class, 'dashboard'])->name('dashboard');

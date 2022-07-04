@@ -30,7 +30,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group my-2">
-                                        <label for="Email">Email</label>
+                                        <label for="Email">Admin Email</label>
                                         <input type="text" name="email" value="{{ $user->email }}" class="form-control @error('email') is-invalid @enderror" placeholder="Email" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @error('email')

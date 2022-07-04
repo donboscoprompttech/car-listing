@@ -3,12 +3,11 @@
         <div class="logo-div">
           <span><img src="assets/images/logo.png" class="img-fluid footer-logo" alt=""></span>
           <p class="logo-title">
-            GLOBAL VECHICLE REMARKETING
+             {{$contents->footertitle}}
           </p>
         </div>
         <div class="desc-div">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor et dolore magna aliqua. Ut enim
-          ad minim veniam, quis nostrud eiusmod tempor incididunt ut labore et dolore
+           {{$contents->footercontent}}
         </div>
         <div class="opening-div">
           <p class="title">OPENING HOURS</p>
@@ -24,24 +23,17 @@
         <div class="row">
           <div class="col-lg-6 col-6">
             <ul class="footer-list">
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Audi Model RX-7</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>BMW Model M3 GTR</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Bugatti Model Veyron</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Chevrolette Model S</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Lamborghini Diablo</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Maclaren Model RS</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Nissan Model Skyline</a></li>
+              @foreach ($showcarsfirst as $row)
+              <li><a href="/details/{{ $row->canonical_name}}"><i class="fas fa-angle-double-right"></i>{{$row->title}}</a></li>
+              @endforeach
+              
             </ul>
           </div>
           <div class="col-lg-6 col-6">
             <ul class="footer-list">
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Audi Model RX-7</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>BMW Model M3 GTR</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Bugatti Model Veyron</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Chevrolette Model S</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Lamborghini Diablo</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Maclaren Model RS</a></li>
-              <li><a href="#"><i class="fas fa-angle-double-right"></i>Nissan Model Skyline</a></li>
+             @foreach ($showcarssecond as $row)
+              <li><a href="/details/{{ $row->canonical_name}}"><i class="fas fa-angle-double-right"></i>{{$row->title}}</a></li>
+              @endforeach
             </ul>
           </div>
         </div>
@@ -72,9 +64,9 @@
           </div>
           <div class="col-lg-6 col-12">
             <ul class="social-links">
-              <li><a href="">Facebook</a></li>
-              <li><a href="">Twitter</a></li>
-              <li><a href="">Instagram</a></li>
+              <li><a href="https://www.facebook.com/">Facebook</a></li>
+              <li><a href="https://twitter.com/">Twitter</a></li>
+              <li><a href="https://www.instagram.com/accounts/login/">Instagram</a></li>
             </ul>
           </div>
         </div>

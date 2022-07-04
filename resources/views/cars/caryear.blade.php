@@ -9,6 +9,7 @@
                                                     <label for="{{$row->registration_year}}"><span>{{$row->registration_year}}</span></label>
 
                                                    
-                                                </div> <input id="offset" type="hidden" value={{$offset}} />
+                                                </div> 
 
 @endforeach
+<input id="offsetyear" class="offsetyear" type="hidden" value={{$offsetyear}} />

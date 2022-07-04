@@ -64,9 +64,10 @@
     <div class="container px-4 px-lg-5 h-100">
       <div class="text-center text-white caption-div">
         <p class="lead header-caption mb-0">
-          Find your dream car
+           {{$contents->firstpagebannertitle1}}
         </p>
-        <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+        <p class="desc"> {{$contents->secondpagebannertitle2}},
+          {{$contents->secondpagebannertitle3}} </p>
       </div>
 
       <div class="toggle-div">

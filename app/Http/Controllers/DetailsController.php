@@ -17,6 +17,7 @@ use DB;
 use Exception;
 use App\Models\Questions;
 use App\Models\SubCategory;
+use App\Models\Dynamiccontents;
 class DetailsController extends Controller
 {
     //
@@ -394,10 +395,13 @@ else{
     $minprice=  DB::select(DB::raw($sqlQuery)); 
     //$subcategory=array();
     //dd($vehicletypecarscount);
+    $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
+$showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
+$contents=Dynamiccontents::first();
     if($request->ajax()){
-        return view('cars.ajax-pagination ',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount')); 
+        return view('cars.ajax-pagination ',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount','showcarsfirst','showcarssecond','contents')); 
     }     
-        return view('cars.listing1',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount'));  
+        return view('cars.listing1',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount','showcarsfirst','showcarssecond','contents'));  
     }
   
 

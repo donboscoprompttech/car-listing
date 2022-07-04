@@ -45,6 +45,9 @@
   background-color: #ffffff;
   border-color: #f0d32f;
 }
+div.ex1 {
+  overflow-y: scroll;
+}
 </style>
 
 </head>
@@ -56,11 +59,11 @@
     <!-- Header -->
     <header class="bg-dark gvr-header listing-header">
         <div class="header-div">
-            <p class="title">New Cars</p>
+            <p class="title">Category</p>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Homepage</a></li>
-                    <li class="breadcrumb-item"><a href="#">New Cars</a></li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Category</a></li>
                 </ol>
             </nav>
         </div>
@@ -98,16 +101,17 @@
                                     </h2>
                                     <div id="yearPanel-collapseOne" class="accordion-collapse collapse show"
                                         aria-labelledby="year-panel">
-                                        <div class="accordion-body">
+                                        <div class="accordion-body ex1">
                                             <span class="caryear">
+                                                 <input id="offsetyear"class="offsetyear" type="text" value="0" />
 @foreach ($year as $row)
 <div class="form-group">
 
                                                     <input type="checkbox" id="{{$row->registration_year}}" name="year[]" value="{{$row->registration_year}}" class="filgroup year">
                                                     <label for="{{$row->registration_year}}"><span>{{$row->registration_year}}</span></label>
 
-                                                    <?php $offset=0;?>
-                                                    <input id="offset" value=0 />
+                                                    
+              
                                                 </div>
 
 @endforeach
@@ -767,15 +771,20 @@ $("#priceflag").val(1);
 
 });
     
-function showmore(offset){
-var val=$("#offset").val();
+function showmore(){
+var val=$(".offsetyear").val();
+var val1=parseInt(val)+4;
+//alert(val);
 $.ajax({
             type: 'get',
             url:"{{ route('yearrender') }}",
             dataType: 'html',
-            'data':{val:val},
+            data:{val:val},
             success: function (data) {
-$(".caryear").html(data);
+//$(".caryear").html(data);
+$(".caryear").append(data);
+
+$(".offsetyear").val(val1);
  },error:function(){
                 console.log(data);
             }
@@ -791,7 +800,8 @@ $.ajax({
             dataType: 'html',
             'data':{val:val},
             success: function (data) {
-$(".carmake").html(data);
+//$(".carmake").html(data);
+$(".carmake").append(data);
  },error:function(){
                 console.log(data);
             }
@@ -807,7 +817,8 @@ $.ajax({
             dataType: 'html',
             'data':{val:val},
             success: function (data) {
-$(".carmodel").html(data);
+//$(".carmodel").html(data);
+$(".carmodel").append(data);
  },error:function(){
                 console.log(data);
             }
@@ -822,8 +833,8 @@ $.ajax({
             dataType: 'html',
             'data':{val:val},
             success: function (data) {
-$(".carfueltype").html(data);
-
+//$(".carfueltype").html(data);
+$(".carfueltype").append(data);
  },error:function(){
                 console.log(data);
             }
@@ -841,8 +852,8 @@ $.ajax({
             dataType: 'html',
             'data':{val:val},
             success: function (data) {
-$(".carpassengercapacity").html(data);
-
+//$(".carpassengercapacity").html(data);
+$(".carpassengercapacity").append(data);
  },error:function(){
                 console.log(data);
             }
@@ -858,6 +869,7 @@ $('.filter-reset-btn').click(function() {
     $(".filgroup").prop("checked", false);
     $('.filgroup').val('');
     $("#priceflag").val(0);
+    $("#offsetyear").val(0);
     location.reload();
 });
 

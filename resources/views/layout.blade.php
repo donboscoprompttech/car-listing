@@ -87,6 +87,85 @@
                                 </div>
 
                             @endif
+
+
+<a class="nav-link collapsed {{ request()->is('*role*') ? 'active' : '' }} {{ request()->is('*admin/user*') ? 'active' : '' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAuthority1" aria-expanded="false" aria-controls="collapseUsers">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-university"></i></div>
+                                    Masters
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse {{ request()->is('*role*') ? 'show' : '' }} {{ request()->is('*admin/user*') ? 'show' : '' }}" id="collapseAuthority1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                   <!-- <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link {{ request()->is('*role*') ? 'active' : '' }}" href="{{ route('role.index') }}">Roles</a>
+                                    </nav>
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link {{ request()->is('*admin/user*') ? 'active' : '' }}" href="{{ route('admin_user.index') }}">Admin Users</a>
+                                    </nav>-->
+
+
+@if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::Make))
+<nav class="sb-sidenav-menu-nested nav">
+<a class="nav-link {{ request()->is('make*') ? 'active' : '' }}" href="{{ route('make.index') }}">
+    
+    Make
+</a>
+</nav>
+@endif
+@if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::model))
+<nav class="sb-sidenav-menu-nested nav">
+<a class="nav-link {{ request()->is('model*') ? 'active' : '' }}" href="{{ route('model.index') }}">
+    
+    Model
+</a>
+</nav>
+@endif
+@if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::varient))
+<nav class="sb-sidenav-menu-nested nav">
+<a class="nav-link {{ request()->is('varient*') ? 'active' : '' }}" href="{{ route('varient.index') }}">
+    
+    Varient
+</a></nav>
+@endif
+
+@if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::interior))
+<nav class="sb-sidenav-menu-nested nav">
+<a class="nav-link {{ request()->is('interior*') ? 'active' : '' }}" href="{{ route('interior.index') }}">
+    
+   Interior
+</a></nav>
+@endif
+@if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::exterior))
+<nav class="sb-sidenav-menu-nested nav">
+<a class="nav-link {{ request()->is('varient*') ? 'active' : '' }}" href="{{ route('exterior.index') }}">
+    
+   Exterior
+</a></nav>
+@endif
+        
+
+
+
+
+
+
+
+
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             
                             @if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::MANAGE_USER))
                                 
@@ -214,47 +293,7 @@
 @endif
 
                          
- @if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::Make))
-
-<a class="nav-link {{ request()->is('make*') ? 'active' : '' }}" href="{{ route('make.index') }}">
-    <div class="sb-nav-link-icon"><i class="fas fa-balance-scale-right"></i></div>
-    Make
-</a>
-@endif
-@if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::model))
-
-<a class="nav-link {{ request()->is('model*') ? 'active' : '' }}" href="{{ route('model.index') }}">
-    <div class="sb-nav-link-icon"><i class="fas fa-balance-scale-right"></i></div>
-    Model
-</a>
-@endif
-@if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::varient))
-
-<a class="nav-link {{ request()->is('varient*') ? 'active' : '' }}" href="{{ route('varient.index') }}">
-    <div class="sb-nav-link-icon"><i class="fas fa-balance-scale-right"></i></div>
-    Varient
-</a>
-@endif
-
-@if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::interior))
-
-<a class="nav-link {{ request()->is('interior*') ? 'active' : '' }}" href="{{ route('interior.index') }}">
-    <div class="sb-nav-link-icon"><i class="fas fa-balance-scale-right"></i></div>
-   Interior
-</a>
-@endif
-@if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::exterior))
-
-<a class="nav-link {{ request()->is('varient*') ? 'active' : '' }}" href="{{ route('exterior.index') }}">
-    <div class="sb-nav-link-icon"><i class="fas fa-balance-scale-right"></i></div>
-   Exterior
-</a>
-@endif
-        
-
-
-
-
+ 
 
 
 
