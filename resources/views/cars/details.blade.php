@@ -42,8 +42,8 @@
             <p class="title">{{$vehicletypecars->title}}</p>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Homepage</a></li>
-                    <li class="breadcrumb-item"><a href="#">New Cars</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Details</a></li>
                 </ol>
             </nav>
         </div>
@@ -101,9 +101,9 @@
                             <p>{{$vehicletypecars->placename}},{{$vehicletypecars->countryname}}</p>
                         </div>
                         <div class="button-div">
-                            <button class="btn call-btn"><i class="fa-solid fa-phone-volume"></i>{{$vehicletypecars->countryname}}</button>
-                            <button class="btn enquiry-btn"><span><img src="{{ asset('car/assets/images/Icons/enquiry.svg') }}"
-                                        class="img-fluid detail-icon" alt=""></span>Enquire Now</button>
+                            <button class="btn call-btn"><i class="fa-solid fa-phone-volume"></i>{{$vehicletypecars->phone}}</button>
+                            <a href="#jump" ><button class="btn enquiry-btn"><span><img src="{{ asset('car/assets/images/Icons/enquiry.svg') }}"
+                                        class="img-fluid detail-icon" alt=""></span>Enquire Now</button></a>
                         </div>
                     </div>
                 </div>
@@ -235,7 +235,7 @@
 
                     <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
                         <div class="map-div">
-                            <p> <i class="fa-solid fa-location-dot"></i> United Arab Emirates, Ajman, Ajman</p>
+                            <p> <i class="fa-solid fa-location-dot"></i> United Arab Emirates, Ajman</p>
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57663.8079630947!2d55.47862375261173!3d25.405212352623007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5764dd8fbe79%3A0xcda090de6445a819!2sAjman%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1652016178959!5m2!1sen!2sin"
                                 style="border:0;" class="map-frame" allowfullscreen="" loading="lazy"
@@ -248,15 +248,14 @@
     </section>
 
     <section class="contact-section">
-        <p class="section-title">Enquire Now</p>
+        <a id="jump"><p class="section-title">Enquire Now</p></a>
         <p class="desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea.
+            {{$contents->enquiryContent}}
         </p>
         <div class="form-div">
             <form action="#" id="frm" class="contact-form">
                 @csrf
+                <input type="hidden" value="{{$vehicletypecars->mainid1}}" class="form-control" id="vehicleid" name="vehicleid" required>
                 <div class="input-div">
                     <div class="form-group">
                         <label for="">Full Name</label>

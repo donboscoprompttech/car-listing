@@ -180,6 +180,78 @@
                                     </div>
                                 </div>
 
+<div class="row">
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="bottompagelefttitle">BottompageLefttitle</label>
+                                        <input type="text" name="bottompagelefttitle" value="{{ $contents->bottompagelefttitle }}" class="form-control @error('name') is-invalid @enderror" placeholder="bottompagelefttitle" autocomplete="off">
+                                        <div class="invalid-feedback">
+                                            @if (Session::has('title_error'))
+                                                {{ Session::get('title_error') }}
+                                            @endif
+                                            
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="bottompageleftcontent">BottompageLeftcontent</label>
+                                        <textarea name="bottompageleftcontent" class="form-control {{ Session::has('description_error') ? 'is-invalid' : '' }}" cols="30" rows="3" placeholder="bottompageleftcontent" autocomplete="off">{{ $contents->bottompageleftcontent }}</textarea>
+                                        <div class="invalid-feedback">
+                                            @error('canonical_name')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+
+<div class="row">
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="bottompagerighttitle">BottompageRighttitle</label>
+                                        <input type="text" name="bottompagerighttitle" value="{{ $contents->bottompagerighttitle }}" class="form-control @error('name') is-invalid @enderror" placeholder="bottompagerighttitle" autocomplete="off">
+                                        <div class="invalid-feedback">
+                                            @if (Session::has('title_error'))
+                                                {{ Session::get('title_error') }}
+                                            @endif
+                                            
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="bottompagerightContent">BottompageRightContent</label>
+                                        <textarea name="bottompagerightContent" class="form-control {{ Session::has('description_error') ? 'is-invalid' : '' }}" cols="30" rows="3" placeholder="bottompagerightContent" autocomplete="off">{{ $contents->bottompagerightContent }}</textarea>
+                                        <div class="invalid-feedback">
+                                            @error('canonical_name')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+
+<div class="row">
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="faqContent">FaqContent</label>
+                                        <textarea name="faqContent" class="form-control {{ Session::has('description_error') ? 'is-invalid' : '' }}" cols="30" rows="3" placeholder="faqContent" autocomplete="off">{{ $contents->faqContent }}</textarea>
+                                        <div class="invalid-feedback">
+                                            @if (Session::has('title_error'))
+                                                {{ Session::get('title_error') }}
+                                            @endif
+                                            
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="enquiryContent">EnquiryContent</label>
+                                        <textarea name="enquiryContent" class="form-control {{ Session::has('description_error') ? 'is-invalid' : '' }}" cols="30" rows="3" placeholder="enquiryContent" autocomplete="off">{{ $contents->enquiryContent }}</textarea>
+                                        <div class="invalid-feedback">
+                                            @error('canonical_name')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
 
 

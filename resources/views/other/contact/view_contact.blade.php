@@ -18,6 +18,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
+                                    <p class="col-md-6">Car Title :</p>
+                                    <p class="col-md-6">{{ $contact->title }}</p>
+                                </div>
+                                <div class="row">
                                     <p class="col-md-6">Name :</p>
                                     <p class="col-md-6">{{ $contact->name }}</p>
                                 </div>
@@ -48,7 +52,7 @@
                                     </div>
                                 @endif
                                 <div class="row">
-                                    <button class="btn btn-primary col-md-3" data-toggle="modal" data-target="#exampleModal">Replay</button>
+                                    <button class="btn btn-primary col-md-3" data-toggle="modal" data-target="#exampleModal">Reply</button>
                                 </div>
                             </div>
                         </div>

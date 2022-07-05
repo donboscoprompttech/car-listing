@@ -9,6 +9,6 @@
                                                     <label for="{{$row->fuel_type}}"><span>{{$row->fuel_type}}</span></label>
 
                                                    
-                                                </div> <input id="offsetfueltype" type="hidden" value={{$offsetfueltype}} />
+                                                </div> <input class="offsetfueltype" id="offsetfueltype" type="hidden" value={{$offsetfueltype}} />
 
 @endforeach

@@ -157,13 +157,7 @@ class AdsController extends Controller
             $phoneHideFlag = 0;
         }
 
-        $seller                     = new SellerInformation();
-        $seller->name               = $request->seller_name;
-        $seller->email              = $request->email;
-        $seller->phone              = $request->Phone;
-        $seller->phone_hide_flag    = $phoneHideFlag;
-        $seller->address            = $request->customer_address;
-        $seller->save();
+        
         
         $categoryField = CategoryField::where('category_id', $request->category)
         ->with(['Field' => function($a){
@@ -219,6 +213,16 @@ if ($request->place==1){
         $ad->soldreserved= $request->soldreserved;
         $ad->save();
 
+
+
+$seller                     = new SellerInformation();
+        $seller->name               = $request->seller_name;
+        $seller->email              = $request->email;
+        $seller->phone              = $request->Phone;
+        $seller->phone_hide_flag    = $phoneHideFlag;
+        $seller->address            = $request->customer_address;
+        $seller->ads_id              = $ad->id;
+        $seller->save();
         if($request->hasFile('image')){
            $n=0;
             foreach($request->image as $row){
@@ -675,6 +679,7 @@ $exterior=exteriorMaster::select('exteriormaster.*','exteriormaster.value as val
             'phone'             => $request->phone,
             'phone_hide_flag'   => $phoneHideFlag,
             'address'           => $request->customer_address,
+            'ads_id'            =>$id,
         ]);
 
         Ads::where('id', $id)

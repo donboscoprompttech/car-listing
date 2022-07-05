@@ -33,7 +33,12 @@ $request->validate([
             'secondpagebannertitle1'     => 'required',
             'secondpagebannertitle2'      => 'required',
             'secondpagebannertitle3'     => 'required',
-            
+            'bottompagelefttitle'  => 'required',
+            'bottompageleftcontent'  => 'required',
+            'bottompagerighttitle'  => 'required',
+            'bottompagerightContent'  => 'required',
+            'faqContent'  => 'required',
+            'enquiryContent'  => 'required',
         ]);
 //print_r($request->all());
 //dd($id);
@@ -53,6 +58,12 @@ $request->validate([
             'secondpagebannertitle1'     => $request->secondpagebannertitle1,
 'secondpagebannertitle2'      => $request->secondpagebannertitle2,
             'secondpagebannertitle3'     => $request->secondpagebannertitle3,
+            'bottompagelefttitle'  => $request->bottompagelefttitle,
+            'bottompageleftcontent'  => $request->bottompageleftcontent,
+            'bottompagerighttitle'  => $request->bottompagerighttitle,
+            'bottompagerightContent'  => $request->bottompagerightContent,
+            'faqContent'  => $request->faqContent,
+            'enquiryContent'  => $request->enquiryContent,
 
 
         ]);

@@ -9,6 +9,6 @@
                                                     <label for="{{$row->make_id}}"><span>{{$row->name}}</span></label>
 
                                                    
-                                                </div> <input id="offsetmake" type="hidden" value={{$offset}} />
+                                                </div> <input class="offsetmake" id="offsetmake" type="hidden" value={{$offset}} />
 
 @endforeach

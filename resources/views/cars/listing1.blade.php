@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Listing</title>
+    <title>Category</title>
     <!-- Favicon-->
     <!--<link rel="icon" type="image/x-icon" href="assets/images/logo.png" />-->
     <!-- Bootstrap icons-->
@@ -62,7 +62,7 @@ div.ex1 {
             <p class="title">Category</p>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Category</a></li>
                 </ol>
             </nav>
@@ -103,7 +103,7 @@ div.ex1 {
                                         aria-labelledby="year-panel">
                                         <div class="accordion-body ex1">
                                             <span class="caryear">
-                                                 <input id="offsetyear"class="offsetyear" type="text" value="0" />
+                                                 <input id="offsetyear"class="offsetyear" type="hidden" value="0" />
 @foreach ($year as $row)
 <div class="form-group">
 
@@ -146,7 +146,7 @@ div.ex1 {
                                                     <label for="{{$row->make_id}}"><span>{{$row->name}}</span></label>
 
                                                     <?php $offset=0;?>
-                                                    <input id="offsetmake" value=0 />
+                                                    <input class="offsetmake" id="offsetmake" value=0 />
                                                 </div>
 
 @endforeach
@@ -192,7 +192,7 @@ div.ex1 {
                                                     <label for="{{$row->model_id}}"><span>{{$row->name}}</span></label>
 
                                                     <?php $offsetmodel=0;?>
-                                                    <input id="offsetmodel" value=0 />
+                                                    <input class="offsetmodel" id="offsetmodel" value=0 />
                                                 </div>
 
 @endforeach
@@ -232,7 +232,7 @@ div.ex1 {
                                                     <label for="{{$row->fuel_type}}"><span>{{$row->fuel_type}}</span></label>
 
                                                     <?php $offsetfuel_type=0;?>
-                                                    <input id="offsetfueltype" value=0 />
+                                                    <input class="offsetfueltype" id="offsetfueltype" value=0 />
                                                 </div>
 
 @endforeach
@@ -257,7 +257,7 @@ div.ex1 {
                                         aria-labelledby="passengerpanel-headingTwo">
                                         <div class="accordion-body">
 
-
+<input type=hidden class="offsetpassengercapacity" id="offsetpassengercapacity" value=0 />
 
 <span class="carpassengercapacity">
 @foreach ($passengercapacity as $row)
@@ -267,7 +267,7 @@ div.ex1 {
                                                     <label for="{{$row->seats}}"><span>{{$row->seats}}</span></label>
 
                                                     <?php $offsetpassengercapacity=0;?>
-                                                    <input id="offsetpassengercapacity" value=0 />
+                                                    
                                                 </div>
 
 @endforeach
@@ -746,6 +746,13 @@ $("#bt3").click(function(){
         $("#flagajax").val(3);
     });
 $(function() {
+$(".offsetyear").val(0);
+    $(".offsetpassengercapacity").val(0);
+    $(".offsetfueltype").val(0);
+    $(".offsetmake").val(0);
+    $(".offsetmodel").val(0);
+
+    
   $( ".range-bar" ).slider({
     range: true,
     min: <?php echo $minprice[0]->price;?>,
@@ -793,7 +800,8 @@ $(".offsetyear").val(val1);
 
 
 function showmoremake(offset){
-var val=$("#offsetmake").val();
+var val=$(".offsetmake").val();
+var val1=parseInt(val)+4;
 $.ajax({
             type: 'get',
             url:"{{ route('makerender') }}",
@@ -802,6 +810,7 @@ $.ajax({
             success: function (data) {
 //$(".carmake").html(data);
 $(".carmake").append(data);
+$(".offsetmake").val(val1);
  },error:function(){
                 console.log(data);
             }
@@ -810,7 +819,8 @@ $(".carmake").append(data);
 
 
 function showmoremodel(offset){
-var val=$("#offsetmodel").val();
+var val=$(".offsetmodel").val();
+var val1=parseInt(val)+4;
 $.ajax({
             type: 'get',
             url:"{{ route('modelrender') }}",
@@ -819,6 +829,7 @@ $.ajax({
             success: function (data) {
 //$(".carmodel").html(data);
 $(".carmodel").append(data);
+$(".offsetmodel").val(val1);
  },error:function(){
                 console.log(data);
             }
@@ -827,6 +838,7 @@ $(".carmodel").append(data);
 
 function showmorefueltype(offset){
 var val=$("#offsetfueltype").val();
+var val1=parseInt(val)+4;
 $.ajax({
             type: 'get',
             url:"{{ route('fueltyperender') }}",
@@ -835,6 +847,7 @@ $.ajax({
             success: function (data) {
 //$(".carfueltype").html(data);
 $(".carfueltype").append(data);
+$(".offsetfueltype").val(val1);
  },error:function(){
                 console.log(data);
             }
@@ -845,6 +858,7 @@ $(".carfueltype").append(data);
 function showmorepassengercapacity(offset){
 
 var val=$("#offsetpassengercapacity").val();
+var val1=parseInt(val)+4;
 
 $.ajax({
             type: 'get',
@@ -854,6 +868,7 @@ $.ajax({
             success: function (data) {
 //$(".carpassengercapacity").html(data);
 $(".carpassengercapacity").append(data);
+$(".offsetpassengercapacity").val(val1);
  },error:function(){
                 console.log(data);
             }
@@ -869,7 +884,11 @@ $('.filter-reset-btn').click(function() {
     $(".filgroup").prop("checked", false);
     $('.filgroup').val('');
     $("#priceflag").val(0);
-    $("#offsetyear").val(0);
+    $(".offsetyear").val(0);
+    $(".offsetpassengercapacity").val(0);
+    $(".offsetfueltype").val(0);
+    $(".offsetmake").val(0);
+    $(".offsetmodel").val(0);
     location.reload();
 });
 

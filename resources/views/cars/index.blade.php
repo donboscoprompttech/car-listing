@@ -72,7 +72,7 @@
         </p>
       </div>
       <div class="search-div">
-        <form action="{{ url('/searchresult') }}" method="post">
+        <form action="{{ url('/searchresult') }}" method="get">
           @csrf
           <input type="hidden" name="pageflag" value="1">
         <div class="row m-0">
@@ -293,18 +293,16 @@
     <div class="row mx-0">
       <div class="col-lg-5 col-md-12 col-12 p-0">
         <div class="image-div">
-          <p class="main-heading">LIMITED SPECIAL OFFER</p>
-          <p class="desc">LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO UT ENIM AD MINIM VENIAM, QUIS
-            NOSTRUD</p>
+          <p class="main-heading">{{$contents->bottompagelefttitle}}</p>
+          <p class="desc">{{$contents->bottompageleftcontent}}</p>
         </div>
         <!-- <img src="assets/images/special-offer.png" class="special-img img-fluid" alt="special offer image"> -->
       </div>
       <div class="col-lg-7 col-md-12 col-12 accordion-div">
         <div class="row heading-row">
-          <p class="sub-heading">OUR ADVANTAGES YOU NEED TO KNOW</p>
-          <p class="main-heading"><span>125</span>K+ HAPPY CLIENTS</p>
-          <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam, quis
-            nostrud</p>
+          <p class="sub-heading">{{$contents->bottompagerighttitle}}</p>
+          <p class="main-heading"><span>125</span>{{$contents->bottompagerightContent}}</p>
+          <p class="desc">{{$contents->faqContent}}</p>
         </div>
 
 

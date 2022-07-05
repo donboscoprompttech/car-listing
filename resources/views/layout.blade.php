@@ -153,7 +153,10 @@
                                 </div>
 
 
-
+<a class="nav-link {{ request()->is('*users*') ? 'active' : '' }}" href="{{'/admin/dynamiccontents/1'}}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                    Dynamic Contents
+                                </a>
 
 
 

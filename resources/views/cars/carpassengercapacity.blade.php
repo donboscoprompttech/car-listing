@@ -9,6 +9,6 @@
                                                     <label for="{{$row->seats}}"><span>{{$row->seats}}</span></label>
 
                                                    
-                                                </div> <input id="offsetpassengercapacity" type="hidden" value={{$offsetpassengercapacity}} />
+                                                </div> <input class="offsetpassengercapacity" id="offsetpassengercapacity" type="hidden" value={{$offsetpassengercapacity}} />
 
 @endforeach

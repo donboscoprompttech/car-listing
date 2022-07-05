@@ -21,6 +21,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Title</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
@@ -31,6 +32,7 @@
                             @foreach ($contact as $row)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $row->title }}</td>
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->email }}</td>
                                     @if ($row->status == 0)

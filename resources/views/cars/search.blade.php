@@ -72,11 +72,11 @@
 
       <div class="toggle-div">
         <div class="toggle-switch">
-          <label class="toggle-switch-light" onclick="">
+          <label class="toggle-switch-light" >
             <input type="checkbox" checked>
             <span>
-              <span>Rent</span>
-              <span>Sale</span>
+              <span onclick="clicked('Sold')">Sold</span>
+              <span onclick="clicked('Reserved')">Reserved</span>
             </span>
             <a class="btn btn-primary"></a>
             </input>
@@ -84,7 +84,7 @@
         </div>
       </div>
       <div class="search-div">
-        <form action="{{ url('/searchresult') }}" method="post">
+        <form action="{{ url('/searchresult') }}" method="get">
           @csrf<input type="hidden" name="pageflag" value="2">
           <input type="hidden" name="priceflag" id="priceflag" value="0">
         <div class="row m-0">
@@ -167,7 +167,7 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
             <div class="container-fluid home-cars-section card-listing-div">
-              <div class="row search-card-row">
+              <div class="row search-card-row sertab">
                 <!-- Car Card -->
                 @foreach ($vehicletypecars as $row)
 
@@ -184,8 +184,8 @@
                         </div>
                         <div class="car-details-div">
                           <div class="tag-div">
-                            <p>NEW</p>
-                          </div><div style="display:inline"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$row->uniquenumber}}</div>
+                            <p>{{$row->uniquenumber}}</p>
+                          </div>
                           <div class="car-name-div">
                             <p class="car-name">{{ $row->title }}</p>
                           </div>
@@ -193,7 +193,7 @@
                             <p class="price">AED{{ $row->price }} <span class="strike-price">AED {{ $row->price }}</span></p>
                           </div>
                           <div class="car-details">
-                            <p class="location w-100">Dubai, UAE</p>
+                            <p class="location w-100">{{$row->placename}},{{$row->countryname}}</p>
 
                             <div class="info-div row">
                               <div class="col-lg-5 col-5">
@@ -505,6 +505,21 @@ $("#priceflag").val(1);
     });
 
 });
+function clicked(val){
+//alert(val);
+ $.ajax({
+           url: 'getVehicles',
+           type: 'get',
+           dataType: 'html',
+           data:{val:val},
+           success: function(response){
+$(".sertab").html(response);
+             }
+});
+
+
+
+}
     </script>
 </body>
 

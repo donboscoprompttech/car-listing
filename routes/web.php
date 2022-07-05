@@ -20,7 +20,7 @@ Route::get('/articles', 'App\Http\Controllers\DetailsController@index')->name('a
 
 Route::get('checkuniquetitle',[App\Http\Controllers\ServiceController::class, 'checkuniquetitle'])->name('checkuniquetitle');
 Route::get('checkuniquetitleedit',[App\Http\Controllers\ServiceController::class, 'checkuniquetitleedit'])->name('checkuniquetitleedit');
-//Route::get('ajax-pagi',[App\Http\Controllers\AjaxpagiController::class,'index'])->name('ajax-pagi');
+
 Route::get('/getModel/{id}', [App\Http\Controllers\ServiceController::class, 'getModel'])->name('getModel');
 
 Route::get('/details/{id}', [App\Http\Controllers\ServiceController::class, 'detailsshow'])->name('details');
@@ -34,49 +34,30 @@ Route::get('/passengercapacityrender', [App\Http\Controllers\ServiceController::
 
 Route::get('/makerender', [App\Http\Controllers\ServiceController::class, 'makerender'])->name('makerender');
 Route::get('/modelrender', [App\Http\Controllers\ServiceController::class, 'modelrender'])->name('modelrender');
-Route::post('/searchresult', [App\Http\Controllers\ServiceController::class, 'searchresult'])->name('searchresult');
+Route::get('/searchresult', [App\Http\Controllers\ServiceController::class, 'searchresult'])->name('searchresult');
 Route::post('/searchresultfilter', [App\Http\Controllers\ServiceController::class, 'searchresultfilter'])->name('searchresultfilter');
 Route::get('/forgotpassword/index', [App\Http\Controllers\LoginController::class, 'forgotPasswordIndex'])->name('forgotpassword.index');
 Route::post('/forgotpassword/store', [App\Http\Controllers\LoginController::class, 'forgotPasswordStore'])->name('forgotpassword.store');
 Route::get('/index', [App\Http\Controllers\ServiceController::class, 'index'])->name('index');
-Route::get('/searchfilter', 'App\Http\Controllers\ServiceController@searchfilter1')->name('searchfilter');
+Route::get('getVehicles',[App\Http\Controllers\ServiceController::class, 'getVehicles'])->name('getVehicles');
+/*Route::get('/searchfilter', 'App\Http\Controllers\ServiceController@searchfilter1')->name('searchfilter');
 Route::get('/searchfiltercount', 'App\Http\Controllers\ServiceController@searchfilter1count')->name('searchfiltercount');
 Route::get('/searchfilternext', 'App\Http\Controllers\ServiceController@searchfilter2')->name('searchfilternext');
-
 Route::get('/searchfiltersort', 'App\Http\Controllers\ServiceController@searchfilter2actsort')->name('searchfiltersort');
-
-
-
 Route::get('/searchfilternextsort', 'App\Http\Controllers\ServiceController@searchfilter2sort')->name('searchfilternextsort');
-
-
 Route::get('/searchtextbox', 'App\Http\Controllers\ServiceController@searchtextbox')->name('searchtextbox');
-
 Route::get('/searchtextboxcount', 'App\Http\Controllers\ServiceController@searchtextboxcount')->name('searchtextboxcount');
-
-
 Route::get('/searchtextboxnext', 'App\Http\Controllers\ServiceController@searchtextboxnext')->name('searchtextboxnext');
-
 Route::get('/searchtextboxsort', 'App\Http\Controllers\ServiceController@searchtextboxsort')->name('searchtextboxsort');
 Route::get('/searchtextboxsortnext', 'App\Http\Controllers\ServiceController@searchtextboxsortnext')->name('searchtextboxsortnext');
 Route::get('/searchtextboxnextsort', 'App\Http\Controllers\ServiceController@searchtextboxnextsort')->name('searchtextboxnextsort');
-
-
-
 Route::get('/searchtextboxfirst', 'App\Http\Controllers\ServiceController@searchtextboxfirst')->name('searchtextboxfirst');
 Route::get('/searchtextboxfirstcount', 'App\Http\Controllers\ServiceController@searchtextboxfirstcount')->name('searchtextboxfirstcount');
-
-
-
-
 Route::get('/searchtextboxfirstnext', 'App\Http\Controllers\ServiceController@searchtextboxfirstnext')->name('searchtextboxfirstnext');
 Route::get('/searchtextboxfirstnextsort', 'App\Http\Controllers\ServiceController@searchtextboxfirstnextsort')->name('searchtextboxfirstnextsort');
 Route::get('/searchtextboxfirstsort', 'App\Http\Controllers\ServiceController@searchtextboxfirstsort')->name('searchtextboxfirstsort');
 Route::get('/searchtextboxfirstsortnext', 'App\Http\Controllers\ServiceController@searchtextboxfirstsortnext')->name('searchtextboxfirstsortnext');
-
-
-
-
+*/
 Route::post('/enquiryprocess', [App\Http\Controllers\DetailsController::class, 'enquiryprocess'])->name('enquiryprocess');
 Route::get('/category/{id}', [App\Http\Controllers\ServiceController::class, 'carlisting'])->name('category.id');
 
@@ -360,4 +341,3 @@ Route::group(['middleware' => ['revalidate']], function(){
     
 });
 
-// Route::view('/test', 'enquiry_replay');

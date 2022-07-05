@@ -11,8 +11,8 @@
         </div>
         <div class="opening-div">
           <p class="title">OPENING HOURS</p>
-          <p class="open-desc">Mon-Sat: 07.00am - 18.00pm</p>
-          <p class="open-desc">Sunday is closed</p>
+          <p class="open-desc">{{$profile->openingdates}}</p>
+          <p class="open-desc">{{$profile->closingdates}}</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-8">
@@ -44,13 +44,13 @@
         </div>
         <ul class="footer-list">
           <li><a href=""><span class="icon-span"><img src="{{ asset('car/assets/images/Icons/location.svg') }}" class="footer-icon"
-                  alt=""></span>Dubai , 128 Town, Dubai 1367 UAE</a></li>
+                  alt=""></span>{{$profile->address}}</a></li>
           <li><a href=""><span class="icon-span"><img src="{{ asset('car/assets/images/Icons/phone-call.svg') }}" class="footer-icon"
-                  alt=""></span>Phone : 1 - 877 - 3453 - 3726</a></li>
+                  alt=""></span>Phone : {{$profile->phoneno}}</a></li>
           <li><a href=""><span class="icon-span"><img src="{{ asset('car/assets/images/Icons/fax.svg') }}" class="footer-icon"
-                  alt=""></span>FAX : 1 - 877 - 2341 - 1283</a></li>
+                  alt=""></span>FAX : {{$profile->fax}}</a></li>
           <li><a href=""><span class="icon-span"><img src="{{ asset('car/assets/images/Icons/email.svg') }}" class="footer-icon"
-                  alt=""></span>Email : info@carlisting.com</a></li>
+                  alt=""></span>Email : {{$profile->contactemail}}</a></li>
         </ul>
       </div>
     </div>

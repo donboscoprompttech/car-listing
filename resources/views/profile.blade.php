@@ -24,6 +24,36 @@
                                     <p class="col-md-6">Email :</p>
                                     <p class="col-md-6">{{ $user->email }}</p>
                                 </div>
+
+<div class="row">
+                                    <p class="col-md-6">Address :</p>
+                                    <p class="col-md-6">{{ $user->address }}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-md-6">Phone No :</p>
+                                    <p class="col-md-6">{{ $user->phoneno }}</p>
+                                </div>
+<div class="row">
+                                    <p class="col-md-6">Fax :</p>
+                                    <p class="col-md-6">{{ $user->fax }}</p>
+                                </div><div class="row">
+                                    <p class="col-md-6">Contact Email :</p>
+                                    <p class="col-md-6">{{ $user->contactemail }}</p>
+                                </div><div class="row">
+                                    <p class="col-md-6">Opening Dates :</p>
+                                    <p class="col-md-6">{{ $user->openingdates }}</p>
+                                </div>
+<div class="row">
+                                    <p class="col-md-6">Closing Dates :</p>
+                                    <p class="col-md-6">{{ $user->closingdates }}</p>
+                                </div>
+
+
+
+
+
+
+
                                 <div class="row">
                                     <p class="col-md-6">User    Type :</p>
                                     <p class="col-md-6">

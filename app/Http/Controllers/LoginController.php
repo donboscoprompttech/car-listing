@@ -157,6 +157,12 @@ class LoginController extends Controller
         ->update([
             'name'      => $request->name,
             'email'     => $request->email,
+            'address'      => $request->address,
+            'phoneno'     => $request->phoneno,
+            'fax'      => $request->fax,
+            'contactemail'     => $request->contactemail,
+            'openingdates'      => $request->openingdates,
+            'closingdates'     => $request->closingdates,
         ]);
 
         session()->flash('success', 'Profile has been changed');

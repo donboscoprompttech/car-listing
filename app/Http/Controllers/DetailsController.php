@@ -18,6 +18,7 @@ use Exception;
 use App\Models\Questions;
 use App\Models\SubCategory;
 use App\Models\Dynamiccontents;
+use App\Models\User;
 class DetailsController extends Controller
 {
     //
@@ -38,6 +39,7 @@ $contactus->email=$request->email;
 //$subject=$request->subject;
 $contactus->message=$request->message;
 $contactus->phone=0;
+$contactus->ads_id=$request->vehicleid;
 if($contactus->save()){
 return ["message"=>"failure","status"=>200,"text"=>"Your Enquiry Send Successfully"];
 }else{
@@ -289,7 +291,9 @@ $query = Ads::select("ads.*","ads.id as mainid1","ads.canonical_name as mainid",
 if (isset($year)&&($year[0]!=null)){
    //echo "year";
 //dd();
-$query->whereIn('registration_year',$year);
+     $year1=implode(",",$year);
+    $year2=explode(",",$year1);
+$query->whereIn('registration_year',$year2);
 }
 //if ($make!=''){
 if ($make[0]!=null){
@@ -315,8 +319,9 @@ if ($fueltype[0]!=null){
     $query->whereIn('motor_custome_values.fuel_type',$ft2);
 }
 if ($passengercapacity[0]!=null){
-
-$query->whereIn('ads.seats',$passengercapacity);
+ $passengercapacity1=implode(",",$passengercapacity);
+    $passengercapacity2=explode(",",$passengercapacity1);
+$query->whereIn('ads.seats',$passengercapacity2);
     //$query->whereIn('ads.seats',$pc);
 }
 if ($priceflag==1){
@@ -350,7 +355,12 @@ $vehicletypecars=$query->orderby('price')->paginate(2);
 }
 else{
     //dd("en");
+  // DB::enableQueryLog();
     $vehicletypecars=$query->orderby('registration_year')->paginate(2);
+    //$quries = DB::getQueryLog();
+//dd($quries);
+//print_r($vehicletypecars);
+//dd("enp");
 }
 
 }else{
@@ -398,10 +408,11 @@ else{
     $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
 $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
 $contents=Dynamiccontents::first();
+$profile=User::first();
     if($request->ajax()){
         return view('cars.ajax-pagination ',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount','showcarsfirst','showcarssecond','contents')); 
     }     
-        return view('cars.listing1',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount','showcarsfirst','showcarssecond','contents'));  
+        return view('cars.listing1',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount','showcarsfirst','showcarssecond','contents','profile'));  
     }
   
 

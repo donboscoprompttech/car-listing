@@ -11,7 +11,7 @@ class ContactController extends Controller
 {
     public function index(){
 
-        $contact = ContactUs::orderBy('created_at', 'desc')
+        $contact = ContactUs::leftjoin("ads","contact_us.ads_id","=","ads.id")->select('contact_us.*','ads.title')->orderBy('contact_us.created_at', 'desc')
         ->paginate(10);
 
         return view('other.contact.contact', compact('contact'));
@@ -19,7 +19,7 @@ class ContactController extends Controller
 
     public function view($id){
 
-        $contact = ContactUs::where('id', $id)
+        $contact = ContactUs::leftjoin("ads","contact_us.ads_id","=","ads.id")->select('contact_us.*','ads.title')->where('contact_us.id', $id)
         ->first();
 
         ContactUs::where('id', $id)
