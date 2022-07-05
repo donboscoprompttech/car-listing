@@ -173,14 +173,21 @@ FROM ads
 WHERE 'random_num' NOT IN (SELECT uniqueno FROM ads)
 LIMIT 1";
 $rand = DB::select(DB::raw($sqlQuery));
-print_r($rand);
+
 $randnum=$rand[0]->random_num;
 if ($request->place==1){
     $randnum1="Aj$randnum";
 }else{
     $randnum1="Aw$randnum";
 }
-
+$seller                     = new SellerInformation();
+        $seller->name               = $request->seller_name;
+        $seller->email              = $request->email;
+        $seller->phone              = $request->Phone;
+        $seller->phone_hide_flag    = $phoneHideFlag;
+        $seller->address            = $request->customer_address;
+        $seller->ads_id              = 0;
+        $seller->save();
 
         $ad                         = new Ads();
         $ad->category_id            = $request->category;
@@ -215,14 +222,7 @@ if ($request->place==1){
 
 
 
-$seller                     = new SellerInformation();
-        $seller->name               = $request->seller_name;
-        $seller->email              = $request->email;
-        $seller->phone              = $request->Phone;
-        $seller->phone_hide_flag    = $phoneHideFlag;
-        $seller->address            = $request->customer_address;
-        $seller->ads_id              = $ad->id;
-        $seller->save();
+
         if($request->hasFile('image')){
            $n=0;
             foreach($request->image as $row){
