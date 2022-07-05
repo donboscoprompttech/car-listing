@@ -252,7 +252,7 @@
 
                                 <a class="nav-link {{ request()->is('featured*') ? 'active' : '' }}" href="{{ route('dealer.index') }}">
                                     <div class="sb-nav-link-icon"><i class="fas fa-car"></i></div>
-                                    Featured Brand
+                                    Brand
                                 </a>
                             @endif
 

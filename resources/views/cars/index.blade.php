@@ -182,7 +182,10 @@
                 <div class="card-body">
                   <div class="price-div" style="float:right;width:auto;">
                     <!--<p class="feature-tag1">{{----=-$row->soldreserved---}}</p>-->
-                    <p class="price" style="float:right">AED {{ $row->price }}</p>
+                    <p class="price" style="float:right">AED
+<?php echo $price = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $row->price);?>
+
+                     </p>
                     
                   </div>
                   <div class="card-img-div">
