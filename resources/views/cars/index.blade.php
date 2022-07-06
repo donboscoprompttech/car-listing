@@ -27,6 +27,7 @@
   
  <link rel="stylesheet" type="text/css" href="{{ url('car/css/slick/slick.css') }}" />
  <link rel="stylesheet" type="text/css" href="{{ url('car/css/slick/slick-theme.css') }}" />
+ <link rel="stylesheet" type="text/css" href="{{ url('car/css/developer.css') }}" />
 <style>
 
   <?php  
@@ -180,17 +181,17 @@
              
               <a href="/details/{{ $row->mainid}}">
                 <div class="card-body">
-                  <div class="price-div" style="float:right;width:auto;">
-                    <!--<p class="feature-tag1">{{----=-$row->soldreserved---}}</p>-->
-                    <p class="price" style="float:right">AED
-<?php echo $price = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $row->price);?>
-
-                     </p>
-                    
+                  
+              <div class="price-div">
+                    <p class="price car-price">AED {{number_format($row->price)}}</p>
+                    <?=($row->soldreserved!="None")?'<p class="feature-tag featured-tag-class">'.$row->soldreserved.'</p>':''?>
                   </div>
-                  <div class="card-img-div">
+
+
+
+                  <div class="card-img-div zoom">
                     <img class="card-img img-fluid" src={{asset($row->image) }} alt="card image" />
-                    <div class="ribbon featured"><span>{{ $row->soldreserved }}</span></div>
+                   
                   </div>
                   <div class="car-details-div">
                     <div class="car-name-div" style="float:left;width:auto;">
@@ -204,7 +205,7 @@
                           <span class="icon-span">
                             <img src="{{asset('car/assets/images/Icons/meter.png') }}" class="car-icon" alt="">
                           </span>
-                          {{ $row->milage }} KM
+                          {{ number_format($row->milage) }} KM
                         </p>
                       </div>
                       <div class="year-div">
