@@ -12,7 +12,7 @@ use App\Models\MotorCustomeValues;
 use DB;
 use Exception;
 use App\Models\Questions;
-use App\Models\SubCategory;
+use App\Models\Subcategory;
 use Illuminate\Support\Facades\Input;
 use App\Models\AdsInterior;
 use App\Models\AdsExterior;

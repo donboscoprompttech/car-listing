@@ -46,12 +46,14 @@
                 <div class="flex-menu d-flex">
                   <div class="leftside">
                   <ul><li>
-                        <a class="dropdown-item" href="/category1/All">All Products</a>
+                        <a class="dropdown-item" href="{{url('/category1/All')}}">All Products</a>
                       </li>
                     @foreach ($subcategory as $row)
 <li>
-                        <a class="dropdown-item" href="/category1/{{ $row->canonical_name}}">{{ $row->name }}</a>
+  <a class="dropdown-item" href="{{url('/category1/'.$row->canonical_name)}}">{{ $row->name }}</a>
                       </li>
+                        
+                      
 
                     @endforeach
                      

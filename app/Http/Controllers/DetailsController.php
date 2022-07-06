@@ -16,7 +16,7 @@ use App\Models\MotorCustomeValues;
 use DB;
 use Exception;
 use App\Models\Questions;
-use App\Models\SubCategory;
+use App\Models\Subcategory;
 use App\Models\Dynamiccontents;
 use App\Models\User;
 class DetailsController extends Controller
