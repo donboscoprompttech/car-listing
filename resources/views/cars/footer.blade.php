@@ -64,9 +64,10 @@
           </div>
           <div class="col-lg-6 col-12">
             <ul class="social-links">
-              <li><a href="https://www.facebook.com/">Facebook</a></li>
-              <li><a href="https://twitter.com/">Twitter</a></li>
-              <li><a href="https://www.instagram.com/accounts/login/">Instagram</a></li>
+               @foreach ($sociallinks as $row)
+<li><a href="{{$row->url}}">{{$row->name}}</a></li>
+               @endforeach
+              
             </ul>
           </div>
         </div>

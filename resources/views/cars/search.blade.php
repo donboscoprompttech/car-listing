@@ -89,7 +89,7 @@
           <input type="hidden" name="priceflag" id="priceflag" value="0">
         <div class="row m-0">
           <div class="col-lg-2 col-12 px-0 mb-lg-0 mb-2">
-            <span class="select-title-head">Brand</span>
+            <span class="select-title-head">Make</span>
               <select id="brand" class="form-control" name="make">
               <option value="0">Make</option>
                @foreach ($make as $row)

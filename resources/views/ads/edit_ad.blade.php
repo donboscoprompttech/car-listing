@@ -160,7 +160,8 @@
                                             @enderror
                                         </div>-->
  <label for="vehicletype">Vehicle Type</label>
-                                        <select name="vehicletype" id="vehicletype" class="select2  form-control @error('vehicletype') is-invalid @enderror" autocomplete="off">
+                                        <select name="vehicletype" required id="vehicletype" class="select2  form-control @error('vehicletype') is-invalid @enderror" autocomplete="off">
+                                            <option value="">Select</option>
                                             @foreach ($vehicletype as $row1)
                                                 
                                                 <option {{($ad->vehicletype) == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>

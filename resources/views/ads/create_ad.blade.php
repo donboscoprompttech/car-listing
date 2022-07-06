@@ -184,8 +184,9 @@
 
 
 <div class="form-group my-2 col-md-6">
-                                        <label for="vehicletype">Vehicle Type</label>
-                                        <select name="vehicletype" id="vehicletype" class="select2  form-control @error('vehicletype') is-invalid @enderror" autocomplete="off">
+                                        <label for="vehicletype">Body Type</label>
+                                        <select name="vehicletype" required id="vehicletype" class="select2  form-control @error('vehicletype') is-invalid @enderror" autocomplete="off">
+                                            <option value="">Select</option>
                                             @foreach ($vehicletype as $row1)
                                                 
                                                 <option {{ old('vehicletype') == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>

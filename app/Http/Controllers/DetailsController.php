@@ -19,6 +19,7 @@ use App\Models\Questions;
 use App\Models\Subcategory;
 use App\Models\Dynamiccontents;
 use App\Models\User;
+use App\Models\SocialLink;
 class DetailsController extends Controller
 {
     //
@@ -386,10 +387,11 @@ else{
 $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
 $contents=Dynamiccontents::first();
 $profile=User::first();
+$sociallinks=SocialLink::get();
     if($request->ajax()){
         return view('cars.ajax-pagination ',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount','showcarsfirst','showcarssecond','contents')); 
     }     
-        return view('cars.listing1',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount','showcarsfirst','showcarssecond','contents','profile'));  
+        return view('cars.listing1',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount','showcarsfirst','showcarssecond','contents','profile','sociallinks'));  
     }
   
 
