@@ -237,11 +237,15 @@
 
                     <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
                         <div class="map-div">
-                            <p> <i class="fa-solid fa-location-dot"></i> United Arab Emirates, Ajman</p>
+                            <p> <i class="fa-solid fa-location-dot"></i> {{$vehicletypecars->countryname}}, {{$vehicletypecars->placename}}</p>
+                            <?php if ($vehicletypecars->placename=='Ajman'){?>
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57663.8079630947!2d55.47862375261173!3d25.405212352623007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5764dd8fbe79%3A0xcda090de6445a819!2sAjman%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1652016178959!5m2!1sen!2sin"
                                 style="border:0;" class="map-frame" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
+<?php } else {?>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.3011825634!2d54.94728643259635!3d25.076381472192086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1657119647935!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <?php }?>
                         </div>
                     </div>
                 </div>

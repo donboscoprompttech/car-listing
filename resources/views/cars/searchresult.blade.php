@@ -26,7 +26,10 @@
                             <div class="card-body">
 
                                 <div class="img-div">
-                                    <div class="ribbon booked"><span>{{ $row->soldreserved }}</span></div>
+                                    <!--<div class="ribbon booked"><span>{{-- $row->soldreserved---}}</span></div>-->
+<?=($row->soldreserved!="None")?'<div class="ribbon featured"><span>'.$row->soldreserved.'</span></div>':''?>
+
+
                                     <div class="gallery js-gallery">
                                        <?php  
 

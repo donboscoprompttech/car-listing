@@ -1,5 +1,12 @@
 <div class="flat-card-div ">
+<?php
+if (count($vehicletypecars)==0){
+    echo "Sorry No records found";
+}
 
+
+
+    ?>
 
     <input type="hidden" name="count" id="count" value="<?php echo($vehicletypecarscount);?>">
 <input type="hidden" name="flag" id="flag" value="4">
@@ -9,7 +16,8 @@
                             <div class="card-body">
 
                                 <div class="img-div">
-                                    <div class="ribbon booked"><span>{{ $row->soldreserved }}</span></div>
+                                    <!--<div class="ribbon booked"><span>{{---$row->soldreserved---}}</span></div>-->
+                                    <?=($row->soldreserved!="None")?'<div class="ribbon booked"><span>'.$row->soldreserved.'</span></div>':''?>
                                     <div class="gallery js-gallery">
   <?php 
 

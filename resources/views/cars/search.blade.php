@@ -169,6 +169,7 @@
             <div class="container-fluid home-cars-section card-listing-div">
               <div class="row search-card-row sertab">
                 <!-- Car Card -->
+                <?php if (count($vehicletypecars)==0){ echo "Sorry no records found";}?>
                 @foreach ($vehicletypecars as $row)
 
                 <?php if ($row->type1==1){?>
@@ -180,7 +181,11 @@
                         <div class="card-img-div">
                          <img class="card-img img-fluid" src="{{asset($row->image) }}"
                             alt="card image" />
-                          <div class="ribbon featured"><span>{{ $row->soldreserved }}</span></div>
+                          <!--<div class="ribbon featured"><span>{{--- $row->soldreserved----}}</span></div>-->
+<?=($row->soldreserved!="None")?'<div class="ribbon featured"><span>'.$row->soldreserved.'</span></div>':''?>
+
+
+
                         </div>
                         <div class="car-details-div">
                           <div class="tag-div">
