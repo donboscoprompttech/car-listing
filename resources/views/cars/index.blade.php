@@ -223,7 +223,7 @@
 
           <!-- Show all button div -->
           <div class="col-12 show-btn-div">
-            <a href="category/All"><button class="btn show-all-btn">Show All</button></a>
+            <a href="{{url('/category/All')}}"><button class="btn show-all-btn">Show All</button></a>
           </div>
         </div>
 

@@ -21,7 +21,7 @@ use App\Models\RejectReason;
 use App\Models\SellerInformation;
 use App\Models\User;
 use App\Models\Places;
-use App\Models\vehicletype;
+use App\Models\VehicleType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

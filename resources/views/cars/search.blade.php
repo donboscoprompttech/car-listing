@@ -160,7 +160,7 @@
               <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#used" type="button"
                 role="tab" aria-controls="profile" aria-selected="false">New</button>
             </li>-->
-            <li class="more-link"><a href="category1/All"><button class="nav-link">See more <i
+            <li class="more-link"><a href="category/All"><button class="nav-link">See more <i
                     class="fa-solid fa-chevron-right"></i></button></a></li>
           </ul>
         </div>
@@ -190,7 +190,7 @@
                             <p class="car-name">{{ $row->title }}</p>
                           </div>
                           <div class="price-div">
-                            <p class="price">AED<?php echo $price = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $row->price);?> <span class="strike-price">AED {{ $row->price }}</span></p>
+                            <p class="price">AED{{number_format($row->price)}} <span class="strike-price">AED {{number_format($row->price)}}</span></p>
                           </div>
                           <div class="car-details">
                             <p class="location w-100">{{$row->placename}},{{$row->countryname}}</p>

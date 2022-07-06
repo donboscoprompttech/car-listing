@@ -77,7 +77,9 @@
                             </p>
                         </div>
                         <div class="price-div">
-                            <p>AED<?php echo $price = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $vehicletypecars->price);?></p>
+                            <p>AED
+                                {{number_format($vehicletypecars->price)}}
+                            </p>
                         </div>
                         <div class="info-div">
                             <div class="detail">

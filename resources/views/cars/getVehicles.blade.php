@@ -19,7 +19,7 @@
                             <p class="car-name">{{ $row->title }}</p>
                           </div>
                           <div class="price-div">
-                            <p class="price">AED<?php echo $price = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $row->price);?> <span class="strike-price">AED {{ $row->price }}</span></p>
+                            <p class="price">AED{{number_format($vehicletypecars->price)}} <span class="strike-price">AED {{ $row->price }}</span></p>
                           </div>
                           <div class="car-details">
                             <p class="location w-100">{{$row->placename}},{{$row->countryname}}</p>

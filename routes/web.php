@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/category1/{id}', [App\Http\Controllers\DetailsController::class, 'carlisting1'])->name('category1.id');
+Route::get('/category/{id}', [App\Http\Controllers\DetailsController::class, 'carlisting1'])->name('category1.id');
 Route::get('/articles', 'App\Http\Controllers\DetailsController@index')->name('articles');
     Route::get('/', [App\Http\Controllers\ServiceController::class, 'index'])->name('index');
 
@@ -42,7 +42,7 @@ Route::get('/index', [App\Http\Controllers\ServiceController::class, 'index'])->
 Route::get('getVehicles',[App\Http\Controllers\ServiceController::class, 'getVehicles'])->name('getVehicles');
 
 Route::post('/enquiryprocess', [App\Http\Controllers\DetailsController::class, 'enquiryprocess'])->name('enquiryprocess');
-Route::get('/category/{id}', [App\Http\Controllers\ServiceController::class, 'carlisting'])->name('category.id');
+//Route::get('/category/{id}', [App\Http\Controllers\ServiceController::class, 'carlisting'])->name('category.id');
 
 Route::get('/carlistingsort', [App\Http\Controllers\ServiceController::class, 'carlistingsort'])->name('carlistingsort');
 Route::get('/carlistingsortnext', [App\Http\Controllers\ServiceController::class, 'carlistingsortnext'])->name('carlistingsortnext');

@@ -83,7 +83,7 @@ div.ex1 {
 
                             <span class="search-icon"><!--<img src="assets/images/Icons/search.png" alt="search icon"
                                     class="img-fluid search-img" />-->
-                                 <a onclick="setflag(1)" href="/category1/<?php echo $cname;?>" id='search_btn0'>       
+                                 <a onclick="setflag(1)" href="/category/<?php echo $cname;?>" id='search_btn0'>       
                                         <img src="{{ asset('car/assets/images/Icons/search.png') }}" alt="search icon"
                                     class="img-fluid search-img" /></a>
                                     </span>
@@ -297,7 +297,7 @@ div.ex1 {
                             </div>
                            
                             <div class="button-div">
-                                <a id="bt3" class="btn header-search-btn" onclick="#" href="/category1/<?php echo $cname;?>">Go
+                                <a id="bt3" class="btn header-search-btn" onclick="#" href="/category/<?php echo $cname;?>">Go
                                 <!--<button  type="button" class="btn header-search-btn">Search</button>--></a>
 
                                 <button type="button" class="btn filter-reset-btn">Reset Filter</button>
@@ -500,7 +500,7 @@ div.ex1 {
                     <form id="searchform" method="get">
                     <div class="search-div">
                     <span class="search-icon"  >
-                            <a onclick="setflag(2)" href="/category1/<?php echo $cname;?>" id='search_btn'><img src="{{ asset('car/assets/images/Icons/search.png') }}"  class="img-fluid search-img" alt="search icon" /></a>
+                            <a onclick="setflag(2)" href="/category/<?php echo $cname;?>" id='search_btn'><img src="{{ asset('car/assets/images/Icons/search.png') }}"  class="img-fluid search-img" alt="search icon" /></a>
                         </span>
                         <input type="text" id="searchallfirst" class="form-control result-search" placeholder="Search">
                     </div>

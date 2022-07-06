@@ -11,33 +11,9 @@
         <div class="menu-div d-flex">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li class="nav-item  active">
-              <a class="nav-link" aria-current="page" href="/index">Home</a>
+              <a class="nav-link" aria-current="page" href="{{url('/index')}}">Home</a>
             </li>
-            <!--<li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Category</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <div class="flex-menu d-flex">
-                  <div class="leftside">
-                  <ul><li>
-                        <a class="dropdown-item" href="/category/All">All Products</a>
-                      </li>
-                    @foreach ($subcategory as $row)
-<li>
-                        <a class="dropdown-item" href="/category/{{ $row->canonical_name}}">{{ $row->name }}</a>
-                      </li>
-
-                    @endforeach
-                     
-
-                    </ul>
-                  </div>
-                  <div class="rightside">
-                    
-                  </div>
-                </div>
-              </ul>
-            </li>-->
+            
 			
 			<li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
@@ -46,11 +22,11 @@
                 <div class="flex-menu d-flex">
                   <div class="leftside">
                   <ul><li>
-                        <a class="dropdown-item" href="{{url('/category1/All')}}">All Products</a>
+                        <a class="dropdown-item" href="{{url('/category/All')}}">All Products</a>
                       </li>
                     @foreach ($subcategory as $row)
 <li>
-  <a class="dropdown-item" href="{{url('/category1/'.$row->canonical_name)}}">{{ $row->name }}</a>
+  <a class="dropdown-item" href="{{url('/category/'.$row->canonical_name)}}">{{ $row->name }}</a>
                       </li>
                         
                       
@@ -106,9 +82,13 @@
                     class="fa-solid fa-chevron-up"></i-->
                 </span></button>
               <div class="dropup-content">
-                <a href="#">Link 1</a>
+                <a href="{{url('/category/All')}}">All Products</a>
+@foreach ($subcategory as $row)
+<a href="{{url('/category/'.$row->canonical_name)}}">{{ $row->name }}</a>       
+                      @endforeach
+                <!--<a href="#">Link 1</a>
                 <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                <a href="#">Link 3</a>-->
               </div>
             </div>
           </li>

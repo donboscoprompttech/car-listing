@@ -61,7 +61,7 @@ $imgid=$row->mainid1;
                                             <p class="car-name">{{ $row->makename }}-{{ $row->title }}</p>
                                         </div>
                                         <div class="price-div">
-                                            <p class="price">AED <?php echo $price = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $row->price);?></p>
+                                            <p class="price">AED  {{number_format($row->price)}}</p>
                                         </div>
                                         <div class="location-div">
                                             <p class="location">{{$row->placename}},{{$row->countryname}}</p>
