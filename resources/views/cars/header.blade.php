@@ -42,7 +42,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#!">Whats's my car worth?</a>
+            <a class="nav-link" href="#!">How it work</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#!">Why Us</a>
@@ -92,7 +92,7 @@
           </div>
         </li>
         <li>
-          <a href=""> <span><i class="fa-solid fa-wallet"></i></span> <span>Car Worth</span></a>
+          <a href=""> <span><i class="fa-solid fa-wallet"></i></span> <span>How it work</span></a>
 
         </li>
         <li><a href=""> <span><i class="fa fa-circle-question"></i></span> <span>Why Us</span></a> </li>

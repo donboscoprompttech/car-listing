@@ -52,8 +52,8 @@
                                     </div>
                                     <div class="form-group my-2 col-md-6">
                                         <label for="subcategory">Subcategory (Optional)</label>
-                                        <select name="subcategory" id="subcategory" class="form-control @error('subcategory') is-invalid @enderror" autocomplete="off">
-                                            <option value={{old('subcategory')}}>Select</option>
+                                        <select name="subcategory" required id="subcategory" class="form-control @error('subcategory') is-invalid @enderror" autocomplete="off">
+                                            <option value="">Select</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             @error('subcategory')
@@ -277,7 +277,7 @@
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="seats">Seats</label>
-                                        <input type="text" name="seats" required value="{{ old('seats') }}" class="slug form-control {{ Session::has('seats_error') ? 'is-invalid' : '' }}" placeholder="Seats" autocomplete="off">
+                                        <input type="number" name="seats" required value="{{ old('seats') }}" class="slug form-control {{ Session::has('seats_error') ? 'is-invalid' : '' }}" placeholder="Seats" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @if (Session::has('seat_error'))
                                                 {{ Session::get('seat_error') }}
@@ -650,7 +650,7 @@
 
                 custom_field += `<div class="col-md-6 form-group my-2">
                                     <label for="Make">Make </label>
-                                    <select class="select2 form-control @error('make') 'is-invalid' @enderror" name="make" id="Make">
+                                    <select class="select2 form-control @error('make') 'is-invalid' @enderror" name="make" id="Make" "required=required">
                                         ${makeOption}
                                     </select>
                                     <div class="invalid-feedback">
@@ -662,7 +662,7 @@
                 
                 custom_field += `<div class="col-md-6 form-group my-2">
                                     <label for="Model">Model </label>
-                                    <select class="form-control @error('model') 'is-invalid' @enderror" name="model" id="Model">
+                                    <select class="form-control @error('model') 'is-invalid' @enderror" name="model" id="Model" "required=required">
                                         <option>Select Model</option>
                                     </select>
                                     <div class="invalid-feedback">
@@ -674,7 +674,7 @@
 
                 custom_field += `<div class="col-md-6 form-group my-2">
                                     <label for="Variant">Varient </label>
-                                    <select class="form-control @error('varient') 'is-invalid' @enderror" name="varient" id="Varient">
+                                    <select class="form-control @error('varient') 'is-invalid' @enderror" name="varient" id="Varient" required=required">
                                         <option>Select variant</option>
                                     </select>
                                     <div class="invalid-feedback">

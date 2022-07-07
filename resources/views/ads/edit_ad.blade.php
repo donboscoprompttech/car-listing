@@ -248,7 +248,7 @@
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="seats">Seats</label>
-                                        <input type="text" name="seats" required value="{{ $ad->seats }}" class="slug form-control {{ Session::has('seats_error') ? 'is-invalid' : '' }}" placeholder="Seats" autocomplete="off">
+                                        <input type="number" name="seats" required value="{{ $ad->seats }}" class="slug form-control {{ Session::has('seats_error') ? 'is-invalid' : '' }}" placeholder="Seats" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @if (Session::has('seat_error'))
                                                 {{ Session::get('seat_error') }}
