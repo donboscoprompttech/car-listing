@@ -224,8 +224,7 @@
         });
 
         editBanner = (id, label1, status,sortorder,value1) => {
-            console.log(id);
-            alert(value1)
+            console.log(id);            
             $('#editId').val(id);
             $('#label1').val(label1);
             $('#value1').val(value1);

@@ -71,7 +71,7 @@ public function carlisting1(Request $request,$id){
 $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
 
-            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('registration_year')->paginate(2);
+            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('registration_year')->paginate(10);
             }else{
 
 $vehicletypecarscountall=$query->get();
@@ -79,7 +79,7 @@ $vehicletypecarscount =count($vehicletypecarscountall);
 
 
 
-                $vehicletypecars=$query->orderby('registration_year')->paginate(2); 
+                $vehicletypecars=$query->orderby('registration_year')->paginate(10); 
             }
 
 
@@ -92,23 +92,23 @@ $vehicletypecarscount =count($vehicletypecarscountall);
         
         $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('price')->paginate(2);
+            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('price')->paginate(10);
             }else{
                 $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-                $vehicletypecars=$query->orderby('price')->paginate(2); 
+                $vehicletypecars=$query->orderby('price')->paginate(10); 
             }
 
     }else{
     if ($kw!=''){
         $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-    $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->paginate(2);
+    $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->paginate(10);
     }else{
 
         $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-        $vehicletypecars=$query->paginate(2); 
+        $vehicletypecars=$query->paginate(10); 
     }
 }
         
@@ -122,11 +122,11 @@ $query = Ads::select("ads.*","ads.id as mainid1","ads.canonical_name as mainid",
         if ($kw!=''){
         $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('registration_year')->paginate(2);
+            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('registration_year')->paginate(10);
             }else{
                 $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-                $vehicletypecars=$query->orderby('registration_year')->paginate(2); 
+                $vehicletypecars=$query->orderby('registration_year')->paginate(10); 
             }
 
 
@@ -138,22 +138,22 @@ $vehicletypecarscount =count($vehicletypecarscountall);
         if ($kw!=''){
         $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('price')->paginate(2);
+            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('price')->paginate(10);
             }else{
                 $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-                $vehicletypecars=$query->orderby('price')->paginate(2); 
+                $vehicletypecars=$query->orderby('price')->paginate(10); 
             }
 
     }else{
     if ($kw!=''){
         $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-    $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->paginate(2);
+    $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->paginate(10);
     }else{
         $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-        $vehicletypecars=$query->paginate(2); 
+        $vehicletypecars=$query->paginate(10); 
     }
 }
         
@@ -177,11 +177,11 @@ else if ($request->flagajax==2){
         if ($kw!=''){
         $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orderby('registration_year')->paginate(2);
+            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orderby('registration_year')->paginate(10);
             }else{
                 $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-                $vehicletypecars=$query->orderby('registration_year')->paginate(2); 
+                $vehicletypecars=$query->orderby('registration_year')->paginate(10); 
             }
 
 
@@ -193,11 +193,11 @@ $vehicletypecarscount =count($vehicletypecarscountall);
         if ($kw!=''){
         $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('price')->paginate(2);
+            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('price')->paginate(10);
             }else{
                 $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-                $vehicletypecars=$query->orderby('price')->paginate(2); 
+                $vehicletypecars=$query->orderby('price')->paginate(10); 
             }
 
      }
@@ -205,11 +205,11 @@ $vehicletypecarscount =count($vehicletypecarscountall);
     if ($kw!=''){
         $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-    $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->paginate(2);
+    $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->paginate(10);
     }else{
         $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-        $vehicletypecars=$query->paginate(2); 
+        $vehicletypecars=$query->paginate(10); 
     }
 }
 
@@ -224,11 +224,11 @@ $query = Ads::select("ads.*","ads.id as mainid1","ads.canonical_name as mainid",
         if ($kw!=''){
         $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('registration_year')->paginate(2);
+            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('registration_year')->paginate(10);
             }else{
                 $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-                $vehicletypecars=$query->orderby('registration_year')->paginate(2); 
+                $vehicletypecars=$query->orderby('registration_year')->paginate(10); 
             }
 
 
@@ -240,11 +240,11 @@ $vehicletypecarscount =count($vehicletypecarscountall);
         if ($kw!=''){
         $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('price')->paginate(2);
+            $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orderby('price')->paginate(10);
             }else{
                 $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-                $vehicletypecars=$query->orderby('price')->paginate(2); 
+                $vehicletypecars=$query->orderby('price')->paginate(10); 
             }
 
      }
@@ -252,11 +252,11 @@ $vehicletypecarscount =count($vehicletypecarscountall);
     if ($kw!=''){
         $vehicletypecarscountall=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-    $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->paginate(2);
+    $vehicletypecars=$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->paginate(10);
     }else{
         $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
-        $vehicletypecars=$query->paginate(2); 
+        $vehicletypecars=$query->paginate(10); 
     }
 
 }
@@ -328,7 +328,7 @@ $vehicletypecarscount =count($vehicletypecarscountall);
 
 if ($sortcombo=='Price'){
     //DB::enableQueryLog();
-$vehicletypecars=$query->orderby('price')->paginate(2);
+$vehicletypecars=$query->orderby('price')->paginate(10);
 //$quries = DB::getQueryLog();
 //dd($quries);
 
@@ -336,7 +336,7 @@ $vehicletypecars=$query->orderby('price')->paginate(2);
 else{
     
   // DB::enableQueryLog();
-    $vehicletypecars=$query->orderby('registration_year')->paginate(2);
+    $vehicletypecars=$query->orderby('registration_year')->paginate(10);
     //$quries = DB::getQueryLog();
 //dd($quries);
 
@@ -354,11 +354,11 @@ else{
     /*General End*/
     $vehicletypecarscountall=$query->get();
        if ($sortcombo=='Price'){
-$vehicletypecars=$query->orderby('price')->paginate(2);
+$vehicletypecars=$query->orderby('price')->paginate(10);
 
 }
 else{
-    $vehicletypecars=$query->orderby('registration_year')->paginate(2);
+    $vehicletypecars=$query->orderby('registration_year')->paginate(10);
     
 } 
    $vehicletypecarscount =count($vehicletypecarscountall);  
