@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="css/slick/slick-theme.css" />-->
     <link href="{{ asset('/car/css/slick/slick.css') }}" rel="stylesheet"> 
     <link href="{{ asset('/car/css/slick/slick-theme.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url('car/css/developer.css') }}" />
     <style>
         .pagination{
             float: right;
@@ -119,7 +120,7 @@ div.ex1 {
 
                                             </span>
                                             
-                                            <a href="#" onclick="showmore()" class="see-more-link">See More</a>
+                                            <a href="javascript:void(0)" onclick="showmore()" class="see-more-link">See More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -155,7 +156,7 @@ div.ex1 {
                                             </span>
 
                                             
-                                            <a href="#"  onclick="showmoremake()" class="see-more-link">See More</a>
+                                            <a href="javascript:void(0)"  onclick="showmoremake()" class="see-more-link">See More</a>
 
 
 
@@ -201,7 +202,7 @@ div.ex1 {
                                             </span>
 
                                           
-                                            <a href="#"  onclick="showmoremodel()" class="see-more-link">See More</a>
+                                            <a href="javascript:void(0)"  onclick="showmoremodel()" class="see-more-link">See More</a>
 
 
 
@@ -241,7 +242,7 @@ div.ex1 {
                                             </span>
 
                                            
-                                            <a href="#"  onclick="showmorefueltype()" class="see-more-link">See More</a>
+                                            <!--<a href="javascript:void(0)"  onclick="showmorefueltype()" class="see-more-link">See More</a>-->
                                         </div>
                                     </div>
                                 </div>
@@ -276,7 +277,7 @@ div.ex1 {
                                             </span>
 
                                             
-                                            <a href="#"  onclick="showmorepassengercapacity()" class="see-more-link">See More</a>
+                                            <a href="javascript:void(0)"  onclick="showmorepassengercapacity()" class="see-more-link">See More</a>
                                         </div>
                                     </div>
                                 </div>

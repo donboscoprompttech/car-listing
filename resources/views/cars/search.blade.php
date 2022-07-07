@@ -26,6 +26,7 @@
   <!-- Slick slider -->
   <link href="{{ asset('/car/css/slick/slick.css') }}" rel="stylesheet"> 
     <link href="{{ asset('/car/css/slick/slick-theme.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url('car/css/developer.css') }}" />
 <style>
   <?php  
   $url=$searchresult->image;

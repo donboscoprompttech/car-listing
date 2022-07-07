@@ -32,7 +32,16 @@ public function cardetails(){
 public function carsearch(){
     return view('cars.carsearch');  
 }
-
+public function howitworks(){
+    $subcategory = Subcategory::orderBy('sort_order')->where('status', 1)
+                ->get();
+   $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+            $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+            $contents = Dynamiccontents::first();
+            $profile = User::first();
+            $sociallinks = SocialLink::get();             
+    return view('cars.how-it-work',compact("subcategory", 'showcarsfirst', 'showcarssecond', 'contents', 'profile', 'sociallinks'));  
+}
 public function enquiryprocess(Request $request){
 $contactus=new ContactUs();
 $contactus->name=$request->fullname;

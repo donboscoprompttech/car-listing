@@ -21,7 +21,7 @@
                 <div class="leftside">
                   <ul>
                     <li>
-                      <a class="dropdown-item" href="{{url('/category/All')}}">All Products</a>
+                      <a class="dropdown-item" href="{{url('/category/All')}}">All</a>
                     </li>
                     @foreach ($subcategory as $row)
                     <li>
@@ -42,7 +42,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#!">How it work</a>
+            <a class="nav-link" href="{{url('howitworks')}}">How it work</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#!">Why Us</a>
@@ -81,7 +81,7 @@
                     class="fa-solid fa-chevron-up"></i-->
               </span></button>
             <div class="dropup-content">
-              <a href="{{url('/category/All')}}">All Products</a>
+              <a href="{{url('/category/All')}}">All</a>
               @foreach ($subcategory as $row)
               <a href="{{url('/category/'.$row->canonical_name)}}">{{ $row->name }}</a>
               @endforeach
@@ -92,7 +92,7 @@
           </div>
         </li>
         <li>
-          <a href=""> <span><i class="fa-solid fa-wallet"></i></span> <span>How it work</span></a>
+          <a href="{{url('howitworks')}}"> <span><i class="fa-solid fa-wallet"></i></span> <span>How it work</span></a>
 
         </li>
         <li><a href=""> <span><i class="fa fa-circle-question"></i></span> <span>Why Us</span></a> </li>
