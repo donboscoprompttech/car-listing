@@ -525,8 +525,8 @@ div.ex1 {
 
                         </div>
                         <div class="view-mode-div">
-                            <button class="btn list-btn active"><i class="fa-solid fa-list"></i></button>
-                            <button class="btn block-btn">
+                            <button type="button" class="btn list-btn active"><i class="fa-solid fa-list"></i></button>
+                            <button type="button" class="btn block-btn">
                                 <span class="icon-span">
 
                                     <svg id="SvgjsSvg1011" width="288" height="288" xmlns="http://www.w3.org/2000/svg"
