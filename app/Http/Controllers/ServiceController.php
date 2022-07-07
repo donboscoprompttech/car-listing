@@ -329,7 +329,7 @@ class ServiceController extends Controller
         }
     }
 
-    /*public function carlisting($cname)
+    public function carlisting($cname)
     {
         $subcategory = Subcategory::orderBy('sort_order')->where('status', 1)
             ->get();
@@ -359,7 +359,7 @@ class ServiceController extends Controller
         $sqlQuery = "select min(price) as price from ads";
         $minprice =  DB::select(DB::raw($sqlQuery));
         return view('cars.listing', compact('minprice', 'maxprice', 'passengercapacity', 'fueltype', 'subcategory', 'vehicletypecars', 'year', 'make', 'model', 'cname', 'vehicletypecarscount'));
-    }*/
+    }
 
     function yearrender()
     {

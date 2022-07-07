@@ -122,8 +122,8 @@
 @if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::varient))
 <nav class="sb-sidenav-menu-nested nav">
 <a class="nav-link {{ request()->is('varient*') ? 'active' : '' }}" href="{{ route('varient.index') }}">
+    Variant
     
-    Varient
 </a></nav>
 @endif
 
@@ -155,20 +155,8 @@
 
 <a class="nav-link {{ request()->is('*users*') ? 'active' : '' }}" href="{{'/admin/dynamiccontents/1'}}">
                                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                                    Dynamic Contents
+                                    Page Contents
                                 </a>
-
-
-
-
-
-
-
-
-
-
-
-
                             
                             @if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::MANAGE_USER))
                                 
@@ -304,7 +292,7 @@
                                 
                                 <a class="nav-link {{ request()->is('reject*') ? 'active' : '' }}" href="{{ route('reject.index') }}">
                                     <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>
-                                    Resons
+                                    Reasons
                                 </a>
                             
                             @endif --}}
@@ -334,7 +322,7 @@
                             </a>
                             <div class="collapse {{ request()->is('*profile*') ? 'show' : '' }}" id="collapseSettings" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link {{ request()->is('*profile*') ? 'active' : '' }}" href="{{ route('admin.profile') }}">Porfile</a>
+                                    <a class="nav-link {{ request()->is('*profile*') ? 'active' : '' }}" href="{{ route('admin.profile') }}">Profile</a>
                                     <a class="nav-link" href="#" onclick="changePassword()">Change Password</a>
                                     <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                                 </nav>

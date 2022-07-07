@@ -5,18 +5,18 @@
     <main>
         <div class="container-fluid px-4">
             
-            <a href="#" data-toggle="modal" data-target="#createBannerModal"><button type="button" class="btn btn-primary float-end">Create exterior</button></a>
+            <a href="#" data-toggle="modal" data-target="#createBannerModal"><button type="button" class="btn btn-primary float-end">Create Exterior</button></a>
             
-            <h2 class="mt-4">exterior</h2>
+            <h2 class="mt-4">Exterior</h2>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">exterior</li>
+                <li class="breadcrumb-item active">Exterior</li>
             </ol>
             
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    exterior
+                    Exterior
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple" class="table table-striped table-bordered">
@@ -70,7 +70,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-          {{-- <h5 class="modal-title" id="deleteBannerModalLabel">exterior</h5>
+          {{-- <h5 class="modal-title" id="deleteBannerModalLabel">Exterior</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span> --}}
           {{-- </button> --}}
@@ -92,7 +92,7 @@
             <form action="{{ route('exterior.store') }}" method="POST" enctype="multipart/form-data" id="privacyStore">
                 @csrf
                 <div class="modal-header">
-                <h5 class="modal-title" id="createBannerModalModalLabel">Create exterior</h5>
+                <h5 class="modal-title" id="createBannerModalModalLabel">Create Exterior</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                 </button>
                 </div>
@@ -147,7 +147,7 @@
                 @csrf
                 <input type="hidden" name="id" id="editId">
                 <div class="modal-header">
-                <h5 class="modal-title" id="createBannerModalModalLabel">Update exterior</h5>
+                <h5 class="modal-title" id="createBannerModalModalLabel">Update Exterior</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                 </button>
                 </div>
@@ -225,7 +225,7 @@
 
         editBanner = (id, label1, status,sortorder,value1) => {
             console.log(id);
-            alert(value1)
+            
             $('#editId').val(id);
             $('#label1').val(label1);
             $('#value1').val(value1);

@@ -5,25 +5,25 @@
     <main>
         <div class="container-fluid px-4">
             
-            <a href="#" data-toggle="modal" data-target="#createBannerModal"><button type="button" class="btn btn-primary float-end">Create varient</button></a>
+            <a href="#" data-toggle="modal" data-target="#createBannerModal"><button type="button" class="btn btn-primary float-end">Create Variant</button></a>
             
-            <h2 class="mt-4">varient</h2>
+            <h2 class="mt-4">Variant</h2>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">varient</li>
+                <li class="breadcrumb-item active">Variant</li>
             </ol>
             
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    varient
+                    Variant
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple" class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>varient</th>
+                                <th>Variant</th>
                                  <th>Status</th>
                                  <th>Model</th>
                                 <th>Sort Order</th>
@@ -92,7 +92,7 @@
             <form action="{{ route('varient.store') }}" method="POST" enctype="multipart/form-data" id="privacyStore">
                 @csrf
                 <div class="modal-header">
-                <h5 class="modal-title" id="createBannerModalModalLabel">Create varient</h5>
+                <h5 class="modal-title" id="createBannerModalModalLabel">Create Variant</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                 </button>
                 </div>
@@ -151,7 +151,7 @@
                 @csrf
                 <input type="hidden" name="id" id="editId">
                 <div class="modal-header">
-                <h5 class="modal-title" id="createBannerModalModalLabel">Update varient</h5>
+                <h5 class="modal-title" id="createBannerModalModalLabel">Update Variant</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                 </button>
                 </div>

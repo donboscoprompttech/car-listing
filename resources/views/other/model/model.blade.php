@@ -7,7 +7,7 @@
             
             <a href="#" data-toggle="modal" data-target="#createBannerModal"><button type="button" class="btn btn-primary float-end">Create Model</button></a>
             
-            <h2 class="mt-4">model</h2>
+            <h2 class="mt-4">Model</h2>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li class="breadcrumb-item active">Model</li>
@@ -16,7 +16,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    model
+                    Model
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple" class="table table-striped table-bordered">
