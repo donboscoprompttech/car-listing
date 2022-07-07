@@ -305,7 +305,7 @@
       <div class="col-lg-7 col-md-12 col-12 accordion-div">
         <div class="row heading-row">
           <p class="sub-heading">{{$contents->bottompagerighttitle}}</p>
-          <p class="main-heading"><span>125</span>{{$contents->bottompagerightContent}}</p>
+          <p class="main-heading"><!--<span>125</span>-->{{$contents->bottompagerightContent}}</p>
           <p class="desc">{{$contents->faqContent}}</p>
         </div>
 

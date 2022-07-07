@@ -60,7 +60,9 @@
                 <?php }?>
                         
                         @endforeach
-                            <img src="{{ asset('car/assets/images/listing/details/1.png') }}">
+                            <!--<img src="{{----asset('car/assets/images/listing/details/1.png')----}}">-->
+
+                            <img src="{{ asset($row->image) }}">
                         </a>
                     </div>
                     <div class="data-div">
