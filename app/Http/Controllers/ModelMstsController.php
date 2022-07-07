@@ -13,7 +13,7 @@ class ModelMstsController extends Controller
     public function index(){
 try {
         $model = ModelMst::join("make_msts","make_msts.id","=","model_msts.make_id")->select("model_msts.*","make_msts.name as makename")->get();
-         $make=MakeMst::get();
+         $make=MakeMst::where('status',1)->orderby('sort_order')->get();
         return view('other.model.model', compact('model','make'));
      }   
 catch (exception $e) {

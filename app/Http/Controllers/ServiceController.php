@@ -54,8 +54,8 @@ class ServiceController extends Controller
             $model = DB::select(DB::raw($sqlQuery));
             $sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year";
             $year = DB::select(DB::raw($sqlQuery));
-            $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
-            $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
+            $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+            $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
             $contents = Dynamiccontents::first();
             $profile = User::first();
             $sociallinks = SocialLink::get();
@@ -77,8 +77,8 @@ class ServiceController extends Controller
             $questions = Questions::get();
             $footerimg = Banner::where('page', 'Footer')->first();
             $searchresult = Banner::where('page', 'searchresult')->first();
-            $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
-            $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
+             $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+            $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
             $contents = Dynamiccontents::first();
 
             return view('cars.search', compact('testimonial', 'brands', 'questions', 'searchresult', 'showcarsfirst', 'showcarssecond'));
@@ -99,8 +99,8 @@ class ServiceController extends Controller
 
         $subcategory = Subcategory::orderBy('sort_order')->where('status', 1)
             ->get();
-        $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
-        $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
+         $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+            $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
         $contents = Dynamiccontents::first();
         $profile = User::first();
         $sociallinks = SocialLink::get();
@@ -259,8 +259,8 @@ class ServiceController extends Controller
             }
             $profile = User::first();
             $contents = Dynamiccontents::first();
-            $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
-            $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
+            $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+            $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
             $sociallinks = SocialLink::get();
             return view('cars.search', compact('testimonial', 'brands', 'questions', 'vehicletypecars', 'searchresult', 'footerimg', 'question1img', 'question2img', 'videoimg', 'make', 'model', 'year', 'maxprice', 'minprice', 'globe', 'subcategory', 'showcarsfirst', 'showcarssecond', 'contents', 'profile', 'sociallinks'));
         } catch (exception $e) {
@@ -514,8 +514,8 @@ class ServiceController extends Controller
         $sociallinks = SocialLink::get();
         $profile = User::first();
         $contents = Dynamiccontents::first();
-        $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
-        $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
+         $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+            $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
         return view('cars.getVehicles', compact('vehicletypecars'));
     }
 }

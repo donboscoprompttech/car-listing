@@ -383,8 +383,8 @@ else{
     $sqlQuery = "select min(price) as price from ads";
     $minprice=  DB::select(DB::raw($sqlQuery)); 
     
-    $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->get();
-$showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->get();
+    $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+    $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
 $contents=Dynamiccontents::first();
 $profile=User::first();
 $sociallinks=SocialLink::get();

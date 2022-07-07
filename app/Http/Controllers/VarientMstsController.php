@@ -14,7 +14,7 @@ public function index(){
 try {
         //$varient = varientMst::get();
         $varient  = varientMst::join("model_msts","model_msts.id","=","varient_msts.model_id")->select("varient_msts.*","model_msts.name as modelname")->get();
-        $model=ModelMst::get();
+        $model=ModelMst::where('status',1)->orderby('sort_order')->get();
         return view('other.varient.varient', compact('varient','model'));
      }   
 catch (exception $e) {
@@ -40,7 +40,7 @@ public function store(Request $request) {
         $varient->order         =$request->sortorder;
         $varient->save();
 
-        session()->flash('success', 'varient has been stored');
+        session()->flash('success', 'Variant has been stored');
         return redirect()->route('varient.index');
          }
         catch (exception $e) {
@@ -53,7 +53,7 @@ public function delete($id){
 try {
         varientMst::destroy($id);
 
-        session()->flash('success', 'varient has been deleted');
+        session()->flash('success', 'Variant has been deleted');
         return redirect()->route('varient.index');
          }
 catch (exception $e) {
@@ -81,7 +81,7 @@ public function update(Request $request){
             'order'=>$request->sortorder,'model_id'=>$request->model,
         ]);
 
-        session()->flash('success', 'varient has been updated');
+        session()->flash('success', 'Variant has been updated');
         return redirect()->route('varient.index');
     }
 
