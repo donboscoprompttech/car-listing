@@ -29,13 +29,13 @@
               
             </ul>
           </div>
-          <div class="col-lg-6 col-6">
+          <!--<div class="col-lg-6 col-6">
             <ul class="footer-list">
-             @foreach ($showcarssecond as $row)
-              <li><a href="/details/{{ $row->canonical_name}}"><i class="fas fa-angle-double-right"></i>{{$row->title}}</a></li>
-              @endforeach
+             {{---@foreach ($showcarssecond as $row)---}}
+              <li><a href="/details/{{ $row->canonical_name}}"><i class="fas fa-angle-double-right"></i>{{---$row->title---}}</a></li>
+             {{---@endforeach---}}
             </ul>
-          </div>
+          </div>-->
         </div>
       </div>
       <div class="col-lg-4 col-md-4 ps-lg-5">

@@ -259,6 +259,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-phone"></i></div>
                                 Contact Us Enquiry
                             </a>
+                            <a class="nav-link {{ request()->is('contact*') ? 'active' : '' }}" href="{{ route('contact.indexgeneral') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-phone"></i></div>
+                              Enquiry General
+                            </a>
+
 
                             @if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::MANAGE_FEATURED_DEALER))
 

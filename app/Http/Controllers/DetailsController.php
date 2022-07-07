@@ -20,6 +20,7 @@ use App\Models\Subcategory;
 use App\Models\Dynamiccontents;
 use App\Models\User;
 use App\Models\SocialLink;
+use App\Models\Contactusgeneral;
 class DetailsController extends Controller
 {
     //
@@ -33,14 +34,34 @@ public function carsearch(){
     return view('cars.carsearch');  
 }
 public function howitworks(){
+    try {
     $subcategory = Subcategory::orderBy('sort_order')->where('status', 1)
                 ->get();
-   $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+   $showcarsfirst = Ads::select("ads.*")->skip(0)->take(8)->orderby('id','desc')->where("ads.delete_status", 0)->get();
             $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
             $contents = Dynamiccontents::first();
             $profile = User::first();
             $sociallinks = SocialLink::get();             
     return view('cars.how-it-work',compact("subcategory", 'showcarsfirst', 'showcarssecond', 'contents', 'profile', 'sociallinks'));  
+    } catch (exception $e) {
+            $message = $e->getMessage();
+            return view('cars.errorpage', compact('message'));
+        }
+}
+public function contactus(){
+    try {
+    $subcategory = Subcategory::orderBy('sort_order')->where('status', 1)
+                ->get();
+   $showcarsfirst = Ads::select("ads.*")->skip(0)->take(8)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+            $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+            $contents = Dynamiccontents::first();
+            $profile = User::first();
+            $sociallinks = SocialLink::get();             
+    return view('cars.contact-us',compact("subcategory", 'showcarsfirst', 'showcarssecond', 'contents', 'profile', 'sociallinks'));  
+    } catch (exception $e) {
+            $message = $e->getMessage();
+            return view('cars.errorpage', compact('message'));
+        }
 }
 public function enquiryprocess(Request $request){
 $contactus=new ContactUs();
@@ -56,6 +77,25 @@ return ["message"=>"failure","status"=>200,"text"=>"Your Enquiry Send Successful
     return ["message"=>"failure","status"=>400,"text"=>"Sorry Enquiry not Send"];
 }
 }
+
+public function contactusprocess(Request $request){
+$contactus=new Contactusgeneral();
+$contactus->name=$request->fullname;
+$contactus->email=$request->email;
+//$subject=$request->subject;
+$contactus->message=$request->message;
+//$contactus->phone=0;
+//$contactus->ads_id=$request->vehicleid;
+if($contactus->save()){
+return ["message"=>"failure","status"=>200,"text"=>"Your Enquiry Send Successfully"];
+}else{
+    return ["message"=>"failure","status"=>400,"text"=>"Sorry Enquiry not Send"];
+}
+}
+
+
+
+
 
 public function carlisting1(Request $request,$id){
         $cname=$id;
@@ -392,7 +432,7 @@ else{
     $sqlQuery = "select min(price) as price from ads";
     $minprice=  DB::select(DB::raw($sqlQuery)); 
     
-    $showcarsfirst = Ads::select("ads.*")->skip(0)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
+    $showcarsfirst = Ads::select("ads.*")->skip(0)->take(8)->orderby('id','desc')->where("ads.delete_status", 0)->get();
     $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
 $contents=Dynamiccontents::first();
 $profile=User::first();

@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/category/{id}', [App\Http\Controllers\DetailsController::class, 'carlisting1'])->name('category1.id');
-//Route::get('/articles', 'App\Http\Controllers\DetailsController@index')->name('articles');
+
 
 Route::get('/howitworks', 'App\Http\Controllers\DetailsController@howitworks')->name('howitworks');
+Route::get('/contactus', 'App\Http\Controllers\DetailsController@contactus')->name('contactus');
     Route::get('/', [App\Http\Controllers\ServiceController::class, 'index'])->name('index');
 
 Route::get('checkuniquetitle',[App\Http\Controllers\ServiceController::class, 'checkuniquetitle'])->name('checkuniquetitle');
@@ -44,7 +45,8 @@ Route::get('/index', [App\Http\Controllers\ServiceController::class, 'index'])->
 Route::get('getVehicles',[App\Http\Controllers\ServiceController::class, 'getVehicles'])->name('getVehicles');
 
 Route::post('/enquiryprocess', [App\Http\Controllers\DetailsController::class, 'enquiryprocess'])->name('enquiryprocess');
-//Route::get('/category/{id}', [App\Http\Controllers\ServiceController::class, 'carlisting'])->name('category.id');
+Route::post('/contactusprocess', [App\Http\Controllers\DetailsController::class, 'contactusprocess'])->name('contactusprocess');
+
 
 Route::get('/carlistingsort', [App\Http\Controllers\ServiceController::class, 'carlistingsort'])->name('carlistingsort');
 Route::get('/carlistingsortnext', [App\Http\Controllers\ServiceController::class, 'carlistingsortnext'])->name('carlistingsortnext');
@@ -295,16 +297,12 @@ Route::group(['middleware' => ['revalidate']], function(){
         Route::post('/model/update', [App\Http\Controllers\ModelMstsController::class, 'update'])->name('model.update');
         Route::post('/model/delete/{id}', [App\Http\Controllers\ModelMstsController::class, 'delete'])->name('model.delete');
 
-//Varient
+//Variant
 
         Route::get('/varient', [App\Http\Controllers\VarientMstsController::class, 'index'])->name('varient.index');
         Route::post('/varient/store', [App\Http\Controllers\VarientMstsController::class, 'store'])->name('varient.store');
         Route::post('/varient/update', [App\Http\Controllers\VarientMstsController::class, 'update'])->name('varient.update');
         Route::post('/varient/delete/{id}', [App\Http\Controllers\VarientMstsController::class, 'delete'])->name('varient.delete');
-
-
-
-
 
         // Contact us enquiry
 
@@ -312,6 +310,9 @@ Route::group(['middleware' => ['revalidate']], function(){
         Route::get('/contact/view/{id}', [App\Http\Controllers\ContactController::class, 'view'])->name('contact.view');
         Route::post('/contact/replay/mail/{id}', [App\Http\Controllers\ContactController::class, 'replay'])->name('send.mail.replay');
 
+ Route::get('/contactgeneral', [App\Http\Controllers\ContactController::class, 'indexgeneral'])->name('contact.indexgeneral');
+        Route::get('/contact/viewgeneral/{id}', [App\Http\Controllers\ContactController::class, 'viewgeneral'])->name('contact.viewgeneral');
+        Route::post('/contact/replaygeneral/mail/{id}', [App\Http\Controllers\ContactController::class, 'replaygeneral'])->name('send.mail.replaygeneral');
         Route::get('/get/notification', [App\Http\Controllers\AdsController::class,'adNotification']);
         Route::post('/read/notification', [App\Http\Controllers\AdsController::class,'readNotification']);
 

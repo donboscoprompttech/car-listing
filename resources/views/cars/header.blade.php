@@ -27,9 +27,6 @@
                     <li>
                       <a class="dropdown-item" href="{{url('/category/'.$row->canonical_name)}}">{{ $row->name }}</a>
                     </li>
-
-
-
                     @endforeach
 
 
@@ -48,7 +45,7 @@
             <a class="nav-link" href="#!">Why Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#!">Contact Us</a>
+            <a class="nav-link" href="{{url('contactus')}}">Contact Us</a>
           </li>
         </ul>
       </div>
@@ -84,10 +81,7 @@
               <a href="{{url('/category/All')}}">All</a>
               @foreach ($subcategory as $row)
               <a href="{{url('/category/'.$row->canonical_name)}}">{{ $row->name }}</a>
-              @endforeach
-              <!--<a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>-->
+              @endforeach              
             </div>
           </div>
         </li>
@@ -96,7 +90,7 @@
 
         </li>
         <li><a href=""> <span><i class="fa fa-circle-question"></i></span> <span>Why Us</span></a> </li>
-        <li><a href=""><span><i class="fa-solid fa-address-book"></i></span> <span>Contact</span></a> </li>
+        <li><a href="{{url('contactus')}}"><span><i class="fa-solid fa-address-book"></i></span> <span>Contact</span></a> </li>
       </ul>
 
     </div>

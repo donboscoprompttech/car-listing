@@ -174,7 +174,7 @@ class LoginController extends Controller
         $inActiveAd = Ads::where('status', Status::INACTIVE)
         ->count();
 
-        $activeAd = Ads::where('status', Status::ACTIVE)
+        $activeAd = Ads::where('status', Status::ACTIVE)->where('delete_status',0)
         ->count();
 
         $user = User::where('type', UserType::USER)
