@@ -373,6 +373,32 @@ class ServiceController extends Controller
         $year = DB::select(DB::raw($sqlQuery));
         return view('cars.caryear', compact('year', 'offsetyear'));
     }
+    function yearrendercount(){
+    
+    $start=$_GET['val'];
+    $offsetyear=$start+4;
+    $page=$_GET['valpage']+1;
+$sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year limit $offsetyear,4";
+$year = DB::select(DB::raw($sqlQuery));
+$sqlQuerycount = "select distinct registration_year from motor_custome_values order by registration_year";
+$yearcount = DB::select(DB::raw($sqlQuerycount));
+$count=count($yearcount);
+$actcount=count($year);
+$startcount=$_GET['valcount'];
+$nextcount=$startcount+$actcount;
+$noofpages=(count($yearcount)/4);
+//echo $page;
+//echo $noofpages;
+if ($page>=$noofpages){
+    $show=0;
+}else{
+    $show=1;
+}
+return response()->json(['page' => $page, 'show' => $show]);
+
+
+    //return view('cars.caryear',compact('year','offsetyear'));
+}
 
     function passengercapacityrender()
     {
@@ -382,7 +408,32 @@ class ServiceController extends Controller
         $passengercapacity = DB::select(DB::raw($sqlQuery));
         return view('cars.carpassengercapacity', compact('passengercapacity', 'offsetpassengercapacity'));
     }
+function passengercapacityrendercount(){
+    $start=$_GET['val'];
+    $offsetpassengercapacity=$start+4;
+    $page=$_GET['valpage']+1;
+$sqlQuery = "select distinct seats from ads order by seats limit $offsetpassengercapacity,4";
+$passengercapacity = DB::select(DB::raw($sqlQuery));
+$sqlQuerycount = "select distinct seats from ads order by seats";
+$passengercapacitycount = DB::select(DB::raw($sqlQuerycount));
+$count=count($passengercapacitycount);
+$actcount=count($passengercapacity);
+$startcount=$_GET['valcount'];
+$nextcount=$startcount+$actcount;
+$noofpages=(count($passengercapacitycount)/4);
+//echo $page;
+//echo $noofpages;
+if ($page>=$noofpages){
+    $show=0;
+}else{
+    $show=1;
+}
+return response()->json(['page' => $page, 'show' => $show]);
+//if ($actcount>)
+//echo $totalcount=count($passengercapacitycount);
 
+
+}
     function fueltyperender()
     {
 
@@ -397,20 +448,75 @@ class ServiceController extends Controller
     {
         $start = $_GET['val'];
         $offset = $start + 4;
-        $sqlQuery = "select distinct make_id,name from motor_custome_values m join make_msts ma on m.make_id=ma.id order by name limit $offset,4";
+        $sqlQuery = "select distinct make_id,name from motor_custome_values m join make_msts ma on m.make_id=ma.id order by name limit $offset,4";        
         $make = DB::select(DB::raw($sqlQuery));
         return view('cars.carmake', compact('make', 'offset'));
     }
+    function makerendercount(){    
+    $start=$_GET['val'];
+    $offset=$start+4;
+    //$offset=$start+1;
+$sqlQuery = "select distinct make_id,name from motor_custome_values m join make_msts ma on m.make_id=ma.id order by name limit $offset,4";
+//$sqlQuery = "select distinct make_id,name from motor_custome_values m join make_msts ma on m.make_id=ma.id order by name limit $offset,1";
+$make = DB::select(DB::raw($sqlQuery));
+$page=$_GET['valpage']+1;
+$sqlQuerycount = "select distinct make_id,name from motor_custome_values m join make_msts ma on m.make_id=ma.id order by name";
+$makecount = DB::select(DB::raw($sqlQuerycount));
+$count=count($makecount);
+$actcount=count($make);
+$startcount=$_GET['valcount'];
+$nextcount=$startcount+$actcount;
+$noofpages=(count($makecount)/4);
+//echo $page;
+//echo $noofpages;
+if ($page>=$noofpages){
+    $show=0;
+}else{
+    $show=1;
+}
+return response()->json(['page' => $page, 'show' => $show]);
+    //return view('cars.carmake',compact('make','offset'));
+}
     function modelrender()
     {
 
         $start = $_GET['val'];
-        $offsetmodel = $start + 4;
-        $sqlQuery = "select distinct model_id,name from motor_custome_values m join model_msts ma on m.model_id=ma.id order by name limit $offsetmodel,4";
+       /* $offsetmodel = $start + 4;
+        $sqlQuery = "select distinct model_id,name from motor_custome_values m join model_msts ma on m.model_id=ma.id order by name limit $offsetmodel,4";*/
+         $offsetmodel=$start+1;
+$sqlQuery = "select distinct model_id,name from motor_custome_values m join model_msts ma on m.model_id=ma.id order by name limit $offsetmodel,4";
         $model = DB::select(DB::raw($sqlQuery));
 
         return view('cars.carmodel', compact('model', 'offsetmodel'));
     }
+
+function modelrendercount(){
+    
+    $start=$_GET['val'];
+    $offsetmodel=$start+4;
+$sqlQuery = "select distinct model_id,name from motor_custome_values m join model_msts ma on m.model_id=ma.id order by name limit $offsetmodel,4";
+$model = DB::select(DB::raw($sqlQuery));
+$page=$_GET['valpage']+1;
+$sqlQuerycount = "select distinct model_id,name from motor_custome_values m join model_msts ma on m.model_id=ma.id order by name";
+$modelcount = DB::select(DB::raw($sqlQuerycount));
+$count=count($modelcount);
+$actcount=count($model);
+$startcount=$_GET['valcount'];
+$nextcount=$startcount+$actcount;
+$noofpages=(count($modelcount)/4);
+//echo $page;
+//echo $noofpages;
+if ($page>=$noofpages){
+    $show=0;
+}else{
+    $show=1;
+}
+return response()->json(['page' => $page, 'show' => $show]);
+
+    //return view('cars.carmodel',compact('model','offsetmodel'));
+
+
+}
 
 
     function checkuniquetitle()

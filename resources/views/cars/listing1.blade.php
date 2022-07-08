@@ -118,6 +118,8 @@ div.ex1 {
                                         <div class="accordion-body ex1">
                                             <span class="caryear">
                                                  <input id="offsetyear"class="offsetyear" type="hidden" value="0" />
+                                                 <input type=hidden class="offsetyearcount" id="offsetyearcount" value=4 />
+<input type=hidden class="offsetyearpage" id="offsetyearpage" value=1 />
 @foreach ($year as $row)
 <div class="form-group">
 
@@ -133,7 +135,7 @@ div.ex1 {
 
                                             </span>
                                             
-                                            <a href="javascript:void(0)" onclick="showmore()" class="see-more-link">See More</a>
+                                            <a href="javascript:void(0)" onclick="showmore()" class="see-more-link syear">See More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +155,9 @@ div.ex1 {
 
 
 <span class="carmake">
+    <?php $i=0;?>
 @foreach ($make as $row)
+
 <div class="form-group">
 
                                                     <input type="checkbox" name="carmake[]" value={{$row->make_id}} class="filgroup mak">
@@ -161,15 +165,17 @@ div.ex1 {
 
                                                     <?php $offset=0;?>
                                                     <input class="offsetmake" id="offsetmake" value=0 />
+                                                    <input type=hidden class="offsetmakecount" id="offsetmakecount" value=4 />
+<input type=hidden class="offsetmakepage" id="offsetmakepage" value=1 />
                                                 </div>
-
+<?php $i++;?>
 @endforeach
 
 
                                             </span>
 
                                             
-                                            <a href="javascript:void(0)"  onclick="showmoremake()" class="see-more-link">See More</a>
+                                            <a href="javascript:void(0)"  onclick="showmoremake()" class="see-more-link smake">See More</a>
 
 
 
@@ -207,6 +213,8 @@ div.ex1 {
 
                                                     <?php $offsetmodel=0;?>
                                                     <input class="offsetmodel" id="offsetmodel" value=0 />
+                                                    <input type=hidden class="offsetmodelcount" id="offsetmodelcount" value=4 />
+<input type=hidden class="offsetmodelpage" id="offsetmodelpage" value=1 />
                                                 </div>
 
 @endforeach
@@ -215,7 +223,7 @@ div.ex1 {
                                             </span>
 
                                           
-                                            <a href="javascript:void(0)"  onclick="showmoremodel()" class="see-more-link">See More</a>
+                                            <a href="javascript:void(0)"  onclick="showmoremodel()" class="see-more-link smodel">See More</a>
 
 
 
@@ -272,7 +280,8 @@ div.ex1 {
                                         <div class="accordion-body">
 
 <input type=hidden class="offsetpassengercapacity" id="offsetpassengercapacity" value=0 />
-
+<input type=hidden class="offsetpassengercapacitycount" id="offsetpassengercapacitycount" value=4 />
+<input type=hidden class="offsetpassengercapacitypage" id="offsetpassengercapacitypage" value=1 />
 <span class="carpassengercapacity">
 @foreach ($passengercapacity as $row)
 <div class="form-group">
@@ -290,7 +299,7 @@ div.ex1 {
                                             </span>
 
                                             
-                                            <a href="javascript:void(0)"  onclick="showmorepassengercapacity()" class="see-more-link">See More</a>
+                                            <a href="javascript:void(0)"  onclick="showmorepassengercapacity()" class="see-more-link spc">See More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -767,7 +776,10 @@ $(".offsetyear").val(0);
     $(".offsetfueltype").val(0);
     $(".offsetmake").val(0);
     $(".offsetmodel").val(0);
-
+$("#offsetpassengercapacitypage").val(1);
+    $("#offsetyearpage").val(1);
+    $("#offsetmakepage").val(1);
+    $("#offsetmodelpage").val(1);
     
   $( ".range-bar" ).slider({
     range: true,
@@ -794,19 +806,16 @@ $("#priceflag").val(1);
 
 });
     
-function showmore(){
+/*function showmore(){
 var val=$(".offsetyear").val();
 var val1=parseInt(val)+4;
-//alert(val);
 $.ajax({
             type: 'get',
             url:"{{ route('yearrender') }}",
             dataType: 'html',
             data:{val:val},
             success: function (data) {
-//$(".caryear").html(data);
 $(".caryear").append(data);
-
 $(".offsetyear").val(val1);
  },error:function(){
                 console.log(data);
@@ -824,7 +833,6 @@ $.ajax({
             dataType: 'html',
             'data':{val:val},
             success: function (data) {
-//$(".carmake").html(data);
 $(".carmake").append(data);
 $(".offsetmake").val(val1);
  },error:function(){
@@ -843,7 +851,6 @@ $.ajax({
             dataType: 'html',
             'data':{val:val},
             success: function (data) {
-//$(".carmodel").html(data);
 $(".carmodel").append(data);
 $(".offsetmodel").val(val1);
  },error:function(){
@@ -861,9 +868,164 @@ $.ajax({
             dataType: 'html',
             'data':{val:val},
             success: function (data) {
+$(".carfueltype").append(data);
+$(".offsetfueltype").val(val1);
+ },error:function(){
+                console.log(data);
+            }
+        });               
+}
+
+
+function showmorepassengercapacity(offset){
+var val=$("#offsetpassengercapacity").val();
+var val1=parseInt(val)+4;
+
+$.ajax({
+            type: 'get',
+            url:"{{ route('passengercapacityrender') }}",
+            dataType: 'html',
+            'data':{val:val},
+            success: function (data) {
+$(".carpassengercapacity").append(data);
+$(".offsetpassengercapacity").val(val1);
+ },error:function(){
+                console.log(data);
+            }
+        });               
+}
+*/
+function showmore(){
+var val=$(".offsetyear").val();
+var val1=parseInt(val)+4;
+var valcount=$("#offsetyearcount").val();
+var valpage=$("#offsetyearpage").val();
+$("#loadingDiv").show();
+$.ajax({
+            type: 'get',
+            url:"{{ route('yearrender') }}",
+            dataType: 'html',
+            data:{val:val},
+            success: function (data) {
+//$(".caryear").html(data);
+$(".caryear").append(data);
+
+$(".offsetyear").val(val1);
+//$("#loadingDiv").hide();
+$.ajax({
+            type: 'get',
+            url:"{{ route('yearrendercount') }}",
+            dataType: 'json',
+            'data':{val:val,valcount:valcount,valpage:valpage},
+            success: function (data) {
+                //alert(data.show);
+                $("#offsetyearpage").val(data.page);
+                if(data.show==0){
+                   $(".syear").hide();
+                }
+                $("#loadingDiv").hide();
+            }});
+
+
+
+
+
+ },error:function(){
+                console.log(data);
+            }
+        });               
+}
+
+
+function showmoremake(offset){
+var val=$(".offsetmake").val();
+var val1=parseInt(val)+4;
+//var val1=parseInt(val)+1;
+var valcount=$("#offsetmakecount").val();
+var valpage=$("#offsetmakepage").val();
+$("#loadingDiv").show();
+$.ajax({
+            type: 'get',
+            url:"{{ route('makerender') }}",
+            dataType: 'html',
+            'data':{val:val},
+            success: function (data) {
+//$(".carmake").html(data);
+$(".carmake").append(data);
+$(".offsetmake").val(val1);
+//$("#loadingDiv").hide();
+$.ajax({
+            type: 'get',
+            url:"{{ route('makerendercount') }}",
+            dataType: 'json',
+            'data':{val:val,valcount:valcount,valpage:valpage},
+            success: function (data) {
+                //alert(data.show);
+                $("#offsetmakepage").val(data.page);
+                if(data.show==0){
+                   $(".smake").hide();
+                }
+                $("#loadingDiv").hide();
+            }});
+
+ },error:function(){
+                console.log(data);
+            }
+        });               
+}
+
+
+function showmoremodel(offset){
+var val=$(".offsetmodel").val();
+var val1=parseInt(val)+4;
+var valcount=$("#offsetmodelcount").val();
+var valpage=$("#offsetmodelpage").val();
+$("#loadingDiv").show();
+$.ajax({
+            type: 'get',
+            url:"{{ route('modelrender') }}",
+            dataType: 'html',
+            'data':{val:val},
+            success: function (data) {
+//$(".carmodel").html(data);
+$(".carmodel").append(data);
+$(".offsetmodel").val(val1);
+//$("#loadingDiv").hide();
+$.ajax({
+            type: 'get',
+            url:"{{ route('modelrendercount') }}",
+            dataType: 'json',
+            'data':{val:val,valcount:valcount,valpage:valpage},
+            success: function (data) {
+                //alert(data.show);
+                $("#offsetmodelpage").val(data.page);
+                if(data.show==0){
+                   $(".smodel").hide();
+                }
+                $("#loadingDiv").hide();
+            }});
+
+
+ },error:function(){
+                console.log(data);
+            }
+        });               
+}
+
+function showmorefueltype(offset){
+var val=$("#offsetfueltype").val();
+var val1=parseInt(val)+4;
+$("#loadingDiv").show();
+$.ajax({
+            type: 'get',
+            url:"{{ route('fueltyperender') }}",
+            dataType: 'html',
+            'data':{val:val},
+            success: function (data) {
 //$(".carfueltype").html(data);
 $(".carfueltype").append(data);
 $(".offsetfueltype").val(val1);
+$("#loadingDiv").hide();
  },error:function(){
                 console.log(data);
             }
@@ -875,22 +1037,39 @@ function showmorepassengercapacity(offset){
 
 var val=$("#offsetpassengercapacity").val();
 var val1=parseInt(val)+4;
-
+var valcount=$("#offsetpassengercapacitycount").val();
+var valpage=$("#offsetpassengercapacitypage").val();
+$("#loadingDiv").show();
 $.ajax({
             type: 'get',
             url:"{{ route('passengercapacityrender') }}",
             dataType: 'html',
-            'data':{val:val},
+            'data':{val:val,valcount:valcount},
             success: function (data) {
 //$(".carpassengercapacity").html(data);
 $(".carpassengercapacity").append(data);
 $(".offsetpassengercapacity").val(val1);
+
+$.ajax({
+            type: 'get',
+            url:"{{ route('passengercapacityrendercount') }}",
+            dataType: 'json',
+            'data':{val:val,valcount:valcount,valpage:valpage},
+            success: function (data) {
+                //alert(data.show);
+                $("#offsetpassengercapacitypage").val(data.page);
+                if(data.show==0){
+                   $(".spc").hide();
+                }
+                $("#loadingDiv").hide();
+            }});
+
+
  },error:function(){
                 console.log(data);
             }
         });               
 }
-
 
 
 
