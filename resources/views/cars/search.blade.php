@@ -51,14 +51,26 @@
   font-family: "Montserrat", sans-serif;
   color: #ffffff;
 }
-
+#loadingDiv{position:fixed;top:0px;right:0px;width:100%;height:100%;
+    background-color:#666;
+    /*background-image:url('http://dummyimage.com/64x64/000/fff.gif&text=LOADING');*/
+    background-image:url("{{'/car/assets/images/loading.gif'}}"); 
+    background-repeat:no-repeat;
+    background-position:center;
+    z-index:10000000;  opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */}
 </style>
 
 </head>
 
 <body>
   <!-- Navigation-->
-   <!-- Navigation-->
+   
+   <div id="loadingDiv">
+    <div>
+        <h7>Please wait...</h7>
+        
+    </div></div>  
        @include('cars.header')
   <!-- Header -->
   <header class="bg-dark gvr-header listing-header">
@@ -435,9 +447,15 @@ else{
 
   <!-- Core theme JS-->
   <script src="{{asset('car/js/scripts.js')}}"></script>
-  <script>  // Make Change
-      $('#brand').change(function(){
+  <script>  
+$(function() {
+    $("#loadingDiv").hide();
+});
 
+
+  // Make Change
+      $('#brand').change(function(){
+$("#loadingDiv").show();
          // Department id
          var id = $(this).val();
 
@@ -467,6 +485,9 @@ else{
 
                    $("#model").append(option); 
                 }
+                $("#loadingDiv").hide(); 
+             }else{
+$("#loadingDiv").hide(); 
              }
 
            }
@@ -510,7 +531,7 @@ $("#priceflag").val(1);
 
 });
 function clicked(val){
-//alert(val);
+$("#loadingDiv").show();
  $.ajax({
            url: 'getVehicles',
            type: 'get',
@@ -518,6 +539,7 @@ function clicked(val){
            data:{val:val},
            success: function(response){
 $(".sertab").html(response);
+$("#loadingDiv").hide(); 
              }
 });
 

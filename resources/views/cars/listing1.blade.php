@@ -49,12 +49,25 @@
 div.ex1 {
   overflow-y: scroll;
 }
+#loadingDiv{position:fixed;top:0px;right:0px;width:100%;height:100%;
+    background-color:#666;
+    /*background-image:url('http://dummyimage.com/64x64/000/fff.gif&text=LOADING');*/
+    background-image:url("{{'/car/assets/images/loading.gif'}}"); 
+    background-repeat:no-repeat;
+    background-position:center;
+    z-index:10000000;  opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */}
 </style>
 
 </head>
 
 <body>
     <!-- Navigation-->
+    <div id="loadingDiv">
+    <div>
+        <h7>Please wait...</h7>
+        
+    </div></div>
         @include('cars.header')
 
     <!-- Header -->
@@ -655,13 +668,13 @@ var sortcombo=$('#sortcombo option:selected').val();
 //alert(finalURL);
         //set to current url
         window.history.pushState({}, null, finalURL);
-
+$("#loadingDiv").show();
         $.get(finalURL, function(data) {
 
           $("#pagination_data").html(data);
           var count=$("#count").val();
           $(".rescount2").html(count);
-
+$("#loadingDiv").hide();
         });
 
 
@@ -726,12 +739,13 @@ $('input:checkbox.pc').each(function () {
 //alert(finalURL);
         //set to current url
         window.history.pushState({}, null, finalURL);
-
+        $("#loadingDiv").show();
         $.get(finalURL, function(data) {
 
           $("#pagination_data").html(data);
           var count=$("#count").val();
           $(".rescount2").html(count);
+          $("#loadingDiv").hide();
 
         });
 
@@ -747,6 +761,7 @@ $("#bt3").click(function(){
         $("#flagajax").val(3);
     });
 $(function() {
+    $("#loadingDiv").hide(); 
 $(".offsetyear").val(0);
     $(".offsetpassengercapacity").val(0);
     $(".offsetfueltype").val(0);

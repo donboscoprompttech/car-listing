@@ -37,6 +37,10 @@ Route::get('/passengercapacityrender', [App\Http\Controllers\ServiceController::
 
 Route::get('/makerender', [App\Http\Controllers\ServiceController::class, 'makerender'])->name('makerender');
 Route::get('/modelrender', [App\Http\Controllers\ServiceController::class, 'modelrender'])->name('modelrender');
+Route::get('/modelrendercount', [App\Http\Controllers\ServiceController::class, 'modelrendercount'])->name('modelrendercount');
+Route::get('/makerendercount', [App\Http\Controllers\ServiceController::class, 'makerendercount'])->name('makerendercount');
+Route::get('/yearrendercount', [App\Http\Controllers\ServiceController::class, 'yearrendercount'])->name('yearrendercount');
+Route::get('/passengercapacityrendercount', [App\Http\Controllers\ServiceController::class, 'passengercapacityrendercount'])->name('passengercapacityrendercount');
 Route::get('/searchresult', [App\Http\Controllers\ServiceController::class, 'searchresult'])->name('searchresult');
 Route::post('/searchresultfilter', [App\Http\Controllers\ServiceController::class, 'searchresultfilter'])->name('searchresultfilter');
 Route::get('/forgotpassword/index', [App\Http\Controllers\LoginController::class, 'forgotPasswordIndex'])->name('forgotpassword.index');
