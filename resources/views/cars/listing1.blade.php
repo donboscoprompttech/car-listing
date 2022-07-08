@@ -780,6 +780,18 @@ $("#offsetpassengercapacitypage").val(1);
     $("#offsetyearpage").val(1);
     $("#offsetmakepage").val(1);
     $("#offsetmodelpage").val(1);
+    <?php if ($countmake<4){?>
+ $(".smake").hide();
+    <?php }?>
+<?php if ($countpassengercapacity<4){?>
+ $(".spc").hide();
+    <?php }?>
+    <?php if ($countmodel<4){?>
+ $(".smodel").hide();
+    <?php }?>
+    <?php if ($countyear<4){?>
+      $(".syear").hide();
+    <?php }?>
     
   $( ".range-bar" ).slider({
     range: true,

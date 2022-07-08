@@ -437,10 +437,25 @@ else{
 $contents=Dynamiccontents::first();
 $profile=User::first();
 $sociallinks=SocialLink::get();
+
+$sqlQuerycount = "select distinct make_id,name from motor_custome_values m join make_msts ma on m.make_id=ma.id order by name";
+$makecount = DB::select(DB::raw($sqlQuerycount));
+$countmake=count($makecount);
+$sqlQuerycount = "select distinct model_id,name from motor_custome_values m join model_msts ma on m.model_id=ma.id order by name";
+$modelcount = DB::select(DB::raw($sqlQuerycount));
+$countmodel=count($modelcount);
+$sqlQuerycount = "select distinct seats from ads order by seats";
+$passengercapacitycount = DB::select(DB::raw($sqlQuerycount));
+$countpassengercapacity=count($passengercapacitycount);
+$sqlQuerycount = "select distinct registration_year from motor_custome_values order by registration_year";
+$yearcount = DB::select(DB::raw($sqlQuerycount));
+$countyear=count($yearcount);
+
+
     if($request->ajax()){
         return view('cars.ajax-pagination ',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount','showcarsfirst','showcarssecond','contents')); 
     }     
-        return view('cars.listing1',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount','showcarsfirst','showcarssecond','contents','profile','sociallinks'));  
+        return view('cars.listing1',compact('minprice','maxprice','passengercapacity','fueltype','subcategory','vehicletypecars','year','make','model','cname','vehicletypecarscount','showcarsfirst','showcarssecond','contents','profile','sociallinks','countmake','countmodel','countpassengercapacity','countyear'));  
     }
   
 
