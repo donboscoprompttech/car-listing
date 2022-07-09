@@ -790,6 +790,14 @@ $exterior=exteriorMaster::select('exteriormaster.*','exteriormaster.value as val
                 $adImage            = new AdsImage();
                 $adImage->ads_id    = $ad->id;
                 $adImage->image     = $image;
+                $adImage->vehicletype=0;
+                if ($row->getClientOriginalExtension()=='mp4'){
+                    $adImage->vehicleaudio=1; 
+                }
+                else{
+                    $adImage->vehicleaudio=0; 
+
+                }
                 $adImage->save();
             }
         }
@@ -1256,7 +1264,12 @@ $exteriortbl            = new AdsExterior();
         ]);
     }
 
-
+public function deleteimage(){
+    $id=$_GET['val'];
+    AdsImage::where('id', $id)
+        ->delete();
+        return true;
+}
 
     public static function imageWatermark($image, $fileName){
 

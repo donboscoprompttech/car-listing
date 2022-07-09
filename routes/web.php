@@ -145,7 +145,8 @@ Route::group(['middleware' => ['revalidate']], function(){
         Route::post('/icon/store', [App\Http\Controllers\IconController::class, 'store'])->name('icon.store');
         Route::post('/icon/update', [App\Http\Controllers\IconController::class, 'update'])->name('icon.update');
         Route::post('/icon/delete/{id}', [App\Http\Controllers\IconController::class, 'delete'])->name('icon.delete');
-
+        //Route::get()deleteimage
+Route::get('deleteimage', [App\Http\Controllers\AdsController::class, 'deleteimage'])->name('deleteimage');
 
             // Custom Field
 

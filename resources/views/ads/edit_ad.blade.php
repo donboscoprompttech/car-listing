@@ -138,48 +138,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group my-2 col-md-6">
-                                        <label for="Image">Image (Multiple)</label>
-                                        <input type="file" name="image[]" autocomplete="off" class="form-control @error('image') is-invalid @enderror" accept=".png, .jpeg, .jpg" multiple>
-                                        <div style="color: red;"><strong>Warning: </strong> Maximum of 10 images are allowed!</div>
-                                        <div class="invalid-feedback">
-                                            @error('image')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group my-2 col-md-6">
-                                        <!--<label for="city">City</label>
-                                        <select name="city" id="city" class="select2  form-control @error('city') is-invalid @enderror" autocomplete="off">
-                                            <option value="{{ $ad->city_id }}">Select</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            @error('city')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>-->
- <label for="vehicletype">Vehicle Type</label>
-                                        <select name="vehicletype" required id="vehicletype" class="select2  form-control @error('vehicletype') is-invalid @enderror" autocomplete="off">
-                                            <option value="">Select</option>
-                                            @foreach ($vehicletype as $row1)
-                                                
-                                                <option {{($ad->vehicletype) == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            @error('vehicletype')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>
+                                
 
 
 
-
-
-
-                                    </div>
-                                </div>
                                 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Description">Description</label>
@@ -376,7 +338,22 @@
                                 </div>
 
 
-
+<div class="row"> <div class="form-group my-2 col-md-6">
+                                       
+ <label for="vehicletype">Vehicle Type</label>
+                                        <select name="vehicletype" required id="vehicletype" class="select2  form-control @error('vehicletype') is-invalid @enderror" autocomplete="off">
+                                            <option value="">Select</option>
+                                            @foreach ($vehicletype as $row1)
+                                                
+                                                <option {{($ad->vehicletype) == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            @error('vehicletype')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div></div>
 
 
                                 <hr class="my-2">
@@ -427,7 +404,38 @@
                                         </div>
                                     </div>
                                 </div>
+<div class="row">
+                                    <div class="form-group my-2 col-md-6">
+                                        <label for="Image">Image (Multiple)</label>
+                                        <input type="file" name="image[]" autocomplete="off" class="form-control @error('image') is-invalid @enderror" accept=".png, .jpeg, .jpg" multiple>
+                                        <div style="color: red;"><strong>Warning: </strong> Maximum of 10 images are allowed!</div>
+                                        <div class="invalid-feedback">
+                                            @error('image')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                <h5 class="my-4">Image</h5>
+                                <div class="row">
+                                    @foreach ($ad->Image as $row) 
 
+
+<?php if($row->vehicleaudio==1){?><a onclick=del({{$row->id}}) href="javascript:void(0)" data-video="true" class="video-gal" id="link{{$row->id}}" > <video width="150" height="150" controls>
+  <source src="{{ asset($row->image) }}" type="video/mp4">
+  
+</video> </a> <?php }else {?>
+
+
+                                        <a id="link{{$row->id}}" onclick=del({{$row->id}}) href="javascript:void(0)" target="blank" class="col-md-4"><img class="img-thumbnail" src="{{ asset($row->image) }}" alt="image">Delete</a>
+                                    <?php }?>
+                                    @endforeach
+                                    </div>
+                                </div>                                
+                            </div>
+                                   
+
+                                </div>
                                 <hr class="my-3">
                                 <div class="position-relative row form-group">
                                     <div class="col-lg-2 col-md-4">
@@ -460,6 +468,23 @@
 @push('script')
 
     <script>
+        function del(id){
+            //alert(id);
+
+
+$.ajax({
+            type: 'get',
+            url:"{{ route('deleteimage') }}",
+            dataType: 'html',
+            data:{val:id},
+            success: function (data) {
+//alert("image deleted");
+ $("#link"+id).hide();
+ },error:function(){
+                console.log(data);
+            }
+        });
+        }
 
         $('.slug').keyup(function() {
             $('#canonical_name').val(getSlug($(this).val()));
