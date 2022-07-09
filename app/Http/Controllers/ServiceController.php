@@ -49,9 +49,9 @@ class ServiceController extends Controller
 
             $vehicletypecars = Ads::select("ads.*", "ads.canonical_name as mainid", "subcategories.*", "ads_images.*", 'motor_custome_values.*', "model_msts.name as modelname", "make_msts.name as makename")->leftjoin("ads_images", "ads.id", "=", "ads_images.ads_id")->leftjoin("motor_custome_values", "ads.id", "=", "motor_custome_values.ads_id")->leftjoin("subcategories", "ads.subcategory_id", "=", "subcategories.id")->leftjoin("model_msts", "motor_custome_values.model_id", "=", "model_msts.id")->leftjoin("make_msts", "motor_custome_values.make_id", "=", "make_msts.id")->where("ads_images.vehicletype", 1)->where("ads.delete_status", 0)->orderBy('ads.created_at', 'desc')->limit(8)->get();
             //
-            $sqlQuery = "select `motor_custome_values`.make_id, `make_msts`.`name` as `makename` from `motor_custome_values` left join `make_msts` on `motor_custome_values`.`make_id` = `make_msts`.`id` group by make_id,makename";
+            $sqlQuery = "select `motor_custome_values`.make_id, `make_msts`.`name` as `makename` from `motor_custome_values` left join `make_msts` on `motor_custome_values`.`make_id` = `make_msts`.`id` where make_msts.status=1 group by make_id,makename order by sort_order";
             $make = DB::select(DB::raw($sqlQuery));
-            $sqlQuery = "select `motor_custome_values`.model_id, `model_msts`.`name` as `modelname` from `motor_custome_values` left join `model_msts` on `motor_custome_values`.`model_id` = `model_msts`.`id` group by model_id,modelname";
+            $sqlQuery = "select `motor_custome_values`.model_id, `model_msts`.`name` as `modelname` from `motor_custome_values` left join `model_msts` on `motor_custome_values`.`model_id` = `model_msts`.`id` where model_msts.status=1 group by model_id,modelname order by model_msts.sort_order";
             $model = DB::select(DB::raw($sqlQuery));
             //$sqlQuery = "select distinct registration_year from motor_custome_values left join `ads` on `motor_custome_values`.`ads_id` = `ads`.`id`order by registration_year";
             $sqlQuery = "select distinct registration_year from motor_custome_values left join `ads` on `motor_custome_values`.`ads_id` = `ads`.`id` where ads.delete_status=0 order by registration_year ";
@@ -251,20 +251,22 @@ class ServiceController extends Controller
                 } else {
                     //echo "hello";
                     $vehicletypecars = Ads::select("ads.*", "ads.canonical_name as mainid", "vehicletype.*", 'places.name as placename', 'countries.name as countryname', "adm.*", 'adm.vehicletype as type1', 'motor_custome_values.*', "model_msts.name as modelname", "make_msts.name as makename")->leftjoin("ads_images as adm", "ads.id", "=", "adm.ads_id")->leftjoin("motor_custome_values", "ads.id", "=", "motor_custome_values.ads_id")->leftjoin("places", "places.id", "=", "ads.place")->leftjoin("countries", "countries.id", "=", "ads.country_id")->leftjoin("vehicletype", "ads.vehicletype", "=", "vehicletype.id")->leftjoin("model_msts", "motor_custome_values.model_id", "=", "model_msts.id")->leftjoin("make_msts", "motor_custome_values.make_id", "=", "make_msts.id")->where("ads.delete_status", 0)->get();
-                }
-                $sqlQuery = "select `motor_custome_values`.make_id, `make_msts`.`name` as `makename` from `motor_custome_values` left join `make_msts` on `motor_custome_values`.`make_id` = `make_msts`.`id` group by make_id,makename";
+                }}
+                $sqlQuery = "select `motor_custome_values`.make_id, `make_msts`.`name` as `makename`,sort_order from `motor_custome_values` left join `make_msts` on `motor_custome_values`.`make_id` = `make_msts`.`id` where make_msts.status=1 group by make_id,makename,sort_order order by make_msts.sort_order";
                 $make = DB::select(DB::raw($sqlQuery));
-                $sqlQuery = "select `motor_custome_values`.model_id, `model_msts`.`name` as `modelname` from `motor_custome_values` left join `model_msts` on `motor_custome_values`.`model_id` = `model_msts`.`id` group by model_id,modelname";
+                
+                $sqlQuery = "select `motor_custome_values`.model_id, `model_msts`.`name` as `modelname` from `motor_custome_values` left join `model_msts` on `motor_custome_values`.`model_id` = `model_msts`.`id` where model_msts.status=1 group by model_id,modelname order by model_msts.sort_order";
                 $model = DB::select(DB::raw($sqlQuery));
                 //$sqlQuery = "select distinct registration_year from motor_custome_values order by registration_year";
                 $sqlQuery = "select distinct registration_year from motor_custome_values left join `ads` on `motor_custome_values`.`ads_id` = `ads`.`id` where ads.delete_status=0 order by registration_year ";
                 $year = DB::select(DB::raw($sqlQuery));
-            }
+           // }
             $profile = User::first();
             $contents = Dynamiccontents::first();
            $showcarsfirst = Ads::select("ads.*")->skip(0)->take(8)->orderby('id','desc')->where("ads.delete_status", 0)->get();
             $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
             $sociallinks = SocialLink::get();
+            //dd("hello");
             return view('cars.search', compact('testimonial', 'brands', 'questions', 'vehicletypecars', 'searchresult', 'footerimg', 'question1img', 'question2img', 'videoimg', 'make', 'model', 'year', 'maxprice', 'minprice', 'globe', 'subcategory', 'showcarsfirst', 'showcarssecond', 'contents', 'profile', 'sociallinks'));
         } catch (exception $e) {
             $message = $e->getMessage();
@@ -279,7 +281,7 @@ class ServiceController extends Controller
         // Fetch Models by makeid
         $modelData['data'] = MotorCustomeValues::leftjoin("model_msts", "motor_custome_values.model_id", "=", "model_msts.id")
             ->select('model_msts.id', 'name')->groupby('model_msts.id', 'name')
-            ->where('motor_custome_values.make_id', $makeid)
+            ->where('motor_custome_values.make_id', $makeid)->where("model_msts.status",1)->orderby('model_msts.sort_order')
             ->get();
 
         return response()->json($modelData);
@@ -319,10 +321,14 @@ class ServiceController extends Controller
             } else if (($year != '0') && ($make == '0') && ($model != '0')) {
                 $vehicletypecars = Ads::select("ads.*", "ads.id as mainid", "vehicletype.*", "ads_images.*", 'motor_custome_values.*', "model_msts.name as modelname", 'places.name as placename', 'countries.name as countryname', "make_msts.name as makename")->leftjoin("ads_images", "ads.id", "=", "ads_images.ads_id")->leftjoin("motor_custome_values", "ads.id", "=", "motor_custome_values.ads_id")->leftjoin("vehicletype", "ads.vehicletype", "=", "vehicletype.id")->leftjoin("model_msts", "motor_custome_values.model_id", "=", "model_msts.id")->leftjoin("make_msts", "motor_custome_values.make_id", "=", "make_msts.id")->leftjoin("places", "places.id", "=", "ads.place")->leftjoin("countries", "countries.id", "=", "ads.country_id")->where("ads_images.vehicletype", 1)->where("ads.delete_status", 0)->where("motor_custome_values.model_id", $model)->where("motor_custome_values.registration_year", $year)->get();
             }
-            $sqlQuery = "select `motor_custome_values`.make_id, `make_msts`.`name` as `makename` from `motor_custome_values` left join `make_msts` on `motor_custome_values`.`make_id` = `make_msts`.`id` group by make_id,makename";
+            /*$sqlQuery = "select `motor_custome_values`.make_id, `make_msts`.`name` as `makename` from `motor_custome_values` left join `make_msts` on `motor_custome_values`.`make_id` = `make_msts`.`id` group by make_id,makename";
             $make = DB::select(DB::raw($sqlQuery));
             $sqlQuery = "select `motor_custome_values`.model_id, `model_msts`.`name` as `modelname` from `motor_custome_values` left join `model_msts` on `motor_custome_values`.`model_id` = `model_msts`.`id` group by model_id,modelname";
-            $model = DB::select(DB::raw($sqlQuery));
+            $model = DB::select(DB::raw($sqlQuery));*/
+            $sqlQuery = "select `motor_custome_values`.make_id, `make_msts`.`name` as `makename`,sort_order from `motor_custome_values` left join `make_msts` on `motor_custome_values`.`make_id` = `make_msts`.`id` where make_msts.status=1 group by make_id,makename order by make_msts.sort_order";
+                $make = DB::select(DB::raw($sqlQuery));
+                $sqlQuery = "select `motor_custome_values`.model_id, `model_msts`.`name` as `modelname` from `motor_custome_values` left join `model_msts` on `motor_custome_values`.`model_id` = `model_msts`.`id` where model_msts.status=1 group by model_id,modelname order by model_msts.sort_order";
+                $model = DB::select(DB::raw($sqlQuery));
             $sqlQuery = "select distinct registration_year from motor_custome_values";
             $year = DB::select(DB::raw($sqlQuery));
             return view('cars.search', compact('testimonial', 'brands', 'questions', 'vehicletypecars', 'searchresult', 'footerimg', 'question1img', 'question2img', 'videoimg', 'make', 'model', 'year',));
