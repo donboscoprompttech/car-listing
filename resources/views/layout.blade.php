@@ -141,7 +141,14 @@
    Exterior
 </a></nav>
 @endif
-        
+    @if (Auth::user()->type == \App\Common\Usertype::ADMIN || Auth::user()->UserRole->TaskRole->contains('task_id', \App\Common\Task::Features))
+<nav class="sb-sidenav-menu-nested nav">
+<a class="nav-link {{ request()->is('features*') ? 'active' : '' }}" href="{{ route('features.index') }}">
+    
+    Features
+</a>
+</nav>
+@endif    
 
 
 

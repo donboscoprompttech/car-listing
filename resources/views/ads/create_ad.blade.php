@@ -273,6 +273,20 @@
                                 <div class="row" id="custom_fields">
                                     
                                 </div>
+                                <div class="row">
+                                    Features
+                     <div class="col-md-4">
+                        <?php foreach($feature as $feat){?>
+                                        <div class="form-group my-2">
+                                            
+                                            <input type="checkbox" name="features[]" value="{{$feat->id}}" autocomplete="off">&nbsp;<label for="featuretext"> {{$feat->featuretext}}</label>
+                                        </div>
+                                    <?php } ?>
+                                    </div>               
+
+
+
+                                </div>
 
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
@@ -762,7 +776,7 @@
                                     </div>
                                 </div>`;
 
-                custom_field += `<div class="col-md-6 form-group my-2">
+                /*custom_field += `<div class="col-md-6 form-group my-2">
                                     <div class="container">
                                         <div class="row">
 
@@ -791,7 +805,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>`;
+                                </div>`;*/
                 
             }
             else if(id == 2 || id == 3){

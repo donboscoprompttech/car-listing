@@ -142,6 +142,8 @@
 
 
 
+
+
                                 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Description">Description</label>
@@ -205,12 +207,64 @@
                                 <div class="row" id="custom_fields">
                                     
                                 </div>
+<div class="row">
+                                    Features
+                     <div class="col-md-6">
+                        <?php 
+foreach($features as $feature1){
+$arr[]=$feature1->value;
+}
 
+                        foreach($feature as $feat){?>
+                                        <div class="form-group my-2">
+                                            
+                                            <input type="checkbox" name="features[]" value="{{$feat->id}}" autocomplete="off" <?php if(in_array($feat->id,$arr)){?> checked <?php } ?>>&nbsp;<label for="featuretext"> {{$feat->featuretext}}</label>
+                                        </div>
+                                    <?php } ?>
+                                    </div>  
+
+ <div class="form-group my-2 col-md-6">
+                                        <!--<label for="city">City</label>
+                                        <select name="city" id="city" class="select2  form-control @error('city') is-invalid @enderror" autocomplete="off">
+                                            <option value="{{ $ad->city_id }}">Select</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            @error('city')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>-->
+ <label for="vehicletype">Vehicle Type</label>
+                                        <select name="vehicletype" id="vehicletype" class="select2  form-control @error('vehicletype') is-invalid @enderror" autocomplete="off">
+                                            @foreach ($vehicletype as $row1)
+                                                
+                                                <option {{($ad->vehicletype) == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            @error('vehicletype')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+
+
+
+
+
+
+                                    </div>
+
+
+
+
+
+
+
+                                    </div> 
 
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="seats">Seats</label>
-                                        <input type="number" name="seats" required value="{{ $ad->seats }}" class="slug form-control {{ Session::has('seats_error') ? 'is-invalid' : '' }}" placeholder="Seats" autocomplete="off">
+                                        <input type="text" name="seats" required value="{{ $ad->seats }}" class="slug form-control {{ Session::has('seats_error') ? 'is-invalid' : '' }}" placeholder="Seats" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @if (Session::has('seat_error'))
                                                 {{ Session::get('seat_error') }}
@@ -338,22 +392,7 @@
                                 </div>
 
 
-<div class="row"> <div class="form-group my-2 col-md-6">
-                                       
- <label for="vehicletype">Vehicle Type</label>
-                                        <select name="vehicletype" required id="vehicletype" class="select2  form-control @error('vehicletype') is-invalid @enderror" autocomplete="off">
-                                            <option value="">Select</option>
-                                            @foreach ($vehicletype as $row1)
-                                                
-                                                <option {{($ad->vehicletype) == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            @error('vehicletype')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>
-                                    </div></div>
+
 
 
                                 <hr class="my-2">
@@ -386,7 +425,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group my-2">
-                                        <label for="Email">Email</label>
+                                        <label for="Email">Emaill</label>
                                         <input type="email" name="email" value="{{ $ad->SellerInformation ? $ad->SellerInformation->email : ''}}" class="form-control @error('email') is-invalid @enderror" placeholder="Email" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @error('email')
@@ -404,7 +443,11 @@
                                         </div>
                                     </div>
                                 </div>
-<div class="row">
+
+                                <hr class="my-3">
+
+
+                                <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Image">Image (Multiple)</label>
                                         <input type="file" name="image[]" autocomplete="off" class="form-control @error('image') is-invalid @enderror" accept=".png, .jpeg, .jpg" multiple>
@@ -415,28 +458,28 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                <h5 class="my-4">Image</h5>
-                                <div class="row">
+                                    <div class="form-group my-2 col-md-6">
+                                      <div class="row">
                                     @foreach ($ad->Image as $row) 
 
 
-<?php if($row->vehicleaudio==1){?><a onclick=del({{$row->id}}) href="javascript:void(0)" data-video="true" class="video-gal" id="link{{$row->id}}" > <video width="150" height="150" controls>
+<?php if($row->vehicleaudio==1){?> <a id="link{{$row->id}}" onclick=del({{$row->id}}) href="javascript:void(0)"  class="col-md-4"><video width="150" height="150" controls>
   <source src="{{ asset($row->image) }}" type="video/mp4">
   
-</video> </a> <?php }else {?>
+</video>Delete </a> <?php }else {?>
 
 
-                                        <a id="link{{$row->id}}" onclick=del({{$row->id}}) href="javascript:void(0)" target="blank" class="col-md-4"><img class="img-thumbnail" src="{{ asset($row->image) }}" alt="image">Delete</a>
+                                        <a id="link{{$row->id}}" onclick=del({{$row->id}}) href="javascript:void(0)"  class="col-md-4"><img class="img-thumbnail" src="{{ asset($row->image) }}" alt="image">Delete</a>
                                     <?php }?>
                                     @endforeach
-                                    </div>
-                                </div>                                
-                            </div>
-                                   
+                                    </div>  
+ 
+                                        
 
+
+                                    </div>
                                 </div>
-                                <hr class="my-3">
+
                                 <div class="position-relative row form-group">
                                     <div class="col-lg-2 col-md-4">
                                         <p class="label">Location <span class="float-right d-none d-md-block d-lg-block"></span></p></label>
@@ -468,7 +511,7 @@
 @push('script')
 
     <script>
-        function del(id){
+function del(id){
             //alert(id);
 
 
@@ -485,7 +528,6 @@ $.ajax({
             }
         });
         }
-
         $('.slug').keyup(function() {
             $('#canonical_name').val(getSlug($(this).val()));
         });
@@ -753,7 +795,7 @@ $.ajax({
                                     </div>
                                 </div>`;
 
-                custom_field += `<div class="col-md-6 form-group my-2 row mx-2">
+                /*custom_field += `<div class="col-md-6 form-group my-2 row mx-2">
                                     <label for="Transmission">Features </label>
                                     <div class="custom-form-control col-md-12">
                                         <input type="checkbox" class="" name="features[]" id="AirConditioner" value="Air Conditioner" >
@@ -776,7 +818,7 @@ $.ajax({
                                             @enderror
                                         </div>
                                     </div>
-                                </div>`;
+                                </div>`;*/
 
             }
             else if(id == 2 || id == 3){
@@ -1526,7 +1568,7 @@ $.ajax({
                     }
                 });
                 
-                custom_field += `<div class="col-md-6 form-group my-2 row mx-2">
+               /* custom_field += `<div class="col-md-6 form-group my-2 row mx-2">
                                     <label for="Transmission">Features </label>
                                     <div class="custom-form-control col-md-12">
                                         <input type="checkbox" ${aircondition == true ? 'checked' : ''} class="" name="features[]" id="AirConditioner" value="Air Conditioner" >
@@ -1549,7 +1591,7 @@ $.ajax({
                                             @enderror
                                         </div>
                                     </div>
-                                </div>`;
+                                </div>`;*/
 
             }
             else if(id == 2){

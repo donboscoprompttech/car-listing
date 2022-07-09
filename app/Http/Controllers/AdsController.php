@@ -31,6 +31,7 @@ use App\Models\InteriorMaster;
 use App\Models\ExteriorMaster;
 use App\Models\AdsInterior;
 use App\Models\AdsExterior;
+use App\Models\Features;
 class AdsController extends Controller
 {
     public function index(){
@@ -59,8 +60,9 @@ class AdsController extends Controller
          $interior=InteriorMaster::select('interiormaster.*','interiormaster.value as value1')->where('status',1)->orderby('sortorder')->get();
         $user = User::where('id', Auth::user()->id)
         ->first();
+        $feature = Features::get();
         
-        return view('ads.create_ad', compact('interior','exterior','category', 'country', 'user','vehicletype','places'));
+        return view('ads.create_ad', compact('interior','exterior','category', 'country', 'user','vehicletype','places','feature'));
     }
 
     public function store(Request $request){
@@ -103,7 +105,7 @@ class AdsController extends Controller
                 'transmission'      => 'required',
                 'condition'         => 'required',
                 'mileage'           => 'required|numeric',
-                'features.*'        => 'required',
+               // 'features.*'        => 'required',
             ]);
         }
 
@@ -260,6 +262,21 @@ $seller                     = new SellerInformation();
             }
         }
 
+if($request->features){
+
+                foreach($request->features as $feature1){
+                    
+                    $feature            = new MotorFeatures();
+                    $feature->ads_id    = $ad->id;
+                    $feature->value     = $feature1;
+                    $feature->save();
+                }
+            }
+
+
+
+
+
         if($request->category == 1){
 
             $motor                      = new MotorCustomeValues();
@@ -274,7 +291,7 @@ $seller                     = new SellerInformation();
             $motor->milage              = $request->mileage;
             $motor->save();
 
-            if($request->features){
+            /*if($request->features){
 
                 foreach($request->features as $feature1){
                     
@@ -283,7 +300,7 @@ $seller                     = new SellerInformation();
                     $feature->value     = $feature1;
                     $feature->save();
                 }
-            }
+            }*/
 
         }
         elseif($request->category == 2){
@@ -562,9 +579,11 @@ $exterior=exteriorMaster::select('exteriormaster.*','exteriormaster.value as val
       foreach($interiorselected as $row){
             $interiorarr[]=$row->interior_id;
          }
+         $features=MotorFeatures::where('ads_id',$id)->get();
+         $feature = Features::get();
          //print_r($interiorarr);
          //die;
-        return view('ads.edit_ad', compact('interiorarr','exteriorarr','ad','interior','exterior', 'category', 'country','places','vehicletype'));
+        return view('ads.edit_ad', compact('interiorarr','exteriorarr','ad','interior','exterior', 'category', 'country','places','vehicletype','features','feature'));
     }
 
     public function update(Request $request, $id){

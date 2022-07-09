@@ -295,6 +295,19 @@ Route::get('deleteimage', [App\Http\Controllers\AdsController::class, 'deleteima
         Route::post('/make/update', [App\Http\Controllers\MakeMstsController::class, 'update'])->name('make.update');
         Route::post('/make/delete/{id}', [App\Http\Controllers\MakeMstsController::class, 'delete'])->name('make.delete');
 
+
+//Features
+
+        Route::get('/features', [App\Http\Controllers\FeaturesController::class, 'index'])->name('features.index');
+        Route::post('/features/store', [App\Http\Controllers\FeaturesController::class, 'store'])->name('features.store');
+        Route::post('/features/update', [App\Http\Controllers\FeaturesController::class, 'update'])->name('features.update');
+        Route::post('/features/delete/{id}', [App\Http\Controllers\FeaturesController::class, 'delete'])->name('features.delete');
+
+
+
+
+
+
 //Model
 
         Route::get('/model', [App\Http\Controllers\ModelMstsController::class, 'index'])->name('model.index');
