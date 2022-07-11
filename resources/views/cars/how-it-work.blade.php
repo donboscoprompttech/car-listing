@@ -47,47 +47,10 @@
 
                     <article id="post-191" class="post-191 page type-page status-publish hentry">
 
-                        <header class="entry-header" style="padding:30px">
+                        
+                            <?php echo $contents->howitworks;?>
 
-                            <span class="date updated published">August 8, 2016</span>
-                            <span class="vcard author byline"><a href="https://sellmycar.ae/blog/author/sellmycarae/"
-                                    class="fn">SellMyCarAE</a></span>
-
-                            <h1 class="entry-title" itemprop="headline">How It Works?</h1>
-                        </header><!-- .entry-header -->
-
-                        <div class="entry-content" style="padding:30px">
-
-                            <p>SellMyCar.ae is a professional car selling platform in the Emirates region. At
-                                SellMyCar.ae, we <strong>buy used cars</strong>, inspect them and offer <a
-                                    href="https://sellmycar.ae/estimates/">free evaluation services</a>. Our working is
-                                based on strong automated systems. We have a vast experience in automobile sector and
-                                deal in buying all kinds of used cars.</p>
-                            <h2 style="font-style: inherit;">Sell Us Your Used Car</h2>
-                            <p style="font-style: inherit; font-weight: inherit;">You don’t need to face troubles to
-                                sell your car and approach classified websites for getting maximum price of the car.
-                                These websites will just waste your time and it will require a lot of effort to find out
-                                the right buyer. Conversely, we provide a simple solution to sell car in the UAE.</p>
-                            <p style="font-style: inherit; font-weight: inherit;">You can use our <a
-                                    href="https://sellmycar.ae/estimates/">online car valuation tool</a> free and know
-                                the actual worth of your car. It just requires you to provide some information of the
-                                car such as brand name, model year, mileage and condition. If you find this valuation
-                                satisfying, you can also apply for physical inspection of the car. We will examine your
-                                car and will make a reasonable offer and assure you to handle all the legal
-                                requirements.</p>
-                            <h2 style="font-style: inherit;">We Buy All Cars</h2>
-                            <p style="font-style: inherit; font-weight: inherit;">At SellMyCar.ae, we buy cars of every
-                                brand such as <strong>Toyota, Honda, Ford, BMW, Mitsubishi and Nissan etc</strong>.
-                                Whatever brand’s car you own, once you choose SellMyCar.ae to sell your car, you will
-                                never regret. We are a reliable platform and provide best services to our customers. We
-                                also manage all the documentation and legal work of our customers.</p>
-                            <p style="font-style: inherit; font-weight: inherit;">You can also <strong>sell your
-                                    financed cars</strong> to SellMyCar.ae and get good value for it. The services
-                                provided by us are a result of consistent efforts and experience of many years. We work
-                                hard to provide best benefits to our customers. <strong>Whether you live in Sharjah, Abu
-                                    Dhabi, and Dubai or anywhere in the UAE, SellMyCar.ae will provide an ideal pathway
-                                    to sell your car</strong>.</p>
-
+                            
                         </div><!-- .entry-content -->
 
 

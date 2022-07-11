@@ -129,6 +129,12 @@
                                 type="button" role="tab" aria-controls="profile" aria-selected="false">Motor
                                 Info</button>
                         </li>
+<?php if (count($features)!=0){?>
+<li class="nav-item" role="presentation">
+                            <button class="nav-link" id="motor-tab" data-bs-toggle="tab" data-bs-target="#motorfeatures"
+                                type="button" role="tab" aria-controls="profile" aria-selected="false">Features</button>
+                        </li><?php } ?>
+
 
 <li class="nav-item" role="presentation">
                             <button class="nav-link" id="motor-tabint" data-bs-toggle="tab" data-bs-target="#motorinterior"
@@ -188,9 +194,28 @@
                                     <p>Transmission<span>{{$vehicletypecars->transmission}}</span></p>
                                 </li>
                             </ul>
-                        </div>
-                        
+                        </div>                        
                     </div>
+<?php if (count($features)!=0){?>
+<div class="tab-pane fade" id="motorfeatures" role="tabpanel" aria-labelledby="motor-tabint">
+                         <div class="motor-details">
+                            <p><b> Feature Details</b></p>
+
+<ul>
+    <?php 
+    foreach($features as $feat){?>
+                                <li>
+                                    <p><?php echo $feat->featuresname;?><span><?php echo "Yes";?></span></p>
+                                </li>
+                                <?php }?>
+                            </ul>                            
+                        </div>
+                    </div>
+<?php } ?>
+
+
+
+
 
 <div class="tab-pane fade" id="motorinterior" role="tabpanel" aria-labelledby="motor-tabint">
                          <div class="motor-details">
@@ -198,21 +223,12 @@
 
 <ul>
     <?php 
-
-
-
     foreach($vehicleinterior as $int){?>
                                 <li>
                                     <p><?php echo $int->label;?><span><?php echo $int->value;?></span></p>
                                 </li>
                                 <?php }?>
-                            </ul>
-
-
-
-
-
-                            
+                            </ul>                            
                         </div>
                     </div>
 

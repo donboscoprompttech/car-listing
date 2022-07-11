@@ -20,7 +20,8 @@ use App\Models\AdsExterior;
 use App\Models\Dynamiccontents;
 use App\Models\User;
 use App\Models\SocialLink;
-//use Illuminate\Support\Facades\Input;
+use App\Models\Features;
+
 class ServiceController extends Controller
 {
 
@@ -98,7 +99,7 @@ class ServiceController extends Controller
         $vehicleinterior = AdsInterior::leftjoin("interiormaster", "ads_interior.interior_id", "=", "interiormaster.id")->where('ads_id', $idval)->get();
         $vehicleexterior = AdsExterior::leftjoin("exteriormaster", "ads_exterior.exterior_id", "=", "exteriormaster.id")->where('ads_id', $idval)->get();
         $vehicletypecars = Ads::select("ads.*", "ads.id as mainid1", "ads.canonical_name as mainid", "vehicletype.*", "vehicletype.name as bodyname", "ads_images.*", 'motor_custome_values.*', "model_msts.name as modelname", "make_msts.name as makename", 'places.name as placename', 'countries.name as countryname', 'phone','phone_hide_flag')->leftjoin("ads_images", "ads.id", "=", "ads_images.ads_id")->leftjoin("motor_custome_values", "ads.id", "=", "motor_custome_values.ads_id")->leftjoin("vehicletype", "ads.vehicletype", "=", "vehicletype.id")->leftjoin("model_msts", "motor_custome_values.model_id", "=", "model_msts.id")->leftjoin("make_msts", "motor_custome_values.make_id", "=", "make_msts.id")->leftjoin("places", "places.id", "=", "ads.place")->leftjoin("countries", "countries.id", "=", "ads.country_id")->leftjoin("seller_information", "seller_information.id", "=", "ads.sellerinformation_id")->where('ads.canonical_name', $id)->first();
-
+$features = Features::join("motor_features","features.id","=","motor_features.value")->select("motor_features.*","features.featuretext as featuresname")->where('ads_id', $idval)->orderBy('sortorder')->get();
         $subcategory = Subcategory::orderBy('sort_order')->where('status', 1)
             ->get();
          $showcarsfirst = Ads::select("ads.*")->skip(0)->take(8)->orderby('id','desc')->where("ads.delete_status", 0)->get();
@@ -106,7 +107,7 @@ class ServiceController extends Controller
         $contents = Dynamiccontents::first();
         $profile = User::first();
         $sociallinks = SocialLink::get();
-        return view('cars.details', compact('vehicletypecars', 'vehicleimages', 'subcategory', 'vehicleinterior', 'vehicleexterior', 'showcarsfirst', 'showcarssecond', 'contents', 'profile', 'sociallinks'));
+        return view('cars.details', compact('vehicletypecars', 'vehicleimages', 'subcategory', 'vehicleinterior', 'vehicleexterior', 'showcarsfirst', 'showcarssecond', 'contents', 'profile', 'sociallinks','features'));
     }
 
 

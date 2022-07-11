@@ -251,6 +251,20 @@
                                     </div>
                                 </div>
 
+  <div class="row">
+
+                                <div class="form-group my-2 col-md-12">
+                                        <label for="howitworksContent">How it works Content</label>
+                                        <textarea name="editor1" id="editor1" class="form-control {{ Session::has('description_error') ? 'is-invalid' : '' }}" cols="30" rows="3" placeholder="HowitworksContent" autocomplete="off">{{ $contents->howitworks }}</textarea>
+                                        <div class="invalid-feedback">
+                                            @error('canonical_name')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                </div>
+
 
 
 
@@ -272,5 +286,11 @@
 @endsection
 
 @push('script')
- 
+ <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+<script>
+   $(window).on('load', function (){
+    //$( '#editor1' ).ckeditor();
+    CKEDITOR.replace('editor1');
+});
+   </script>
 @endpush
