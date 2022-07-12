@@ -838,16 +838,16 @@
 .tab-div .list-tab-div .nav-tabs .nav-link {
   background: transparent;
   border: 0;
-  color: #ffd600;
+  color: #c8b462;
   padding: 0.5rem 1.5rem;
   margin-right: 0.5rem;
 }
 .tab-div .list-tab-div .nav-tabs .nav-link:hover {
-  border-bottom: 2px solid #ffd600;
+  border-bottom: 2px solid ##c8b462;
 }
 .tab-div .list-tab-div .nav-tabs .active {
-  color: #ffd600;
-  border-bottom: 2px solid #ffd600;
+  color: #c8b462;
+  border-bottom: 2px solid #c8b462;
 }
 .tab-div .list-tab-div .nav-tabs .more-link {
   position: relative;
@@ -889,12 +889,12 @@
 .tab-div .card-listing-div .search-card-row .car-card .card a .card-body .car-details-div .tag-div {
   width: 20%;
   border-radius: 3px;
-  border: 1px solid #ffd600;
+  border: 1px solid #c8b462;
   margin: 1rem 0;
   padding: 0.1rem;
 }
 .tab-div .card-listing-div .search-card-row .car-card .card a .card-body .car-details-div .tag-div p {
-  color: #ffd600;
+  color: #c8b462;
   font-size: 0.75rem;
   text-align: center;
   margin-bottom: 0;
@@ -980,8 +980,8 @@
   -webkit-transform: rotate(-45deg);
   width: 100px;
   display: block;
-  background: #ffd600;
-  background: linear-gradient(#ffd600 0%, #ffd600 100%);
+  background: #c8b462;
+  background: linear-gradient(#c8b462 0%, #c8b462 100%);
   box-shadow: 0 3px 10px -5px black;
   position: absolute;
   top: 19px;
@@ -1854,16 +1854,16 @@
 .recommend-section .tab-div .list-tab-div .nav-tabs .nav-link {
   background: transparent;
   border: 0;
-  color: #ffd600;
+  color: #c8b462;
   padding: 0.5rem 1.5rem;
   margin-right: 0.5rem;
 }
 .recommend-section .tab-div .list-tab-div .nav-tabs .nav-link:hover {
-  border-bottom: 2px solid #ffd600;
+  border-bottom: 2px solid #c8b462;
 }
 .recommend-section .tab-div .list-tab-div .nav-tabs .active {
-  color: #ffd600;
-  border-bottom: 2px solid #ffd600;
+  color: #c8b462;
+  border-bottom: 2px solid #c8b462;
 }
 .recommend-section .tab-div .list-tab-div .nav-tabs .more-link {
   position: relative;
@@ -1905,12 +1905,12 @@
 .recommend-section .tab-div .card-listing-div .search-card-row .car-card .card a .card-body .car-details-div .tag-div {
   width: 20%;
   border-radius: 3px;
-  border: 1px solid #ffd600;
+  border: 1px solid #c8b462;
   margin: 1rem 0;
   padding: 0.1rem;
 }
 .recommend-section .tab-div .card-listing-div .search-card-row .car-card .card a .card-body .car-details-div .tag-div p {
-  color: #ffd600;
+  color: #c8b462;
   font-size: 0.75rem;
   text-align: center;
   margin-bottom: 0;
@@ -1984,7 +1984,7 @@
 }
 
 .listing-header .header-div {
-  background: #ffd600;
+  background: #c8b462;
   padding: 2rem 9rem;
 }
 .listing-header .header-div .title {
@@ -2365,13 +2365,13 @@
 }
 .list-section .list-div .result-div .flat-card-div .card .card-body .content-div .tag-div {
   border-radius: 3px;
-  border: 1px solid #ffd600;
+  border: 1px solid #c8b462;
   margin: 1rem 0;
   padding: 0.1rem 0.5rem;
   width: 25%;
 }
 .list-section .list-div .result-div .flat-card-div .card .card-body .content-div .tag-div p {
-  color: #ffd600;
+  color: #c8b462;
   font-size: 0.75rem;
   text-align: center;
   margin-bottom: 0;
@@ -2672,7 +2672,7 @@
   margin-right: 2rem;
 }
 .details-section .details-div .gallery-div .fotorama .fotorama__wrap .fotorama__nav .fotorama__active {
-  border: 3px solid #ffd600 !important;
+  border: 3px solid #c8b462 !important;
   border-radius: 3px;
 }
 .details-section .details-div .gallery-div .fotorama .fotorama__wrap .fotorama__nav .fotorama__thumb-border {
@@ -2708,13 +2708,13 @@
 }
 .details-section .details-div .gallery-div .tag-div {
   border-radius: 3px;
-  border: 1px solid #ffd600;
+  border: 1px solid #c8b462;
   padding: 0.1rem 0.5rem;
   margin: 0 0 1rem 0;
   width: 10%;
 }
 .details-section .details-div .gallery-div .tag-div p {
-  color: #ffd600;
+  color: #c8b462;
   font-size: 0.75rem;
   text-align: center;
   margin-bottom: 0;
@@ -2903,7 +2903,7 @@
   }
 }
 .contact-section {
-  background-color: #ffd600;
+  background-color: #c8b462;
   padding: 6rem 25rem;
 }
 .contact-section .section-title {
@@ -2968,7 +2968,7 @@
   outline: none;
 }
 .contact-section .form-div .input-div .send-btn {
-  background: #ffd600;
+  background: #c8b462;
   font-family: "Gotham-medium";
   color: #000000;
   font-size: 0.85rem;

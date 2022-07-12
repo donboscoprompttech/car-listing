@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/category/{id}', [App\Http\Controllers\DetailsController::class, 'carlisting1'])->name('category1.id');
 
-
+Route::get('/about-us', 'App\Http\Controllers\DetailsController@aboutus')->name('about-us');
 Route::get('/howitworks', 'App\Http\Controllers\DetailsController@howitworks')->name('howitworks');
 Route::get('/contactus', 'App\Http\Controllers\DetailsController@contactus')->name('contactus');
     Route::get('/', [App\Http\Controllers\ServiceController::class, 'index'])->name('index');
