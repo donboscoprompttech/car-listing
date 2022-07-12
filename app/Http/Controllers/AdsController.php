@@ -170,7 +170,7 @@ class AdsController extends Controller
         }])
         ->get();
 
-$sqlQuery ="SELECT FLOOR(RAND() * 99999) AS random_num
+/*$sqlQuery ="SELECT FLOOR(RAND() * 99999) AS random_num
 FROM ads 
 WHERE 'random_num' NOT IN (SELECT uniqueno FROM ads)
 LIMIT 1";
@@ -181,7 +181,10 @@ if ($request->place==1){
     $randnum1="Aj$randnum";
 }else{
     $randnum1="Aw$randnum";
-}
+}*/
+$randnum1=$request->uniquetitlefir.$request->uniquetitlesec;
+$randnum=$request->uniquetitlesec;
+
 $seller                     = new SellerInformation();
         $seller->name               = $request->seller_name;
         $seller->email              = $request->email;

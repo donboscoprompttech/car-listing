@@ -1,7 +1,47 @@
 @extends('layout')
 
 @section('content')
-
+<style>
+    .cl{
+        clear:both;
+    }
+    .form-control1{
+ display:block;
+ float: left;
+  width: 15%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control2{
+ display:inline;
+ float: right;
+  width: 85%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+</style>
     <main>
         <div class="container-fluid px-4">
             
@@ -62,10 +102,43 @@
                                         </div>
                                     </div>
                                 </div>
+
+<div class="row">
+    <div class="form-group my-2 col-md-6">
+                                       
+                                        <label for="place">Place</label>
+                                        <select name="place" id="place" class="select2 form-control @error('place') is-invalid @enderror" autocomplete="off" required onchange=display(this.value)>
+                                            <option value="">Select</option>
+                                            @foreach ($places as $row1)
+                                                
+                                                <option {{ old('place') == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+<div class="form-group my-2 col-md-6">
+                                        <label class="cl" for="uniquenumber">Unique Number</label><br>
+                                        <input id="uniquetitlefir" type="text"  required name="uniquetitlefir" value="" placeholder="" autocomplete="off"  class="form-control1" size=3 readonly>
+                                        <input id="uniquetitlesec" type="text"  required name="uniquetitlesec" value="" placeholder="" autocomplete="off"  class=" form-control2" >
+                                        <span class="uniquetitle" style="color:red"></span>
+                                        <div class="invalid-feedback">
+                                            
+                                            
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+</div>
+
                                 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Title">Title</label>
-                                        <input id="title" type="text" onblur="checktitle(this.value);" required name="title" value="{{ old('title') }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}" placeholder="Title" autocomplete="off">
+                                        <input id="title" type="text"  required name="title" value="{{ old('title') }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}" placeholder="Title" autocomplete="off">
                                         <span class="uniquetitle" style="color:red"></span>
                                         <div class="invalid-feedback">
                                             @if (Session::has('title_error'))
@@ -127,25 +200,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="form-group my-2 col-md-6">
-                                        <!--<label for="state">State</label>
-                                        <select name="state" id="state" class="select2 form-control @error('state') is-invalid @enderror" autocomplete="off">
-                                            <option value={{ old('state') }}>Select State</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            @error('state')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>-->
-                                        <label for="place">Place</label>
-                                        <select name="place" id="place" class="select2 form-control @error('place') is-invalid @enderror" autocomplete="off" required>
-                                            <option value="">Select</option>
-                                            @foreach ($places as $row1)
-                                                
-                                                <option {{ old('place') == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Description">Description</label>
@@ -506,8 +561,28 @@
 
     <script>
 
+
+        function display(val){
+    
+    if (val==1){
+     $("#uniquetitlefir").val("AJ");
+    }else{
+$("#uniquetitlefir").val("AW");
+    }
+}
+
         $('.slug').keyup(function() {
-            $('#canonical_name').val(getSlug($(this).val()));
+            var text=$("#uniquetitlesec").val();
+            var uc=text.toUpperCase();
+            var netvalue=$("#uniquetitlefir").val()+uc;
+            if ($("#uniquetitlesec").val()==''){
+                //alert("Please enter Unique Number");
+                $(".uniquetitle").html("Please enter Unique Number");
+                $("#title").val('');
+            }else{
+                $(".uniquetitle").html("");
+            $('#canonical_name').val(getSlug($(this).val()+netvalue));
+        }
         });
 
         function getSlug(str) {
@@ -1444,10 +1519,11 @@ $("#title").val('');
             }
         }); 
 
+            }  
 
 
 
-            }    
+
     </script>
 
 @endpush

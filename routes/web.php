@@ -304,7 +304,7 @@ Route::get('deleteimage', [App\Http\Controllers\AdsController::class, 'deleteima
         Route::post('/features/delete/{id}', [App\Http\Controllers\FeaturesController::class, 'delete'])->name('features.delete');
 
 
-
+Route::post('/testimonial/delete/{id}', [App\Http\Controllers\TestimonialController::class, 'delete'])->name('testimonial.delete');
 
 
 
