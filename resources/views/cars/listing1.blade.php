@@ -519,7 +519,7 @@ div.ex1 {
 
                 <!-- Right side result div -->
                 <div class="result-div">
-                    <form id="searchform" method="get">
+                    
                     <div class="search-div">
                     <span class="search-icon"  >
                             <a onclick="setflag(2)" href="/category/<?php echo $cname;?>" id='search_btn'><img src="{{ asset('car/assets/images/Icons/search.png') }}"  class="img-fluid search-img" alt="search icon" /></a>
@@ -529,12 +529,13 @@ div.ex1 {
                     <div class="result-activity">
                         <p class="result-count "><span class="rescount2"><?php echo($vehicletypecarscount);?> </span>Results</p>
                         <div class="sort-div">
+                            <form id="searchform" method="get">
                             <select id="sortcombo" class="form-control" onchange="formsubmit(this.value);">
                                 <option value="0">Sort By</option>
                                 <option value="Date">Date</option>
                                 <option value="Price">Price</option>
                             </select>
-
+</form>
                             <!-- Filter button for mobile -->
                             <!-- Only visible in mobile view -->
                             <!-- When clicked filter modal open from left and show the filter in mobile view  -->
@@ -565,7 +566,7 @@ div.ex1 {
                             </button>
                         </div>
                     </div>
-</form>
+
 
 <div class="res2" >
 <div id="pagination_data">
@@ -689,6 +690,100 @@ $("#loadingDiv").hide();
 
 
 }
+$('#searchallfirst').keypress(function (e) {
+ var key = e.which;
+ if(key == 13)  // the enter key code
+  {
+   var year = [];
+var make=[];
+var model=[];
+var ft1=[];
+var pc=[]; 
+var sortcombo=$("#sortcombo").val();
+        //get url and make final url for ajax 
+   //var url = $(this).attr("href");
+var url="http://127.0.0.1:8000/category/cara";
+        //var url=window.location.href;
+        var append = url.indexOf("?") == -1 ? "?" : "&";
+        //alert($("#searchform").serialize());
+        //var finalURL = url + append + $("#searchform").serialize();
+        var kw=$("#searchallfirst").val();
+        var kw0=$("#searchall").val();
+        //var flagajax=$("#flagajax").val();
+        var flagajax=2;
+        $("#flagajax").val(2);
+        var priceflag=$("#priceflag").val();
+        var amount=$("#amount").val();
+        var finalURL = url + append + "&searchtextboxfirst="+kw+"&sortcombo="+sortcombo+"&searchtextbox="+kw0+"&flagajax="+flagajax+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype[]="+ft1+"&carpassengercapacity[]="+pc+"&sortcombo1="+sortcombo+"&priceflag="+priceflag+"&amount="+amount;
+//alert(finalURL);
+        //set to current url
+        window.history.pushState({}, null, finalURL);
+        $("#loadingDiv").show();
+        $.get(finalURL, function(data) {
+
+          $("#pagination_data").html(data);
+          var count=$("#count").val();
+          $(".rescount2").html(count);
+          $("#loadingDiv").hide();
+
+        });
+
+        return false;
+  }
+});   
+
+$('#searchall').keypress(function (e) {
+ var key = e.which;
+ if(key == 13)  // the enter key code
+  {
+   var year = [];
+var make=[];
+var model=[];
+var ft1=[];
+var pc=[]; 
+var sortcombo=$("#sortcombo").val();
+        //get url and make final url for ajax 
+   //var url = $(this).attr("href");
+
+        var url=window.location.href;
+        var append = url.indexOf("?") == -1 ? "?" : "&";
+        //alert($("#searchform").serialize());
+        //var finalURL = url + append + $("#searchform").serialize();
+        var kw=$("#searchallfirst").val();
+        var kw0=$("#searchall").val();
+        //var flagajax=$("#flagajax").val();
+        var flagajax=1;
+        $("#flagajax").val(1);
+        var priceflag=$("#priceflag").val();
+        var amount=$("#amount").val();
+        var finalURL = url + append + "&searchtextboxfirst="+kw+"&sortcombo="+sortcombo+"&searchtextbox="+kw0+"&flagajax="+flagajax+"&year[]="+year+"&carmake[]="+make+"&carmodel[]="+model+"&carfueltype[]="+ft1+"&carpassengercapacity[]="+pc+"&sortcombo1="+sortcombo+"&priceflag="+priceflag+"&amount="+amount;
+//alert(finalURL);
+        //set to current url
+        window.history.pushState({}, null, finalURL);
+        $("#loadingDiv").show();
+        $.get(finalURL, function(data) {
+
+          $("#pagination_data").html(data);
+          var count=$("#count").val();
+          $(".rescount2").html(count);
+          $("#loadingDiv").hide();
+
+        });
+
+        return false;
+  }
+});   
+
+
+
+
+
+
+
+
+
+
+
 
 
    // $(function() {
@@ -697,7 +792,7 @@ var year = [];
 var make=[];
 var model=[];
 var ft1=[];
-var pc=[]
+var pc=[];
 $('input:checkbox.year').each(function () {
        var sThisVal = (this.checked ? $(this).val() : "");
        if (sThisVal!=''){

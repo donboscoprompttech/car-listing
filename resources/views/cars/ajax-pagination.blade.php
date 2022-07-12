@@ -66,7 +66,7 @@ $imgid=$row->mainid1;
                                             <p>{{$row->uniquenumber}}</p>
                                         </div>
                                         <div class="car-name-div">
-                                            <p class="car-name">{{ $row->makename }}-{{ $row->title }}</p>
+                                            <p class="car-name">{{$row->title }}</p>
                                         </div>
                                         <div class="price-div">
                                             <p class="price">AED  {{number_format($row->price)}}</p>
