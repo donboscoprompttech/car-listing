@@ -714,7 +714,7 @@ $vehicletypecarscount =count($vehicletypecarscountall);
     
     
 
-$query = Ads::select("ads.*","ads.id as mainid1","ads.canonical_name as mainid","subcategories.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->where('subcategories.canonical_name',$cname)->where("ads.delete_status",0);
+$query = Ads::select("ads.*","ads.id as mainid1","ads.canonical_name as mainid","subcategories.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where('subcategories.canonical_name',$cname)->where("ads.delete_status",0);
     
     if ($sortcombo=='Date'){
         if ($kw!=''){
