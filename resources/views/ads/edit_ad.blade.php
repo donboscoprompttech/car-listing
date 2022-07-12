@@ -552,13 +552,39 @@ $.ajax({
         });
         }
         function display(val){
-    alert("hello");
+   
     if (val==1){
      $("#uniquetitlefir").val("AJ");
     }else{
 $("#uniquetitlefir").val("AW");
     }
+if (($('#title').val()!='') && ($("#uniquetitlesec").val()!='')){
+var text=$("#uniquetitlesec").val();
+            var uc=text.toUpperCase();
+            var netvalue=$("#uniquetitlefir").val()+uc;
+            $('#canonical_name').val(getSlug($('#title').val()+netvalue));
+        }
+
+
+
 }
+
+
+$('#uniquetitlesec').keyup(function() {
+    //alert($('#title').val());
+    if ($('#title').val()!=''){
+var text=$("#uniquetitlesec").val();
+            var uc=text.toUpperCase();
+            var netvalue=$("#uniquetitlefir").val()+uc;
+            $('#canonical_name').val(getSlug($('#title').val()+netvalue));
+        }
+
+    });
+
+
+
+
+
         $('.slug').keyup(function() {
              var text=$("#uniquetitlesec").val();
             var uc=text.toUpperCase();

@@ -278,9 +278,9 @@ Route::get('deleteimage', [App\Http\Controllers\AdsController::class, 'deleteima
 
 //Exterior
 
-        Route::get('/exterior', [App\Http\Controllers\exteriorController::class, 'index'])->name('exterior.index');
-        Route::post('/exterior/store', [App\Http\Controllers\exteriorController::class, 'store'])->name('exterior.store');
-        Route::post('/exterior/update', [App\Http\Controllers\exteriorController::class, 'update'])->name('exterior.update');
+        Route::get('/exterior', [App\Http\Controllers\ExteriorController::class, 'index'])->name('exterior.index');
+        Route::post('/exterior/store', [App\Http\Controllers\ExteriorController::class, 'store'])->name('exterior.store');
+        Route::post('/exterior/update', [App\Http\Controllers\ExteriorController::class, 'update'])->name('exterior.update');
         Route::post('/exterior/delete/{id}', [App\Http\Controllers\exteriorController::class, 'delete'])->name('exterior.delete');
 
 
