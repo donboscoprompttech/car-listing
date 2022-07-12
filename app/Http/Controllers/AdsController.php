@@ -184,6 +184,7 @@ if ($request->place==1){
 }*/
 $randnum1=$request->uniquetitlefir.$request->uniquetitlesec;
 $randnum=$request->uniquetitlesec;
+$sortorder=$request->sortorder;
 
 $seller                     = new SellerInformation();
         $seller->name               = $request->seller_name;
@@ -213,7 +214,7 @@ $seller                     = new SellerInformation();
         $ad->longitude              = $request->address_longitude;
         $ad->status                 = $status;
         $ad->place             = $request->place;
-        //$ad->country_id             = $request->soldreserved;
+        $ad->sortorder             = $request->sortorder;
         $ad->seats             = $request->seats;
         $ad->exteriorcolor             = $request->exteriorcolor;
         $ad->longdescrptitle             = $request->longdescptitle;
@@ -693,7 +694,8 @@ $exterior=exteriorMaster::select('exteriormaster.*','exteriormaster.value as val
             }]);
         }])
         ->get();
-
+$randnum1=$request->uniquetitlefir.$request->uniquetitlesec;
+$randnum=$request->uniquetitlesec;
         SellerInformation::where('id', $ad->sellerinformation_id)
         ->update([
             'name'              => $request->seller_name,
@@ -721,6 +723,9 @@ $exterior=exteriorMaster::select('exteriormaster.*','exteriormaster.value as val
             'latitude'          => $request->address_latitude,
             'longitude'         => $request->address_longitude,
             'status'            => $status,
+            'sortorder'         =>$request->sortorder,
+            'uniquenumber'=>$randnum1,
+            'uniqueno'=>$randnum,
 
 'place'             =>$request->place,
         //$ad->country_id             = $request->soldreserved;

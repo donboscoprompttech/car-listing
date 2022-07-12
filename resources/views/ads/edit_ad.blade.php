@@ -51,9 +51,38 @@
                                     </div>
                                 </div>
                                 <div class="row">
+    <div class="form-group my-2 col-md-6">
+                                       
+                                        <label for="place">Place</label>
+                                      <select name="place" id="place" class="select2 form-control @error('place') is-invalid @enderror" autocomplete="off" onchange="display(this.value)" >
+                                            <option value="">Select</option>
+                                            @foreach ($places as $row1)
+                                                
+                                                <option {{ $ad->place  == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+<?php if ($ad->place==1){
+    $val="AJ";
+}else{
+    $val="AW";
+}?>
+<div class="form-group my-2 col-md-6">
+                                        <label class="cl" for="uniquenumber">Unique Number</label><br>
+                                        <input id="uniquetitlefir" type="text"  required name="uniquetitlefir" value="{{$val}}" placeholder="" autocomplete="off"  class="form-control1" size=3 readonly>
+                                        <input id="uniquetitlesec" type="text"  required name="uniquetitlesec" value="{{$ad->uniqueno}}" placeholder="" autocomplete="off"  class=" form-control2" >
+                                        <span class="uniquetitle" style="color:red"></span>
+                                        <div class="invalid-feedback">
+                                            
+                                            
+                                        </div>
+
+                                    </div></div>
+                                <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Title">Title</label>
-                                        <input type="text" id="title" name="title" onblur="checktitle(this.value);" required value="{{ $ad->title }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}r" placeholder="Title" autocomplete="off">
+                                        <input type="text" id="title" name="title"  required value="{{ $ad->title }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}r" placeholder="Title" autocomplete="off">
                                          <span class="uniquetitle" style="color:red"></span>
                                         <div class="invalid-feedback">
                                             @if (Session::has('title_error'))
@@ -74,7 +103,7 @@
                                 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Title">Title in Arabic</label>
-                                        <input type="text" name="arabic_title" value="{{ $ad->title_arabic }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}" placeholder="Title in Arabic" autocomplete="off">
+                                        <input type="text" name="arabic_title" value="{{ $ad->title_arabic }}" class="form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}" placeholder="Title in Arabic" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @if (Session::has('title_error'))
                                                 {{ Session::get('title_error') }}
@@ -117,16 +146,9 @@
                                             <option value="{{ $ad->state_id }}">Select</option>
                                         </select>-->
 
- <label for="place">Place</label>
-                                        <select name="place" id="place" class="select2 form-control @error('place') is-invalid @enderror" autocomplete="off">
-                                            <option value="">Select</option>
-                                            @foreach ($places as $row1)
-                                                
-                                                <option {{ $ad->place  == $row1->id ? 'selected' : '' }} value="{{ $row1->id }}">{{ $row1->name }}</option>
-                                            @endforeach
-                                        </select>
-
-
+ <label for="SortOrder">Sort Order</label>
+                                        
+ <input type="number" name="sortorder" required value="{{ $ad->sortorder }}" class="form-control @error('price') is-invalid @enderror" placeholder="Sort Order" autocomplete="off">
 
 
 
@@ -211,6 +233,7 @@
                                     Features
                      <div class="col-md-6">
                         <?php 
+                        $arr=array();
 foreach($features as $feature1){
 $arr[]=$feature1->value;
 }
@@ -528,8 +551,28 @@ $.ajax({
             }
         });
         }
+        function display(val){
+    alert("hello");
+    if (val==1){
+     $("#uniquetitlefir").val("AJ");
+    }else{
+$("#uniquetitlefir").val("AW");
+    }
+}
         $('.slug').keyup(function() {
-            $('#canonical_name').val(getSlug($(this).val()));
+             var text=$("#uniquetitlesec").val();
+            var uc=text.toUpperCase();
+            var netvalue=$("#uniquetitlefir").val()+uc;
+            if ($("#uniquetitlesec").val()==''){
+                //alert("Please enter Unique Number");
+                $(".uniquetitle").html("Please enter Unique Number");
+                $("#title").val('');
+            }else{
+                
+            //$('#canonical_name').val(getSlug($(this).val()));
+             $(".uniquetitle").html("");
+            $('#canonical_name').val(getSlug($(this).val()+netvalue));
+        }
         });
 
         function getSlug(str) {
@@ -2277,7 +2320,7 @@ function checktitle(val){
                 
 var val=val;
 var id="<?php echo $ad->id;?>";
-//alert(val);
+
 $.ajax({
             type: 'get',
             url:"{{ route('checkuniquetitleedit') }}",
@@ -2298,7 +2341,7 @@ $("#title").val('');
         }); 
 }
 
-$("#title").keypress(function(){
+/*$("#title").keypress(function(){
     $(".uniquetitle").html("");
   var val=val;
 var id="<?php echo $ad->id;?>";
@@ -2349,7 +2392,7 @@ $("#title").val('');
             }
         }); 
 
-});
+});*/
 $("#frm").on("submit", function (e) {
    //e.preventDefault();
             var val=$("#title").val();

@@ -126,14 +126,7 @@
                                             
                                         </div>
 
-                                    </div>
-
-
-
-
-
-
-</div>
+                                    </div></div>
 
                                 <div class="row">
                                     <div class="form-group my-2 col-md-6">
@@ -161,7 +154,7 @@
                                 <div class="row">
                                     <div class="form-group my-2 col-md-6">
                                         <label for="Title">Title in Arabic</label>
-                                        <input type="text" name="arabic_title" value="{{ old('arabic_title') }}" class="slug form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}" placeholder="Title in Arabic" autocomplete="off">
+                                        <input type="text" name="arabic_title" value="{{ old('arabic_title') }}" class="form-control {{ Session::has('title_error') ? 'is-invalid' : '' }}" placeholder="Title in Arabic" autocomplete="off">
                                         <div class="invalid-feedback">
                                             @if (Session::has('title_error'))
                                                 {{ Session::get('title_error') }}
@@ -200,6 +193,26 @@
                                             @enderror
                                         </div>
                                     </div>
+<div class="form-group my-2 col-md-6">
+                                        
+
+ <label for="SortOrder">Sort Order</label>
+                                        
+ <input type="number" name="sortorder" required value="" class="form-control @error('price') is-invalid @enderror" placeholder="Sort Order" autocomplete="off">
+
+
+
+
+                                        <div class="invalid-feedback">
+                                            @error('state')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                               
                                     
 <div class="row">
                                     <div class="form-group my-2 col-md-6">
