@@ -877,11 +877,17 @@ $subcategory = Subcategory::orderBy('sort_order')->where('status',1)
 //dd($year,$make,$model,$fueltype,$passengercapacity,$priceflag);
 $query = Ads::select("ads.*","ads.id as mainid1","ads.canonical_name as mainid","subcategories.*",'motor_custome_values.*',"model_msts.name as modelname","make_msts.name as makename",'places.name as placename','countries.name as countryname')->leftjoin("motor_custome_values","ads.id","=","motor_custome_values.ads_id")->leftjoin("subcategories","ads.subcategory_id","=","subcategories.id")->leftjoin("model_msts","motor_custome_values.model_id","=","model_msts.id")->leftjoin("make_msts","motor_custome_values.make_id","=","make_msts.id")->leftjoin("places","places.id","=","ads.place")->leftjoin("countries","countries.id","=","ads.country_id")->where("ads.delete_status",0);
 
+
+
+
+
+
 if (isset($year)&&($year[0]!=null)){
    //echo "year";
 //dd();
      $year1=implode(",",$year);
     $year2=explode(",",$year1);
+
 $query->whereIn('registration_year',$year2);
 }
 //if ($make!=''){
@@ -928,23 +934,30 @@ $sortcombo=$request->sortcombo1;
 //dd($sortcombo);
 if ($request->searchtextbox!=''){
     $keywordsearch=$request->searchtextbox;
-    $query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%");
+    /*$query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%");*/
+$query->where(function ($query)use ($keywordsearch) {
+               $query->where("make_msts.name",'like',"%$keywordsearch%")->orwhere("motor_custome_values.registration_year",$keywordsearch)->orwhere("model_msts.name",'like',"%$keywordsearch%")->orwhere('motor_custome_values.fuel_type','like',"%$keywordsearch%")->orwhere("ads.title",'like',"%$keywordsearch%");
+           });
+
+
+
+    
 }
 
 $vehicletypecarscountall=$query->get();
 $vehicletypecarscount =count($vehicletypecarscountall);
 //dd($vehicletypecarscount);
 if ($sortcombo=='Price'){
-    //DB::enableQueryLog();
+   //DB::enableQueryLog();
 $vehicletypecars=$query->orderby('price')->paginate(10);
 //$quries = DB::getQueryLog();
-//dd($quries);
+//d($quries);
 //print_r($vehicletypecars);
 //dd("enp");
 }
 else{
     //dd("en");
-  // DB::enableQueryLog();
+   //DB::enableQueryLog();
     $vehicletypecars=$query->orderby('registration_year')->paginate(10);
     //$quries = DB::getQueryLog();
 //dd($quries);

@@ -64,7 +64,8 @@ $request->validate([
             'bottompagerightContent'  => $request->bottompagerightContent,
             'faqContent'  => $request->faqContent,
             'enquiryContent'  => $request->enquiryContent,
-            'howitworks'=>$request->editor1
+            'howitworks'=>$request->editor1,
+            'aboutus'=>$request->editor2,
 
 
         ]);

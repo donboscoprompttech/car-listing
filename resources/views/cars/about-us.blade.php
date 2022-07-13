@@ -53,11 +53,12 @@
 
                         <div class="entry-content" style="padding:30px">
 
-                            <p>GVR is one of the leading online car classified site and car marketplace in UAE to buy and sell used and new cars or post free car ads to sell your car in minutes.</p>
+                            <!--<p>GVR is one of the leading online car classified site and car marketplace in UAE to buy and sell used and new cars or post free car ads to sell your car in minutes.</p>
 
 <p>On GVR, you can browse best car collection in UAE on best price. You can browse over thousands of car on GVR Dubai platform to find your next car without leaving your comfort and tired of visiting showrooms.</p>
 
-<p>We (GVR) is an online marketplace in UAE to buy used car in UAE. Place your car ads absolutely free.</p>
+<p>We (GVR) is an online marketplace in UAE to buy used car in UAE. Place your car ads absolutely free.</p>-->
+<?php echo $contents->aboutus;?>
                            
 
                         </div><!-- .entry-content -->
