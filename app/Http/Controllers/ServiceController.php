@@ -134,6 +134,9 @@ $features = Features::join("motor_features","features.id","=","motor_features.va
             $make = $request->make;
             $model = $request->model;
             $year = $request->year;
+            $make1=$make;
+            $model1=$model;
+            $year1=$year;
             $keywordsearch = $request->keywordsearch;
             $vehicletypecars = array();
             $pageflag = $request->pageflag;
@@ -268,7 +271,7 @@ $features = Features::join("motor_features","features.id","=","motor_features.va
             $showcarssecond = Ads::select("ads.*")->skip(7)->take(7)->orderby('id','desc')->where("ads.delete_status", 0)->get();
             $sociallinks = SocialLink::get();
             //dd("hello");
-            return view('cars.search', compact('testimonial', 'brands', 'questions', 'vehicletypecars', 'searchresult', 'footerimg', 'question1img', 'question2img', 'videoimg', 'make', 'model', 'year', 'maxprice', 'minprice', 'globe', 'subcategory', 'showcarsfirst', 'showcarssecond', 'contents', 'profile', 'sociallinks'));
+            return view('cars.search', compact('testimonial', 'brands', 'questions', 'vehicletypecars', 'searchresult', 'footerimg', 'question1img', 'question2img', 'videoimg', 'make', 'model', 'year', 'maxprice', 'minprice', 'globe', 'subcategory', 'showcarsfirst', 'showcarssecond', 'contents', 'profile', 'sociallinks','make','model','year','make1','model1','year1'));
         } catch (exception $e) {
             $message = $e->getMessage();
             return view('cars.errorpage', compact('message'));
@@ -305,6 +308,9 @@ $features = Features::join("motor_features","features.id","=","motor_features.va
             $make = $request->make;
             $model = $request->model;
             $year = $request->year;
+            $make1=$make;
+            $model1=$model;
+            $year1=$year;
             $vehicletypecars = array();
             if (($year != '0') && ($make == '0') && ($model == '0')) {
 
@@ -332,7 +338,7 @@ $features = Features::join("motor_features","features.id","=","motor_features.va
                 $model = DB::select(DB::raw($sqlQuery));
             $sqlQuery = "select distinct registration_year from motor_custome_values";
             $year = DB::select(DB::raw($sqlQuery));
-            return view('cars.search', compact('testimonial', 'brands', 'questions', 'vehicletypecars', 'searchresult', 'footerimg', 'question1img', 'question2img', 'videoimg', 'make', 'model', 'year',));
+            return view('cars.search', compact('testimonial', 'brands', 'questions', 'vehicletypecars', 'searchresult', 'footerimg', 'question1img', 'question2img', 'videoimg', 'make', 'model', 'year', 'make1', 'model1', 'year1',));
         } catch (exception $e) {
             $message = $e->getMessage();
             return view('cars.errorpage', compact('message'));

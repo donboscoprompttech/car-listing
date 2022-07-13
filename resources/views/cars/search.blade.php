@@ -106,7 +106,7 @@
               <select id="brand" class="form-control" name="make">
               <option value="0">Make</option>
                @foreach ($make as $row)
-              <option value="{{ $row->make_id }}">{{ $row->makename }}</option>
+              <option value="{{ $row->make_id }}" <?php if($make1==$row->make_id){?> selected <?php }?>>{{ $row->makename }}</option>
               @endforeach
             </select>
           </div>
@@ -115,7 +115,7 @@
              <select id="model" class="form-control" name="model">
               <option value="0">Model</option>
               @foreach ($model as $row)
-              <option value="{{ $row->model_id }}">{{ $row->modelname }}</option>
+              <option value="{{ $row->model_id }}" <?php if($model1==$row->model_id){?> selected <?php }?>>{{ $row->modelname }}</option>
               @endforeach
              
             </select>
@@ -125,7 +125,7 @@
             <select id="year" class="form-control" name="year">
               <option value="0">Year</option>
               @foreach ($year as $row)
-              <option value="{{ $row->registration_year }}">{{ $row->registration_year }}</option>
+              <option value="{{ $row->registration_year }}" <?php if($year1==$row->registration_year){?> selected <?php }?>>{{ $row->registration_year }}</option>
               @endforeach
               
             </select>
