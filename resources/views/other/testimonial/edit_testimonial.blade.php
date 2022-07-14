@@ -58,8 +58,14 @@
                                                 {{ $message }}
                                             @enderror
                                         </div>
-                                    </div>
-                                </div>
+                                    </div> </div>
+                                    <div class="col-md-6">
+                                    <div class="form-group my-2">
+                            <label for="sort">Sort Order</label>
+                           
+                            <input type="text" value="{{ $testimonial->sortorder }}"  name="sortorder" class="form-control" id="SortOrder" placeholder="SortOrder"> 
+                        </div></div>
+                               
                             </div>
                             <button type="submit" class="btn btn-primary my-3">Update</button>
                         </form>

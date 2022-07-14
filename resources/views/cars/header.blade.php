@@ -21,8 +21,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="menu-div d-flex">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-          <li <?=(Request::segment(1)=='index')?'class="nav-item active"':'class="nav-item"'?>>
-            <a class="nav-link" aria-current="page" href="{{url('/index')}}">Home</a>
+          <li <?=(Request::segment(1)=='')?'class="nav-item active"':'class="nav-item"'?>>
+            <a class="nav-link" aria-current="page" href="{{url('/')}}">Home</a>
           </li>
 
 
