@@ -22,6 +22,10 @@
                                     <p class="col-md-6">{{ $contact->title }}</p>
                                 </div>
                                 <div class="row">
+                                    <p class="col-md-6">Unique Number :</p>
+                                    <p class="col-md-6">{{ $contact->uniquenumber }}</p>
+                                </div>
+                                <div class="row">
                                     <p class="col-md-6">Name :</p>
                                     <p class="col-md-6">{{ $contact->name }}</p>
                                 </div>

@@ -37,8 +37,8 @@
 <body>
     <!-- Navigation-->
     @include('cars.header')
-    <section class="contact-section how-it-work" style="background-color: #fff;">
-        <div class="content-left-wrap col-md-12">
+    <section class="container how-it-work" style="background-color: #fff;">
+        <div class="content-left-wrap col-md-12"  style="">
 
 
             <div id="primary" class="content-area">

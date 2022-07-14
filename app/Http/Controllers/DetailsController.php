@@ -96,6 +96,8 @@ class DetailsController extends Controller
         $contactus->message = $request->message;
         $contactus->phone = 0;
         $contactus->ads_id = $request->vehicleid;
+        $uniquenodt=Ads::where('id',$request->vehicleid)->first();
+        $contactus->uniquenumber=$uniquenodt->uniquenumber;
         if ($contactus->save()) {
             return ["message" => "failure", "status" => 200, "text" => "Your Enquiry Send Successfully"];
         } else {

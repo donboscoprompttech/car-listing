@@ -363,9 +363,16 @@
     }
   }
 }
+.contact-section1 {
+  background-color: $card-yellow;
+  padding: 6rem 25rem;
+
+  }
+
 
 .contact-section {
   background-color: $card-yellow;
+  /*padding: 6rem 15rem;*/
   padding: 6rem 25rem;
   // background-image: url(../assets/images/circleElement.svg);
   // background-repeat: no-repeat;

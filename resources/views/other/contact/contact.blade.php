@@ -22,6 +22,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Title</th>
+                                 <th>Unique Number</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
@@ -33,6 +34,7 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $row->title }}</td>
+                                    <td>{{ $row->uniquenumber }}</td>
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->email }}</td>
                                     @if ($row->status == 0)

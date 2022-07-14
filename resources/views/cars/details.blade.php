@@ -311,7 +311,7 @@
                 <div class="input-div checkbox-div">
                     <div class="form-group">
                         <input type="checkbox" id="terms" required>
-                        <label for="terms"> <span>Accept <a href=""> terms & conditions</a></span> </label>
+                        <label for="terms"> <span>Accept <a href="#"> terms & conditions</a></span> </label>
                     </div>
                 </div>
                 <div class="input-div">

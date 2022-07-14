@@ -220,7 +220,7 @@
                           <span class="icon-span">
                             <img src="{{asset('car/assets/images/Icons/meter.png') }}" class="car-icon" alt="">
                           </span>
-                          {{ number_format($row->milage) }} KM
+                          {{ number_format($row->milage) }} KM <span style="color:red"><b>Mileage</b></span>
                         </p>
                       </div>
                       <div class="year-div">
