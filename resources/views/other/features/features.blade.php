@@ -101,11 +101,11 @@
                     <div class="container">
                         <div class="form-group my-2">
                             <label for="Name">Feature Name</label>
-                           <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="Name" placeholder="Name">
+                           <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="Name" placeholder="Name" required>
                         </div>
                         <div class="form-group my-2">
                             <label for="status">Input Type</label>
-                             <select name="inputtype" id="" class="form-control">
+                             <select name="inputtype" id="" class="form-control" required>
                                 <option value="">Select Input Type</option>
                                <option value="Checkbox">Checkbox</option>
                                <option value="Radiobutton">Radiobutton</option>
@@ -114,7 +114,7 @@
                         </div>
                         <div class="form-group my-2">
                             <label for="status">Status</label>
-                             <select name="status" id="" class="form-control">
+                             <select name="status" id="" class="form-control" required>
                                 <option value="">Select Status</option>
                                <option value="1">Active</option>
                                <option value="0">InActive</option>
@@ -124,7 +124,7 @@
                         <div class="form-group my-2">
                             <label for="sort">Sort Order</label>
                            
-                            <input type="text" value="{{ old('sortorder') }}" name="sortorder" class="form-control" id="SortOrder" placeholder="SortOrder">
+                            <input type="text" required value="{{ old('sortorder') }}" name="sortorder" class="form-control" id="SortOrder" placeholder="SortOrder">
                         </div>
                     </div>
                 </div>
@@ -152,11 +152,11 @@
                     <div class="container">
                          <div class="form-group my-2">
                             <label for="Name">Name</label>
-                           <input type="text" value="{{ old('name') }}" name="name" class="form-control"  placeholder="Name" id="name1">
+                           <input type="text" required value="{{ old('name') }}" name="name" class="form-control"  placeholder="Name" id="name1">
                         </div>
                         <div class="form-group my-2">
                             <label for="status">Input Type</label>
-                             <select name="inputtype" id="inputtype1" class="form-control">
+                             <select name="inputtype" required id="inputtype1" class="form-control">
                                 <option value="">Select Input Type</option>
                                <option value="Checkbox">Checkbox</option>
                                <option value="Radiobutton">Radiobutton</option>
@@ -165,7 +165,7 @@
                         </div>
                         <div class="form-group my-2">
                            <label for="status">Status</label>
-                             <select name="status" id="status1" class="form-control">
+                             <select name="status" required id="status1" class="form-control">
                                 <option value="">Select Status</option>
                                <option value="1">Active</option>
                                <option value="0">InActive</option>
@@ -175,7 +175,7 @@
                         <div class="form-group my-2">
                            <label for="sort">Sort Order</label>
                            
-                            <input type="text"  name="sortorder" class="form-control" id="SortOrder1" placeholder="SortOrder">
+                            <input type="text" required name="sortorder" class="form-control" id="SortOrder1" placeholder="SortOrder">
                         </div>
                     </div>
                 </div>

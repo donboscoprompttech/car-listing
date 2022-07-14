@@ -97,15 +97,15 @@
                     <div class="container">
                         <div class="form-group my-2">
                             <label for="Question">Question</label>
-                            <textarea type="text" name="question" class="form-control" id="question" placeholder="question"></textarea>
+                            <textarea type="text" required name="question" class="form-control" id="question" placeholder="question"></textarea>
                         </div>
                         <div class="form-group my-2">
                             <label for="Answer">Answer</label>
-                            <textarea type="text" name="answer" class="form-control" id="answer" placeholder="Answer"></textarea>
+                            <textarea type="text" required name="answer" class="form-control" id="answer" placeholder="Answer"></textarea>
                         </div>
                         <div class="form-group my-2">
                             <label for="Answer">Short Description</label>
-                            <textarea type="text" name="description" class="form-control" id="description" placeholder="Answer"></textarea>
+                            <textarea type="text" required name="description" class="form-control" id="description" placeholder="Answer"></textarea>
                         </div>
                     </div>
                 </div>
@@ -133,15 +133,15 @@
                     <div class="container">
                          <div class="form-group my-2">
                             <label for="Question">Question</label>
-                            <textarea type="text" name="question" class="form-control" id="question1" placeholder="question"></textarea>
+                            <textarea type="text" required name="question" class="form-control" id="question1" placeholder="question"></textarea>
                         </div>
                         <div class="form-group my-2">
                             <label for="Answer">Answer</label>
-                            <textarea type="text" name="answer" class="form-control" id="answer1" placeholder="Answer"></textarea>
+                            <textarea type="text" required name="answer" class="form-control" id="answer1" placeholder="Answer"></textarea>
                         </div>
                         <div class="form-group my-2">
                             <label for="Answer">Short Description</label>
-                            <textarea type="text" name="description" class="form-control" id="description1" placeholder="description"></textarea>
+                            <textarea type="text" required name="description" class="form-control" id="description1" placeholder="description"></textarea>
                         </div>
                     </div>
                 </div>

@@ -185,7 +185,7 @@
                         <div class="form-group my-2">
                            <label for="sort">Sort Order</label>
                            
-                            <input type="text"  name="sortorder" class="form-control" id="SortOrder1" placeholder="SortOrder">
+                            <input type="text" required name="sortorder" class="form-control" id="SortOrder1" placeholder="SortOrder">
                         </div>
                     </div>
                 </div>

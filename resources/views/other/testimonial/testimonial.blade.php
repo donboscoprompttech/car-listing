@@ -104,19 +104,19 @@
                         <div class="form-group my-2">
                             <label for="Name">Name</label>
                            
-                            <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="Name" placeholder="Name"> 
+                            <input type="text" value="{{ old('name') }}" name="name" required class="form-control" id="Name" placeholder="Name"> 
                         </div>
                         <div class="form-group">
                             <label for="Designation">Designation</label>
-                            <input type="text" value="{{ old('designation') }}" class="form-control" name="designation" id="Designation" placeholder="Designation">
+                            <input type="text" required value="{{ old('designation') }}" class="form-control" name="designation" id="Designation" placeholder="Designation">
                         </div>
                         <div class="form-group my-2">
                             <label for="Description">Description</label>
-                            <textarea name="description" class="form-control" id="Description" cols="30" rows="3" placeholder="Description">{{ old('description') }}</textarea>
+                            <textarea name="description" required class="form-control" id="Description" cols="30" rows="3" placeholder="Description">{{ old('description') }}</textarea>
                         </div>
                         <div class="form-group my-2">
                             <label for="status">Status</label>
-                             <select name="status" id="" class="form-control">
+                             <select name="status" id="" class="form-control" required>
                                 <option value="">Select Status</option>
                                <option value="1">Active</option>
                                <option value="0">InActive</option>
@@ -126,7 +126,7 @@
  <div class="form-group my-2">
                             <label for="sort">Sort Order</label>
                            
-                            <input type="text" value="{{ old('sortorder') }}" name="sortorder" class="form-control" id="SortOrder" placeholder="SortOrder"> 
+                            <input type="text" value="{{ old('sortorder') }}" name="sortorder" class="form-control" id="SortOrder" placeholder="SortOrder" required> 
                         </div>
 
 

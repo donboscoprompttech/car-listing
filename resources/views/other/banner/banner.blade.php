@@ -99,11 +99,11 @@
                     <div class="container">
                         <div class="form-group my-2">
                             <label for="Name">Name</label>
-                            <input type="text" name="name" class="form-control" id="Name" placeholder="Name">
+                            <input type="text" name="name" required class="form-control" id="Name" placeholder="Name">
                         </div>
                         <div class="form-group my-2">
                             <label for="Type">Page</label>
-                            <Select name="page" class="form-control">
+                            <Select name="page" required class="form-control">
                                 <option value="">Select Page</option>
                                 <option>First Page</option>
                                 <option>Search Result</option>
@@ -117,7 +117,7 @@
                         </div>
                         <div class="form-group my-2">
                             <label for="Image">Image</label>
-                            <input type="file" name="image" class="form-control" id="Image">
+                            <input type="file" name="image" class="form-control" id="Image" required>
                             <div class="text-danger"><!--Image Width: 1920px, Height: 506px --></div>
                         </div>
                         <div class="form-group my-2">
@@ -150,11 +150,11 @@
                     <div class="container">
                         <div class="form-group my-2">
                             <label for="EditName">Name</label>
-                            <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="editName" placeholder="Name">
+                            <input type="text" value="{{ old('name') }}" name="name" required class="form-control" id="editName" placeholder="Name">
                         </div>
                         <div class="form-group my-2">
                              <label for="Type">Page</label>{{ old('page') }}
-                            <Select name="page" id="page" class="form-control">
+                            <Select name="page" id="page" class="form-control" required>
                                 <option value="">Select Page</option>
                                 <option>First Page</option>
                                 <option>Search Result</option>
@@ -168,7 +168,7 @@
                         </div>
                         <div class="form-group my-2">
                             <label for="Image">Image</label>
-                            <input type="file" name="image" class="form-control" id="Image">
+                            <input type="file" name="image" class="form-control" id="Image" required>
                         </div>
                         <div class="form-group my-2" id="editStatus">
                             <label for="Status">Status</label>
