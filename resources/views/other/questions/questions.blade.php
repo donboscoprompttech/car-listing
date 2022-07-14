@@ -5,18 +5,18 @@
     <main>
         <div class="container-fluid px-4">
             
-            <a href="#" data-toggle="modal" data-target="#createBannerModal"><button type="button" class="btn btn-primary float-end">Create Questions</button></a>
+            <a href="#" data-toggle="modal" data-target="#createBannerModal"><button type="button" class="btn btn-primary float-end">Create Faq</button></a>
             
-            <h2 class="mt-4">Questions</h2>
+            <h2 class="mt-4">Faq</h2>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Privacy & Policy</li>
+                <li class="breadcrumb-item active">Faq</li>
             </ol>
             
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Questions
+                    Faq
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple" class="table table-striped table-bordered">
@@ -89,7 +89,7 @@
             <form action="{{ route('questions.store') }}" method="POST" enctype="multipart/form-data" id="privacyStore">
                 @csrf
                 <div class="modal-header">
-                <h5 class="modal-title" id="createBannerModalModalLabel">Create Questions</h5>
+                <h5 class="modal-title" id="createBannerModalModalLabel">Create Faq</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                 </button>
                 </div>
@@ -125,7 +125,7 @@
                 @csrf
                 <input type="hidden" name="id" id="editId">
                 <div class="modal-header">
-                <h5 class="modal-title" id="createBannerModalModalLabel">Update Questions</h5>
+                <h5 class="modal-title" id="createBannerModalModalLabel">Update Faq</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                 </button>
                 </div>

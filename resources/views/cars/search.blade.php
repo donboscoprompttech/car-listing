@@ -59,6 +59,22 @@
     background-position:center;
     z-index:10000000;  opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */}
+
+ .pagination{
+            float: right;
+            margin-top: 10px;
+        }
+        .page-link{
+            color:#1d1d1d;background-color:#f0d32f ;border-color:#f0d32f ;
+        }
+        .page-item.active .page-link {
+  z-index: 3;
+  color: #000;
+  background-color: #ffffff;
+  border-color: #f0d32f;
+}
+
+    
 </style>
 
 </head>
@@ -242,7 +258,14 @@
 <?php }?>
                 @endforeach
                 
+<nav aria-label="Page navigation example"> 
+<br>
 
+<div id="pagination">
+  
+  {{$vehicletypecars->appends(Request::except('page'))->render()}}
+</div>
+                       </nav>
 
                 <!-- Show all button div -->
                 <div class="col-12 show-btn-div">

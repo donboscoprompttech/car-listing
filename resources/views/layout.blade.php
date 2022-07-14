@@ -298,7 +298,7 @@
 
                         <a class="nav-link {{ request()->is('questions*') ? 'active' : '' }}" href="{{ route('questions.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-balance-scale-right"></i></div>
-                            Questions
+                            Faq
                         </a>
                         @endif
 
