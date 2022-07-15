@@ -201,15 +201,20 @@
                 <?php if (count($vehicletypecars)==0){ echo "Sorry no records found";}?>
                 @foreach ($vehicletypecars as $row)
 
-                <?php if ($row->type1==1){?>
+                <?php //if ($row->type1==1){?>
                 <div class="col-lg-4 col-md-6 car-card">
                   <div class="card h-100">
                      <a href="/details/{{ $row->mainid}}">
                       <div class="card-body">
 
                         <div class="card-img-div">
-                         <img class="card-img img-fluid" src="{{asset($row->image) }}"
+                          <?php $imgid=$row->mainid1;
+  $images = DB::table('ads_images')->limit(1)->where('ads_id',$imgid)->get();  
+       ;?>
+       @foreach ($images as $row1)
+                         <img class="card-img img-fluid" src="{{asset($row1->image) }}"
                             alt="card image" />
+                            @endforeach
                           <!--<div class="ribbon featured"><span>{{--- $row->soldreserved----}}</span></div>-->
 <?=($row->soldreserved!="None")?'<div class="ribbon featured"><span>'.$row->soldreserved.'</span></div>':''?>
 
@@ -255,7 +260,7 @@
                   </div>
                 </div>
 
-<?php }?>
+<?php //}?>
                 @endforeach
                 
 <nav aria-label="Page navigation example"> 
