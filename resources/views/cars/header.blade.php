@@ -81,7 +81,7 @@
     <div class="row m-0">
       <ul class="navbar-nav">
         <li class="active">
-          <a href=""> <span><i class="fa-solid fa-home"></i></span> <span>Home</span></a>
+          <a href="{{url('/')}}"> <span><i class="fa-solid fa-home"></i></span> <span>Home</span></a>
         </li>
         <li>
           <div class="dropup">
@@ -101,7 +101,7 @@
           <a href="{{url('howitworks')}}"> <span><i class="fa-solid fa-wallet"></i></span> <span>How it work</span></a>
 
         </li>
-        <li><a href=""> <span><i class="fa fa-circle-question"></i></span> <span>Why Us</span></a> </li>
+        <li><a href="{{url('/about-us')}}"> <span><i class="fa fa-circle-question"></i></span> <span>About Us</span></a> </li>
         <li><a href="{{url('contactus')}}"><span><i class="fa-solid fa-address-book"></i></span> <span>Contact</span></a> </li>
       </ul>
 
